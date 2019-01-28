@@ -1,0 +1,23 @@
+# Don't track content of these folders
+debug/
+someOtherfoler/
+
+
+# Compiled source #
+###################
+*.vcxproj
+*.filters
+*.user
+*.suo
+*.db
+*.sln 
+*.ipch
+*.ilk
+*.pdb
+
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+
