@@ -17,15 +17,13 @@ Room::Room()
 	// Blank Default Constructor
 }
 
-Room::Room(string name, string longDescription, string shortDescription, int numRooms)
+Room::Room(string name, string longDescription, string shortDescription)
 {
 	setName(name);
 	setLongDescription(longDescription);
 	setShortDescription(shortDescription);
 
 	alreadyVisited = false;
-	numAttachedRooms = 0;
-	attachedRooms = new Room*[numRooms];
 }
 
 /*******************************************************************************
@@ -46,19 +44,19 @@ string Room::getShortDescription()
 	return shortDescription;
 }
 
-int Room::getNumAttachedRooms()
+vector<string>* Room::getAttachedRooms()
 {
-	return numAttachedRooms;
+	return &attachedRooms;
 }
 
-Room** Room::getAttachedRooms()
+vector<string>* Room::getItemsInRoom()
 {
-	return attachedRooms;
+	return &itemsInRoom;
 }
 
-Item** Room::getItemsInRoom()
+vector<string>* Room::getFeaturesInRoom()
 {
-	return itemsInRoom;
+	return &featuresInRoom;
 }
 
 /*******************************************************************************
@@ -79,19 +77,45 @@ void Room::setShortDescription(string givenShortDescription)
 	shortDescription = givenShortDescription;
 }
 
-void Room::setNumAttachedRooms(int givenNumAttachedRooms)
+/*******************************************************************************
+*		ADD FUNCTIONS
+*******************************************************************************/
+void Room::addAttachedRoom(string newRoom)
 {
-	numAttachedRooms = givenNumAttachedRooms;
+	attachedRooms.push_back(newRoom);
 }
 
-void Room::addAttachedRoom(Room* newRoom)
+void Room::addItemInRoom(string newItem)
 {
-	attachedRooms[numAttachedRooms] = newRoom;
-	numAttachedRooms++;
+	itemsInRoom.push_back(newItem);
 }
 
-void Room::addItemInRoom(Item* newItem)
+void Room::addFeatureInRoom(string newFeature)
 {
-	itemsInRoom[numItemsInRoom] = newItem;
-	numItemsInRoom++;
+	featuresInRoom.push_back(newFeature);
+}
+
+/*******************************************************************************
+*		REMOVE FUNCTIONS
+*******************************************************************************/
+void Room::removeItemFromRoom(string removeThisItem)
+{
+	int index = findVectorIndex(removeThisItem, itemsInRoom);
+	itemsInRoom.erase(itemsInRoom.begin() + index);
+}
+
+/*******************************************************************************
+*		FIND VECTOR INDEX
+*******************************************************************************/
+int Room::findVectorIndex(string thisString, vector<string> thisVector)
+{
+	int size = thisVector.size();
+
+	for (int i = 0; i <= size; i++)
+	{
+		if (thisString == thisVector[i])
+		{
+			return i;
+		}
+	}
 }

@@ -15,8 +15,10 @@
 ------------------------------------------------------------------------------*/
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "Item.hpp"
+#include "Feature.hpp"
 
 using namespace std;
 
@@ -29,33 +31,39 @@ struct Room
 
 	bool alreadyVisited;
 
-	Room** attachedRooms;
-	int numAttachedRooms;
+	vector<string> attachedRooms;
 
-	Item** itemsInRoom;
-	int numItemsInRoom;
+	vector<string> itemsInRoom;
+
+	vector<string> featuresInRoom;
 
 	public:
-	//constructor
+	// constructor
 	Room();
-	Room(string, string, string, int);
-	//destructor
+	Room(string, string, string);
+	// destructor
 	//~Room();
 
-	//get
+	// get
 	string getName();
 	string getLongDescription();
 	string getShortDescription();
-	int getNumAttachedRooms();
-	Room** getAttachedRooms();
-	Item** getItemsInRoom();
+	
+	vector<string>* getAttachedRooms();
+	vector<string>* getItemsInRoom();
+	vector<string>* getFeaturesInRoom();
 
-	//set
+	// set
 	void setName(string);
 	void setLongDescription(string);
 	void setShortDescription(string);
-	void setNumAttachedRooms(int);
-	void addAttachedRoom(Room*);
-	void addItemInRoom(Item*);
+	
+	// add
+	void addAttachedRoom(string);
+	void addItemInRoom(string);
+	void addFeatureInRoom(string);
+	
+	void removeItemFromRoom(string);
+	int findVectorIndex(string, vector<string>);
 };
 #endif

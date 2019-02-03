@@ -24,13 +24,10 @@ class Item
 	string name;
 	string description;
 	string forensicAnalysis;
-	bool inInventory;
 
 	public:
 	//constructor
 	Item(string, string, string);
-	//destructor
-	//~Item();
 
 	//get
 	string getName();

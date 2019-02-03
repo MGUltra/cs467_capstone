@@ -17,8 +17,6 @@ Item::Item(string name, string description, string forensicAnalysis)
 	setName(name);
 	setDescription(description);
 	setForensicAnalysis(forensicAnalysis);
-	
-	inInventory = false;
 }
 
 /*******************************************************************************

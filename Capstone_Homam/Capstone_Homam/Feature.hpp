@@ -25,24 +25,22 @@ class Feature
 private:
 	string name;
 	string description;
-	Room location;
+	string location;
 	bool alreadyInspected;
 
 public:
 	//constructor
-	Feature(string, string, Room);
-	//destructor
-	~Feature();
+	Feature(string, string, string);
 
-	//get
+	// get
 	string getName();
 	string getDescription();
-	Room getLocation();
+	string getLocation();
 
-	//set
+	// set
 	void setName(string);
 	void setDescription(string);
-	void setLocation(Room);
+	void setLocation(string);
 };
 
 #endif

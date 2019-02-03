@@ -14,20 +14,23 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <unordered_map>
 
-#include "Item.hpp"
 #include "Room.hpp"
+#include "Player.hpp"
+#include "Victim.hpp"
+#include "Suspect.hpp"
 
 using namespace std;
 
 /*------------------------------------------------------------------------------
 		TEXT FILES
 ------------------------------------------------------------------------------*/
-string Rooms = "Rooms.txt";
-string Features = "Features.txt";
-string Items = "Items.txt";
-string Victim = "Victim.txt";
-string Suspects = "Suspects.txt";
+string RoomsFile = "Rooms.txt";
+string FeaturesFile = "Features.txt";
+string ItemsFile = "Items.txt";
+string VictimFile = "Victim.txt";
+string SuspectsFile = "Suspects.txt";
 
 /*------------------------------------------------------------------------------
 		DEFINITIONS
@@ -45,9 +48,11 @@ void printRoom(Room*);
 /*------------------------------------------------------------------------------
 		GAME VARIABLES
 ------------------------------------------------------------------------------*/
-Room** roomArray;
-int numRooms;
-Item** itemArray;
+unordered_map<string, Item*> itemMap;
+unordered_map<string, Room*> roomMap;
+unordered_map<string, Feature*> featureMap;
+unordered_map<string, Suspect*> suspectMap;
+vector<string> roomTestVector;
 
 /*------------------------------------------------------------------------------
 									MAIN
@@ -69,7 +74,7 @@ void createRooms()
 
 	string fileLine;
 
-	inputFile.open(Rooms);
+	inputFile.open(RoomsFile);
 
 	// Open the given file.
 	if (!inputFile.is_open())
@@ -82,16 +87,15 @@ void createRooms()
 	getline(inputFile, fileLine);
 	// Turn the string into a stream.
 	stringstream currentLine(fileLine);
-	numRooms = 0;
+	int numRooms = 0;
 	// Stream line into an integer.
 	currentLine >> numRooms;
-
-	roomArray = new Room*[numRooms];
 
 	for (int i = 0; i < numRooms; i++)
 	{
 		string name, longDescription, shortDescription;
 		
+		// Get the current line as a string.
 		getline(inputFile, fileLine);
 		name = fileLine;
 
@@ -101,7 +105,10 @@ void createRooms()
 		getline(inputFile, fileLine);
 		shortDescription = fileLine;
 
-		roomArray[i] = new Room(name, longDescription, shortDescription, numRooms);
+		roomMap[name] = new Room(name, longDescription, shortDescription);
+
+		// Debug
+		roomTestVector.push_back(name);
 	}
 
 /*------ATTACH ROOMS----------------------------------------------------------*/
@@ -115,22 +122,22 @@ void createRooms()
 
 	for (int i = 0; i < numRoomPairings; i++)
 	{
+		string roomName1, roomName2;
+
 		// Get the current line as a string.
 		getline(inputFile, fileLine);
-		// Turn the string into a stream.
-		stringstream nextLine(fileLine);
+		roomName1 = fileLine;
 
-		string roomName1, roomName2;
-		nextLine >> roomName1;
-		nextLine >> roomName2;
+		getline(inputFile, fileLine);
+		roomName2 = fileLine;
 
 		// Get each rooms' index.
 		Room* room1 = getRoom(roomName1);
 		Room* room2 = getRoom(roomName2);
 
 		// Attach each room to one another.
-		room1->addAttachedRoom(room2);
-		room2->addAttachedRoom(room1);
+		room1->addAttachedRoom(roomName2);
+		room2->addAttachedRoom(roomName1);
 	}
 
 	// Close inputFile.
@@ -146,13 +153,42 @@ void createFeatures()
 
 	string fileLine;
 
-	inputFile.open(Features);
+	inputFile.open(FeaturesFile);
 
 	// Open the given file.
 	if (!inputFile.is_open())
 	{
 		cout << "The file,'Features.txt', could not be opened.\n";
 		return;
+	}
+
+	// Get the current line as a string.
+	getline(inputFile, fileLine);
+	// Turn the string into a stream.
+	stringstream currentLine(fileLine);
+	int numFeatures = 0;
+	// Stream line into an integer.
+	currentLine >> numFeatures;
+
+	for (int i = 0; i < numFeatures; i++)
+	{
+		string name, description, location;
+		Room* room;
+
+		getline(inputFile, fileLine);
+		name = fileLine;
+
+		getline(inputFile, fileLine);
+		description = fileLine;
+
+		getline(inputFile, fileLine);
+		location = fileLine;
+
+		room = getRoom(location);
+
+		featureMap[name] = new Feature(name, description, location);
+
+		room->addFeatureInRoom(name);
 	}
 
 	// Close inputFile.
@@ -168,7 +204,7 @@ void createItems()
 
 	string fileLine;
 
-	inputFile.open(Items);
+	inputFile.open(ItemsFile);
 
 	// Open the given file.
 	if (!inputFile.is_open())
@@ -185,11 +221,9 @@ void createItems()
 	// Stream line into an integer.
 	currentLine >> numItems;
 
-	itemArray = new Item*[numItems];
-
 	for (int i = 0; i < numItems; i++)
 	{
-		string name, description, forensicAnalysis, stringRoom;
+		string name, description, forensicAnalysis, location;
 		Room* room;
 		
 		getline(inputFile, fileLine);
@@ -202,13 +236,13 @@ void createItems()
 		forensicAnalysis = fileLine;
 
 		getline(inputFile, fileLine);
-		stringRoom = fileLine;
+		location = fileLine;
 
-		room = getRoom(stringRoom);
+		room = getRoom(location);
 
-		itemArray[i] = new Item(name, description, forensicAnalysis);
+		itemMap[name] = new Item(name, description, forensicAnalysis);
 
-		room->addItemInRoom(itemArray[i]);
+		room->addItemInRoom(name);
 	}
 
 	// Close inputFile.
@@ -224,7 +258,7 @@ void createVictim()
 
 	string fileLine;
 
-	inputFile.open(Victim);
+	inputFile.open(VictimFile);
 
 	// Open the given file.
 	if (!inputFile.is_open())
@@ -232,6 +266,16 @@ void createVictim()
 		cout << "The file,'Victim.txt', could not be opened.\n";
 		return;
 	}
+
+	string name, description;
+
+	getline(inputFile, fileLine);
+	name = fileLine;
+
+	getline(inputFile, fileLine);
+	description = fileLine;
+
+	Victim newVictim = Victim(name, description);
 
 	// Close inputFile.
 	inputFile.close();
@@ -246,7 +290,7 @@ void createSuspects()
 
 	string fileLine;
 
-	inputFile.open(Suspects);
+	inputFile.open(SuspectsFile);
 
 	// Open the given file.
 	if (!inputFile.is_open())
@@ -255,37 +299,55 @@ void createSuspects()
 		return;
 	}
 
+	// Get the current line as a string.
+	getline(inputFile, fileLine);
+	// Turn the string into a stream.
+	stringstream currentLine(fileLine);
+	int numSuspects = 0;
+	// Stream line into an integer.
+	currentLine >> numSuspects;
+
+	for (int i = 0; i < numSuspects; i++)
+	{
+		string name, description, answer1, answer2;
+
+		getline(inputFile, fileLine);
+		name = fileLine;
+
+		getline(inputFile, fileLine);
+		description = fileLine;
+
+		getline(inputFile, fileLine);
+		answer1 = fileLine;
+
+		getline(inputFile, fileLine);
+		answer2 = fileLine;
+
+		suspectMap[name] = new Suspect(name, description, answer1, answer2);
+	}
+
 	// Close inputFile.
 	inputFile.close();
 }
 
 /*------------------------------------------------------------------------------
-		FIND ROOM ARRAY INDEX
+		GET ROOM
 ------------------------------------------------------------------------------*/
-int findArrayIndex(string givenName)
-{
-	// Loop through all rooms until the name is found.
-	for (int i = 0; i < numRooms; i++)
-	{
-		if (roomArray[i]->getName() == givenName)
-		{
-			return i;
-		}
-	}
-}
-
 Room* getRoom(string roomName)
 {
-	return roomArray[findArrayIndex(roomName)];
+	return roomMap[roomName];
 }
+
+
 
 void printRooms()
 {
+	int numRooms = roomTestVector.size();
 	cout << "There are a total of " << numRooms << " rooms." << endl;
 	
 	for (int i = 0; i < numRooms; i++)
 	{
-		printRoom(roomArray[i]);
+		printRoom(roomMap[roomTestVector[i]]);
 	}
 }
 
@@ -296,10 +358,12 @@ void printRoom(Room* room)
 	cout << room->getShortDescription() << endl;
 	cout << "The following rooms are attached: " << endl;
 
-	Room** attachedRooms = room->getAttachedRooms();
+	vector<string>* attachedRooms = room->getAttachedRooms();
 
-	for (int i = 0; i < room->getNumAttachedRooms(); i++)
+	int numAttachedRooms = attachedRooms->size();
+
+	for (int i = 0; i < numAttachedRooms; i++)
 	{
-		cout << attachedRooms[i]->getName() << endl;
+		cout << attachedRooms->at(i) << endl;
 	}
 }

@@ -12,7 +12,7 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Feature::Feature(string name, string description, Room location)
+Feature::Feature(string name, string description, string location)
 {
 	setName(name);
 	setDescription(description);
@@ -34,7 +34,7 @@ string Feature::getDescription()
 	return description;
 }
 
-Room Feature::getLocation()
+string Feature::getLocation()
 {
 	return location;
 }
@@ -52,7 +52,7 @@ void Feature::setDescription(string givenDescription)
 	description = givenDescription;
 }
 
-void Feature::setLocation(Room givenLocation)
+void Feature::setLocation(string givenLocation)
 {
 	location = givenLocation;
 }

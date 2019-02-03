@@ -6,3 +6,36 @@
 ** suspects, investigate the crime scene, search for evidence, and ultimately
 ** decide who committed the murder.
 *******************************************************************************/
+
+#ifndef INVENTORY_HPP
+#define INVENTORY_HPP
+
+/*------------------------------------------------------------------------------
+		LIBRARIES
+------------------------------------------------------------------------------*/
+#include <iostream>
+#include <string>
+#include <vector>
+
+#include "Item.hpp"
+
+using namespace std;
+
+struct Inventory
+{
+	private:
+	vector<string> itemsInInventory;
+
+	public:
+	// constructor
+	Inventory();
+
+	vector<string>* getItemsFromInventory();
+
+	void addItemToInventory(string);
+
+	void removeItemFromInventory(string);
+
+	int findVectorIndex(string, vector<string>);
+};
+#endif

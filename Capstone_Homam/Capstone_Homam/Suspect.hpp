@@ -29,8 +29,6 @@ private:
 public:
 	//constructor
 	Suspect(string, string, string, string);
-	//destructor
-	~Suspect();
 
 	//get
 	string getName();

@@ -28,8 +28,6 @@ private:
 public:
 	//constructor
 	Victim(string, string);
-	//destructor
-	~Victim();
 
 	//get
 	string getName();

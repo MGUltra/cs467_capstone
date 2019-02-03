@@ -7,3 +7,42 @@
 ** decide who committed the murder.
 *******************************************************************************/
 
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
+
+/*------------------------------------------------------------------------------
+LIBRARIES
+------------------------------------------------------------------------------*/
+#include <iostream>
+#include <string>
+
+#include "Inventory.hpp"
+#include "Room.hpp"
+
+using namespace std;
+
+class Player
+{
+private:
+	string name;
+	Inventory playerInventory;
+	Room* location;
+
+public:
+	//constructor
+	Player(string, Room*);
+
+	//get
+	string getName();
+	Room* getLocation();
+
+	//set
+	void setName(string);
+	void setLocation(Room*);
+
+	// Player actions
+	void pickUpItem(string);
+	void dropItem(string);
+};
+
+#endif
