@@ -1,4 +1,4 @@
-#include "colormod.h" // namespace Color
+#include "colorMod.h" // namespace Color
 #include <iostream>
 
 int main() {
