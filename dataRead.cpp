@@ -17,6 +17,8 @@ int main()
   std::ifstream inFile;
   std::string input;
 
+  calcWindowSize();
+
   inFile.open("roomText/policeStationShort.txt", std::ios::out);
   readFileDefault(inFile);
   inFile.close();

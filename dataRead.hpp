@@ -11,6 +11,9 @@
 
 #include <iostream>
 #include <fstream>
+#include <sys/ioctl.h>
+#include <stdio.h>
+#include <unistd.h>
 
 /*********************************************************************
 **                     readFileDefault
@@ -50,6 +53,35 @@ void readFileChar(std::ifstream &fileName)
   //Rewind the file
   fileName.clear();
   fileName.seekg(0, std::ios::beg);
+}
+
+/*********************************************************************
+**                     calcWindowSize
+** Description: Ensures terminal window is of sufficient size to
+** fully enjoy the game. Prompts user to adjust terminal if size
+** does not meet minimum requirements.
+*********************************************************************/
+void calcWindowSize()
+{
+  int cols = 80;
+  int lines = 24;
+
+#ifdef TIOCGSIZE
+    struct ttysize ts;
+    ioctl(STDIN_FILENO, TIOCGSIZE, &ts);
+    cols = ts.ts_cols;
+    lines = ts.ts_lines;
+#elif defined(TIOCGWINSZ)
+    struct winsize ts;
+    ioctl(STDIN_FILENO, TIOCGWINSZ, &ts);
+    cols = ts.ws_col;
+    lines = ts.ws_row;
+#endif /* TIOCGSIZE */
+
+    if(cols < 79)
+      printf("Terminal too narrow - please resize and relaunch the game.");
+    if(lines < 42)
+      printf("Terminal toos short - please resize and relaunch the game."); 
 }
 
 #endif
