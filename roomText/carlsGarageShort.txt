@@ -1,0 +1,10 @@
+|-----------------------------------------------------------------------------|
+| Carl's Garage                                              ,                |
+|---------------------------------------------------------- /(  ___________  -|
+| The garage is organized top to bottom with a variety of  |  >:===========`  |
+| woodworking tools. A thin layer of sawdust covers the     )(                |
+| floor. Blood drops are flecked throughout. Nails are also ""                |
+| scattered about. A bloody hammer is on the floor as well. Why so bloody?    |
+| To the South is an exit that will take you back to the station. The kitchen |
+| is straight ahead, to the North.                                            |
+|-----------------------------------------------------------------------------|
