@@ -8,12 +8,15 @@
 |-----------------------------------------------------------------------------|
 |-----------------------------------------------------------------------------|
 | You step inside the drafty police station and quickly scan the room. The    |
-| fluorescent lights flicker above and your eyes struggle to adjust. Old      |
-| mahogany desks are scattered about, each littered with file folders and     |
-| loose papers. Straight ahead is the police chief seated at his desk, slowly |
-| sipping his coffee. In the shadows to the right you notice a steel table    |
-| covered in lab equipment - possibly used for testing evidence. To the left  |
-| is the station's dank holding cell. You can make out the silhouettes of     |
-| three individuals - the three suspected murderes - standing by the bars.    |
+| fluorescent lights flicker above and your eyes struggle      ,   /\   ,     |
+| to adjust. Old mahogany desks are scattered about, each     / '-'  '-' \    |
+| littered with file folders and loose papers. Straight      |   POLICE   |   |
+| ahead is the police chief seated at his desk, slowly       \    .--.    /   |
+| sipping his coffee. In the shadows to the West you notice   |  ( 19 )  |    |
+| a room containing what looks to be some lab equipment -     \   '--'   /    |
+| possibly used for testing evidence. To the East is the       '--.  .--'     |
+| station's dank holding cell room. You can make out the           \/         |
+| silhouettes of three individuals - the three suspected murderers - standing |
+| by the bars. Head North out the main entrance to visit Carl's house,        |
+| Northwest to visit Vincent's house, and Northeast to visit Dan's house.     |
 |-----------------------------------------------------------------------------|
-

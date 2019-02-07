@@ -1,7 +1,10 @@
 |-----------------------------------------------------------------------------|
-| Police Station                                                              |
-|-----------------------------------------------------------------------------|
-| Through the flickering fluorescent lights you spot the police chief seated  |
-| at his desk. To your right - the lab equipment. To your left - the cell     |
-| holding the three suspected murderers.                                      |
+| Police Station                                               ,   /\   ,     |
+|-------------------------------------------------------------/ '-'  '-' \----|
+| Through the flickering fluorescent lights you spot the     |   POLICE   |   |
+| police chief seated at his desk. To the West you see a     \    .--.    /   |
+| room holding lab equipment. To the East  - the cell         |  ( 19 )  |    |
+| holding the three suspected murderers. Head North out the   \   '--'   /    |
+| main entrance to visit Carl's house, Northwest to visit       --.  .--'     |
+| Vincent's house, and Northeast to visit Dan's house.             \/         |
 |-----------------------------------------------------------------------------|
