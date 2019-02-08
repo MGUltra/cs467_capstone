@@ -1,0 +1,10 @@
+|-----------------------------------------------------------------------------|
+| Holding Cell                                           ||   ||   ||   ||   ||
+|--------------------------------------------------------||   ||   ||   ||   ||
+| The holding cell is dark and stale. A small light      ||   ||_ _||   ||   ||
+| hangs above the cell. The silhouettes have grown into  ||   ||o o||   ||   ||
+| the shapes of three grown men - the murder suspects.   ||   || - ||   ||   ||
+| Carl, Vince, and Dan all stand, hangs wrapped around   ||   || = ||   ||   ||
+| the cell bars. Who should you talk to first? The main  ||   ||   ||   ||   ||
+| room of the police station lies a few steps South.     ||   ||   ||   ||   ||
+|-----------------------------------------------------------------------------|
