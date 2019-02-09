@@ -22,6 +22,14 @@
 #include "Suspect.hpp"
 #include "parser.hpp"
 
+// COLORS for testing
+#define DEFAULT "\033[0m"
+#define BLACK   "\033[30m" 
+#define GREEN   "\033[32m"      
+#define YELLOW  "\033[33m" 
+#define RED     "\033[31m"   
+
+
 using namespace std;
 
 /*------------------------------------------------------------------------------
@@ -46,6 +54,9 @@ Room* getRoom(string);
 void printRooms();
 void printRoom(Room*);
 
+// TEST
+void parserTest();
+
 /*------------------------------------------------------------------------------
 		GAME VARIABLES
 ------------------------------------------------------------------------------*/
@@ -67,6 +78,9 @@ int main()
 	
 	createRooms();
 	printRooms();
+	parserTest();
+	
+	delete commandParser;
 
 	return 0;
 }
@@ -105,6 +119,8 @@ void createRooms()
 		getline(inputFile, fileLine);
 		name = fileLine;
 
+		boost::algorithm::to_lower(name);
+		
 		getline(inputFile, fileLine);
 		longDescription = fileLine;
 
@@ -140,6 +156,9 @@ void createRooms()
 		getline(inputFile, fileLine);
 		roomName2 = fileLine;
 
+		boost::algorithm::to_lower(roomName1);
+		boost::algorithm::to_lower(roomName2);
+		
 		// Get each rooms' index.
 		Room* room1 = getRoom(roomName1);
 		Room* room2 = getRoom(roomName2);
@@ -187,6 +206,8 @@ void createFeatures()
 		getline(inputFile, fileLine);
 		name = fileLine;
 
+		boost::algorithm::to_lower(name);
+		
 		getline(inputFile, fileLine);
 		description = fileLine;
 
@@ -241,6 +262,8 @@ void createItems()
 		getline(inputFile, fileLine);
 		name = fileLine;
 
+		boost::algorithm::to_lower(name);
+		
 		getline(inputFile, fileLine);
 		description = fileLine;
 
@@ -250,6 +273,8 @@ void createItems()
 		getline(inputFile, fileLine);
 		location = fileLine;
 
+		boost::algorithm::to_lower(location);
+		
 		room = getRoom(location);
 
 		itemMap[name] = new Item(name, description, forensicAnalysis);
@@ -287,6 +312,8 @@ void createVictim()
 	getline(inputFile, fileLine);
 	name = fileLine;
 
+	boost::algorithm::to_lower(name);
+	
 	getline(inputFile, fileLine);
 	description = fileLine;
 
@@ -332,6 +359,8 @@ void createSuspects()
 		getline(inputFile, fileLine);
 		name = fileLine;
 
+		boost::algorithm::to_lower(name);
+		
 		getline(inputFile, fileLine);
 		description = fileLine;
 
@@ -388,3 +417,56 @@ void printRoom(Room* room)
 		cout << attachedRooms->at(i) << endl;
 	}
 }
+
+
+// TEST
+void parserTest()
+{
+	commandParser->setVerbSet("drop");
+	commandParser->setVerbSet("take");
+	commandParser->setVerbSet("move");
+	commandParser->setVerbSet("go");
+	
+	commandParser->setNounSet("controller");
+	commandParser->setNounSet("cigarette");
+	commandParser->setNounSet("photograph");
+	commandParser->setNounSet("taco");
+	
+	std::string inputMessage = "  Go to basement  Drop the cigarette, and then take the taco, photograph and controller. Move to basement    ";
+	
+	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << YELLOW << "Input string" << DEFAULT << std::endl;
+	std::cout << RED << "-------------------------------------------------" << DEFAULT << std::endl;
+	std::cout << YELLOW << inputMessage << DEFAULT << std::endl;
+	
+	std::cout << std::endl;
+	std::cout << std::endl;
+	commandParser->newMessage(inputMessage);
+	
+	std::cout << std::endl;
+	
+	std::cout << YELLOW << "input string after Boost library tolower and trim" << DEFAULT << std::endl;
+	std::cout << RED << "-------------------------------------------------" << DEFAULT << std::endl;
+	std::cout << YELLOW << commandParser->getMessageIn() << DEFAULT << std::endl;
+	
+	std::cout << std::endl;
+	
+	std::cout << YELLOW << "input string after being parsed by words" << DEFAULT << std::endl;
+	std::cout << RED << "-------------------------------------------------" << DEFAULT << std::endl;
+	
+	commandParser->printParsedStrings();
+	
+	std::cout << std::endl;
+	
+	std::cout << YELLOW << "input string after being Grouped by Verb/Noun Associations" << DEFAULT << std::endl;
+	std::cout << RED << "-------------------------------------------------" << DEFAULT << std::endl;
+	
+	commandParser->printVerbNounGroupings();
+	
+	std::cout << std::endl;
+	
+	commandParser->clearMessage();
+	
+}
+
