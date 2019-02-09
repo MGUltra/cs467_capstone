@@ -20,6 +20,7 @@
 #include "Player.hpp"
 #include "Victim.hpp"
 #include "Suspect.hpp"
+#include "parser.hpp"
 
 using namespace std;
 
@@ -54,11 +55,16 @@ unordered_map<string, Feature*> featureMap;
 unordered_map<string, Suspect*> suspectMap;
 vector<string> roomTestVector;
 
+Parser* commandParser;
+
 /*------------------------------------------------------------------------------
 									MAIN
 ------------------------------------------------------------------------------*/
 int main()
 {
+	// instantiate parser object
+	commandParser = new Parser();
+	
 	createRooms();
 	printRooms();
 
@@ -106,7 +112,10 @@ void createRooms()
 		shortDescription = fileLine;
 
 		roomMap[name] = new Room(name, longDescription, shortDescription);
-
+		
+		// populate parser noun set
+		commandParser->setNounSet(name);
+		
 		// Debug
 		roomTestVector.push_back(name);
 	}
@@ -189,6 +198,9 @@ void createFeatures()
 		featureMap[name] = new Feature(name, description, location);
 
 		room->addFeatureInRoom(name);
+		
+		// populate parser noun set
+		commandParser->setNounSet(name);
 	}
 
 	// Close inputFile.
@@ -243,6 +255,9 @@ void createItems()
 		itemMap[name] = new Item(name, description, forensicAnalysis);
 
 		room->addItemInRoom(name);
+		
+		// populate parser noun set
+		commandParser->setNounSet(name);
 	}
 
 	// Close inputFile.
@@ -276,6 +291,9 @@ void createVictim()
 	description = fileLine;
 
 	Victim newVictim = Victim(name, description);
+	
+	// populate parser noun set
+	commandParser->setNounSet(name);
 
 	// Close inputFile.
 	inputFile.close();
@@ -324,6 +342,9 @@ void createSuspects()
 		answer2 = fileLine;
 
 		suspectMap[name] = new Suspect(name, description, answer1, answer2);
+		
+		// populate parser noun set
+		commandParser->setNounSet(name);		
 	}
 
 	// Close inputFile.
