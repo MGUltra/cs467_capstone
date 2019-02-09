@@ -22,14 +22,6 @@
 #include "Suspect.hpp"
 #include "parser.hpp"
 
-// COLORS for testing
-#define DEFAULT "\033[0m"
-#define BLACK   "\033[30m" 
-#define GREEN   "\033[32m"      
-#define YELLOW  "\033[33m" 
-#define RED     "\033[31m"   
-
-
 using namespace std;
 
 /*------------------------------------------------------------------------------
@@ -436,9 +428,9 @@ void parserTest()
 	
 	std::cout << std::endl;
 	std::cout << std::endl;
-	std::cout << YELLOW << "Input string" << DEFAULT << std::endl;
-	std::cout << RED << "-------------------------------------------------" << DEFAULT << std::endl;
-	std::cout << YELLOW << inputMessage << DEFAULT << std::endl;
+	std::cout << "Input string" << std::endl;
+	std::cout << "-------------------------------------------------" << std::endl;
+	std::cout << inputMessage << std::endl;
 	
 	std::cout << std::endl;
 	std::cout << std::endl;
@@ -446,21 +438,21 @@ void parserTest()
 	
 	std::cout << std::endl;
 	
-	std::cout << YELLOW << "input string after Boost library tolower and trim" << DEFAULT << std::endl;
-	std::cout << RED << "-------------------------------------------------" << DEFAULT << std::endl;
-	std::cout << YELLOW << commandParser->getMessageIn() << DEFAULT << std::endl;
+	std::cout << "input string after Boost library tolower and trim" << std::endl;
+	std::cout << "-------------------------------------------------" << std::endl;
+	std::cout << commandParser->getMessageIn() << std::endl;
 	
 	std::cout << std::endl;
 	
-	std::cout << YELLOW << "input string after being parsed by words" << DEFAULT << std::endl;
-	std::cout << RED << "-------------------------------------------------" << DEFAULT << std::endl;
+	std::cout << "input string after being parsed by words" << std::endl;
+	std::cout << "-------------------------------------------------" << std::endl;
 	
 	commandParser->printParsedStrings();
 	
 	std::cout << std::endl;
 	
-	std::cout << YELLOW << "input string after being Grouped by Verb/Noun Associations" << DEFAULT << std::endl;
-	std::cout << RED << "-------------------------------------------------" << DEFAULT << std::endl;
+	std::cout << "input string after being Grouped by Verb/Noun Associations" << std::endl;
+	std::cout << "-------------------------------------------------" << std::endl;
 	
 	commandParser->printVerbNounGroupings();
 	
