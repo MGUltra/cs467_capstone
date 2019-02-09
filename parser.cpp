@@ -10,12 +10,18 @@
 ****************************************************************/
 
 Parser::Parser()
+	: metaSet({"help"})
+	, verbSet({"drop"})
+	, nounSet({"north", "south", "east", "west"})
+	, messageIn("")
+	, parsedStrings()
+	, gameActions()
+	, numActions(0)
 {
-		this->numActions = 0;
+
 }
 	
-	
-	
+
 	
 /***************************************************************
 ***																													 ***

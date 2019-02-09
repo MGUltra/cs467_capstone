@@ -19,7 +19,7 @@ class Word
 	Word();
 	
 	// Destructor
-	~Word();
+	virtual ~Word();
 	
 	// Virtual Functions
 	void virtual setText();
