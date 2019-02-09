@@ -442,7 +442,7 @@ void Parser::printVerbNounGroupings()
 	for(int x = 0; x < this->numActions; x++)
 	{
 		
-		std::cout << "Verb: "<< gameActions[x]->getText() << " -> ";
+		std::cout << "Verb: " << gameActions[x]->getText() << " -> ";
 		
 		
 		for(int y = 0; y < ((Verb*)gameActions[x])->getNumberOfNouns(); y++)

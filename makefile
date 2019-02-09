@@ -1,7 +1,7 @@
 all: test
 
 clean:
-	-rm parser.o word.o verb.o noun.o wordtest
+	-rm parser.o word.o verb.o noun.o wordtest parsertest
 
 test: wordtest parsertest
 	
