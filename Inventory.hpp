@@ -37,5 +37,9 @@ struct Inventory
 	void removeItemFromInventory(string);
 
 	int findVectorIndex(string, vector<string>);
+	
+	void printCurrentInventory();
+	
+	
 };
 #endif

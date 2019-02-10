@@ -54,3 +54,16 @@ int Inventory::findVectorIndex(string thisString, vector<string> thisVector)
 		}
 	}
 }
+
+
+/*******************************************************************************
+*		PRINT CURRENT INVENTORY
+*******************************************************************************/
+void printCurrentInventory()
+{
+	
+}
+
+
+
+

@@ -22,8 +22,6 @@
 #include "Suspect.hpp"
 #include "parser.hpp"
 
-using namespace std;
-
 
 
 
@@ -31,11 +29,11 @@ using namespace std;
 /*------------------------------------------------------------------------------
 		TEXT FILES
 ------------------------------------------------------------------------------*/
-string RoomsFile = "Rooms.txt";
-string FeaturesFile = "Features.txt";
-string ItemsFile = "Items.txt";
-string VictimFile = "Victim.txt";
-string SuspectsFile = "Suspects.txt";
+std::string RoomsFile = "Rooms.txt";
+std::string FeaturesFile = "Features.txt";
+std::string ItemsFile = "Items.txt";
+std::string VictimFile = "Victim.txt";
+std::string SuspectsFile = "Suspects.txt";
 
 
 
@@ -44,6 +42,8 @@ string SuspectsFile = "Suspects.txt";
 /*------------------------------------------------------------------------------
 		Function Declarations
 ------------------------------------------------------------------------------*/
+
+// Game Initialization functions
 void createRooms(Parser*);
 void createFeatures(Parser*);
 void createItems(Parser*);
@@ -51,13 +51,30 @@ void createVictim(Parser*);
 void createSuspects(Parser*);
 
 
-int findArrayIndex(string);
+int findArrayIndex(std::string);
 Room* getRoom(string);
 void printRooms();
 void printRoom(Room*);
 
+
+
+// Game Prompts
 void currentRoomPrompt(Room*);
-void executeCommand(std::string, std::string);
+void featuresInRoomPrompt(Room*);
+void itemsInRoomPrompt(Room*);
+
+
+// GAME ACTIONS
+void exeCommand(std::string, std::string, Player*);
+void movePlayer(Player*, std::string);
+void dropItem(Player*, std::string);
+void takeItem(Player*, std::string);
+void inspectObject(Player*, std::string);
+void showInventory(Player*);
+void helpPlayer(Player*);
+
+
+
 
 
 void cleanup(Parser*, Player*);
@@ -75,11 +92,11 @@ void parserTest(Parser*);
 
 // Ideally we shouldn't use global variables
 
-unordered_map<string, Item*> itemMap;
-unordered_map<string, Room*> roomMap;
-unordered_map<string, Feature*> featureMap;
-unordered_map<string, Suspect*> suspectMap;
-vector<string> roomTestVector;
+std::unordered_map<std::string, Item*> itemMap;
+std::unordered_map<std::string, Room*> roomMap;
+std::unordered_map<std::string, Feature*> featureMap;
+std::unordered_map<std::string, Suspect*> suspectMap;
+std::vector<std::string> roomTestVector;
 
 
 
@@ -156,7 +173,7 @@ int main()
 			// iterate through nouns of current verb
 			for(int y = 0; y < numberOfNouns; y++)
 			{
-				executeCommand((*actionsInCurrentMessage)[x]->getText(), (((Verb*)((*actionsInCurrentMessage)[x]))->getIndexNounText(y)));
+				exeCommand((*actionsInCurrentMessage)[x]->getText(), (((Verb*)((*actionsInCurrentMessage)[x]))->getIndexNounText(y)), currentPlayer);
 			}
 			
 		}
@@ -185,7 +202,7 @@ int main()
 
 /*********************************************************************
 ***					      																								 ***
-***                     Function Definitions                       ***
+***                 Game Initializing Functions                    ***
 ***							      																						 ***
 **********************************************************************/
 
@@ -196,30 +213,30 @@ int main()
 ------------------------------------------------------------------------------*/
 void createRooms(Parser* commandParser)
 {
-	ifstream inputFile;
+	std::ifstream inputFile;
 
-	string fileLine;
+	std::string fileLine;
 
 	inputFile.open(RoomsFile);
 
 	// Open the given file.
 	if (!inputFile.is_open())
 	{
-		cout << "The file,'Rooms.txt', could not be opened.\n";
+		std::cout << "The file,'Rooms.txt', could not be opened.\n";
 		return;
 	}
 
 	// Get the current line as a string.
 	getline(inputFile, fileLine);
 	// Turn the string into a stream.
-	stringstream currentLine(fileLine);
+	std::stringstream currentLine(fileLine);
 	int numRooms = 0;
 	// Stream line into an integer.
 	currentLine >> numRooms;
 
 	for (int i = 0; i < numRooms; i++)
 	{
-		string name, longDescription, shortDescription;
+		std::string name, longDescription, shortDescription;
 		
 		// Get the current line as a string.
 		getline(inputFile, fileLine);
@@ -243,17 +260,21 @@ void createRooms(Parser* commandParser)
 	}
 
 /*------ATTACH ROOMS----------------------------------------------------------*/
+	
 	// Get next line as a string.
 	getline(inputFile, fileLine);
+	
 	// Turn the string into a stream.
-	stringstream currentLine1(fileLine);
+	std::stringstream currentLine1(fileLine);
+	
 	int numRoomPairings = 0;
+	
 	// Stream line into an integer.
 	currentLine1 >> numRoomPairings;
 
 	for (int i = 0; i < numRoomPairings; i++)
 	{
-		string roomName1, roomName2;
+		std::string roomName1, roomName2;
 
 		// Get the current line as a string.
 		getline(inputFile, fileLine);
@@ -285,30 +306,33 @@ void createRooms(Parser* commandParser)
 ------------------------------------------------------------------------------*/
 void createFeatures(Parser* commandParser)
 {
-	ifstream inputFile;
+	std::ifstream inputFile;
 
-	string fileLine;
+	std::string fileLine;
 
 	inputFile.open(FeaturesFile);
 
 	// Open the given file.
 	if (!inputFile.is_open())
 	{
-		cout << "The file,'Features.txt', could not be opened.\n";
+		std::cout << "The file,'Features.txt', could not be opened.\n";
 		return;
 	}
 
 	// Get the current line as a string.
 	getline(inputFile, fileLine);
+	
 	// Turn the string into a stream.
-	stringstream currentLine(fileLine);
+	std::stringstream currentLine(fileLine);
+	
 	int numFeatures = 0;
+	
 	// Stream line into an integer.
 	currentLine >> numFeatures;
 
 	for (int i = 0; i < numFeatures; i++)
 	{
-		string name, description, location;
+		std::string name, description, location;
 		Room* room;
 
 		getline(inputFile, fileLine);
@@ -344,30 +368,33 @@ void createFeatures(Parser* commandParser)
 ------------------------------------------------------------------------------*/
 void createItems(Parser* commandParser)
 {
-	ifstream inputFile;
+	std::ifstream inputFile;
 
-	string fileLine;
+	std::string fileLine;
 
 	inputFile.open(ItemsFile);
 
 	// Open the given file.
 	if (!inputFile.is_open())
 	{
-		cout << "The file,'Items.txt', could not be opened.\n";
+		std::cout << "The file,'Items.txt', could not be opened.\n";
 		return;
 	}
 
 	// Get the current line as a string.
 	getline(inputFile, fileLine);
+	
 	// Turn the string into a stream.
-	stringstream currentLine(fileLine);
+	std::stringstream currentLine(fileLine);
+	
 	int numItems = 0;
+	
 	// Stream line into an integer.
 	currentLine >> numItems;
 
 	for (int i = 0; i < numItems; i++)
 	{
-		string name, description, forensicAnalysis, location;
+		std::string name, description, forensicAnalysis, location;
 		Room* room;
 		
 		getline(inputFile, fileLine);
@@ -409,20 +436,20 @@ void createItems(Parser* commandParser)
 ------------------------------------------------------------------------------*/
 void createVictim(Parser* commandParser)
 {
-	ifstream inputFile;
+	std::ifstream inputFile;
 
-	string fileLine;
+	std::string fileLine;
 
 	inputFile.open(VictimFile);
 
 	// Open the given file.
 	if (!inputFile.is_open())
 	{
-		cout << "The file,'Victim.txt', could not be opened.\n";
+		std::cout << "The file,'Victim.txt', could not be opened.\n";
 		return;
 	}
 
-	string name, description;
+	std::string name, description;
 
 	getline(inputFile, fileLine);
 	name = fileLine;
@@ -449,30 +476,33 @@ void createVictim(Parser* commandParser)
 ------------------------------------------------------------------------------*/
 void createSuspects(Parser* commandParser)
 {
-	ifstream inputFile;
+	std::ifstream inputFile;
 
-	string fileLine;
+	std::string fileLine;
 
 	inputFile.open(SuspectsFile);
 
 	// Open the given file.
 	if (!inputFile.is_open())
 	{
-		cout << "The file,'Suspects.txt', could not be opened.\n";
+		std::cout << "The file,'Suspects.txt', could not be opened.\n";
 		return;
 	}
 
 	// Get the current line as a string.
 	getline(inputFile, fileLine);
+	
 	// Turn the string into a stream.
-	stringstream currentLine(fileLine);
+	std::stringstream currentLine(fileLine);
+	
 	int numSuspects = 0;
+	
 	// Stream line into an integer.
 	currentLine >> numSuspects;
 
 	for (int i = 0; i < numSuspects; i++)
 	{
-		string name, description, answer1, answer2;
+		std::string name, description, answer1, answer2;
 
 		getline(inputFile, fileLine);
 		name = fileLine;
@@ -504,10 +534,15 @@ void createSuspects(Parser* commandParser)
 /*------------------------------------------------------------------------------
 		GET ROOM
 ------------------------------------------------------------------------------*/
-Room* getRoom(string roomName)
+Room* getRoom(std::string roomName)
 {
 	return roomMap[roomName];
 }
+
+
+
+
+
 
 
 
@@ -526,27 +561,84 @@ void currentRoomPrompt(Room* currentRoom)
 		// if no output long description
 		// and set visited alreadyVisited to true
 
-		
+		// call 
+}
+
+
+/*------------------------------------------------------------------------------
+		Features in Room Prompt
+------------------------------------------------------------------------------*/
+
+void featuresInRoomPrompt(Room* currentRoom)
+{
+	
+}
+
+
+/*------------------------------------------------------------------------------
+		Items in Room Prompt
+------------------------------------------------------------------------------*/
+
+void itemsInRoomPrompt(Room* currentRoom)
+{
+	
 }
 
 
 
+
+/*********************************************************************
+***					      																								 ***
+***                    Game Action Functions                       ***
+***							      																						 ***
+**********************************************************************/
 
 
 /*------------------------------------------------------------------------------
 		Execute Command
 ------------------------------------------------------------------------------*/
 
-void executeCommand(std::string verb, std::string noun)
+void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 {
-	std::cout << "Verb:" << verb << std::endl;
-	std::cout << "Noun:" << noun << std::endl;
+	//std::cout << "Verb:" << verb << std::endl;
+	//std::cout << "Noun:" << noun << std::endl;
+	
+	int functionToCall = 0;
 	
 	// test verb to determine which function to call
-	
 		// pass noun to function called
+	if(verb == "move" || verb == "go")
+		functionToCall = 1;
+	else if(verb == "drop")
+		functionToCall = 2;
+	else if(verb == "take" || verb == "pick")
+		functionToCall = 3;
+	else if(verb == "look" || verb == "inspect")
+		functionToCall = 4;
+	else if(verb == "inventory")
+		functionToCall = 5;
+	else if(verb == "help")
+		functionToCall = 6;
+
 	
 	
+	switch(functionToCall) {
+		
+		case 1:	// change rooms
+			movePlayer(currentPlayer, noun);
+		case 2: // drop item
+			dropItem(currentPlayer, noun);
+		case 3: // pick up item
+			takeItem(currentPlayer, noun);
+		case 4: // inspect
+			inspectObject(currentPlayer, noun);
+		case 5:	// inventory
+			showInventory(currentPlayer);
+		case 6: // help
+			helpPlayer(currentPlayer);
+		default: // message unclear then help
+			helpPlayer(currentPlayer);
+	}
 	
 }
 
@@ -556,23 +648,39 @@ void executeCommand(std::string verb, std::string noun)
 		Change Rooms
 ------------------------------------------------------------------------------*/
 
-
+void movePlayer(Player* currentPlayer, std::string nounIn)
+{
+	
+	// TODO: Add test for available room, either in this or getLocation
+	//	function in the Player class
+	
+	currentPlayer->setLocation(getRoom(nounIn));
+}
 
 /*------------------------------------------------------------------------------
 		Drop item
 ------------------------------------------------------------------------------*/
 
-
+void dropItem(Player* currentPlayer, std::string nounIn)
+{
+	
+	// TODO: Add test for available Item, either in this or dropItem
+	//	function in the Player class
+	
+	currentPlayer->dropItem(nounIn);
+}
 
 /*------------------------------------------------------------------------------
 		pick up items
 ------------------------------------------------------------------------------*/
 
-
-
-/*------------------------------------------------------------------------------
-		display inventory
-------------------------------------------------------------------------------*/
+void takeItem(Player* currentPlayer, std::string nounIn)
+{
+	// TODO: Add test for available Item, either in this or pickUpItem
+	//	function in the Player class
+	
+	currentPlayer->pickUpItem(nounIn);
+}
 
 
 
@@ -580,13 +688,35 @@ void executeCommand(std::string verb, std::string noun)
 		inspect 
 ------------------------------------------------------------------------------*/
 
+void inspectObject(Player* currentPlayer, std::string nounIn)
+{
+	// if feature in room
+		// test if feature is present in the current room 
+		
+	// if item in room or players inventory
+		// test if item is present in either the current room or inventory 
+
+}
+
+
+/*------------------------------------------------------------------------------
+		display inventory
+------------------------------------------------------------------------------*/
+
+void showInventory(Player* currentPlayer)
+{
+	
+}
 
 
 /*------------------------------------------------------------------------------
 		help
 ------------------------------------------------------------------------------*/
 
-
+void helpPlayer(Player* currentPlayer)
+{
+	
+}
 
 
 
@@ -618,7 +748,7 @@ void cleanup(Parser* currentParser, Player* currentPlayer)
 void printRooms()
 {
 	int numRooms = roomTestVector.size();
-	cout << "There are a total of " << numRooms << " rooms." << endl;
+	std::cout << "There are a total of " << numRooms << " rooms." << std::endl;
 	
 	for (int i = 0; i < numRooms; i++)
 	{
@@ -630,18 +760,18 @@ void printRooms()
 
 void printRoom(Room* room)
 {
-	cout << "You are in the " << room->getName() << "." << endl;
-	cout << room->getLongDescription() << endl;
-	cout << room->getShortDescription() << endl;
-	cout << "The following rooms are attached: " << endl;
+	std::cout << "You are in the " << room->getName() << "." << std::endl;
+	std::cout << room->getLongDescription() << std::endl;
+	std::cout << room->getShortDescription() << std::endl;
+	std::cout << "The following rooms are attached: " << std::endl;
 
-	vector<string>* attachedRooms = room->getAttachedRooms();
+	std::vector<std::string>* attachedRooms = room->getAttachedRooms();
 
 	int numAttachedRooms = attachedRooms->size();
 
 	for (int i = 0; i < numAttachedRooms; i++)
 	{
-		cout << attachedRooms->at(i) << endl;
+		std::cout << attachedRooms->at(i) << std::endl;
 	}
 }
 

@@ -61,7 +61,7 @@ std::string Verb::getIndexNounText(int index)
 	if(index < this->numberOfNouns)
 		return this->associatedNouns[index]->getText();
 	else
-		return "Error: no nound at index";
+		return "";
 }
 
 int Verb::getNumberOfNouns()
