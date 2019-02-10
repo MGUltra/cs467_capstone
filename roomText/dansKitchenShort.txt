@@ -7,4 +7,5 @@
 | covers the table. Why so messy? You notice a pic-   || o '-.'.\|/.-' o   || |
 | ture hanging from the refrigerator door. A door to the                      |
 | West leads to the living room and one to the East heads toward the bedroom. |
+| Head back South to return to the police station.
 |-----------------------------------------------------------------------------|
