@@ -1,15 +1,15 @@
 3
-Holding Cells
-This is the holding cells long description.
-This is the holding cells short description.
-Living Room
-This is the living room long description.
-This is the living room short description.
+kitchen
+This is the kitchen long description.
+This is the kitchen short description.
+bedroom
+This is the bedroom long description.
+This is the bedroom short description.
 Basement
 This is the basement long description.
 This is the basement short description.
 2
-Holding Cells
+kitchen
 Basement
-Holding Cells
-Living Room
+kitchen
+bedroom

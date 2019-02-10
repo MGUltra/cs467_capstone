@@ -24,6 +24,10 @@
 
 using namespace std;
 
+
+
+
+
 /*------------------------------------------------------------------------------
 		TEXT FILES
 ------------------------------------------------------------------------------*/
@@ -33,54 +37,164 @@ string ItemsFile = "Items.txt";
 string VictimFile = "Victim.txt";
 string SuspectsFile = "Suspects.txt";
 
+
+
+
+
 /*------------------------------------------------------------------------------
-		DEFINITIONS
+		Function Declarations
 ------------------------------------------------------------------------------*/
-void createRooms();
-void createFeatures();
-void createItems();
-void createVictim();
-void createSuspects();
+void createRooms(Parser*);
+void createFeatures(Parser*);
+void createItems(Parser*);
+void createVictim(Parser*);
+void createSuspects(Parser*);
+
+
 int findArrayIndex(string);
 Room* getRoom(string);
 void printRooms();
 void printRoom(Room*);
 
+void currentRoomPrompt(Room*);
+void executeCommand(std::string, std::string);
+
+
+void cleanup(Parser*, Player*);
+
 // TEST
-void parserTest();
+void parserTest(Parser*);
+
+
+
+
 
 /*------------------------------------------------------------------------------
 		GAME VARIABLES
 ------------------------------------------------------------------------------*/
+
+// Ideally we shouldn't use global variables
+
 unordered_map<string, Item*> itemMap;
 unordered_map<string, Room*> roomMap;
 unordered_map<string, Feature*> featureMap;
 unordered_map<string, Suspect*> suspectMap;
 vector<string> roomTestVector;
 
-Parser* commandParser;
 
-/*------------------------------------------------------------------------------
-									MAIN
-------------------------------------------------------------------------------*/
+
+
+
+
+/*********************************************************************
+***					      																								 ***
+***                             MAIN                               ***
+***							      																						 ***
+**********************************************************************/
 int main()
 {
-	// instantiate parser object
+	
+	/*------------------------------------------------------------------------------
+		GAME VARIABLES
+	------------------------------------------------------------------------------*/
+	std::string inputString;
+	
+	std::vector<Word*>* actionsInCurrentMessage;
+	
+	int numberOfActions, numberOfNouns;
+	
+	bool exitStatus = false;
+	
+	Parser* commandParser;
+	
+	Player* currentPlayer;
+	
+	/*------------------------------------------------------------------------------
+		INITIALIZE GAME
+	------------------------------------------------------------------------------*/	
 	commandParser = new Parser();
 	
-	createRooms();
-	printRooms();
-	parserTest();
+	createRooms(commandParser);
 	
-	delete commandParser;
+	createItems(commandParser);
+
+	currentPlayer = new Player("player 1", getRoom("bedroom"));
+
+	
+	/*------------------------------------------------------------------------------
+		GAME LOOP
+	------------------------------------------------------------------------------*/
+	do
+	{
+		currentRoomPrompt(currentPlayer->getLocation());
+		
+		std::cout << "what would you like to do?" << std::endl;
+		
+		getline(cin, inputString);
+		
+		if(inputString == "exit")
+		{
+			break;
+		}
+		
+		// Call newMessage to run parser on input
+		commandParser->newMessage(inputString);
+		
+		// get pointer to vector of word pointers
+		actionsInCurrentMessage = commandParser->getGameActions();
+		
+		// number of actions will be number of verbs
+		// verbs may have multiple nouns
+		numberOfActions = commandParser->getNumActions();
+		
+		// Iterate through verbs
+		for(int x = 0; x < numberOfActions; x++)
+		{
+			// get number of nouns for current verb
+			numberOfNouns = (((Verb*)((*actionsInCurrentMessage)[x]))->getNumberOfNouns());
+			
+			// iterate through nouns of current verb
+			for(int y = 0; y < numberOfNouns; y++)
+			{
+				executeCommand((*actionsInCurrentMessage)[x]->getText(), (((Verb*)((*actionsInCurrentMessage)[x]))->getIndexNounText(y)));
+			}
+			
+		}
+		
+		
+		
+	}while(exitStatus != true);
+
+
+	//printRooms();
+	//parserTest(commandParser);
+
+
+
+	cleanup(commandParser, currentPlayer);
+	
+
 
 	return 0;
 }
 
+
+
+
+
+
+/*********************************************************************
+***					      																								 ***
+***                     Function Definitions                       ***
+***							      																						 ***
+**********************************************************************/
+
+
+
 /*------------------------------------------------------------------------------
 		CREATE ROOMS
 ------------------------------------------------------------------------------*/
-void createRooms()
+void createRooms(Parser* commandParser)
 {
 	ifstream inputFile;
 
@@ -164,10 +278,12 @@ void createRooms()
 	inputFile.close();
 }
 
+
+
 /*------------------------------------------------------------------------------
 		CREATE FEATURES
 ------------------------------------------------------------------------------*/
-void createFeatures()
+void createFeatures(Parser* commandParser)
 {
 	ifstream inputFile;
 
@@ -220,10 +336,13 @@ void createFeatures()
 	inputFile.close();
 }
 
+
+
+
 /*------------------------------------------------------------------------------
 		CREATE ITEMS
 ------------------------------------------------------------------------------*/
-void createItems()
+void createItems(Parser* commandParser)
 {
 	ifstream inputFile;
 
@@ -281,10 +400,14 @@ void createItems()
 	inputFile.close();
 }
 
+
+
+
+
 /*------------------------------------------------------------------------------
 		CREATE VICTIM
 ------------------------------------------------------------------------------*/
-void createVictim()
+void createVictim(Parser* commandParser)
 {
 	ifstream inputFile;
 
@@ -318,10 +441,13 @@ void createVictim()
 	inputFile.close();
 }
 
+
+
+
 /*------------------------------------------------------------------------------
 		CREATE SUSPECTS
 ------------------------------------------------------------------------------*/
-void createSuspects()
+void createSuspects(Parser* commandParser)
 {
 	ifstream inputFile;
 
@@ -372,6 +498,9 @@ void createSuspects()
 	inputFile.close();
 }
 
+
+
+
 /*------------------------------------------------------------------------------
 		GET ROOM
 ------------------------------------------------------------------------------*/
@@ -381,6 +510,110 @@ Room* getRoom(string roomName)
 }
 
 
+
+
+/*------------------------------------------------------------------------------
+		current Room Prompt
+------------------------------------------------------------------------------*/
+void currentRoomPrompt(Room* currentRoom)
+{
+	std::cout << "you are in: " << currentRoom->getName() << std::endl;
+	
+	// test if room has been visited
+	
+		// if yes output short description
+		
+		// if no output long description
+		// and set visited alreadyVisited to true
+
+		
+}
+
+
+
+
+
+/*------------------------------------------------------------------------------
+		Execute Command
+------------------------------------------------------------------------------*/
+
+void executeCommand(std::string verb, std::string noun)
+{
+	std::cout << "Verb:" << verb << std::endl;
+	std::cout << "Noun:" << noun << std::endl;
+	
+	// test verb to determine which function to call
+	
+		// pass noun to function called
+	
+	
+	
+}
+
+
+
+/*------------------------------------------------------------------------------
+		Change Rooms
+------------------------------------------------------------------------------*/
+
+
+
+/*------------------------------------------------------------------------------
+		Drop item
+------------------------------------------------------------------------------*/
+
+
+
+/*------------------------------------------------------------------------------
+		pick up items
+------------------------------------------------------------------------------*/
+
+
+
+/*------------------------------------------------------------------------------
+		display inventory
+------------------------------------------------------------------------------*/
+
+
+
+/*------------------------------------------------------------------------------
+		inspect 
+------------------------------------------------------------------------------*/
+
+
+
+/*------------------------------------------------------------------------------
+		help
+------------------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+/*------------------------------------------------------------------------------
+		cleanup
+------------------------------------------------------------------------------*/
+
+void cleanup(Parser* currentParser, Player* currentPlayer)
+{
+	// Deletes all instantiated class Word derived objects
+	currentParser->clearMessage();
+	
+	delete currentParser;
+	delete currentPlayer;
+	
+	// TODO:: FINISH CLEANUP FUNCTION
+	
+}
+
+
+
+/*------------------------------------------------------------------------------
+		Test Functions
+------------------------------------------------------------------------------*/
 
 void printRooms()
 {
@@ -392,6 +625,8 @@ void printRooms()
 		printRoom(roomMap[roomTestVector[i]]);
 	}
 }
+
+
 
 void printRoom(Room* room)
 {
@@ -411,8 +646,7 @@ void printRoom(Room* room)
 }
 
 
-// TEST
-void parserTest()
+void parserTest(Parser* commandParser)
 {
 	commandParser->setVerbSet("drop");
 	commandParser->setVerbSet("take");

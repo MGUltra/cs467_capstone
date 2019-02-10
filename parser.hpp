@@ -67,6 +67,10 @@ class Parser
 	
 	Word* getCurrentVerb();
 	
+	std::vector<Word*>* getGameActions();
+	
+	int getNumActions();
+	
 	
 	// Set functions
 	

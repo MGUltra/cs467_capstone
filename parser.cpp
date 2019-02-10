@@ -59,7 +59,15 @@ Word* Parser::getCurrentVerb()
 	return this->gameActions[0];
 }
 	
+std::vector<Word*>* Parser::getGameActions()
+{
+	return &gameActions;
+}
 
+int Parser::getNumActions()
+{
+	return this->numActions;
+}
 	
 	
 	
