@@ -24,6 +24,7 @@ class Item
 	string name;
 	string description;
 	string forensicAnalysis;
+	bool available;
 
 	public:
 	//constructor

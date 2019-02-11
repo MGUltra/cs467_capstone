@@ -1,5 +1,9 @@
-3
+6
 diary
+This is the diary description.
+This is the diary forensic analysis.
+bedroom
+photograph
 This is the diary description.
 This is the diary forensic analysis.
 bedroom
@@ -7,7 +11,15 @@ plate
 This is the plate description.
 This is the plate forensic analysis.
 kitchen
-photograph
+letter
+This is the plate description.
+This is the plate forensic analysis.
+kitchen
+map
+This is the photograph description.
+This is the photograph forensic analysis.
+basement
+shovel
 This is the photograph description.
 This is the photograph forensic analysis.
 basement
