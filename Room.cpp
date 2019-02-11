@@ -64,6 +64,8 @@ bool Room::getAlreadyVisited()
 	return this->alreadyVisited;
 }	
 
+
+
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/
@@ -130,3 +132,43 @@ int Room::findVectorIndex(string thisString, vector<string> thisVector)
 		}
 	}
 }
+
+
+/*******************************************************************************
+*		PRINT FUNCTIONS
+*******************************************************************************/
+void Room::printAttachedRooms()
+{
+	std::cout << "You can see the following rooms from this one" << std::endl;
+	std::cout << "----------------" << std::endl;
+	for(auto i : attachedRooms)
+	{
+		std::cout << "| " << i << std::endl;
+	}
+	std::cout << "----------------" << std::endl;
+}
+
+void Room::printItemsInRoom()
+{
+	std::cout << "You can see the following items" << std::endl;
+	std::cout << "----------------" << std::endl;
+	
+	for(auto i : itemsInRoom)
+	{
+		std::cout << "| " << i << std::endl;
+	}
+	std::cout << "----------------" << std::endl;
+}
+
+void Room::printFeaturesInRoom()
+{
+	std::cout << "You can see the following features" << std::endl;
+	std::cout << "----------------" << std::endl;
+	
+	for(auto i : featuresInRoom)
+	{
+		std::cout << "| " << i << std::endl;
+	}
+	std::cout << "----------------" << std::endl;
+}
+

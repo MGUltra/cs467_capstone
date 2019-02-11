@@ -576,6 +576,13 @@ void currentRoomPrompt(Room* currentRoom)
 		currentRoom->setAlreadyVisited(true);
 	}
 	
+	
+	// display rooms
+	currentRoom->printAttachedRooms();
+
+	// display items
+	currentRoom->printItemsInRoom();
+	
 }
 
 

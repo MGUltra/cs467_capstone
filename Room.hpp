@@ -55,6 +55,9 @@ struct Room
 
 	bool getAlreadyVisited();
 	
+
+	
+	
 	// set
 	void setName(string);
 	void setLongDescription(string);
@@ -69,5 +72,12 @@ struct Room
 	
 	void removeItemFromRoom(string);
 	int findVectorIndex(string, vector<string>);
+	
+	// print
+	void printAttachedRooms();
+	void printItemsInRoom();
+	void printFeaturesInRoom();
+	
+	
 };
 #endif
