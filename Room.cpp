@@ -59,6 +59,11 @@ vector<string>* Room::getFeaturesInRoom()
 	return &featuresInRoom;
 }
 
+bool Room::getAlreadyVisited()
+{
+	return this->alreadyVisited;
+}	
+
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/
@@ -76,6 +81,12 @@ void Room::setShortDescription(string givenShortDescription)
 {
 	shortDescription = givenShortDescription;
 }
+
+void Room::setAlreadyVisited(bool newVisit)
+{
+	this->alreadyVisited = newVisit;
+}	
+
 
 /*******************************************************************************
 *		ADD FUNCTIONS

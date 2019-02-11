@@ -11,7 +11,7 @@
 
 Parser::Parser()
 	: metaSet({"help"})
-	, verbSet({"drop", "take", "inventory"})
+	, verbSet({"drop", "take", "inventory", "pick", "gather", "move", "go", "look", "inspect"})
 	, nounSet({"north", "south", "east", "west"})
 	, messageIn("")
 	, parsedStrings()

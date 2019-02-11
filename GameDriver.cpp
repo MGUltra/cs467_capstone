@@ -558,16 +558,24 @@ Room* getRoom(std::string roomName)
 ------------------------------------------------------------------------------*/
 void currentRoomPrompt(Room* currentRoom)
 {
+	std::cout << std::endl;
 	std::cout << "you are in: " << currentRoom->getName() << std::endl;
 	
 	// test if room has been visited
-	
+	if(currentRoom->getAlreadyVisited() == true)
+	{
 		// if yes output short description
-		
+		std::cout << currentRoom->getShortDescription() << std::endl;
+	}
+	else
+	{
 		// if no output long description
+		std::cout << currentRoom->getLongDescription() << std::endl;
+		
 		// and set visited alreadyVisited to true
-
-		// call 
+		currentRoom->setAlreadyVisited(true);
+	}
+	
 }
 
 

@@ -53,10 +53,14 @@ struct Room
 	vector<string>* getItemsInRoom();
 	vector<string>* getFeaturesInRoom();
 
+	bool getAlreadyVisited();
+	
 	// set
 	void setName(string);
 	void setLongDescription(string);
 	void setShortDescription(string);
+	
+	void setAlreadyVisited(bool);
 	
 	// add
 	void addAttachedRoom(string);

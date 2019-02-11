@@ -66,6 +66,7 @@ int Inventory::findVectorIndex(string thisString, vector<string> thisVector)
 *******************************************************************************/
 void Inventory::printCurrentInventory()
 {
+	std::cout << std::endl;
 	std::cout << "Current Inventory" << std::endl;
 	std::cout << "-----------------" << std::endl;
 	
