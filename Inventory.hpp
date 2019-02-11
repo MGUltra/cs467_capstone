@@ -25,6 +25,8 @@ struct Inventory
 {
 	private:
 	vector<string> itemsInInventory;
+	
+	int numItemsInInventory;
 
 	public:
 	// constructor

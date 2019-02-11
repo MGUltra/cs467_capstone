@@ -170,12 +170,18 @@ int main()
 			// get number of nouns for current verb
 			numberOfNouns = (((Verb*)((*actionsInCurrentMessage)[x]))->getNumberOfNouns());
 			
-			// iterate through nouns of current verb
-			for(int y = 0; y < numberOfNouns; y++)
+			if(numberOfNouns > 0)
 			{
-				exeCommand((*actionsInCurrentMessage)[x]->getText(), (((Verb*)((*actionsInCurrentMessage)[x]))->getIndexNounText(y)), currentPlayer);
+				// iterate through nouns of current verb
+				for(int y = 0; y < numberOfNouns; y++)
+				{
+					exeCommand((*actionsInCurrentMessage)[x]->getText(), (((Verb*)((*actionsInCurrentMessage)[x]))->getIndexNounText(y)), currentPlayer);
+				}
 			}
-			
+			else
+			{
+				exeCommand((*actionsInCurrentMessage)[x]->getText(), "nonoun", currentPlayer);
+			}
 		}
 		
 		
@@ -626,16 +632,22 @@ void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 		
 		case 1:	// change rooms
 			movePlayer(currentPlayer, noun);
+			break;
 		case 2: // drop item
 			dropItem(currentPlayer, noun);
+			break;
 		case 3: // pick up item
 			takeItem(currentPlayer, noun);
+			break;
 		case 4: // inspect
 			inspectObject(currentPlayer, noun);
+			break;
 		case 5:	// inventory
 			showInventory(currentPlayer);
+			break;
 		case 6: // help
 			helpPlayer(currentPlayer);
+			break;
 		default: // message unclear then help
 			helpPlayer(currentPlayer);
 	}
@@ -705,7 +717,7 @@ void inspectObject(Player* currentPlayer, std::string nounIn)
 
 void showInventory(Player* currentPlayer)
 {
-	
+	currentPlayer->showInventory();
 }
 
 

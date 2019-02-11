@@ -15,6 +15,7 @@
 Inventory::Inventory()
 {
 	// Blank Default Constructor
+	numItemsInInventory = 0;
 }
 
 vector<string>* Inventory::getItemsFromInventory()
@@ -28,6 +29,8 @@ vector<string>* Inventory::getItemsFromInventory()
 void Inventory::addItemToInventory(string newItem)
 {
 	itemsInInventory.push_back(newItem);
+	
+	numItemsInInventory++;
 }
 
 /*******************************************************************************
@@ -37,6 +40,8 @@ void Inventory::removeItemFromInventory(string removeThisItem)
 {
 	int index = findVectorIndex(removeThisItem, itemsInInventory);
 	itemsInInventory.erase(itemsInInventory.begin() + index);
+	
+	numItemsInInventory--;
 }
 
 /*******************************************************************************
@@ -59,9 +64,24 @@ int Inventory::findVectorIndex(string thisString, vector<string> thisVector)
 /*******************************************************************************
 *		PRINT CURRENT INVENTORY
 *******************************************************************************/
-void printCurrentInventory()
+void Inventory::printCurrentInventory()
 {
+	std::cout << "Current Inventory" << std::endl;
+	std::cout << "-----------------" << std::endl;
 	
+	if(numItemsInInventory > 0)
+	{
+		for(auto i : itemsInInventory)
+		{
+			std::cout << "| " << i << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "Inventory Empty" << std::endl;
+	}
+	std::cout << "-----------------" << std::endl;
+	std::cout << std::endl;
 }
 
 

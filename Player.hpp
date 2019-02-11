@@ -43,6 +43,8 @@ public:
 	// Player actions
 	void pickUpItem(string);
 	void dropItem(string);
+	void showInventory();
+	
 };
 
 #endif

@@ -60,3 +60,8 @@ void Player::dropItem(string currentItem)
 	playerInventory.removeItemFromInventory(currentItem);
 	location->addItemInRoom(currentItem);
 }
+
+void Player::showInventory()
+{
+	this->playerInventory.printCurrentInventory();
+}
