@@ -135,6 +135,63 @@ int Room::findVectorIndex(string thisString, vector<string> thisVector)
 
 
 /*******************************************************************************
+*		TEST FUNCTIONS
+*******************************************************************************/
+
+
+
+bool Room::isRoomAttached(std::string stringIn)
+{
+	for(auto i : attachedRooms)
+	{
+		if(stringIn == i)
+			return true;
+	}
+	
+	return false;
+}
+
+bool Room::isItemInRoom(std::string stringIn)
+{
+	for(auto i : itemsInRoom)
+	{
+		if(stringIn == i)
+			return true;
+	}
+	
+	return false;
+}
+
+bool Room::isFeatureInRoom(std::string stringIn)
+{
+	for(auto i : featuresInRoom)
+	{
+		if(stringIn == i)
+			return true;
+	}
+	
+	return false;
+}
+
+bool Room::isFeatureExamined(std::string stringIn)
+{
+	//featuresInRoom
+}
+
+bool Room::getAlreadyVisited(std::string stringIn)
+{
+	return alreadyVisited;
+}
+
+
+
+
+
+
+
+
+
+/*******************************************************************************
 *		PRINT FUNCTIONS
 *******************************************************************************/
 void Room::printAttachedRooms()

@@ -42,6 +42,9 @@ struct Inventory
 	
 	void printCurrentInventory();
 	
+	// Test Function
+	bool isItemInInventory(std::string);
+	
 	
 };
 #endif

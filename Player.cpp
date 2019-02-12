@@ -57,8 +57,18 @@ void Player::pickUpItem(string currentItem)
 
 void Player::dropItem(string currentItem)
 {
-	playerInventory.removeItemFromInventory(currentItem);
-	location->addItemInRoom(currentItem);
+	if(playerInventory.isItemInInventory(currentItem) == true)
+	{
+		playerInventory.removeItemFromInventory(currentItem);
+		
+		location->addItemInRoom(currentItem);
+	
+	}
+	else
+	{
+			std::cout << "Item not found in inventory" << std::endl;
+	}
+	
 }
 
 void Player::showInventory()

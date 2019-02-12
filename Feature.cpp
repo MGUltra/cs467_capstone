@@ -56,3 +56,8 @@ void Feature::setLocation(string givenLocation)
 {
 	location = givenLocation;
 }
+
+void Feature::setAlreadyInspected(bool newBool)
+{
+	alreadyInspected = newBool;
+}

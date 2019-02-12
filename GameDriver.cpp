@@ -681,6 +681,8 @@ void movePlayer(Player* currentPlayer, std::string nounIn)
 	// TODO: Add test for available room, either in this or getLocation
 	//	function in the Player class
 	
+
+	
 	currentPlayer->setLocation(getRoom(nounIn));
 }
 
@@ -693,6 +695,11 @@ void dropItem(Player* currentPlayer, std::string nounIn)
 	
 	// TODO: Add test for available Item, either in this or dropItem
 	//	function in the Player class
+		
+		// !! test is currently in inventory class - findvectorindex
+		// !! cannot drop item not in inventory
+		
+		// add prompt if item cannot be dropped
 	
 	currentPlayer->dropItem(nounIn);
 }
@@ -706,6 +713,11 @@ void takeItem(Player* currentPlayer, std::string nounIn)
 	// TODO: Add test for available Item, either in this or pickUpItem
 	//	function in the Player class
 	
+		// !! test is currently in Room class - findvectorindex
+		// !! cannot pick up item not in room
+		
+		// add prompt if item cannot be taken
+	
 	currentPlayer->pickUpItem(nounIn);
 }
 
@@ -718,10 +730,14 @@ void takeItem(Player* currentPlayer, std::string nounIn)
 void inspectObject(Player* currentPlayer, std::string nounIn)
 {
 	// if feature in room
+		
 		// test if feature is present in the current room 
 		
 	// if item in room or players inventory
+	
 		// test if item is present in either the current room or inventory 
+	
+		// test if item has gone to the lab yet to get mundane or analysis response
 
 }
 
@@ -732,6 +748,9 @@ void inspectObject(Player* currentPlayer, std::string nounIn)
 
 void showInventory(Player* currentPlayer)
 {
+	// test if empty
+		// prompt if so
+	
 	currentPlayer->showInventory();
 }
 

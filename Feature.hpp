@@ -41,6 +41,7 @@ public:
 	void setName(string);
 	void setDescription(string);
 	void setLocation(string);
+	void setAlreadyInspected(bool);
 };
 
 #endif

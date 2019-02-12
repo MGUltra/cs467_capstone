@@ -38,10 +38,14 @@ void Inventory::addItemToInventory(string newItem)
 *******************************************************************************/
 void Inventory::removeItemFromInventory(string removeThisItem)
 {
+
 	int index = findVectorIndex(removeThisItem, itemsInInventory);
 	itemsInInventory.erase(itemsInInventory.begin() + index);
-	
+		
 	numItemsInInventory--;
+
+	
+
 }
 
 /*******************************************************************************
@@ -86,5 +90,14 @@ void Inventory::printCurrentInventory()
 }
 
 
-
+bool Inventory::isItemInInventory(std::string itemPresent)
+{
+	for(auto i : itemsInInventory)
+	{
+		if(itemPresent == i)
+			return true;
+	}
+	
+	return false;
+}
 

@@ -53,11 +53,16 @@ struct Room
 	vector<string>* getItemsInRoom();
 	vector<string>* getFeaturesInRoom();
 
-	bool getAlreadyVisited();
-	
 
 	
+	// Test Functions
+	bool isRoomAttached(std::string);
+	bool isItemInRoom(std::string);
+	bool isFeatureInRoom(std::string);
+	bool isFeatureExamined(std::string);
+	bool getAlreadyVisited(std::string);
 	
+
 	// set
 	void setName(string);
 	void setLongDescription(string);
