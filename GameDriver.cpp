@@ -62,6 +62,7 @@ void printRoom(Room*);
 void currentRoomPrompt(Room*);
 void featuresInRoomPrompt(Room*);
 void itemsInRoomPrompt(Room*);
+void clearScreen();
 
 
 // GAME ACTIONS
@@ -139,6 +140,7 @@ int main()
 	------------------------------------------------------------------------------*/
 	do
 	{
+		
 		currentRoomPrompt(currentPlayer->getLocation());
 		
 		std::cout << "what would you like to do?" << std::endl;
@@ -619,6 +621,7 @@ void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 {
 	//std::cout << "Verb:" << verb << std::endl;
 	//std::cout << "Noun:" << noun << std::endl;
+	clearScreen();
 	
 	int functionToCall = 0;
 	
@@ -626,11 +629,11 @@ void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 		// pass noun to function called
 	if(verb == "move" || verb == "go")
 		functionToCall = 1;
-	else if(verb == "drop")
+	else if(verb == "drop" || verb == "remove")
 		functionToCall = 2;
 	else if(verb == "take" || verb == "pick")
 		functionToCall = 3;
-	else if(verb == "look" || verb == "inspect")
+	else if(verb == "look" || verb == "inspect" || verb == "examine")
 		functionToCall = 4;
 	else if(verb == "inventory")
 		functionToCall = 5;
@@ -676,10 +679,17 @@ void movePlayer(Player* currentPlayer, std::string nounIn)
 	
 	// TODO: Add test for available room, either in this or getLocation
 	//	function in the Player class
+	Room* roomPtr = currentPlayer->getLocation();
 	
-
+	if(roomPtr->isRoomAttached(nounIn) == true)
+	{
+		currentPlayer->setLocation(getRoom(nounIn));
+	}
+	else
+	{
+		std::cout << "You can not get there from " << roomPtr->getName() << "." << std::endl;
+	}
 	
-	currentPlayer->setLocation(getRoom(nounIn));
 }
 
 /*------------------------------------------------------------------------------
@@ -761,7 +771,10 @@ void helpPlayer(Player* currentPlayer)
 }
 
 
-
+void clearScreen()
+{
+	std::cout << "\033[2J\033[1;1H";
+}
 
 
 

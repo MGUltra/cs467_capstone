@@ -53,15 +53,7 @@ struct Room
 	vector<string>* getItemsInRoom();
 	vector<string>* getFeaturesInRoom();
 
-
-	
-	// Test Functions
-	bool isRoomAttached(std::string);
-	bool isItemInRoom(std::string);
-	bool isFeatureInRoom(std::string);
-	bool isFeatureExamined(std::string);
-	bool getAlreadyVisited(std::string);
-	
+	bool getAlreadyVisited();
 
 	// set
 	void setName(string);
@@ -77,6 +69,13 @@ struct Room
 	
 	void removeItemFromRoom(string);
 	int findVectorIndex(string, vector<string>);
+	
+
+	// Test Functions
+	bool isRoomAttached(std::string);
+	bool isItemInRoom(std::string);
+	bool isFeatureInRoom(std::string);
+	bool isFeatureExamined(std::string);
 	
 	// print
 	void printAttachedRooms();

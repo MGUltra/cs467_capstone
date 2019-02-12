@@ -178,10 +178,7 @@ bool Room::isFeatureExamined(std::string stringIn)
 	//featuresInRoom
 }
 
-bool Room::getAlreadyVisited(std::string stringIn)
-{
-	return alreadyVisited;
-}
+
 
 
 

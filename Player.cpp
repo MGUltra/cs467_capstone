@@ -51,9 +51,20 @@ void Player::setLocation(Room* currentLocation)
 *******************************************************************************/
 void Player::pickUpItem(string currentItem)
 {
-	playerInventory.addItemToInventory(currentItem);
-	location->removeItemFromRoom(currentItem);
+	if(location->isItemInRoom(currentItem) == true)
+	{
+		playerInventory.addItemToInventory(currentItem);
+		
+		location->removeItemFromRoom(currentItem);
+	
+	}
+	else
+	{
+			std::cout << currentItem << " not found in " << location->getName() << "." << std::endl;
+			std::cout << std::endl;
+	}		
 }
+
 
 void Player::dropItem(string currentItem)
 {
@@ -66,10 +77,18 @@ void Player::dropItem(string currentItem)
 	}
 	else
 	{
-			std::cout << "Item not found in inventory" << std::endl;
+			std::cout << currentItem << " not found in inventory" << std::endl;
+			std::cout << std::endl;
 	}
 	
 }
+
+void inspectItem(std::string currentItem)
+{
+	
+}
+
+
 
 void Player::showInventory()
 {
