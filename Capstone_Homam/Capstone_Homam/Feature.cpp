@@ -12,7 +12,7 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Feature::Feature(string name, string description, string location)
+Feature::Feature(std::string name, std::string description, std::string location)
 {
 	setName(name);
 	setDescription(description);
@@ -24,17 +24,17 @@ Feature::Feature(string name, string description, string location)
 /*******************************************************************************
 *		GET FUNCTIONS
 *******************************************************************************/
-string Feature::getName()
+std::string Feature::getName()
 {
 	return name;
 }
 
-string Feature::getDescription()
+std::string Feature::getDescription()
 {
 	return description;
 }
 
-string Feature::getLocation()
+std::string Feature::getLocation()
 {
 	return location;
 }
@@ -42,17 +42,17 @@ string Feature::getLocation()
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/
-void Feature::setName(string givenName)
+void Feature::setName(std::string givenName)
 {
 	name = givenName;
 }
 
-void Feature::setDescription(string givenDescription)
+void Feature::setDescription(std::string givenDescription)
 {
 	description = givenDescription;
 }
 
-void Feature::setLocation(string givenLocation)
+void Feature::setLocation(std::string givenLocation)
 {
 	location = givenLocation;
 }

@@ -17,7 +17,7 @@ Room::Room()
 	// Blank Default Constructor
 }
 
-Room::Room(string name, string longDescription, string shortDescription)
+Room::Room(std::string name, std::string longDescription, std::string shortDescription)
 {
 	setName(name);
 	setLongDescription(longDescription);
@@ -29,32 +29,32 @@ Room::Room(string name, string longDescription, string shortDescription)
 /*******************************************************************************
 *		GET FUNCTIONS
 *******************************************************************************/
-string Room::getName()
+std::string Room::getName()
 {
 	return name;
 }
 
-string Room::getLongDescription()
+std::string Room::getLongDescription()
 {
 	return longDescription;
 }
 
-string Room::getShortDescription()
+std::string Room::getShortDescription()
 {
 	return shortDescription;
 }
 
-vector<string>* Room::getAttachedRooms()
+std::vector<std::string>* Room::getAttachedRooms()
 {
 	return &attachedRooms;
 }
 
-vector<string>* Room::getItemsInRoom()
+std::vector<std::string>* Room::getItemsInRoom()
 {
 	return &itemsInRoom;
 }
 
-vector<string>* Room::getFeaturesInRoom()
+std::vector<std::string>* Room::getFeaturesInRoom()
 {
 	return &featuresInRoom;
 }
@@ -62,17 +62,17 @@ vector<string>* Room::getFeaturesInRoom()
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/
-void Room::setName(string givenName)
+void Room::setName(std::string givenName)
 {
 	name = givenName;
 }
 
-void Room::setLongDescription(string givenLongDescription)
+void Room::setLongDescription(std::string givenLongDescription)
 {
 	longDescription = givenLongDescription;
 }
 
-void Room::setShortDescription(string givenShortDescription)
+void Room::setShortDescription(std::string givenShortDescription)
 {
 	shortDescription = givenShortDescription;
 }
@@ -80,17 +80,17 @@ void Room::setShortDescription(string givenShortDescription)
 /*******************************************************************************
 *		ADD FUNCTIONS
 *******************************************************************************/
-void Room::addAttachedRoom(string newRoom)
+void Room::addAttachedRoom(std::string newRoom)
 {
 	attachedRooms.push_back(newRoom);
 }
 
-void Room::addItemInRoom(string newItem)
+void Room::addItemInRoom(std::string newItem)
 {
 	itemsInRoom.push_back(newItem);
 }
 
-void Room::addFeatureInRoom(string newFeature)
+void Room::addFeatureInRoom(std::string newFeature)
 {
 	featuresInRoom.push_back(newFeature);
 }
@@ -98,7 +98,7 @@ void Room::addFeatureInRoom(string newFeature)
 /*******************************************************************************
 *		REMOVE FUNCTIONS
 *******************************************************************************/
-void Room::removeItemFromRoom(string removeThisItem)
+void Room::removeItemFromRoom(std::string removeThisItem)
 {
 	int index = findVectorIndex(removeThisItem, itemsInRoom);
 	itemsInRoom.erase(itemsInRoom.begin() + index);
@@ -107,7 +107,7 @@ void Room::removeItemFromRoom(string removeThisItem)
 /*******************************************************************************
 *		FIND VECTOR INDEX
 *******************************************************************************/
-int Room::findVectorIndex(string thisString, vector<string> thisVector)
+int Room::findVectorIndex(std::string thisString, std::vector<std::string> thisVector)
 {
 	int size = thisVector.size();
 

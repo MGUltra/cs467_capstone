@@ -12,7 +12,7 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Player::Player(string name, Room* currentLocation)
+Player::Player(std::string name, Room* currentLocation)
 {
 	setName(name);
 	setLocation(currentLocation);
@@ -23,7 +23,7 @@ Player::Player(string name, Room* currentLocation)
 /*******************************************************************************
 *		GET FUNCTIONS
 *******************************************************************************/
-string Player::getName()
+std::string Player::getName()
 {
 	return name;
 }
@@ -36,7 +36,7 @@ Room* Player::getLocation()
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/
-void Player::setName(string givenName)
+void Player::setName(std::string givenName)
 {
 	name = givenName;
 }
@@ -49,13 +49,13 @@ void Player::setLocation(Room* currentLocation)
 /*******************************************************************************
 *		PLAYER ACTIONS
 *******************************************************************************/
-void Player::pickUpItem(string currentItem)
+void Player::pickUpItem(std::string currentItem)
 {
 	playerInventory.addItemToInventory(currentItem);
 	location->removeItemFromRoom(currentItem);
 }
 
-void Player::dropItem(string currentItem)
+void Player::dropItem(std::string currentItem)
 {
 	playerInventory.removeItemFromInventory(currentItem);
 	location->addItemInRoom(currentItem);

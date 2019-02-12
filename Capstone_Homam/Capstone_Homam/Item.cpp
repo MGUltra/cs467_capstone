@@ -12,7 +12,7 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Item::Item(string name, string description, string forensicAnalysis)
+Item::Item(std::string name, std::string description, std::string forensicAnalysis)
 {
 	setName(name);
 	setDescription(description);
@@ -22,17 +22,17 @@ Item::Item(string name, string description, string forensicAnalysis)
 /*******************************************************************************
 *		GET FUNCTIONS
 *******************************************************************************/
-string Item::getName()
+std::string Item::getName()
 {
 	return name;
 }
 
-string Item::getDescription()
+std::string Item::getDescription()
 {
 	return description;
 }
 
-string Item::getForensicAnalysis()
+std::string Item::getForensicAnalysis()
 {
 	return forensicAnalysis;
 }
@@ -40,17 +40,17 @@ string Item::getForensicAnalysis()
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/
-void Item::setName(string givenName)
+void Item::setName(std::string givenName)
 {
 	name = givenName;
 }
 
-void Item::setDescription(string givenDescription)
+void Item::setDescription(std::string givenDescription)
 {
 	description = givenDescription;
 }
 
-void Item::setForensicAnalysis(string givenForensicAnalysis)
+void Item::setForensicAnalysis(std::string givenForensicAnalysis)
 {
 	forensicAnalysis = givenForensicAnalysis;
 }

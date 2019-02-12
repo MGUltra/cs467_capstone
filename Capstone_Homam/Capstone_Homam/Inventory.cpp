@@ -17,7 +17,7 @@ Inventory::Inventory()
 	// Blank Default Constructor
 }
 
-vector<string>* Inventory::getItemsFromInventory()
+std::vector<std::string>* Inventory::getItemsFromInventory()
 {
 	return &itemsInInventory;
 }
@@ -25,7 +25,7 @@ vector<string>* Inventory::getItemsFromInventory()
 /*******************************************************************************
 *		ADD FUNCTIONS
 *******************************************************************************/
-void Inventory::addItemToInventory(string newItem)
+void Inventory::addItemToInventory(std::string newItem)
 {
 	itemsInInventory.push_back(newItem);
 }
@@ -33,7 +33,7 @@ void Inventory::addItemToInventory(string newItem)
 /*******************************************************************************
 *		REMOVE FUNCTIONS
 *******************************************************************************/
-void Inventory::removeItemFromInventory(string removeThisItem)
+void Inventory::removeItemFromInventory(std::string removeThisItem)
 {
 	int index = findVectorIndex(removeThisItem, itemsInInventory);
 	itemsInInventory.erase(itemsInInventory.begin() + index);
@@ -42,7 +42,7 @@ void Inventory::removeItemFromInventory(string removeThisItem)
 /*******************************************************************************
 *		FIND VECTOR INDEX
 *******************************************************************************/
-int Inventory::findVectorIndex(string thisString, vector<string> thisVector)
+int Inventory::findVectorIndex(std::string thisString, std::vector<std::string> thisVector)
 {
 	int size = thisVector.size();
 
