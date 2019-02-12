@@ -20,6 +20,7 @@
 #include "Player.hpp"
 #include "Victim.hpp"
 #include "Suspect.hpp"
+#include "Item.hpp"
 #include "parser.hpp"
 
 
@@ -698,15 +699,6 @@ void movePlayer(Player* currentPlayer, std::string nounIn)
 
 void dropItem(Player* currentPlayer, std::string nounIn)
 {
-	
-	// TODO: Add test for available Item, either in this or dropItem
-	//	function in the Player class
-		
-		// !! test is currently in inventory class - findvectorindex
-		// !! cannot drop item not in inventory
-		
-		// add prompt if item cannot be dropped
-	
 	currentPlayer->dropItem(nounIn);
 }
 
@@ -716,14 +708,6 @@ void dropItem(Player* currentPlayer, std::string nounIn)
 
 void takeItem(Player* currentPlayer, std::string nounIn)
 {
-	// TODO: Add test for available Item, either in this or pickUpItem
-	//	function in the Player class
-	
-		// !! test is currently in Room class - findvectorindex
-		// !! cannot pick up item not in room
-		
-		// add prompt if item cannot be taken
-	
 	currentPlayer->pickUpItem(nounIn);
 }
 
@@ -735,16 +719,41 @@ void takeItem(Player* currentPlayer, std::string nounIn)
 
 void inspectObject(Player* currentPlayer, std::string nounIn)
 {
+	// cannot access item or feature descriptions from player/room/inventory class
+	// because theire vectors contain only strings... will have to use map global 
+	// variable.
+	
 	// if feature in room
-		
-		// test if feature is present in the current room 
-		
-	// if item in room or players inventory
-	
-		// test if item is present in either the current room or inventory 
-	
-		// test if item has gone to the lab yet to get mundane or analysis response
 
+		// test if feature is present in the current room 
+
+	// if item in room or players inventory
+		// test if item is present in either the current room or inventory 
+	Room* roomPtr = currentPlayer->getLocation();
+			
+	if(currentPlayer->itemInInventory(nounIn) == true || roomPtr->isItemInRoom(nounIn) == true)
+	{
+		Item* itemPtr = itemMap[nounIn];
+		
+		// test if item has gone to the lab yet to get mundane or analysis response
+		
+		if(itemPtr->getAnalyzed() == true)
+			std::cout << itemPtr->getForensicAnalysis() << std::endl;
+		else
+			std::cout << itemPtr->getDescription() << std::endl;
+		
+	}
+	else
+	{
+		std::cout << "You can not learn anything from that" << std::endl;
+	}
+
+	
+
+
+		
+		
+		
 }
 
 

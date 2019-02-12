@@ -40,6 +40,9 @@ public:
 	void setName(string);
 	void setLocation(Room*);
 
+	
+	bool itemInInventory(std::string);
+	
 	// Player actions
 	void pickUpItem(string);
 	void dropItem(string);

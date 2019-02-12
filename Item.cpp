@@ -17,6 +17,7 @@ Item::Item(string name, string description, string forensicAnalysis)
 	setName(name);
 	setDescription(description);
 	setForensicAnalysis(forensicAnalysis);
+
 }
 
 /*******************************************************************************
@@ -37,6 +38,16 @@ string Item::getForensicAnalysis()
 	return forensicAnalysis;
 }
 
+bool Item::getAvailable()
+{
+	return this->available;
+}
+bool Item::getAnalyzed()
+{
+	return this->analyzed;
+}
+
+
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/
@@ -53,4 +64,14 @@ void Item::setDescription(string givenDescription)
 void Item::setForensicAnalysis(string givenForensicAnalysis)
 {
 	forensicAnalysis = givenForensicAnalysis;
+}
+
+void Item::setAvailable(bool newBool)
+{
+	this->available = newBool;
+}
+
+void Item::setAnalyzed(bool newBool)
+{
+	this->analyzed = newBool;
 }

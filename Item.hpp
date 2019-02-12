@@ -25,6 +25,7 @@ class Item
 	string description;
 	string forensicAnalysis;
 	bool available;
+	bool analyzed;
 
 	public:
 	//constructor
@@ -34,11 +35,16 @@ class Item
 	string getName();
 	string getDescription();
 	string getForensicAnalysis();
+	bool getAvailable();
+	bool getAnalyzed();
 
 	//set
 	void setName(string);
 	void setDescription(string);
 	void setForensicAnalysis(string);
+	void setAvailable(bool);
+	void setAnalyzed(bool);
+	
 };
 
 #endif

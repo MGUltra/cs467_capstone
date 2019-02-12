@@ -46,6 +46,18 @@ void Player::setLocation(Room* currentLocation)
 	location = currentLocation;
 }
 
+
+bool Player::itemInInventory(std::string stringIn)
+{
+	if(playerInventory.isItemInInventory(stringIn) == true)
+		return true;
+	else
+		return false;
+}
+
+
+
+
 /*******************************************************************************
 *		PLAYER ACTIONS
 *******************************************************************************/
