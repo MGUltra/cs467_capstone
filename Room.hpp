@@ -20,55 +20,54 @@
 #include "Item.hpp"
 #include "Feature.hpp"
 
-using namespace std;
 
 struct Room
 {
 	private:
-	string name;
-	string longDescription;
-	string shortDescription;
+	std::string name;
+	std::string longDescription;
+	std::string shortDescription;
 
 	bool alreadyVisited;
 
-	vector<string> attachedRooms;
+	std::vector<std::string> attachedRooms;
 
-	vector<string> itemsInRoom;
+	std::vector<std::string> itemsInRoom;
 
-	vector<string> featuresInRoom;
+	std::vector<std::string> featuresInRoom;
 
 	public:
 	// constructor
 	Room();
-	Room(string, string, string);
+	Room(std::string, std::string, std::string);
 	// destructor
 	//~Room();
 
 	// get
-	string getName();
-	string getLongDescription();
-	string getShortDescription();
+	std::string getName();
+	std::string getLongDescription();
+	std::string getShortDescription();
 	
-	vector<string>* getAttachedRooms();
-	vector<string>* getItemsInRoom();
-	vector<string>* getFeaturesInRoom();
+	std::vector<std::string>* getAttachedRooms();
+	std::vector<std::string>* getItemsInRoom();
+	std::vector<std::string>* getFeaturesInRoom();
 
 	bool getAlreadyVisited();
 
 	// set
-	void setName(string);
-	void setLongDescription(string);
-	void setShortDescription(string);
+	void setName(std::string);
+	void setLongDescription(std::string);
+	void setShortDescription(std::string);
 	
 	void setAlreadyVisited(bool);
 	
 	// add
-	void addAttachedRoom(string);
-	void addItemInRoom(string);
-	void addFeatureInRoom(string);
+	void addAttachedRoom(std::string);
+	void addItemInRoom(std::string);
+	void addFeatureInRoom(std::string);
 	
-	void removeItemFromRoom(string);
-	int findVectorIndex(string, vector<string>);
+	void removeItemFromRoom(std::string);
+	int findVectorIndex(std::string, std::vector<std::string>);
 	
 
 	// Test Functions

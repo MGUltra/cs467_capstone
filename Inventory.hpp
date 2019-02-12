@@ -19,12 +19,10 @@
 
 #include "Item.hpp"
 
-using namespace std;
-
 struct Inventory
 {
 	private:
-	vector<string> itemsInInventory;
+	std::vector<std::string> itemsInInventory;
 	
 	int numItemsInInventory;
 
@@ -32,13 +30,13 @@ struct Inventory
 	// constructor
 	Inventory();
 
-	vector<string>* getItemsFromInventory();
+	std::vector<std::string>* getItemsFromInventory();
 
-	void addItemToInventory(string);
+	void addItemToInventory(std::string);
 
-	void removeItemFromInventory(string);
+	void removeItemFromInventory(std::string);
 
-	int findVectorIndex(string, vector<string>);
+	int findVectorIndex(std::string, std::vector<std::string>);
 	
 	void printCurrentInventory();
 	
