@@ -15,9 +15,10 @@
 Inventory::Inventory()
 {
 	// Blank Default Constructor
+	numItemsInInventory = 0;
 }
 
-std::vector<std::string>* Inventory::getItemsFromInventory()
+vector<string>* Inventory::getItemsFromInventory()
 {
 	return &itemsInInventory;
 }
@@ -25,24 +26,32 @@ std::vector<std::string>* Inventory::getItemsFromInventory()
 /*******************************************************************************
 *		ADD FUNCTIONS
 *******************************************************************************/
-void Inventory::addItemToInventory(std::string newItem)
+void Inventory::addItemToInventory(string newItem)
 {
 	itemsInInventory.push_back(newItem);
+	
+	numItemsInInventory++;
 }
 
 /*******************************************************************************
 *		REMOVE FUNCTIONS
 *******************************************************************************/
-void Inventory::removeItemFromInventory(std::string removeThisItem)
+void Inventory::removeItemFromInventory(string removeThisItem)
 {
+
 	int index = findVectorIndex(removeThisItem, itemsInInventory);
 	itemsInInventory.erase(itemsInInventory.begin() + index);
+		
+	numItemsInInventory--;
+
+	
+
 }
 
 /*******************************************************************************
 *		FIND VECTOR INDEX
 *******************************************************************************/
-int Inventory::findVectorIndex(std::string thisString, std::vector<std::string> thisVector)
+int Inventory::findVectorIndex(string thisString, vector<string> thisVector)
 {
 	int size = thisVector.size();
 
@@ -54,3 +63,41 @@ int Inventory::findVectorIndex(std::string thisString, std::vector<std::string> 
 		}
 	}
 }
+
+
+/*******************************************************************************
+*		PRINT CURRENT INVENTORY
+*******************************************************************************/
+void Inventory::printCurrentInventory()
+{
+	std::cout << std::endl;
+	std::cout << "Current Inventory" << std::endl;
+	std::cout << "-----------------" << std::endl;
+	
+	if(numItemsInInventory > 0)
+	{
+		for(auto i : itemsInInventory)
+		{
+			std::cout << "| " << i << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "Inventory Empty" << std::endl;
+	}
+	std::cout << "-----------------" << std::endl;
+	std::cout << std::endl;
+}
+
+
+bool Inventory::isItemInInventory(std::string itemPresent)
+{
+	for(auto i : itemsInInventory)
+	{
+		if(itemPresent == i)
+			return true;
+	}
+	
+	return false;
+}
+

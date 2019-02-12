@@ -12,7 +12,7 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Suspect::Suspect(std::string name, std::string description, std::string answer1, std::string answer2)
+Suspect::Suspect(string name, string description, string answer1, string answer2)
 {
 	setName(name);
 	setDescription(description);
@@ -23,22 +23,22 @@ Suspect::Suspect(std::string name, std::string description, std::string answer1,
 /*******************************************************************************
 *		GET FUNCTIONS
 *******************************************************************************/
-std::string Suspect::getName()
+string Suspect::getName()
 {
 	return name;
 }
 
-std::string Suspect::getDescription()
+string Suspect::getDescription()
 {
 	return description;
 }
 
-std::string Suspect::getAnswer1()
+string Suspect::getAnswer1()
 {
 	return answer1;
 }
 
-std::string Suspect::getAnswer2()
+string Suspect::getAnswer2()
 {
 	return answer2;
 }
@@ -46,22 +46,22 @@ std::string Suspect::getAnswer2()
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/
-void Suspect::setName(std::string givenName)
+void Suspect::setName(string givenName)
 {
 	name = givenName;
 }
 
-void Suspect::setDescription(std::string givenDescription)
+void Suspect::setDescription(string givenDescription)
 {
 	description = givenDescription;
 }
 
-void Suspect::setAnswer1(std::string givenAnswer1)
+void Suspect::setAnswer1(string givenAnswer1)
 {
 	answer1 = givenAnswer1;
 }
 
-void Suspect::setAnswer2(std::string givenAnswer2)
+void Suspect::setAnswer2(string givenAnswer2)
 {
 	answer2 = givenAnswer2;
 }

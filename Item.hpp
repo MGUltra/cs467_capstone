@@ -21,23 +21,30 @@ using namespace std;
 class Item
 {
 	private:
-	std::string name;
-	std::string description;
-	std::string forensicAnalysis;
+	string name;
+	string description;
+	string forensicAnalysis;
+	bool available;
+	bool analyzed;
 
 	public:
 	//constructor
-	Item(std::string, std::string, std::string);
+	Item(string, string, string);
 
 	//get
-	std::string getName();
-	std::string getDescription();
-	std::string getForensicAnalysis();
+	string getName();
+	string getDescription();
+	string getForensicAnalysis();
+	bool getAvailable();
+	bool getAnalyzed();
 
 	//set
-	void setName(std::string);
-	void setDescription(std::string);
-	void setForensicAnalysis(std::string);
+	void setName(string);
+	void setDescription(string);
+	void setForensicAnalysis(string);
+	void setAvailable(bool);
+	void setAnalyzed(bool);
+	
 };
 
 #endif

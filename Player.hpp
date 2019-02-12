@@ -19,28 +19,36 @@ LIBRARIES
 #include "Inventory.hpp"
 #include "Room.hpp"
 
+using namespace std;
+
 class Player
 {
 private:
-	std::string name;
+	string name;
 	Inventory playerInventory;
 	Room* location;
 
 public:
 	//constructor
-	Player(std::string, Room*);
+	Player(string, Room*);
 
 	//get
-	std::string getName();
+	string getName();
 	Room* getLocation();
 
 	//set
-	void setName(std::string);
+	void setName(string);
 	void setLocation(Room*);
 
+	
+	bool itemInInventory(std::string);
+	
 	// Player actions
-	void pickUpItem(std::string);
-	void dropItem(std::string);
+	void pickUpItem(string);
+	void dropItem(string);
+	void inspectItem(std::string);
+	void showInventory();
+	
 };
 
 #endif

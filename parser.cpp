@@ -10,12 +10,18 @@
 ****************************************************************/
 
 Parser::Parser()
+	: metaSet({"help"})
+	, verbSet({"drop", "take", "inventory", "pick", "gather", "move", "go", "look", "inspect", "examine", "remove"})
+	, nounSet({"north", "south", "east", "west"})
+	, messageIn("")
+	, parsedStrings()
+	, gameActions()
+	, numActions(0)
 {
-		this->numActions = 0;
+
 }
 	
-	
-	
+
 	
 /***************************************************************
 ***																													 ***
@@ -53,7 +59,15 @@ Word* Parser::getCurrentVerb()
 	return this->gameActions[0];
 }
 	
+std::vector<Word*>* Parser::getGameActions()
+{
+	return &gameActions;
+}
 
+int Parser::getNumActions()
+{
+	return this->numActions;
+}
 	
 	
 	

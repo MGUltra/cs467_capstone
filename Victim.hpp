@@ -21,21 +21,21 @@ using namespace std;
 class Victim
 {
 private:
-	std::string name;
-	std::string description;
+	string name;
+	string description;
 
 
 public:
 	//constructor
-	Victim(std::string, std::string);
+	Victim(string, string);
 
 	//get
-	std::string getName();
-	std::string getDescription();
+	string getName();
+	string getDescription();
 
 	//set
-	void setName(std::string);
-	void setDescription(std::string);
+	void setName(string);
+	void setDescription(string);
 
 };
 

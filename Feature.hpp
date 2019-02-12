@@ -18,27 +18,30 @@ LIBRARIES
 
 #include "Room.hpp"
 
+using namespace std;
+
 class Feature
 {
 private:
-	std::string name;
-	std::string description;
-	std::string location;
+	string name;
+	string description;
+	string location;
 	bool alreadyInspected;
 
 public:
 	//constructor
-	Feature(std::string, std::string, std::string);
+	Feature(string, string, string);
 
 	// get
-	std::string getName();
-	std::string getDescription();
-	std::string getLocation();
+	string getName();
+	string getDescription();
+	string getLocation();
 
 	// set
-	void setName(std::string);
-	void setDescription(std::string);
-	void setLocation(std::string);
+	void setName(string);
+	void setDescription(string);
+	void setLocation(string);
+	void setAlreadyInspected(bool);
 };
 
 #endif

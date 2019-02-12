@@ -20,48 +20,68 @@
 #include "Item.hpp"
 #include "Feature.hpp"
 
+using namespace std;
+
 struct Room
 {
 	private:
-	std::string name;
-	std::string longDescription;
-	std::string shortDescription;
+	string name;
+	string longDescription;
+	string shortDescription;
 
 	bool alreadyVisited;
 
-	vector<std::string> attachedRooms;
+	vector<string> attachedRooms;
 
-	vector<std::string> itemsInRoom;
+	vector<string> itemsInRoom;
 
-	vector<std::string> featuresInRoom;
+	vector<string> featuresInRoom;
 
 	public:
 	// constructor
 	Room();
-	Room(std::string, std::string, std::string);
+	Room(string, string, string);
 	// destructor
 	//~Room();
 
 	// get
-	std::string getName();
-	std::string getLongDescription();
-	std::string getShortDescription();
+	string getName();
+	string getLongDescription();
+	string getShortDescription();
 	
-	std::vector<std::string>* getAttachedRooms();
-	std::vector<std::string>* getItemsInRoom();
-	std::vector<std::string>* getFeaturesInRoom();
+	vector<string>* getAttachedRooms();
+	vector<string>* getItemsInRoom();
+	vector<string>* getFeaturesInRoom();
+
+	bool getAlreadyVisited();
 
 	// set
-	void setName(std::string);
-	void setLongDescription(std::string);
-	void setShortDescription(std::string);
+	void setName(string);
+	void setLongDescription(string);
+	void setShortDescription(string);
+	
+	void setAlreadyVisited(bool);
 	
 	// add
-	void addAttachedRoom(std::string);
-	void addItemInRoom(std::string);
-	void addFeatureInRoom(std::string);
+	void addAttachedRoom(string);
+	void addItemInRoom(string);
+	void addFeatureInRoom(string);
 	
-	void removeItemFromRoom(std::string);
-	int findVectorIndex(std::string, std::vector<std::string>);
+	void removeItemFromRoom(string);
+	int findVectorIndex(string, vector<string>);
+	
+
+	// Test Functions
+	bool isRoomAttached(std::string);
+	bool isItemInRoom(std::string);
+	bool isFeatureInRoom(std::string);
+	bool isFeatureExamined(std::string);
+	
+	// print
+	void printAttachedRooms();
+	void printItemsInRoom();
+	void printFeaturesInRoom();
+	
+	
 };
 #endif

@@ -12,7 +12,7 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Victim::Victim(std::string name, std::string description)
+Victim::Victim(string name, string description)
 {
 	setName(name);
 	setDescription(description);
@@ -21,12 +21,12 @@ Victim::Victim(std::string name, std::string description)
 /*******************************************************************************
 *		GET FUNCTIONS
 *******************************************************************************/
-std::string Victim::getName()
+string Victim::getName()
 {
 	return name;
 }
 
-std::string Victim::getDescription()
+string Victim::getDescription()
 {
 	return description;
 }
@@ -34,12 +34,12 @@ std::string Victim::getDescription()
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/
-void Victim::setName(std::string givenName)
+void Victim::setName(string givenName)
 {
 	name = givenName;
 }
 
-void Victim::setDescription(std::string givenDescription)
+void Victim::setDescription(string givenDescription)
 {
 	description = givenDescription;
 }

@@ -12,7 +12,7 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Player::Player(std::string name, Room* currentLocation)
+Player::Player(string name, Room* currentLocation)
 {
 	setName(name);
 	setLocation(currentLocation);
@@ -23,7 +23,7 @@ Player::Player(std::string name, Room* currentLocation)
 /*******************************************************************************
 *		GET FUNCTIONS
 *******************************************************************************/
-std::string Player::getName()
+string Player::getName()
 {
 	return name;
 }
@@ -36,7 +36,7 @@ Room* Player::getLocation()
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/
-void Player::setName(std::string givenName)
+void Player::setName(string givenName)
 {
 	name = givenName;
 }
@@ -46,17 +46,63 @@ void Player::setLocation(Room* currentLocation)
 	location = currentLocation;
 }
 
+
+bool Player::itemInInventory(std::string stringIn)
+{
+	if(playerInventory.isItemInInventory(stringIn) == true)
+		return true;
+	else
+		return false;
+}
+
+
+
+
 /*******************************************************************************
 *		PLAYER ACTIONS
 *******************************************************************************/
-void Player::pickUpItem(std::string currentItem)
+void Player::pickUpItem(string currentItem)
 {
-	playerInventory.addItemToInventory(currentItem);
-	location->removeItemFromRoom(currentItem);
+	if(location->isItemInRoom(currentItem) == true)
+	{
+		playerInventory.addItemToInventory(currentItem);
+		
+		location->removeItemFromRoom(currentItem);
+	
+	}
+	else
+	{
+			std::cout << currentItem << " not found in " << location->getName() << "." << std::endl;
+			std::cout << std::endl;
+	}		
 }
 
-void Player::dropItem(std::string currentItem)
+
+void Player::dropItem(string currentItem)
 {
-	playerInventory.removeItemFromInventory(currentItem);
-	location->addItemInRoom(currentItem);
+	if(playerInventory.isItemInInventory(currentItem) == true)
+	{
+		playerInventory.removeItemFromInventory(currentItem);
+		
+		location->addItemInRoom(currentItem);
+	
+	}
+	else
+	{
+			std::cout << currentItem << " not found in inventory" << std::endl;
+			std::cout << std::endl;
+	}
+	
+}
+
+void inspectItem(std::string currentItem)
+{
+	
+}
+
+
+
+void Player::showInventory()
+{
+	this->playerInventory.printCurrentInventory();
 }

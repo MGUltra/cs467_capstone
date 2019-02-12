@@ -24,18 +24,27 @@ using namespace std;
 struct Inventory
 {
 	private:
-	std::vector<std::string> itemsInInventory;
+	vector<string> itemsInInventory;
+	
+	int numItemsInInventory;
 
 	public:
 	// constructor
 	Inventory();
 
-	std::vector<std::string>* getItemsFromInventory();
+	vector<string>* getItemsFromInventory();
 
-	void addItemToInventory(std::string);
+	void addItemToInventory(string);
 
-	void removeItemFromInventory(std::string);
+	void removeItemFromInventory(string);
 
-	int findVectorIndex(std::string, std::vector<std::string>);
+	int findVectorIndex(string, vector<string>);
+	
+	void printCurrentInventory();
+	
+	// Test Function
+	bool isItemInInventory(std::string);
+	
+	
 };
 #endif

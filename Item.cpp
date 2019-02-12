@@ -12,45 +12,66 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Item::Item(std::string name, std::string description, std::string forensicAnalysis)
+Item::Item(string name, string description, string forensicAnalysis)
 {
 	setName(name);
 	setDescription(description);
 	setForensicAnalysis(forensicAnalysis);
+
 }
 
 /*******************************************************************************
 *		GET FUNCTIONS
 *******************************************************************************/
-std::string Item::getName()
+string Item::getName()
 {
 	return name;
 }
 
-std::string Item::getDescription()
+string Item::getDescription()
 {
 	return description;
 }
 
-std::string Item::getForensicAnalysis()
+string Item::getForensicAnalysis()
 {
 	return forensicAnalysis;
 }
 
+bool Item::getAvailable()
+{
+	return this->available;
+}
+bool Item::getAnalyzed()
+{
+	return this->analyzed;
+}
+
+
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/
-void Item::setName(std::string givenName)
+void Item::setName(string givenName)
 {
 	name = givenName;
 }
 
-void Item::setDescription(std::string givenDescription)
+void Item::setDescription(string givenDescription)
 {
 	description = givenDescription;
 }
 
-void Item::setForensicAnalysis(std::string givenForensicAnalysis)
+void Item::setForensicAnalysis(string givenForensicAnalysis)
 {
 	forensicAnalysis = givenForensicAnalysis;
+}
+
+void Item::setAvailable(bool newBool)
+{
+	this->available = newBool;
+}
+
+void Item::setAnalyzed(bool newBool)
+{
+	this->analyzed = newBool;
 }

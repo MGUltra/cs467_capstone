@@ -17,7 +17,7 @@ Room::Room()
 	// Blank Default Constructor
 }
 
-Room::Room(std::string name, std::string longDescription, std::string shortDescription)
+Room::Room(string name, string longDescription, string shortDescription)
 {
 	setName(name);
 	setLongDescription(longDescription);
@@ -29,68 +29,81 @@ Room::Room(std::string name, std::string longDescription, std::string shortDescr
 /*******************************************************************************
 *		GET FUNCTIONS
 *******************************************************************************/
-std::string Room::getName()
+string Room::getName()
 {
 	return name;
 }
 
-std::string Room::getLongDescription()
+string Room::getLongDescription()
 {
 	return longDescription;
 }
 
-std::string Room::getShortDescription()
+string Room::getShortDescription()
 {
 	return shortDescription;
 }
 
-std::vector<std::string>* Room::getAttachedRooms()
+vector<string>* Room::getAttachedRooms()
 {
 	return &attachedRooms;
 }
 
-std::vector<std::string>* Room::getItemsInRoom()
+vector<string>* Room::getItemsInRoom()
 {
 	return &itemsInRoom;
 }
 
-std::vector<std::string>* Room::getFeaturesInRoom()
+vector<string>* Room::getFeaturesInRoom()
 {
 	return &featuresInRoom;
 }
 
+bool Room::getAlreadyVisited()
+{
+	return this->alreadyVisited;
+}	
+
+
+
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/
-void Room::setName(std::string givenName)
+void Room::setName(string givenName)
 {
 	name = givenName;
 }
 
-void Room::setLongDescription(std::string givenLongDescription)
+void Room::setLongDescription(string givenLongDescription)
 {
 	longDescription = givenLongDescription;
 }
 
-void Room::setShortDescription(std::string givenShortDescription)
+void Room::setShortDescription(string givenShortDescription)
 {
 	shortDescription = givenShortDescription;
 }
 
+void Room::setAlreadyVisited(bool newVisit)
+{
+	this->alreadyVisited = newVisit;
+}	
+
+
 /*******************************************************************************
 *		ADD FUNCTIONS
 *******************************************************************************/
-void Room::addAttachedRoom(std::string newRoom)
+void Room::addAttachedRoom(string newRoom)
 {
 	attachedRooms.push_back(newRoom);
 }
 
-void Room::addItemInRoom(std::string newItem)
+void Room::addItemInRoom(string newItem)
 {
 	itemsInRoom.push_back(newItem);
 }
 
-void Room::addFeatureInRoom(std::string newFeature)
+void Room::addFeatureInRoom(string newFeature)
 {
 	featuresInRoom.push_back(newFeature);
 }
@@ -98,7 +111,7 @@ void Room::addFeatureInRoom(std::string newFeature)
 /*******************************************************************************
 *		REMOVE FUNCTIONS
 *******************************************************************************/
-void Room::removeItemFromRoom(std::string removeThisItem)
+void Room::removeItemFromRoom(string removeThisItem)
 {
 	int index = findVectorIndex(removeThisItem, itemsInRoom);
 	itemsInRoom.erase(itemsInRoom.begin() + index);
@@ -107,7 +120,7 @@ void Room::removeItemFromRoom(std::string removeThisItem)
 /*******************************************************************************
 *		FIND VECTOR INDEX
 *******************************************************************************/
-int Room::findVectorIndex(std::string thisString, std::vector<std::string> thisVector)
+int Room::findVectorIndex(string thisString, vector<string> thisVector)
 {
 	int size = thisVector.size();
 
@@ -119,3 +132,97 @@ int Room::findVectorIndex(std::string thisString, std::vector<std::string> thisV
 		}
 	}
 }
+
+
+/*******************************************************************************
+*		TEST FUNCTIONS
+*******************************************************************************/
+
+
+
+bool Room::isRoomAttached(std::string stringIn)
+{
+	for(auto i : attachedRooms)
+	{
+		if(stringIn == i)
+			return true;
+	}
+	
+	return false;
+}
+
+bool Room::isItemInRoom(std::string stringIn)
+{
+	for(auto i : itemsInRoom)
+	{
+		if(stringIn == i)
+			return true;
+	}
+	
+	return false;
+}
+
+bool Room::isFeatureInRoom(std::string stringIn)
+{
+	for(auto i : featuresInRoom)
+	{
+		if(stringIn == i)
+			return true;
+	}
+	
+	return false;
+}
+
+bool Room::isFeatureExamined(std::string stringIn)
+{
+	//featuresInRoom
+}
+
+
+
+
+
+
+
+
+
+
+
+/*******************************************************************************
+*		PRINT FUNCTIONS
+*******************************************************************************/
+void Room::printAttachedRooms()
+{
+	std::cout << "You can see the following rooms from this one" << std::endl;
+	std::cout << "----------------" << std::endl;
+	for(auto i : attachedRooms)
+	{
+		std::cout << "| " << i << std::endl;
+	}
+	std::cout << "----------------" << std::endl;
+}
+
+void Room::printItemsInRoom()
+{
+	std::cout << "You can see the following items" << std::endl;
+	std::cout << "----------------" << std::endl;
+	
+	for(auto i : itemsInRoom)
+	{
+		std::cout << "| " << i << std::endl;
+	}
+	std::cout << "----------------" << std::endl;
+}
+
+void Room::printFeaturesInRoom()
+{
+	std::cout << "You can see the following features" << std::endl;
+	std::cout << "----------------" << std::endl;
+	
+	for(auto i : featuresInRoom)
+	{
+		std::cout << "| " << i << std::endl;
+	}
+	std::cout << "----------------" << std::endl;
+}
+
