@@ -1,0 +1,33 @@
+#!/bin/bash
+
+dos2unix Feature.cpp
+dos2unix Game.hpp
+dos2unix Item.hpp
+dos2unix noun.hpp
+dos2unix Player.cpp
+dos2unix Room.hpp
+dos2unix verb.cpp
+dos2unix word.cpp
+dos2unix Feature.hpp
+dos2unix Inventory.cpp
+dos2unix Items.txt
+dos2unix parser.cpp
+dos2unix Player.hpp
+dos2unix Rooms.txt
+dos2unix verb.hpp
+dos2unix word.hpp
+dos2unix Game.cpp
+dos2unix Inventory.hpp
+dos2unix makefile
+dos2unix parser.hpp
+dos2unix README.md
+dos2unix Suspect.cpp
+dos2unix Victim.cpp
+dos2unix wordTest.cpp
+dos2unix GameDriver.cpp
+dos2unix Item.cpp
+dos2unix noun.cpp
+dos2unix parserTest.cpp
+dos2unix Room.cpp
+dos2unix Suspect.hpp
+dos2unix Victim.hpp

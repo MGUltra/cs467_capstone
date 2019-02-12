@@ -16,31 +16,29 @@ LIBRARIES
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 class Suspect
 {
 private:
-	string name;
-	string description;
-	string answer1;
-	string answer2;
+	std::string name;
+	std::string description;
+	std::string answer1;
+	std::string answer2;
 
 public:
 	//constructor
-	Suspect(string, string, string, string);
+	Suspect(std::string, std::string, std::string, std::string);
 
 	//get
-	string getName();
-	string getDescription();
-	string getAnswer1();
-	string getAnswer2();
+	std::string getName();
+	std::string getDescription();
+	std::string getAnswer1();
+	std::string getAnswer2();
 
 	//set
-	void setName(string);
-	void setDescription(string);
-	void setAnswer1(string);
-	void setAnswer2(string);
+	void setName(std::string);
+	void setDescription(std::string);
+	void setAnswer1(std::string);
+	void setAnswer2(std::string);
 };
 
 #endif
