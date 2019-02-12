@@ -33,13 +33,13 @@ DRIVERHEADERS = Room.hpp Player.hpp Victim.hpp Suspect.hpp Feature.hpp Inventory
 #include "parser.hpp"
 
 
-all: test
+all: gamedriver
 
 clean:
 	-rm ${PARSEOBJECTS} ${DRIVEROBJECTS} parsertest gamedriver wordtest
 #-rm parser.o word.o verb.o noun.o wordtest.o parsertest.o wordtest parsertest
 
-test: wordtest parsertest
+test: parsertest
 
 wordtest: word.o verb.o noun.o parser.o wordTest.cpp
 	g++ -g -std=c++11 -o wordtest wordTest.cpp word.o verb.o noun.o
@@ -49,7 +49,7 @@ wordtest: word.o verb.o noun.o parser.o wordTest.cpp
 
 
 parsertest: ${PARSEOBJECTS} ${PARSEHEADERS}
-	${CXX} ${PARSEOBJECTS} parserTest.cpp -o parsertest
+	${CXX} -std=c++11 ${PARSEOBJECTS} parserTest.cpp -o parsertest
 	
 gamedriver: ${DRIVEROBJECTS} ${DRIVERHEADERS} ${PARSEHEADERS}
 	${CXX} ${DRIVEROBJECTS} ${PARSEOBJECTS} -o gamedriver
