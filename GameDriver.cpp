@@ -620,9 +620,8 @@ void itemsInRoomPrompt(Room* currentRoom)
 
 void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 {
-	//std::cout << "Verb:" << verb << std::endl;
-	//std::cout << "Noun:" << noun << std::endl;
-	clearScreen();
+
+	//clearScreen();
 	
 	int functionToCall = 0;
 	
