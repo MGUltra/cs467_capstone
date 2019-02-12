@@ -73,14 +73,10 @@ void inspectObject(Player*, std::string);
 void showInventory(Player*);
 void helpPlayer(Player*);
 
-
-
-
-
+// Cleanup function
 void cleanup(Parser*, Player*);
 
-// TEST
-void parserTest(Parser*);
+
 
 
 
@@ -822,53 +818,4 @@ void printRoom(Room* room)
 }
 
 
-void parserTest(Parser* commandParser)
-{
-	commandParser->setVerbSet("drop");
-	commandParser->setVerbSet("take");
-	commandParser->setVerbSet("move");
-	commandParser->setVerbSet("go");
-	
-	commandParser->setNounSet("controller");
-	commandParser->setNounSet("cigarette");
-	commandParser->setNounSet("photograph");
-	commandParser->setNounSet("taco");
-	
-	std::string inputMessage = "  Go to basement  Drop the cigarette, and then take the taco, photograph and controller. Move to basement    ";
-	
-	std::cout << std::endl;
-	std::cout << std::endl;
-	std::cout << "Input string" << std::endl;
-	std::cout << "-------------------------------------------------" << std::endl;
-	std::cout << inputMessage << std::endl;
-	
-	std::cout << std::endl;
-	std::cout << std::endl;
-	commandParser->newMessage(inputMessage);
-	
-	std::cout << std::endl;
-	
-	std::cout << "input string after Boost library tolower and trim" << std::endl;
-	std::cout << "-------------------------------------------------" << std::endl;
-	std::cout << commandParser->getMessageIn() << std::endl;
-	
-	std::cout << std::endl;
-	
-	std::cout << "input string after being parsed by words" << std::endl;
-	std::cout << "-------------------------------------------------" << std::endl;
-	
-	commandParser->printParsedStrings();
-	
-	std::cout << std::endl;
-	
-	std::cout << "input string after being Grouped by Verb/Noun Associations" << std::endl;
-	std::cout << "-------------------------------------------------" << std::endl;
-	
-	commandParser->printVerbNounGroupings();
-	
-	std::cout << std::endl;
-	
-	commandParser->clearMessage();
-	
-}
 
