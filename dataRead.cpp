@@ -14,12 +14,17 @@
 //instead of the ifstream to the function. 
 int main()
 {
+  int num = 0;
   std::ifstream inFile;
   std::string input;
 
-  calcWindowSize();
+  if (calcWindowSize() == 0)
+    return 0;
 
-  inFile.open("roomText/policeStationShort.txt", std::ios::out);
+  inFile.open("roomText/cellLong.txt", std::ios::out);
+  readFileDefault(inFile);
+  inFile.close();
+  inFile.open("roomText/cellShort.txt", std::ios::out);
   readFileDefault(inFile);
   inFile.close();
 

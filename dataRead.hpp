@@ -66,11 +66,10 @@ void readFileChar(std::ifstream &fileName)
 ** fully enjoy the game. Prompts user to adjust terminal if size
 ** does not meet minimum requirements.
 *******************************************************************************/
-void calcWindowSize()
+int calcWindowSize()
 {
   int cols = 80;
   int lines = 24;
-
 #ifdef TIOCGSIZE
     struct ttysize ts;
     ioctl(STDIN_FILENO, TIOCGSIZE, &ts);
@@ -84,9 +83,16 @@ void calcWindowSize()
 #endif /* TIOCGSIZE */
 
     if(cols < 79)
-      printf("Terminal too narrow - please resize and relaunch the game.");
+    {
+      printf("Terminal too narrow - please resize and relaunch the game.\n");
+      return 0;
+    }
     if(lines < 42)
-      printf("Terminal toos short - please resize and relaunch the game."); 
+    {
+      printf("Terminal toos short - please resize and relaunch the game.\n"); 
+      return 0;
+    }
+  return 1;
 }
 
 #endif
