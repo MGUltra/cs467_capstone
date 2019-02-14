@@ -132,6 +132,12 @@ int main()
 	createRooms(commandParser);
 	
 	createItems(commandParser);
+	
+	// create features
+	
+	// create victim
+	
+	// create suspects
 
 	currentPlayer = new Player("player 1", getRoom("bedroom"));
 
@@ -297,8 +303,8 @@ void createRooms(Parser* commandParser)
 		Room* room2 = getRoom(roomName2);
 
 		// Attach each room to one another.
-		room1->addAttachedRoom(roomName2);
-		room2->addAttachedRoom(roomName1);
+		room1->addAttachedRoom(room2);
+		room2->addAttachedRoom(room1);
 	}
 
 	// Close inputFile.
@@ -338,22 +344,36 @@ void createFeatures(Parser* commandParser)
 
 	for (int i = 0; i < numFeatures; i++)
 	{
-		std::string name, description, location;
+		std::string name, description, location, itemName;
 		Room* room;
+		Item* item;
 
+		// feature name
 		getline(inputFile, fileLine);
 		name = fileLine;
 
 		boost::algorithm::to_lower(name);
 		
+		// feature description
 		getline(inputFile, fileLine);
 		description = fileLine;
 
+		// room/location name
 		getline(inputFile, fileLine);
 		location = fileLine;
 
+		// room pointer
 		room = getRoom(location);
 
+		
+		// item reveal name
+		getline(inputFile, fileLine);
+		itemName = fileLine;
+
+		// item pointer
+		item = itemMap[itemName];
+		
+		// create new feature
 		featureMap[name] = new Feature(name, description, location);
 
 		room->addFeatureInRoom(name);
@@ -682,7 +702,7 @@ void movePlayer(Player* currentPlayer, std::string nounIn)
 	//	function in the Player class
 	Room* roomPtr = currentPlayer->getLocation();
 	
-	if(roomPtr->isRoomAttached(nounIn) == true)
+	if(roomPtr->isRoomAttached(getRoom(nounIn)) == true)
 	{
 		currentPlayer->setLocation(getRoom(nounIn));
 	}
@@ -808,7 +828,7 @@ void cleanup(Parser* currentParser, Player* currentPlayer)
 /*------------------------------------------------------------------------------
 		Test Functions
 ------------------------------------------------------------------------------*/
-
+/*
 void printRooms()
 {
 	int numRooms = roomTestVector.size();
@@ -829,7 +849,7 @@ void printRoom(Room* room)
 	std::cout << room->getShortDescription() << std::endl;
 	std::cout << "The following rooms are attached: " << std::endl;
 
-	std::vector<std::string>* attachedRooms = room->getAttachedRooms();
+	std::vector<Room*>* attachedRooms = room->getAttachedRooms();
 
 	int numAttachedRooms = attachedRooms->size();
 
@@ -838,6 +858,6 @@ void printRoom(Room* room)
 		std::cout << attachedRooms->at(i) << std::endl;
 	}
 }
-
+*/
 
 

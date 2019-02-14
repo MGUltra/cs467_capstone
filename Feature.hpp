@@ -17,6 +17,7 @@ LIBRARIES
 #include <string>
 
 #include "Room.hpp"
+#include "Item.hpp"
 
 
 class Feature
@@ -26,10 +27,11 @@ private:
 	std::string description;
 	std::string location;
 	bool alreadyInspected;
+	Item* itemAffected;
 
 public:
 	//constructor
-	Feature(std::string, std::string, std::string);
+	Feature(std::string, std::string, std::string, Item*);
 
 	// get
 	std::string getName();
@@ -41,6 +43,9 @@ public:
 	void setDescription(std::string);
 	void setLocation(std::string);
 	void setAlreadyInspected(bool);
+	void setItemAffected(Item*);
+	
+	void inspected();
 };
 
 #endif

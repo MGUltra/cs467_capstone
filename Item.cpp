@@ -17,6 +17,8 @@ Item::Item(std::string name, std::string description, std::string forensicAnalys
 	setName(name);
 	setDescription(description);
 	setForensicAnalysis(forensicAnalysis);
+	setAvailable(false);
+	setAnalyzed(false);
 
 }
 
@@ -74,4 +76,13 @@ void Item::setAvailable(bool newBool)
 void Item::setAnalyzed(bool newBool)
 {
 	this->analyzed = newBool;
+}
+
+
+void Item::revealedByFeature()
+{
+	setAvailable(true);
+	
+	std::cout << "Your search has revealed " << this->name << "." << std::endl;
+	
 }

@@ -1,0 +1,19 @@
+6
+bookshelf
+there is a cluttered bookshelf against one wall, that may contain some information
+bedroom
+desk
+there is a desk with some papers on it
+bedroom
+NAME
+DESCRIPTION
+kitchen
+NAME
+DESCRIPTION
+kitchen
+NAME
+DESCRIPTION
+basement
+NAME
+DESCRIPTION
+basement

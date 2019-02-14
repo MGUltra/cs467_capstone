@@ -30,7 +30,7 @@ struct Room
 
 	bool alreadyVisited;
 
-	std::vector<std::string> attachedRooms;
+	std::vector<Room*> attachedRooms;
 
 	std::vector<std::string> itemsInRoom;
 
@@ -48,7 +48,7 @@ struct Room
 	std::string getLongDescription();
 	std::string getShortDescription();
 	
-	std::vector<std::string>* getAttachedRooms();
+	std::vector<Room*>* getAttachedRooms();
 	std::vector<std::string>* getItemsInRoom();
 	std::vector<std::string>* getFeaturesInRoom();
 
@@ -62,7 +62,7 @@ struct Room
 	void setAlreadyVisited(bool);
 	
 	// add
-	void addAttachedRoom(std::string);
+	void addAttachedRoom(Room*);
 	void addItemInRoom(std::string);
 	void addFeatureInRoom(std::string);
 	
@@ -71,7 +71,7 @@ struct Room
 	
 
 	// Test Functions
-	bool isRoomAttached(std::string);
+	bool isRoomAttached(Room*);
 	bool isItemInRoom(std::string);
 	bool isFeatureInRoom(std::string);
 	bool isFeatureExamined(std::string);

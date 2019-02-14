@@ -44,7 +44,7 @@ std::string Room::getShortDescription()
 	return shortDescription;
 }
 
-std::vector<std::string>* Room::getAttachedRooms()
+std::vector<Room*>* Room::getAttachedRooms()
 {
 	return &attachedRooms;
 }
@@ -93,7 +93,7 @@ void Room::setAlreadyVisited(bool newVisit)
 /*******************************************************************************
 *		ADD FUNCTIONS
 *******************************************************************************/
-void Room::addAttachedRoom(std::string newRoom)
+void Room::addAttachedRoom(Room* newRoom)
 {
 	attachedRooms.push_back(newRoom);
 }
@@ -140,11 +140,11 @@ int Room::findVectorIndex(std::string thisString, std::vector<std::string> thisV
 
 
 
-bool Room::isRoomAttached(std::string stringIn)
+bool Room::isRoomAttached(Room* roomIn)
 {
 	for(auto i : attachedRooms)
 	{
-		if(stringIn == i)
+		if(roomIn->getName() == i->getName())
 			return true;
 	}
 	
@@ -197,7 +197,7 @@ void Room::printAttachedRooms()
 	std::cout << "----------------" << std::endl;
 	for(auto i : attachedRooms)
 	{
-		std::cout << "| " << i << std::endl;
+		std::cout << "| " << i->getName() << std::endl;
 	}
 	std::cout << "----------------" << std::endl;
 }
@@ -209,6 +209,7 @@ void Room::printItemsInRoom()
 	
 	for(auto i : itemsInRoom)
 	{
+		
 		std::cout << "| " << i << std::endl;
 	}
 	std::cout << "----------------" << std::endl;
