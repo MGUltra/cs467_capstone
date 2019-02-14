@@ -18,7 +18,7 @@ LIBRARIES
 
 #include "Inventory.hpp"
 #include "Room.hpp"
-
+#include "Item.hpp"
 
 class Player
 {
@@ -40,11 +40,11 @@ public:
 	void setLocation(Room*);
 
 	
-	bool itemInInventory(std::string);
+	bool itemInInventory(Item*);
 	
 	// Player actions
-	void pickUpItem(std::string);
-	void dropItem(std::string);
+	void pickUpItem(Item*);
+	void dropItem(Item*);
 	void inspectItem(std::string);
 	void showInventory();
 	

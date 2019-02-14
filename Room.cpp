@@ -49,12 +49,12 @@ std::vector<Room*>* Room::getAttachedRooms()
 	return &attachedRooms;
 }
 
-std::vector<std::string>* Room::getItemsInRoom()
+std::vector<Item*>* Room::getItemsInRoom()
 {
 	return &itemsInRoom;
 }
 
-std::vector<std::string>* Room::getFeaturesInRoom()
+std::vector<Feature*>* Room::getFeaturesInRoom()
 {
 	return &featuresInRoom;
 }
@@ -98,12 +98,12 @@ void Room::addAttachedRoom(Room* newRoom)
 	attachedRooms.push_back(newRoom);
 }
 
-void Room::addItemInRoom(std::string newItem)
+void Room::addItemInRoom(Item* newItem)
 {
 	itemsInRoom.push_back(newItem);
 }
 
-void Room::addFeatureInRoom(std::string newFeature)
+void Room::addFeatureInRoom(Feature* newFeature)
 {
 	featuresInRoom.push_back(newFeature);
 }
@@ -111,22 +111,24 @@ void Room::addFeatureInRoom(std::string newFeature)
 /*******************************************************************************
 *		REMOVE FUNCTIONS
 *******************************************************************************/
-void Room::removeItemFromRoom(std::string removeThisItem)
+void Room::removeItemFromRoom(Item* removeThisItem)
 {
-	int index = findVectorIndex(removeThisItem, itemsInRoom);
+
+	int index = findVectorIndex(removeThisItem);
 	itemsInRoom.erase(itemsInRoom.begin() + index);
+	
 }
 
 /*******************************************************************************
 *		FIND VECTOR INDEX
 *******************************************************************************/
-int Room::findVectorIndex(std::string thisString, std::vector<std::string> thisVector)
+int Room::findVectorIndex(Item* removeThisItem)
 {
-	int size = thisVector.size();
+	int size = this->itemsInRoom.size();
 
 	for (int i = 0; i <= size; i++)
 	{
-		if (thisString == thisVector[i])
+		if (removeThisItem->getName() == this->itemsInRoom[i]->getName())
 		{
 			return i;
 		}
@@ -151,31 +153,32 @@ bool Room::isRoomAttached(Room* roomIn)
 	return false;
 }
 
-bool Room::isItemInRoom(std::string stringIn)
+bool Room::isItemInRoom(Item* itemIn)
 {
 	for(auto i : itemsInRoom)
 	{
-		if(stringIn == i)
+		if(itemIn->getName() == i->getName())
 			return true;
 	}
 	
 	return false;
 }
 
-bool Room::isFeatureInRoom(std::string stringIn)
+bool Room::isFeatureInRoom(Feature* featureIn)
 {
 	for(auto i : featuresInRoom)
 	{
-		if(stringIn == i)
+		if(featureIn->getName() == i->getName())
 			return true;
 	}
 	
 	return false;
 }
 
-bool Room::isFeatureExamined(std::string stringIn)
+bool Room::isFeatureExamined(Feature* featureIn)
 {
 	//featuresInRoom
+	return featureIn->getAlreadyInspected();
 }
 
 
@@ -209,8 +212,10 @@ void Room::printItemsInRoom()
 	
 	for(auto i : itemsInRoom)
 	{
-		
-		std::cout << "| " << i << std::endl;
+		if(i->getAvailable() == true)
+		{
+			std::cout << "| " << i->getName() << std::endl;
+		}
 	}
 	std::cout << "----------------" << std::endl;
 }
@@ -222,7 +227,7 @@ void Room::printFeaturesInRoom()
 	
 	for(auto i : featuresInRoom)
 	{
-		std::cout << "| " << i << std::endl;
+		std::cout << "| " << i->getName() << std::endl;
 	}
 	std::cout << "----------------" << std::endl;
 }

@@ -16,7 +16,7 @@ LIBRARIES
 #include <iostream>
 #include <string>
 
-#include "Room.hpp"
+//#include "Room.hpp"
 #include "Item.hpp"
 
 
@@ -37,6 +37,7 @@ public:
 	std::string getName();
 	std::string getDescription();
 	std::string getLocation();
+	bool getAlreadyInspected();
 
 	// set
 	void setName(std::string);

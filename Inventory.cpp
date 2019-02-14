@@ -18,7 +18,7 @@ Inventory::Inventory()
 	numItemsInInventory = 0;
 }
 
-std::vector<std::string>* Inventory::getItemsFromInventory()
+std::vector<Item*>* Inventory::getItemsFromInventory()
 {
 	return &itemsInInventory;
 }
@@ -26,7 +26,7 @@ std::vector<std::string>* Inventory::getItemsFromInventory()
 /*******************************************************************************
 *		ADD FUNCTIONS
 *******************************************************************************/
-void Inventory::addItemToInventory(std::string newItem)
+void Inventory::addItemToInventory(Item* newItem)
 {
 	itemsInInventory.push_back(newItem);
 	
@@ -36,28 +36,26 @@ void Inventory::addItemToInventory(std::string newItem)
 /*******************************************************************************
 *		REMOVE FUNCTIONS
 *******************************************************************************/
-void Inventory::removeItemFromInventory(std::string removeThisItem)
+void Inventory::removeItemFromInventory(Item* removeThisItem)
 {
 
-	int index = findVectorIndex(removeThisItem, itemsInInventory);
+	int index = findVectorIndex(removeThisItem);
 	itemsInInventory.erase(itemsInInventory.begin() + index);
 		
 	numItemsInInventory--;
-
-	
 
 }
 
 /*******************************************************************************
 *		FIND VECTOR INDEX
 *******************************************************************************/
-int Inventory::findVectorIndex(std::string thisString, std::vector<std::string> thisVector)
+int Inventory::findVectorIndex(Item* thisItem)
 {
-	int size = thisVector.size();
+	int size = itemsInInventory.size();
 
 	for (int i = 0; i <= size; i++)
 	{
-		if (thisString == thisVector[i])
+		if (thisItem->getName() == itemsInInventory[i]->getName())
 		{
 			return i;
 		}
@@ -78,7 +76,7 @@ void Inventory::printCurrentInventory()
 	{
 		for(auto i : itemsInInventory)
 		{
-			std::cout << "| " << i << std::endl;
+			std::cout << "| " << i->getName() << std::endl;
 		}
 	}
 	else
@@ -90,11 +88,11 @@ void Inventory::printCurrentInventory()
 }
 
 
-bool Inventory::isItemInInventory(std::string itemPresent)
+bool Inventory::isItemInInventory(Item* itemPresent)
 {
 	for(auto i : itemsInInventory)
 	{
-		if(itemPresent == i)
+		if(itemPresent->getName() == i->getName())
 			return true;
 	}
 	

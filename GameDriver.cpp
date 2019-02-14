@@ -135,6 +135,8 @@ int main()
 	
 	// create features
 	
+	createFeatures(commandParser);
+	
 	// create victim
 	
 	// create suspects
@@ -374,9 +376,11 @@ void createFeatures(Parser* commandParser)
 		item = itemMap[itemName];
 		
 		// create new feature
-		featureMap[name] = new Feature(name, description, location);
+		featureMap[name] = new Feature(name, description, location, item);
 
-		room->addFeatureInRoom(name);
+		Feature* newFeature = featureMap[name];
+		
+		room->addFeatureInRoom(newFeature);
 		
 		// populate parser noun set
 		commandParser->setNounSet(name);
@@ -422,6 +426,7 @@ void createItems(Parser* commandParser)
 	{
 		std::string name, description, forensicAnalysis, location;
 		Room* room;
+		Item* item;
 		
 		getline(inputFile, fileLine);
 		name = fileLine;
@@ -440,10 +445,13 @@ void createItems(Parser* commandParser)
 		boost::algorithm::to_lower(location);
 		
 		room = getRoom(location);
-
+		
 		itemMap[name] = new Item(name, description, forensicAnalysis);
 
-		room->addItemInRoom(name);
+		// item pointer
+		item = itemMap[name];
+		
+		room->addItemInRoom(item);
 		
 		// populate parser noun set
 		commandParser->setNounSet(name);
@@ -599,7 +607,10 @@ void currentRoomPrompt(Room* currentRoom)
 	
 	// display rooms
 	currentRoom->printAttachedRooms();
-
+	
+	// display features
+	currentRoom->printFeaturesInRoom();
+	
 	// display items
 	currentRoom->printItemsInRoom();
 	
@@ -642,7 +653,7 @@ void itemsInRoomPrompt(Room* currentRoom)
 void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 {
 
-	//clearScreen();
+	clearScreen();
 	
 	int functionToCall = 0;
 	
@@ -719,7 +730,7 @@ void movePlayer(Player* currentPlayer, std::string nounIn)
 
 void dropItem(Player* currentPlayer, std::string nounIn)
 {
-	currentPlayer->dropItem(nounIn);
+	currentPlayer->dropItem(itemMap[nounIn]);
 }
 
 /*------------------------------------------------------------------------------
@@ -728,9 +739,9 @@ void dropItem(Player* currentPlayer, std::string nounIn)
 
 void takeItem(Player* currentPlayer, std::string nounIn)
 {
-	currentPlayer->pickUpItem(nounIn);
-}
+	currentPlayer->pickUpItem(itemMap[nounIn]);
 
+}
 
 
 /*------------------------------------------------------------------------------
@@ -743,25 +754,51 @@ void inspectObject(Player* currentPlayer, std::string nounIn)
 	// because theire vectors contain only strings... will have to use map global 
 	// variable.
 	
-	// if feature in room
-
+	
+	if(featureMap.find(nounIn) != featureMap.end()) // test if feature 
+	{
+		Room* roomPtr = currentPlayer->getLocation();
+		
+		Feature* featurePtr = featureMap[nounIn];
+		
 		// test if feature is present in the current room 
-
+		if(roomPtr->isFeatureInRoom(featurePtr) == true)
+		{
+			// test if feature already inspected
+			if(roomPtr->isFeatureExamined(featurePtr) == false)
+			{
+				featurePtr->inspected();
+			}
+			else
+			{
+				std::cout << "You've already examined " << featurePtr->getName() << "." << std::endl;
+			}
+		}
+	}
+	else if(itemMap.find(nounIn) != itemMap.end()) // test if item
+	{
 	// if item in room or players inventory
 		// test if item is present in either the current room or inventory 
-	Room* roomPtr = currentPlayer->getLocation();
-			
-	if(currentPlayer->itemInInventory(nounIn) == true || roomPtr->isItemInRoom(nounIn) == true)
-	{
+		Room* roomPtr = currentPlayer->getLocation();
+		
 		Item* itemPtr = itemMap[nounIn];
 		
-		// test if item has gone to the lab yet to get mundane or analysis response
-		
-		if(itemPtr->getAnalyzed() == true)
-			std::cout << itemPtr->getForensicAnalysis() << std::endl;
+		if(currentPlayer->itemInInventory(itemPtr) == true || roomPtr->isItemInRoom(itemPtr) == true)
+		{
+			
+			
+			// test if item has gone to the lab yet to get mundane or analysis response
+			
+			if(itemPtr->getAnalyzed() == true)
+				std::cout << itemPtr->getForensicAnalysis() << std::endl;
+			else
+				std::cout << itemPtr->getDescription() << std::endl;
+			
+		}
 		else
-			std::cout << itemPtr->getDescription() << std::endl;
-		
+		{
+			std::cout << "You can not learn anything from that" << std::endl;
+		}
 	}
 	else
 	{

@@ -47,9 +47,9 @@ void Player::setLocation(Room* currentLocation)
 }
 
 
-bool Player::itemInInventory(std::string stringIn)
+bool Player::itemInInventory(Item* currentItem)
 {
-	if(playerInventory.isItemInInventory(stringIn) == true)
+	if(playerInventory.isItemInInventory(currentItem) == true)
 		return true;
 	else
 		return false;
@@ -61,7 +61,7 @@ bool Player::itemInInventory(std::string stringIn)
 /*******************************************************************************
 *		PLAYER ACTIONS
 *******************************************************************************/
-void Player::pickUpItem(std::string currentItem)
+void Player::pickUpItem(Item* currentItem)
 {
 	if(location->isItemInRoom(currentItem) == true)
 	{
@@ -78,7 +78,7 @@ void Player::pickUpItem(std::string currentItem)
 }
 
 
-void Player::dropItem(std::string currentItem)
+void Player::dropItem(Item* currentItem)
 {
 	if(playerInventory.isItemInInventory(currentItem) == true)
 	{

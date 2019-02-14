@@ -39,6 +39,12 @@ std::string Feature::getLocation()
 	return location;
 }
 
+bool Feature::getAlreadyInspected()
+{
+	return alreadyInspected;
+}
+
+
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/
@@ -68,9 +74,12 @@ void Feature::setItemAffected(Item* newItem)
 }
 
 
+
 void Feature::inspected()
 {
-	this->itemAffected->setAvailable(true);
-	
 	std::cout << "You take a closer look at the " << this->getName() << "." << std::endl;
+	
+	this->itemAffected->revealedByFeature();
+	
+	this->setAlreadyInspected(true);
 }
