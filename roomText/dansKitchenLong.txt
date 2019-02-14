@@ -17,5 +17,5 @@
 | on the table - the pizza is half eaten. The refrigerator hums to your left, |
 | a single picture hung with a magnet from its door. The door at the West end |
 | of the kitchen leads to the living room, the Eastern door to the bedroom.   |
-| Head back South to return to the police station.
+| Head back South to return to the police station.                            |
 |-----------------------------------------------------------------------------|
