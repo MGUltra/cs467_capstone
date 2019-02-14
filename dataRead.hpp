@@ -84,12 +84,12 @@ int calcWindowSize()
 
     if(cols < 79)
     {
-      printf("Terminal too narrow - please resize and relaunch the game.\n");
+      printf("| Terminal Too Narrow - Please Resize For Optimal Viewing Experience |");
       return 0;
     }
     if(lines < 42)
     {
-      printf("Terminal toos short - please resize and relaunch the game.\n"); 
+      printf("| Terminal Too Short  - Please Resize For Optimal Viewing Experience |");
       return 0;
     }
   return 1;

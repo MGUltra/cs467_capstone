@@ -10,37 +10,24 @@
 #include <iostream>
 #include <fstream>
 
-void displayMenu()
-{
-  std::cout << "Select a room to test: " << std::endl;
-  std::cout << "1. Holding Cell" << std::endl;
-  std::cout << "2. Police Station" << std::endl;
-  std::cout << "3. Forensics Lab" << std::endl;
-  std::cout << "4. Carl's Living Room" << std::endl;
-  std::cout << "5. Carl's Garage" << std::endl;
-  std::cout << "6. Carl's Bathroom" << std::endl;
-  std::cout << "7. Carl's Kitchen" << std::endl;
-  std::cout << "8. Dan's Kitchen" << std::endl;
-  std::cout << "9. Dan's Living Room" << std::endl;
-  std::cout << "10. Dan's Bedroom" << std::endl;
-  std::cout << "11. Dan's Porch" << std::endl;
-  std::cout << "12. Vince's Foyer" << std::endl;
-  std::cout << "13. Vince's Living Room" << std::endl;
-  std::cout << "14. Vince's Bedroom" << std::endl;
-  std::cout << "15. Vince's Office" << std::endl;
-}
-
 int main()
 {
   int num = 0;
   std::ifstream inFile;
   std::string input;
 
-  calcWindowSize();
+  //Test window size
+  int winFlag = calcWindowSize();
+  if (winFlag == 0)
+    return 0;
 
-  while(num != 16)
+  //Switch for rooms
+  while(num != -1)
   {
-    displayMenu();
+    //Test Menu
+    inFile.open("testMenu.txt", std::ios::out);
+    readFileDefault(inFile);
+    inFile.close();
     std::cin >> num;
     switch(num)
     {
@@ -166,6 +153,5 @@ int main()
         break;
     } 
   }
-
   return 0;
 }
