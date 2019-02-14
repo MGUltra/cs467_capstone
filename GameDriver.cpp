@@ -73,7 +73,7 @@ void dropItem(Player*, std::string);
 void takeItem(Player*, std::string);
 void inspectObject(Player*, std::string);
 void showInventory(Player*);
-void helpPlayer(Player*);
+void helpPlayer();
 
 // Cleanup function
 void cleanup(Parser*, Player*);
@@ -692,10 +692,10 @@ void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 			showInventory(currentPlayer);
 			break;
 		case 6: // help
-			helpPlayer(currentPlayer);
+			helpPlayer();
 			break;
 		default: // message unclear then help
-			helpPlayer(currentPlayer);
+			helpPlayer();
 	}
 	
 }
@@ -828,12 +828,33 @@ void showInventory(Player* currentPlayer)
 
 
 /*------------------------------------------------------------------------------
-		help
+		Help - Displays the list of actions that the player can take.
 ------------------------------------------------------------------------------*/
 
-void helpPlayer(Player* currentPlayer)
+void helpPlayer()
 {
+	std::cout << "Here is the lits of actions you are able to take:\n" << std::endl;
+
+	std::cout << "\t(N) = Not yet implemented.\n" << std::endl;
+
+	std::cout << "\t\tBasic Actions." << std::endl;
+	std::cout << "\tLook - repeats the long description of the current room." << std::endl;
+	std::cout << "\tLook At <Object> - prints a description of the object (including inventory items!)." << std::endl;
+	std::cout << "\tGo <Room> - Player moves to the given location if possible." << std::endl;
+	std::cout << "\tTake <Object> - Adds the item to your inventory." << std::endl;
+	std::cout << "\tHelp - Brings up this list of actions!" << std::endl;
+	std::cout << "\tInventory - Displays the list of items you currently have in your inventory.\n" << std::endl;
 	
+	std::cout << "\t\tOther Actions." << std::endl;
+	std::cout << "\tDrop <Object> - Drops the item in your current room." << std::endl;
+	std::cout << "\t(N)Interrogate <Suspect> - Ask the hard hitting questions." << std::endl;
+	std::cout << "\t(N)Take Statement - Take notes from a witness." << std::endl;
+	std::cout << "\t(N)Take Sample - Take a sample of hair/blood/saliva." << std::endl;
+	std::cout << "\t(N)Magnify <Object> - Take a closer look at an object." << std::endl;
+	std::cout << "\t(N)Hack Computer - Search a suspect's computer for evidence." << std::endl;
+	std::cout << "\t(N)Analyze <Object> - Submit an item for forensic analysis. Must be in Forensics Lab." << std::endl;
+	std::cout << "\t(N)Hint - Get a hint for your current room." << std::endl;
+
 }
 
 
