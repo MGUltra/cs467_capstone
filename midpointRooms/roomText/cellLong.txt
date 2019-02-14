@@ -1,0 +1,20 @@
+|-----------------------------------------------------------------------------|
+|-----------------------------------------------------------------------------|
+|               _ _       _    _  _             ___       _  _                |
+|              | | | ___ | | _| |<_>._ _  ___  |  _> ___ | || |               |
+|              |   |/ . \| |/ . || || ' |/ . | | <__/ ._>| || |               |
+|              |_|_|\___/|_|\___||_||_|_|\_. | `___/\___.|_||_|               |
+|                                        <___'                                |
+|-----------------------------------------------------------------------------|
+|-----------------------------------------------------------------------------|
+| The holding cell is full of stale air. Like the rest   ||   ||   ||   ||   ||
+| of the station, the room is doused in shadows. A small ||   ||   ||   ||   ||
+| light hangs above the cell, swaying ever so slightly.  ||   ||_ _||   ||   ||
+| There are several silhouettes painted against the bars ||   ||o o||   ||   ||
+| of the cell. As you take a few steps inside, these     ||   || - ||   ||   ||
+| shapes materialize into the form of the three suspected||   || = ||   ||   ||
+| murderers Carl, Vince, and Dan. Each of the men are    ||   ||   ||   ||   ||
+| standing now, hands wrapped tightly around the bars of ||   ||   ||   ||   ||
+| the cell. Who should you talk to first? The main room  ||   ||   ||   ||   ||
+| of the police station lies a few steps South.          ||   ||   ||   ||   ||
+|-----------------------------------------------------------------------------|
