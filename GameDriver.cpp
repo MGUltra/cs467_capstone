@@ -132,6 +132,14 @@ int main()
 	createRooms(commandParser);
 	
 	createItems(commandParser);
+	
+	// create features
+	
+	createFeatures(commandParser);
+	
+	// create victim
+	
+	// create suspects
 
 	currentPlayer = new Player("player 1", getRoom("bedroom"));
 
@@ -297,8 +305,8 @@ void createRooms(Parser* commandParser)
 		Room* room2 = getRoom(roomName2);
 
 		// Attach each room to one another.
-		room1->addAttachedRoom(roomName2);
-		room2->addAttachedRoom(roomName1);
+		room1->addAttachedRoom(room2);
+		room2->addAttachedRoom(room1);
 	}
 
 	// Close inputFile.
@@ -338,25 +346,41 @@ void createFeatures(Parser* commandParser)
 
 	for (int i = 0; i < numFeatures; i++)
 	{
-		std::string name, description, location;
+		std::string name, description, location, itemName;
 		Room* room;
+		Item* item;
 
+		// feature name
 		getline(inputFile, fileLine);
 		name = fileLine;
 
 		boost::algorithm::to_lower(name);
 		
+		// feature description
 		getline(inputFile, fileLine);
 		description = fileLine;
 
+		// room/location name
 		getline(inputFile, fileLine);
 		location = fileLine;
 
+		// room pointer
 		room = getRoom(location);
 
-		featureMap[name] = new Feature(name, description, location);
+		
+		// item reveal name
+		getline(inputFile, fileLine);
+		itemName = fileLine;
 
-		room->addFeatureInRoom(name);
+		// item pointer
+		item = itemMap[itemName];
+		
+		// create new feature
+		featureMap[name] = new Feature(name, description, location, item);
+
+		Feature* newFeature = featureMap[name];
+		
+		room->addFeatureInRoom(newFeature);
 		
 		// populate parser noun set
 		commandParser->setNounSet(name);
@@ -402,6 +426,7 @@ void createItems(Parser* commandParser)
 	{
 		std::string name, description, forensicAnalysis, location;
 		Room* room;
+		Item* item;
 		
 		getline(inputFile, fileLine);
 		name = fileLine;
@@ -420,10 +445,13 @@ void createItems(Parser* commandParser)
 		boost::algorithm::to_lower(location);
 		
 		room = getRoom(location);
-
+		
 		itemMap[name] = new Item(name, description, forensicAnalysis);
 
-		room->addItemInRoom(name);
+		// item pointer
+		item = itemMap[name];
+		
+		room->addItemInRoom(item);
 		
 		// populate parser noun set
 		commandParser->setNounSet(name);
@@ -579,7 +607,10 @@ void currentRoomPrompt(Room* currentRoom)
 	
 	// display rooms
 	currentRoom->printAttachedRooms();
-
+	
+	// display features
+	currentRoom->printFeaturesInRoom();
+	
 	// display items
 	currentRoom->printItemsInRoom();
 	
@@ -622,7 +653,7 @@ void itemsInRoomPrompt(Room* currentRoom)
 void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 {
 
-	//clearScreen();
+	clearScreen();
 	
 	int functionToCall = 0;
 	
@@ -682,7 +713,7 @@ void movePlayer(Player* currentPlayer, std::string nounIn)
 	//	function in the Player class
 	Room* roomPtr = currentPlayer->getLocation();
 	
-	if(roomPtr->isRoomAttached(nounIn) == true)
+	if(roomPtr->isRoomAttached(getRoom(nounIn)) == true)
 	{
 		currentPlayer->setLocation(getRoom(nounIn));
 	}
@@ -699,7 +730,7 @@ void movePlayer(Player* currentPlayer, std::string nounIn)
 
 void dropItem(Player* currentPlayer, std::string nounIn)
 {
-	currentPlayer->dropItem(nounIn);
+	currentPlayer->dropItem(itemMap[nounIn]);
 }
 
 /*------------------------------------------------------------------------------
@@ -708,9 +739,9 @@ void dropItem(Player* currentPlayer, std::string nounIn)
 
 void takeItem(Player* currentPlayer, std::string nounIn)
 {
-	currentPlayer->pickUpItem(nounIn);
-}
+	currentPlayer->pickUpItem(itemMap[nounIn]);
 
+}
 
 
 /*------------------------------------------------------------------------------
@@ -723,25 +754,51 @@ void inspectObject(Player* currentPlayer, std::string nounIn)
 	// because theire vectors contain only strings... will have to use map global 
 	// variable.
 	
-	// if feature in room
-
+	
+	if(featureMap.find(nounIn) != featureMap.end()) // test if feature 
+	{
+		Room* roomPtr = currentPlayer->getLocation();
+		
+		Feature* featurePtr = featureMap[nounIn];
+		
 		// test if feature is present in the current room 
-
+		if(roomPtr->isFeatureInRoom(featurePtr) == true)
+		{
+			// test if feature already inspected
+			if(roomPtr->isFeatureExamined(featurePtr) == false)
+			{
+				featurePtr->inspected();
+			}
+			else
+			{
+				std::cout << "You've already examined " << featurePtr->getName() << "." << std::endl;
+			}
+		}
+	}
+	else if(itemMap.find(nounIn) != itemMap.end()) // test if item
+	{
 	// if item in room or players inventory
 		// test if item is present in either the current room or inventory 
-	Room* roomPtr = currentPlayer->getLocation();
-			
-	if(currentPlayer->itemInInventory(nounIn) == true || roomPtr->isItemInRoom(nounIn) == true)
-	{
+		Room* roomPtr = currentPlayer->getLocation();
+		
 		Item* itemPtr = itemMap[nounIn];
 		
-		// test if item has gone to the lab yet to get mundane or analysis response
-		
-		if(itemPtr->getAnalyzed() == true)
-			std::cout << itemPtr->getForensicAnalysis() << std::endl;
+		if(currentPlayer->itemInInventory(itemPtr) == true || roomPtr->isItemInRoom(itemPtr) == true)
+		{
+			
+			
+			// test if item has gone to the lab yet to get mundane or analysis response
+			
+			if(itemPtr->getAnalyzed() == true)
+				std::cout << itemPtr->getForensicAnalysis() << std::endl;
+			else
+				std::cout << itemPtr->getDescription() << std::endl;
+			
+		}
 		else
-			std::cout << itemPtr->getDescription() << std::endl;
-		
+		{
+			std::cout << "You can not learn anything from that" << std::endl;
+		}
 	}
 	else
 	{
@@ -808,7 +865,7 @@ void cleanup(Parser* currentParser, Player* currentPlayer)
 /*------------------------------------------------------------------------------
 		Test Functions
 ------------------------------------------------------------------------------*/
-
+/*
 void printRooms()
 {
 	int numRooms = roomTestVector.size();
@@ -829,7 +886,7 @@ void printRoom(Room* room)
 	std::cout << room->getShortDescription() << std::endl;
 	std::cout << "The following rooms are attached: " << std::endl;
 
-	std::vector<std::string>* attachedRooms = room->getAttachedRooms();
+	std::vector<Room*>* attachedRooms = room->getAttachedRooms();
 
 	int numAttachedRooms = attachedRooms->size();
 
@@ -838,6 +895,6 @@ void printRoom(Room* room)
 		std::cout << attachedRooms->at(i) << std::endl;
 	}
 }
-
+*/
 
 

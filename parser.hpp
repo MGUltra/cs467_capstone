@@ -28,6 +28,8 @@ class Parser
 	
 	private:
 	
+	//std::unordered_set<std::string> locationSet;
+	
 	std::unordered_set<std::string> metaSet;
 	
 	std::unordered_set<std::string> verbSet;

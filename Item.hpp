@@ -44,6 +44,10 @@ class Item
 	void setAvailable(bool);
 	void setAnalyzed(bool);
 	
+	// actions
+	
+	void revealedByFeature();
+	
 };
 
 #endif

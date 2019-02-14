@@ -12,12 +12,12 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Feature::Feature(std::string name, std::string description, std::string location)
+Feature::Feature(std::string name, std::string description, std::string location, Item* itemAffected)
 {
 	setName(name);
 	setDescription(description);
 	setLocation(location);
-
+	setItemAffected(itemAffected);
 	alreadyInspected = false;
 }
 
@@ -38,6 +38,12 @@ std::string Feature::getLocation()
 {
 	return location;
 }
+
+bool Feature::getAlreadyInspected()
+{
+	return alreadyInspected;
+}
+
 
 /*******************************************************************************
 *		SET FUNCTIONS
@@ -60,4 +66,20 @@ void Feature::setLocation(std::string givenLocation)
 void Feature::setAlreadyInspected(bool newBool)
 {
 	alreadyInspected = newBool;
+}
+
+void Feature::setItemAffected(Item* newItem)
+{
+	this->itemAffected = newItem;
+}
+
+
+
+void Feature::inspected()
+{
+	std::cout << "You take a closer look at the " << this->getName() << "." << std::endl;
+	
+	this->itemAffected->revealedByFeature();
+	
+	this->setAlreadyInspected(true);
 }

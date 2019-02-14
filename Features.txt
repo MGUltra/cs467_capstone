@@ -1,0 +1,25 @@
+6
+bookshelf
+there is a cluttered bookshelf against one wall, that may contain some information
+bedroom
+diary
+desk
+there is a desk with some papers on it
+bedroom
+photograph
+table
+there is a kitchen table, with some clutter on it
+kitchen
+plate
+counter
+There is a counter with stacks of bills
+kitchen
+letter
+blackboard
+There is an old blackboard flipped so the back is only visible
+basement
+map
+chest
+an old steamer chest is conspicuously not dusty, indicating it may have been used recently
+basement
+shovel

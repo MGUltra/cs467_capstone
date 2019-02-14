@@ -30,11 +30,11 @@ struct Room
 
 	bool alreadyVisited;
 
-	std::vector<std::string> attachedRooms;
+	std::vector<Room*> attachedRooms;
 
-	std::vector<std::string> itemsInRoom;
+	std::vector<Item*> itemsInRoom;
 
-	std::vector<std::string> featuresInRoom;
+	std::vector<Feature*> featuresInRoom;
 
 	public:
 	// constructor
@@ -48,9 +48,9 @@ struct Room
 	std::string getLongDescription();
 	std::string getShortDescription();
 	
-	std::vector<std::string>* getAttachedRooms();
-	std::vector<std::string>* getItemsInRoom();
-	std::vector<std::string>* getFeaturesInRoom();
+	std::vector<Room*>* getAttachedRooms();
+	std::vector<Item*>* getItemsInRoom();
+	std::vector<Feature*>* getFeaturesInRoom();
 
 	bool getAlreadyVisited();
 
@@ -62,19 +62,19 @@ struct Room
 	void setAlreadyVisited(bool);
 	
 	// add
-	void addAttachedRoom(std::string);
-	void addItemInRoom(std::string);
-	void addFeatureInRoom(std::string);
+	void addAttachedRoom(Room*);
+	void addItemInRoom(Item*);
+	void addFeatureInRoom(Feature*);
 	
-	void removeItemFromRoom(std::string);
-	int findVectorIndex(std::string, std::vector<std::string>);
+	void removeItemFromRoom(Item*);
+	int findVectorIndex(Item*);
 	
 
 	// Test Functions
-	bool isRoomAttached(std::string);
-	bool isItemInRoom(std::string);
-	bool isFeatureInRoom(std::string);
-	bool isFeatureExamined(std::string);
+	bool isRoomAttached(Room*);
+	bool isItemInRoom(Item*);
+	bool isFeatureInRoom(Feature*);
+	bool isFeatureExamined(Feature*);
 	
 	// print
 	void printAttachedRooms();

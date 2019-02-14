@@ -22,7 +22,7 @@
 struct Inventory
 {
 	private:
-	std::vector<std::string> itemsInInventory;
+	std::vector<Item*> itemsInInventory;
 	
 	int numItemsInInventory;
 
@@ -30,18 +30,18 @@ struct Inventory
 	// constructor
 	Inventory();
 
-	std::vector<std::string>* getItemsFromInventory();
+	std::vector<Item*>* getItemsFromInventory();
 
-	void addItemToInventory(std::string);
+	void addItemToInventory(Item*);
 
-	void removeItemFromInventory(std::string);
+	void removeItemFromInventory(Item*);
 
-	int findVectorIndex(std::string, std::vector<std::string>);
+	int findVectorIndex(Item*);
 	
 	void printCurrentInventory();
 	
 	// Test Function
-	bool isItemInInventory(std::string);
+	bool isItemInInventory(Item*);
 	
 	
 };
