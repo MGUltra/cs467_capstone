@@ -1,0 +1,22 @@
+|-----------------------------------------------------------------------------|
+|-----------------------------------------------------------------------------|
+|         ___            _  _      ___                                        |
+|        |  _> ___  _ _ | ||/ ___ /  _>  ___  _ _  ___  ___  ___              |
+|        | <__<_> || '_>| |  <_-< | <_/\<_> || '_><_> |/ . |/ ._>             |
+|        `___/<___||_|  |_|  /__/ `____/<___||_|  <___|\_. |\___.             |
+|                                                    <___' |                  |
+|-----------------------------------------------------------------------------|
+|-----------------------------------------------------------------------------|
+| Unlike most garages, Carl's garage does not have any type of vehicle in it. |
+| Instead, the space is home to a myriad of woodworking tools. These are      |
+| stored in shelves that fill most of the walls from ceiling to floor. From   |
+| the looks of it, Carl is a very organized man. In the middle of the room is |
+| a saw horse with fresh lumber laid atop it. The   , floor is littered with  |
+| sawdust. A few specks of blood gleam from atop   /(  ___________  one pile. |
+| A box of nails lies upturned on the floor. Some |  >:===========` of them   |
+| are scattered about on the floor. You take a     )(  step closer and see a  |
+| a large clawtooth hammer covered in blood on the ""  ground as well. It's   |
+| certainly the type of tool that could cause serious blunt force trauma. How |
+| on earth did it get so bloody? To the South is an exit that will take you   |
+| back to the station. The kitchen is straight ahead, to the North.           |
+|-----------------------------------------------------------------------------|
