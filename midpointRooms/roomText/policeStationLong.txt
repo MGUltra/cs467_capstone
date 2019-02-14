@@ -1,0 +1,22 @@
+|-----------------------------------------------------------------------------|
+|-----------------------------------------------------------------------------|
+|               _  _                   _           _    _                     |
+|     ___  ___ | |<_> ___  ___   ___ _| |_  ___  _| |_ <_> ___ ._ _           |
+|    | . \/ . \| || |/ | '/ ._> <_-<  | |  <_> |  | |  | |/ . \| ' |          |
+|    |  _/\___/|_||_|\_|_.\___. /__/  |_|  <___|  |_|  |_|\___/|_|_|          |
+|    |_|                                                                      |
+|-----------------------------------------------------------------------------|
+|-----------------------------------------------------------------------------|
+| You step inside the drafty police station and quickly scan the room. The    |
+| fluorescent lights flicker above and your eyes struggle      ,   /\   ,     |
+| to adjust. Old mahogany desks are scattered about, each     / '-'  '-' \    |
+| littered with file folders and loose papers. Straight      |   POLICE   |   |
+| ahead is the police chief seated at his desk, slowly       \    .--.    /   |
+| sipping his coffee. In the shadows to the West you notice   |  ( 19 )  |    |
+| a room containing what looks to be some lab equipment -     \   '--'   /    |
+| possibly used for testing evidence. To the East is the       '--.  .--'     |
+| station's dank holding cell room. You can make out the           \/         |
+| silhouettes of three individuals - the three suspected murderers - standing |
+| by the bars. Head North out the main entrance to visit Carl's house,        |
+| Northwest to visit Vincent's house, and Northeast to visit Dan's house.     |
+|-----------------------------------------------------------------------------|
