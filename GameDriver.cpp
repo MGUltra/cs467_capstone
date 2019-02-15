@@ -29,6 +29,8 @@
 /*------------------------------------------------------------------------------
 		TEXT FILES
 ------------------------------------------------------------------------------*/
+
+//should not be global
 std::string RoomsFile = "Rooms.txt";
 std::string FeaturesFile = "Features.txt";
 std::string ItemsFile = "Items.txt";
