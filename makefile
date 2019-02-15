@@ -25,6 +25,9 @@ DRIVEROBJECTS = Room.o Player.o Victim.o Suspect.o Feature.o Inventory.o Item.o 
 DRIVERSRCS = Room.cpp Player.cpp Victim.cpp Suspect.cpp Feature.cpp Inventory.cpp Item.cpp GameDriver.cpp
 DRIVERHEADERS = Room.hpp Player.hpp Victim.hpp Suspect.hpp Feature.hpp Inventory.hpp Item.hpp
 
+# Data Read test Variables
+ROOMTESTSRCS = dataTest.cpp
+ROOMTESTHEADERS = dataRead.hpp
 
 #include "Room.hpp"
 #include "Player.hpp"
@@ -33,13 +36,13 @@ DRIVERHEADERS = Room.hpp Player.hpp Victim.hpp Suspect.hpp Feature.hpp Inventory
 #include "parser.hpp"
 
 
-all: gamedriver
+all: gamedriver test
 
 clean:
-	-rm ${PARSEOBJECTS} ${DRIVEROBJECTS} parsertest gamedriver wordtest
+	-rm ${PARSEOBJECTS} ${DRIVEROBJECTS} parsertest gamedriver wordtest roomtest
 #-rm parser.o word.o verb.o noun.o wordtest.o parsertest.o wordtest parsertest
 
-test: parsertest
+test: roomtest
 
 wordtest: word.o verb.o noun.o parser.o wordTest.cpp
 	g++ -g -std=c++11 -o wordtest wordTest.cpp word.o verb.o noun.o
@@ -47,7 +50,9 @@ wordtest: word.o verb.o noun.o parser.o wordTest.cpp
 #parsertest: word.o verb.o noun.o parser.o parserTest.cpp
 #	g++ -g -std=c++11 -o parsertest parserTest.cpp word.o verb.o noun.o parser.o
 
-
+roomtest: ${ROOMTESTHEADERS} 
+	${CXX} -std=c++11 ${ROOMTESTSRCS} -o roomtest
+	
 parsertest: ${PARSEOBJECTS} ${PARSEHEADERS}
 	${CXX} -std=c++11 ${PARSEOBJECTS} parserTest.cpp -o parsertest
 	
