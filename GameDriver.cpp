@@ -154,6 +154,7 @@ int main()
 		currentRoomPrompt(currentPlayer->getLocation());
 		
 		std::cout << "what would you like to do?" << std::endl;
+		std::cout << "(Type 'help' if you need a list of actions you can take!)" << std::endl;
 		
 		getline(cin, inputString);
 		
