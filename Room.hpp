@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 #include "Item.hpp"
 #include "Feature.hpp"
@@ -31,10 +32,12 @@ struct Room
 	bool alreadyVisited;
 
 	std::vector<Room*> attachedRooms;
-
+	std::unordered_map<std::string, Room*> cardinalRooms;
+	
 	std::vector<Item*> itemsInRoom;
-
 	std::vector<Feature*> featuresInRoom;
+
+	
 
 	public:
 	// constructor
@@ -52,6 +55,8 @@ struct Room
 	std::vector<Item*>* getItemsInRoom();
 	std::vector<Feature*>* getFeaturesInRoom();
 
+	Room* getCardinalDirection(std::string);
+
 	bool getAlreadyVisited();
 
 	// set
@@ -60,6 +65,8 @@ struct Room
 	void setShortDescription(std::string);
 	
 	void setAlreadyVisited(bool);
+
+	void setCardinalDirection(std::string, Room*);
 	
 	// add
 	void addAttachedRoom(Room*);

@@ -64,7 +64,10 @@ bool Room::getAlreadyVisited()
 	return this->alreadyVisited;
 }	
 
-
+Room* Room::getCardinalDirection(std::string direction)
+{
+	return cardinalRooms[direction];
+}
 
 /*******************************************************************************
 *		SET FUNCTIONS
@@ -88,6 +91,11 @@ void Room::setAlreadyVisited(bool newVisit)
 {
 	this->alreadyVisited = newVisit;
 }	
+
+void Room::setCardinalDirection(std::string direction, Room* newRoom)
+{
+	cardinalRooms[direction] = newRoom;
+}
 
 
 /*******************************************************************************

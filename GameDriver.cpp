@@ -1,6 +1,6 @@
 /*******************************************************************************
 ** Program: Capstone Project - Team Homam - W2019
-** Author: Rozalija Zibrat (Kendal Droddy, Matthew Garner)
+** Author: Rozalija Zibrat, Matthew Garner, Kendal Droddy
 ** Date: 17 March 2019
 ** Description: A murder mystery game where the player has to interrogate
 ** suspects, investigate the crime scene, search for evidence, and ultimately
@@ -20,7 +20,9 @@
 #include "Player.hpp"
 #include "Victim.hpp"
 #include "Suspect.hpp"
+#include "Witness.hpp"
 #include "Item.hpp"
+#include "Notebook.hpp"
 #include "parser.hpp"
 
 
@@ -36,6 +38,8 @@ std::string FeaturesFile = "Features.txt";
 std::string ItemsFile = "Items.txt";
 std::string VictimFile = "Victim.txt";
 std::string SuspectsFile = "Suspects.txt";
+std::string WitnessesFile = "Witnesses.txt";
+std::string MurderNotes = "MurderNotes.txt";
 
 
 
@@ -51,12 +55,15 @@ void createFeatures(Parser*);
 void createItems(Parser*);
 void createVictim(Parser*);
 void createSuspects(Parser*);
+void createWitnesses(Parser*);
+void createNotebook();
 
 
 int findArrayIndex(std::string);
 Room* getRoom(string);
 void printRooms();
 void printRoom(Room*);
+void checkLineEndings(std::string*);
 
 
 
@@ -95,8 +102,8 @@ std::unordered_map<std::string, Item*> itemMap;
 std::unordered_map<std::string, Room*> roomMap;
 std::unordered_map<std::string, Feature*> featureMap;
 std::unordered_map<std::string, Suspect*> suspectMap;
+std::unordered_map<std::string, Witness*> witnessMap;
 std::vector<std::string> roomTestVector;
-
 
 
 
@@ -153,7 +160,7 @@ int main()
 		
 		currentRoomPrompt(currentPlayer->getLocation());
 		
-		std::cout << "what would you like to do?" << std::endl;
+		std::cout << "What would you like to do?" << std::endl;
 		std::cout << "(Type 'help' if you need a list of actions you can take!)" << std::endl;
 		
 		getline(cin, inputString);
@@ -256,14 +263,16 @@ void createRooms(Parser* commandParser)
 		// Get the current line as a string.
 		getline(inputFile, fileLine);
 		name = fileLine;
-
 		boost::algorithm::to_lower(name);
-		
+		checkLineEndings(&name);
+
 		getline(inputFile, fileLine);
 		longDescription = fileLine;
+		checkLineEndings(&longDescription);
 
 		getline(inputFile, fileLine);
 		shortDescription = fileLine;
+		checkLineEndings(&shortDescription);
 
 		roomMap[name] = new Room(name, longDescription, shortDescription);
 		
@@ -292,13 +301,24 @@ void createRooms(Parser* commandParser)
 	for (int i = 0; i < numRoomPairings; i++)
 	{
 		std::string roomName1, roomName2;
+		std::string direction1, direction2;
 
 		// Get the current line as a string.
 		getline(inputFile, fileLine);
 		roomName1 = fileLine;
+		checkLineEndings(&roomName1);
+
+		getline(inputFile, fileLine);
+		direction1 = fileLine;
+		checkLineEndings(&direction1);
 
 		getline(inputFile, fileLine);
 		roomName2 = fileLine;
+		checkLineEndings(&roomName2);
+
+		getline(inputFile, fileLine);
+		direction2 = fileLine;
+		checkLineEndings(&direction2);
 
 		boost::algorithm::to_lower(roomName1);
 		boost::algorithm::to_lower(roomName2);
@@ -310,6 +330,9 @@ void createRooms(Parser* commandParser)
 		// Attach each room to one another.
 		room1->addAttachedRoom(room2);
 		room2->addAttachedRoom(room1);
+
+		room1->setCardinalDirection(direction2, room2);
+		room2->setCardinalDirection(direction1, room1);
 	}
 
 	// Close inputFile.
@@ -356,16 +379,18 @@ void createFeatures(Parser* commandParser)
 		// feature name
 		getline(inputFile, fileLine);
 		name = fileLine;
-
 		boost::algorithm::to_lower(name);
+		checkLineEndings(&name);
 		
 		// feature description
 		getline(inputFile, fileLine);
 		description = fileLine;
+		checkLineEndings(&description);
 
 		// room/location name
 		getline(inputFile, fileLine);
 		location = fileLine;
+		checkLineEndings(&location);
 
 		// room pointer
 		room = getRoom(location);
@@ -374,6 +399,7 @@ void createFeatures(Parser* commandParser)
 		// item reveal name
 		getline(inputFile, fileLine);
 		itemName = fileLine;
+		checkLineEndings(&itemName);
 
 		// item pointer
 		item = itemMap[itemName];
@@ -433,17 +459,20 @@ void createItems(Parser* commandParser)
 		
 		getline(inputFile, fileLine);
 		name = fileLine;
-
 		boost::algorithm::to_lower(name);
+		checkLineEndings(&name);
 		
 		getline(inputFile, fileLine);
 		description = fileLine;
+		checkLineEndings(&description);
 
 		getline(inputFile, fileLine);
 		forensicAnalysis = fileLine;
+		checkLineEndings(&forensicAnalysis);
 
 		getline(inputFile, fileLine);
 		location = fileLine;
+		checkLineEndings(&location);
 
 		boost::algorithm::to_lower(location);
 		
@@ -490,11 +519,12 @@ void createVictim(Parser* commandParser)
 
 	getline(inputFile, fileLine);
 	name = fileLine;
-
 	boost::algorithm::to_lower(name);
+	checkLineEndings(&name);
 	
 	getline(inputFile, fileLine);
 	description = fileLine;
+	checkLineEndings(&description);
 
 	Victim newVictim = Victim(name, description);
 	
@@ -543,17 +573,20 @@ void createSuspects(Parser* commandParser)
 
 		getline(inputFile, fileLine);
 		name = fileLine;
-
 		boost::algorithm::to_lower(name);
+		checkLineEndings(&name);
 		
 		getline(inputFile, fileLine);
 		description = fileLine;
+		checkLineEndings(&description);
 
 		getline(inputFile, fileLine);
 		answer1 = fileLine;
+		checkLineEndings(&answer1);
 
 		getline(inputFile, fileLine);
 		answer2 = fileLine;
+		checkLineEndings(&answer2);
 
 		suspectMap[name] = new Suspect(name, description, answer1, answer2);
 		
@@ -565,6 +598,109 @@ void createSuspects(Parser* commandParser)
 	inputFile.close();
 }
 
+
+/*------------------------------------------------------------------------------
+CREATE WITNESSES
+------------------------------------------------------------------------------*/
+void createWitnesses(Parser* commandParser)
+{
+	std::ifstream inputFile;
+
+	std::string fileLine;
+
+	inputFile.open(WitnessesFile);
+
+	// Open the given file.
+	if (!inputFile.is_open())
+	{
+		std::cout << "The file,'Witnesses.txt', could not be opened.\n";
+		return;
+	}
+
+	// Get the current line as a string.
+	getline(inputFile, fileLine);
+
+	// Turn the string into a stream.
+	std::stringstream currentLine(fileLine);
+
+	int numWitnesses = 0;
+
+	// Stream line into an integer.
+	currentLine >> numWitnesses;
+
+	for (int i = 0; i < numWitnesses; i++)
+	{
+		std::string name, location, description, answer1, answer2;
+		Room* room;
+
+		getline(inputFile, fileLine);
+		name = fileLine;
+		boost::algorithm::to_lower(name);
+		checkLineEndings(&name);
+
+		getline(inputFile, fileLine);
+		location = fileLine;
+		checkLineEndings(&location);
+
+		getline(inputFile, fileLine);
+		description = fileLine;
+		checkLineEndings(&description);
+
+		getline(inputFile, fileLine);
+		answer1 = fileLine;
+		checkLineEndings(&answer1);
+
+		getline(inputFile, fileLine);
+		answer2 = fileLine;
+		checkLineEndings(&answer2);
+
+		room = getRoom(location);
+
+		witnessMap[name] = new Witness(name, room, description, answer1, answer2);
+
+		// populate parser noun set
+		commandParser->setNounSet(name);
+	}
+
+	// Close inputFile.
+	inputFile.close();
+}
+
+/*------------------------------------------------------------------------------
+CREATE NOTEBOOK
+------------------------------------------------------------------------------*/
+void createNotebook()
+{
+	std::ifstream inputFile;
+
+	std::string fileLine;
+
+	inputFile.open(MurderNotes);
+
+	// Open the given file.
+	if (!inputFile.is_open())
+	{
+		std::cout << "The file,'MurderNotes.txt', could not be opened.\n";
+		return;
+	}
+	
+	std::string name, entry;
+	
+	// Get the current line as a string.
+	getline(inputFile, fileLine);
+	name = fileLine;
+	checkLineEndings(&name);
+
+	getline(inputFile, fileLine);
+	entry = fileLine;
+	checkLineEndings(&entry);
+
+	Notebook playerNotebook;
+	playerNotebook.setEntry(name, entry);
+
+	// Close inputFile.
+	inputFile.close();
+}
 
 
 
@@ -590,7 +726,7 @@ Room* getRoom(std::string roomName)
 void currentRoomPrompt(Room* currentRoom)
 {
 	std::cout << std::endl;
-	std::cout << "you are in: " << currentRoom->getName() << std::endl;
+	std::cout << "You are in: " << currentRoom->getName() << std::endl;
 	
 	// test if room has been visited
 	if(currentRoom->getAlreadyVisited() == true)
@@ -623,7 +759,6 @@ void currentRoomPrompt(Room* currentRoom)
 /*------------------------------------------------------------------------------
 		Features in Room Prompt
 ------------------------------------------------------------------------------*/
-
 void featuresInRoomPrompt(Room* currentRoom)
 {
 	
@@ -633,7 +768,6 @@ void featuresInRoomPrompt(Room* currentRoom)
 /*------------------------------------------------------------------------------
 		Items in Room Prompt
 ------------------------------------------------------------------------------*/
-
 void itemsInRoomPrompt(Room* currentRoom)
 {
 	
@@ -652,7 +786,6 @@ void itemsInRoomPrompt(Room* currentRoom)
 /*------------------------------------------------------------------------------
 		Execute Command
 ------------------------------------------------------------------------------*/
-
 void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 {
 
@@ -708,7 +841,6 @@ void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 /*------------------------------------------------------------------------------
 		Change Rooms
 ------------------------------------------------------------------------------*/
-
 void movePlayer(Player* currentPlayer, std::string nounIn)
 {
 	
@@ -730,7 +862,6 @@ void movePlayer(Player* currentPlayer, std::string nounIn)
 /*------------------------------------------------------------------------------
 		Drop item
 ------------------------------------------------------------------------------*/
-
 void dropItem(Player* currentPlayer, std::string nounIn)
 {
 	currentPlayer->dropItem(itemMap[nounIn]);
@@ -739,7 +870,6 @@ void dropItem(Player* currentPlayer, std::string nounIn)
 /*------------------------------------------------------------------------------
 		pick up items
 ------------------------------------------------------------------------------*/
-
 void takeItem(Player* currentPlayer, std::string nounIn)
 {
 	currentPlayer->pickUpItem(itemMap[nounIn]);
@@ -750,7 +880,6 @@ void takeItem(Player* currentPlayer, std::string nounIn)
 /*------------------------------------------------------------------------------
 		inspect 
 ------------------------------------------------------------------------------*/
-
 void inspectObject(Player* currentPlayer, std::string nounIn)
 {
 	// cannot access item or feature descriptions from player/room/inventory class
@@ -806,21 +935,12 @@ void inspectObject(Player* currentPlayer, std::string nounIn)
 	else
 	{
 		std::cout << "You can not learn anything from that" << std::endl;
-	}
-
-	
-
-
-		
-		
-		
+	}		
 }
-
 
 /*------------------------------------------------------------------------------
 		display inventory
 ------------------------------------------------------------------------------*/
-
 void showInventory(Player* currentPlayer)
 {
 	// test if empty
@@ -885,6 +1005,22 @@ void cleanup(Parser* currentParser, Player* currentPlayer)
 }
 
 
+/*------------------------------------------------------------------------------
+		CHECK LINE ENDINGS
+------------------------------------------------------------------------------*/
+void checkLineEndings(std::string* thisString)
+{
+	int length = thisString->length();
+
+	// CHECK EOL AND REMOVE
+	if (thisString->at(length - 2) == '\r')
+	{
+		thisString->erase(thisString->at(length - 2));
+		//std::cout << "\\r removed" << std::endl;
+	}
+	//else
+		//std::cout << "Nothing removed" << std::endl;
+}
 
 /*------------------------------------------------------------------------------
 		Test Functions
