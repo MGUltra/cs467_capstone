@@ -13,6 +13,7 @@ Parser::Parser()
 	: metaSet({"help"})
 	, verbSet({"help", "drop", "take", "inventory", "pick", "gather", "move", "go", "look", "inspect", "examine", "remove"})
 	, nounSet({"north", "south", "east", "west"})
+	, locationSet({"north", "south", "east", "west"});
 	, messageIn("")
 	, parsedStrings()
 	, gameActions()
@@ -143,6 +144,20 @@ void Parser::setMetaSet(std::string newMeta)
 }
 
 
+/***************************************************************
+Function: setLocationSet
+
+Parameter: a single string
+
+Returns: none
+
+Desc: adds the passed in string to the locationSet unordered_set
+
+****************************************************************/		
+void Parser::setMetaSet(std::string newLocation)
+{
+	this->metaSet.insert(newMeta);
+}
 
 /***************************************************************
 Function: setVerbSet
@@ -273,7 +288,7 @@ void Parser::parserFunction()
 		
 	// TODO: Create tests for first word Meta instructions 
 	// for first word
-			
+	
 			// test for meta
 			// save/load/help/inventory
 		
