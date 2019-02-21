@@ -18,6 +18,8 @@ Suspect::Suspect(std::string name, std::string description, std::string answer1,
 	setDescription(description);
 	setAnswer1(answer1);
 	setAnswer2(answer2);
+
+	sigItemFound = false;
 }
 
 /*******************************************************************************
@@ -43,6 +45,11 @@ std::string Suspect::getAnswer2()
 	return answer2;
 }
 
+bool Suspect::getSigItemFound()
+{
+	return sigItemFound;
+}
+
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/
@@ -64,4 +71,9 @@ void Suspect::setAnswer1(std::string givenAnswer1)
 void Suspect::setAnswer2(std::string givenAnswer2)
 {
 	answer2 = givenAnswer2;
+}
+
+void Suspect::setSigItemFound()
+{
+	sigItemFound = true;
 }

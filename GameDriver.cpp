@@ -105,6 +105,8 @@ std::unordered_map<std::string, Suspect*> suspectMap;
 std::unordered_map<std::string, Witness*> witnessMap;
 std::vector<std::string> roomTestVector;
 
+Notebook playerNotebook;
+
 
 
 
@@ -453,7 +455,7 @@ void createItems(Parser* commandParser)
 
 	for (int i = 0; i < numItems; i++)
 	{
-		std::string name, description, forensicAnalysis, location;
+		std::string name, description, forensicAnalysis, location, suspectString;
 		Room* room;
 		Item* item;
 		
@@ -475,10 +477,16 @@ void createItems(Parser* commandParser)
 		checkLineEndings(&location);
 
 		boost::algorithm::to_lower(location);
+
+		getline(inputFile, fileLine);
+		suspectString = fileLine;
+		checkLineEndings(&suspectString);
+
+		Suspect* suspect = suspectMap[suspectString];
 		
 		room = getRoom(location);
 		
-		itemMap[name] = new Item(name, description, forensicAnalysis);
+		itemMap[name] = new Item(name, description, forensicAnalysis, suspect);
 
 		// item pointer
 		item = itemMap[name];
@@ -695,7 +703,6 @@ void createNotebook()
 	entry = fileLine;
 	checkLineEndings(&entry);
 
-	Notebook playerNotebook;
 	playerNotebook.setEntry(name, entry);
 
 	// Close inputFile.
@@ -949,6 +956,71 @@ void showInventory(Player* currentPlayer)
 	currentPlayer->showInventory();
 }
 
+/*------------------------------------------------------------------------------
+		HACK COMPUTER 
+------------------------------------------------------------------------------*/
+void hackComputer(Player* currentPlayer, std::string nounIn)
+{
+	// If the player has the computer in inventory, they can hack it.
+	if (currentPlayer->itemInInventory(itemMap[nounIn]))
+	{
+		std::cout << itemMap[nounIn]->getDescription << endl << endl;
+	}
+}
+
+/*------------------------------------------------------------------------------
+		TAKE WITNESS STATEMENT
+------------------------------------------------------------------------------*/
+void getStatement(Player* currentPlayer, std::string name)
+{
+	// If the player is in the same room as the witness...
+	if (currentPlayer->getLocation == witnessMap[name]->getLocation)
+	{
+		std::string introduction = witnessMap[name]->getIntroduction;
+		std::cout << introduction << endl << endl;
+		std::cout << name << " tells you what they know." << endl << endl;
+		std::string statement = witnessMap[name]->getAnswer1;
+		std::cout << statement << endl << endl;
+
+		std::cout << "You add this information to your notebook." << endl << endl;
+
+		std::string entry = introduction + " " + statement;
+
+		playerNotebook.setEntry(name, entry);
+	}
+	else
+	{
+		std::cout << "That witness is not here." << endl;
+	}
+}
+
+/*------------------------------------------------------------------------------
+		INTERROGATE SUSPECT
+------------------------------------------------------------------------------*/
+void hackComputer(Player* currentPlayer, std::string name)
+{
+	// If the player is in the cell room...
+	if (currentPlayer->getLocation == roomMap["cells"])
+	{
+		if (suspectMap[name]->getSigItemFound == true)
+		{
+			std::cout << "You press " << name << " about what you found in his home earlier." << endl;
+			std::cout << suspectMap[name]->getAnswer2() << endl;
+			std::cout << "You add this information to your notebook." << endl;
+			std::string entry = suspectMap[name]->getAnswer1() + " " + suspectMap[name]->getAnswer2();
+			playerNotebook.setEntry(name, entry);
+		}
+		else
+		{
+			std::cout << "You ask " << name << " about what he knows." << endl;
+			std::cout << suspectMap[name]->getAnswer1() << endl;
+			std::cout << "You add this information to your notebook." << endl;
+			std::string entry = suspectMap[name]->getAnswer1();
+			playerNotebook.setEntry(name, entry);
+		}
+	}
+}
+
 
 /*------------------------------------------------------------------------------
 		Help - Displays the list of actions that the player can take.
@@ -974,7 +1046,7 @@ void helpPlayer()
 	std::cout << "\t(N)Take Statement - Take notes from a witness." << std::endl;
 	std::cout << "\t(N)Take Sample - Take a sample of hair/blood/saliva." << std::endl;
 	std::cout << "\t(N)Magnify <Object> - Take a closer look at an object." << std::endl;
-	std::cout << "\t(N)Hack Computer - Search a suspect's computer for evidence." << std::endl;
+	std::cout << "\t(N)Hack Computer - Search a suspect's computer for evidence. (Pick it up first!)" << std::endl;
 	std::cout << "\t(N)Analyze <Object> - Submit an item for forensic analysis. Must be in Forensics Lab." << std::endl;
 	std::cout << "\t(N)Hint - Get a hint for your current room." << std::endl;
 

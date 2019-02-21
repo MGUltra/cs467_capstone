@@ -16,6 +16,8 @@
 #include <iostream>
 #include <string>
 
+#include "Suspect.hpp"
+
 
 class Item
 {
@@ -25,10 +27,11 @@ class Item
 	std::string forensicAnalysis;
 	bool available;
 	bool analyzed;
+	Suspect* belongsTo;
 
 	public:
 	//constructor
-	Item(std::string, std::string, std::string);
+	Item(std::string, std::string, std::string, Suspect*);
 
 	//get
 	std::string getName();
@@ -36,6 +39,7 @@ class Item
 	std::string getForensicAnalysis();
 	bool getAvailable();
 	bool getAnalyzed();
+	Suspect* getBelongsTo();
 
 	//set
 	void setName(std::string);
@@ -43,6 +47,7 @@ class Item
 	void setForensicAnalysis(std::string);
 	void setAvailable(bool);
 	void setAnalyzed(bool);
+	void setBelongsTo(Suspect*);
 	
 	// actions
 	

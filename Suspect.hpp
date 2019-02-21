@@ -24,6 +24,8 @@ private:
 	std::string answer1;
 	std::string answer2;
 
+	bool sigItemFound;
+
 public:
 	//constructor
 	Suspect(std::string, std::string, std::string, std::string);
@@ -33,12 +35,14 @@ public:
 	std::string getDescription();
 	std::string getAnswer1();
 	std::string getAnswer2();
+	bool getSigItemFound();
 
 	//set
 	void setName(std::string);
 	void setDescription(std::string);
 	void setAnswer1(std::string);
 	void setAnswer2(std::string);
+	void setSigItemFound();
 };
 
 #endif
