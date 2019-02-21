@@ -656,7 +656,7 @@ void createWitnesses(Parser* commandParser)
 
 		room = getRoom(location);
 
-		witnessMap[name] = new Witness(name, room, description, answer1, answer2);
+		witnessMap[name] = new Witness(name, description, answer1, answer2, room);
 
 		// populate parser noun set
 		commandParser->setNounSet(name);
