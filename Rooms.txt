@@ -10,6 +10,10 @@ This is the basement long description.
 This is the basement short description.
 2
 kitchen
+north
 Basement
+south
 kitchen
+south
 bedroom
+north

@@ -10,7 +10,7 @@
 ****************************************************************/
 
 Parser::Parser()
-	: metaSet({"help"})
+	: metaSet({"help, save"})
 	, verbSet({"help", "drop", "take", "inventory", "pick", "gather", "move", "go", "look", "inspect", "examine", "remove"})
 	, nounSet({"north", "south", "east", "west"})
 	, locationSet({"north", "south", "east", "west"})
@@ -291,7 +291,25 @@ void Parser::parserFunction()
 	
 			// test for meta
 			// save/load/help/inventory
+	std::cout << "parsedStrings[0]: " << parsedStrings[0] << std::endl;
+	
+	if (this->metaSet.find(parsedStrings[0]) != this->metaSet.end())
+	{
+		tempWord = new Verb(parsedStrings[0]);
 		
+		addVerb(tempWord);
+		
+		return;
+	}
+		
+	if (this->locationSet.find(parsedStrings[0]) != this->locationSet.end())
+	{
+		tempWord = new Verb(parsedStrings[0]);
+			
+		addVerb(tempWord);
+			
+		return;
+	}
 	
 	// Iterate though all individual words stored in vector parsedStrings
 	for (auto individualString : parsedStrings)
@@ -311,7 +329,9 @@ void Parser::parserFunction()
 			// or verb without noun ?
 			// continue
 				
-				
+
+		
+		
 				
 		// test for verb
 		if (this->verbSet.find(individualString) != this->verbSet.end())
