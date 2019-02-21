@@ -21,9 +21,9 @@ PARSESRCS = parser.cpp word.cpp verb.cpp noun.cpp
 PARSEHEADERS = parser.hpp word.hpp verb.hpp noun.hpp
 
 # Driver Variables
-DRIVEROBJECTS = Room.o Player.o Victim.o Suspect.o Feature.o Inventory.o Item.o GameDriver.o
-DRIVERSRCS = Room.cpp Player.cpp Victim.cpp Suspect.cpp Feature.cpp Inventory.cpp Item.cpp GameDriver.cpp
-DRIVERHEADERS = Room.hpp Player.hpp Victim.hpp Suspect.hpp Feature.hpp Inventory.hpp Item.hpp
+DRIVEROBJECTS = Room.o Player.o Victim.o Suspect.o Feature.o Inventory.o Item.o GameDriver.o Witness.o Notebook.o
+DRIVERSRCS = Room.cpp Player.cpp Victim.cpp Suspect.cpp Feature.cpp Inventory.cpp Item.cpp GameDriver.cpp Witness.cpp Notebook.cpp
+DRIVERHEADERS = Room.hpp Player.hpp Victim.hpp Suspect.hpp Feature.hpp Inventory.hpp Item.hpp Witness.hpp Notebook.hpp
 
 # Data Read test Variables
 ROOMTESTSRCS = dataTest.cpp

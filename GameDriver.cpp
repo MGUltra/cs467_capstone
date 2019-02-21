@@ -76,7 +76,7 @@ void clearScreen();
 
 // GAME ACTIONS
 void exeCommand(std::string, std::string, Player*);
-void movePlayer(Player*, std::string);
+void movePlayer(Player*, std::string, std::string);
 void dropItem(Player*, std::string);
 void takeItem(Player*, std::string);
 void inspectObject(Player*, std::string);
@@ -795,7 +795,7 @@ void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 	
 	// test verb to determine which function to call
 		// pass noun to function called
-	if(verb == "move" || verb == "go")
+	if(verb == "move" || verb == "go" || verb == "north" || verb == "south" || verb == "east" || verb == "west")
 		functionToCall = 1;
 	else if(verb == "drop" || verb == "remove")
 		functionToCall = 2;
@@ -813,7 +813,7 @@ void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 	switch(functionToCall) {
 		
 		case 1:	// change rooms
-			movePlayer(currentPlayer, noun);
+			movePlayer(currentPlayer, verb, noun);
 			break;
 		case 2: // drop item
 			dropItem(currentPlayer, noun);
@@ -841,17 +841,51 @@ void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 /*------------------------------------------------------------------------------
 		Change Rooms
 ------------------------------------------------------------------------------*/
-void movePlayer(Player* currentPlayer, std::string nounIn)
+void movePlayer(Player* currentPlayer, std::string verbIn, std::string nounIn)
 {
 	
 	// TODO: Add test for available room, either in this or getLocation
 	//	function in the Player class
 	Room* roomPtr = currentPlayer->getLocation();
 	
-	if(roomPtr->isRoomAttached(getRoom(nounIn)) == true)
+	
+	// Single word room name
+	if(this->roomMap.find(verbIn) != this->roomMap.end())
+	{
+		if(roomPtr->isRoomAttached(getRoom(verbIn)) == true)
+		{
+			currentPlayer->setLocation(getRoom(verbIn));
+		}
+		else
+			std::cout << "You can not get there from " << roomPtr->getName() << "." << std::endl;
+	}
+	// Single word direction
+	if(verbIn == "north" || verbIn == "south" || verbIn == "east" || verbIn == "west") 
+	{
+		Room* newRoom = roomPtr->getCardinalDirection(verbIn);
+		
+		if(newRoom != NULL)
+			currentPlayer->setLocation(newRoom);
+		else
+			std::cout << "You can not go " << verbIn << " from " << roomPtr->getName() << "." << std::endl;
+		
+	}
+	// cardinal direction as noun
+	else if(nounIn == "north" || nounIn == "south" || nounIn == "east" || nounIn == "west") 
+	{
+		Room* newRoom = roomPtr->getCardinalDirection(nounIn);
+		
+		if(newRoom != NULL)
+			currentPlayer->setLocation(newRoom);
+		else
+			std::cout << "You can not go " << nounIn << " from " << roomPtr->getName() << "." << std::endl;
+	}
+	// room name as noun
+	else if(roomPtr->isRoomAttached(getRoom(nounIn)) == true)
 	{
 		currentPlayer->setLocation(getRoom(nounIn));
 	}
+	// counldn't find room name
 	else
 	{
 		std::cout << "You can not get there from " << roomPtr->getName() << "." << std::endl;

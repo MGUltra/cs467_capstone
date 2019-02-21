@@ -66,7 +66,13 @@ bool Room::getAlreadyVisited()
 
 Room* Room::getCardinalDirection(std::string direction)
 {
-	return cardinalRooms[direction];
+	// test if direction leads to attached room.
+	if(this->cardinalRooms.find(direction) != this->cardinalRooms.end())
+	{
+		return cardinalRooms[direction];
+	}
+	else
+		return NULL;
 }
 
 /*******************************************************************************
