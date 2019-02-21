@@ -31,6 +31,8 @@ class Parser
 	//std::unordered_set<std::string> locationSet;
 	
 	std::unordered_set<std::string> metaSet;
+
+	std::unordered_set<std::string> locationSet;
 	
 	std::unordered_set<std::string> verbSet;
 	
@@ -81,6 +83,8 @@ class Parser
 	void setNumActions(int);
 	
 	void setMetaSet(std::string);
+
+	void setLocationSet(std::string);
 	
 	void setVerbSet(std::string);
 	

@@ -269,6 +269,8 @@ void createRooms(Parser* commandParser)
 		
 		// populate parser noun set
 		commandParser->setNounSet(name);
+		commandParser->setLocationSet(name);
+
 		
 		// Debug
 		roomTestVector.push_back(name);
