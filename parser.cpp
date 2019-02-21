@@ -13,7 +13,7 @@ Parser::Parser()
 	: metaSet({"help"})
 	, verbSet({"help", "drop", "take", "inventory", "pick", "gather", "move", "go", "look", "inspect", "examine", "remove"})
 	, nounSet({"north", "south", "east", "west"})
-	, locationSet({"north", "south", "east", "west"});
+	, locationSet({"north", "south", "east", "west"})
 	, messageIn("")
 	, parsedStrings()
 	, gameActions()
@@ -154,9 +154,9 @@ Returns: none
 Desc: adds the passed in string to the locationSet unordered_set
 
 ****************************************************************/		
-void Parser::setMetaSet(std::string newLocation)
+void Parser::setLocationSet(std::string newLocation)
 {
-	this->metaSet.insert(newMeta);
+	this->locationSet.insert(newLocation);
 }
 
 /***************************************************************
