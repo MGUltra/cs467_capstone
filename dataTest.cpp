@@ -241,6 +241,20 @@ int main()
         readFileDefault(inFile);
         inFile.close();
         break;
+      case 16:
+        inFile.open("roomText/copCarLong.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomText/copCarShort.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/copCarCoffee.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/copCarRadio.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        break;
     } 
   }
   return 0;
