@@ -74,10 +74,10 @@ int main()
         inFile.close();
         break;
       case 4:
-        inFile.open("roomText/carlsLivingRoomLong.txt", std::ios::out);
+        inFile.open("roomText/carlsDenLong.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
-        inFile.open("roomText/carlsLivingRoomShort.txt", std::ios::out);
+        inFile.open("roomText/carlsDenShort.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
         inFile.open("roomFeatures/carlLivingChair.txt", std::ios::out);
@@ -130,10 +130,10 @@ int main()
         inFile.close();
         break;
       case 8:
-        inFile.open("roomText/dansKitchenLong.txt", std::ios::out);
+        inFile.open("roomText/dansGalleyLong.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
-        inFile.open("roomText/dansKitchenShort.txt", std::ios::out);
+        inFile.open("roomText/dansGalleyShort.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
         inFile.open("roomFeatures/danKitchenPic.txt", std::ios::out);
@@ -200,10 +200,10 @@ int main()
         inFile.close();
         break;
       case 13:
-        inFile.open("roomText/vincesLivingRoomLong.txt", std::ios::out);
+        inFile.open("roomText/vincesSalonLong.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
-        inFile.open("roomText/vincesLivingRoomShort.txt", std::ios::out);
+        inFile.open("roomText/vincesSalonShort.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
         inFile.open("roomFeatures/vinceLivingNews.txt", std::ios::out);
@@ -214,10 +214,10 @@ int main()
         inFile.close();
         break;
       case 14:
-        inFile.open("roomText/vincesBedroomLong.txt", std::ios::out);
+        inFile.open("roomText/vincesBedchamberLong.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
-        inFile.open("roomText/vincesBedroomShort.txt", std::ios::out);
+        inFile.open("roomText/vincesBedchamberShort.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
         inFile.open("roomFeatures/vinceBedroomRobe.txt", std::ios::out);
