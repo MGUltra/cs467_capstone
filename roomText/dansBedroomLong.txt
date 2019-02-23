@@ -16,5 +16,5 @@
 | something more nefarious. On the far wall is a dresser.        |  XXX  |    |
 | Laying on top of the dresser is a mobile phone. It's         _ |`-...-'|    |
 | connected to a charger which is plugged into the wall.      (\)`-.___.(I)   |
-| The kitchen door is South and the porch door is North.                      |
+| The galley door is South and the porch door is West.                        |
 |-----------------------------------------------------------------------------|

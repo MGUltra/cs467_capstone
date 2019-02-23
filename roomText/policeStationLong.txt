@@ -17,6 +17,5 @@
 | possibly used for testing evidence. To the East is the       '--.  .--'     |
 | station's dank holding cell room. You can make out the           \/         |
 | silhouettes of three individuals - the three suspected murderers - standing |
-| by the bars. Head North out the main entrance to visit Carl's house,        |
-| Northwest to visit Vincent's house, and Northeast to visit Dan's house.     |
+| by the bars. Head North out the main entrance to hop into the cop car.      |
 |-----------------------------------------------------------------------------|

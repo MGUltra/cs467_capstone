@@ -5,6 +5,6 @@
 | woodworking tools. A thin layer of sawdust covers the     )(                |
 | floor. Blood drops are flecked throughout. Nails are also ""                |
 | scattered about. A bloody hammer is on the floor as well. Why so bloody?    |
-| To the South is an exit that will take you back to the station. The kitchen |
-| is straight ahead, to the North.                                            |
+| To the South is an exit that will take you back to the cop car. The kitchen |
+| is straight ahead, to the North. The den is to the West.                    |
 |-----------------------------------------------------------------------------|
