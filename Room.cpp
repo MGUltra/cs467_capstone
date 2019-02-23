@@ -158,6 +158,10 @@ int Room::findVectorIndex(Item* removeThisItem)
 
 bool Room::isRoomAttached(Room* roomIn)
 {
+	
+	if(roomIn == NULL)
+		return false;
+	
 	for(auto i : attachedRooms)
 	{
 		if(roomIn->getName() == i->getName())

@@ -716,6 +716,9 @@ void createNotebook()
 ------------------------------------------------------------------------------*/
 Room* getRoom(std::string roomName)
 {
+	if(roomName == "nonoun")
+		return NULL;
+	
 	return roomMap[roomName];
 }
 
@@ -804,6 +807,8 @@ void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 		// pass noun to function called
 	if(verb == "move" || verb == "go" || verb == "north" || verb == "south" || verb == "east" || verb == "west")
 		functionToCall = 1;
+	else if(roomMap.find(verb) != roomMap.end())
+		functionToCall = 1;
 	else if(verb == "drop" || verb == "remove")
 		functionToCall = 2;
 	else if(verb == "take" || verb == "pick")
@@ -857,17 +862,21 @@ void movePlayer(Player* currentPlayer, std::string verbIn, std::string nounIn)
 	
 	
 	// Single word room name
-	if(this->roomMap.find(verbIn) != this->roomMap.end())
+	if(roomMap.find(verbIn) != roomMap.end())
 	{
 		if(roomPtr->isRoomAttached(getRoom(verbIn)) == true)
 		{
 			currentPlayer->setLocation(getRoom(verbIn));
 		}
 		else
+		{
 			std::cout << "You can not get there from " << roomPtr->getName() << "." << std::endl;
+		}
+		
+		return;
 	}
 	// Single word direction
-	if(verbIn == "north" || verbIn == "south" || verbIn == "east" || verbIn == "west") 
+	else if(verbIn == "north" || verbIn == "south" || verbIn == "east" || verbIn == "west") 
 	{
 		Room* newRoom = roomPtr->getCardinalDirection(verbIn);
 		
@@ -875,6 +884,8 @@ void movePlayer(Player* currentPlayer, std::string verbIn, std::string nounIn)
 			currentPlayer->setLocation(newRoom);
 		else
 			std::cout << "You can not go " << verbIn << " from " << roomPtr->getName() << "." << std::endl;
+		
+		return;
 		
 	}
 	// cardinal direction as noun
@@ -886,16 +897,22 @@ void movePlayer(Player* currentPlayer, std::string verbIn, std::string nounIn)
 			currentPlayer->setLocation(newRoom);
 		else
 			std::cout << "You can not go " << nounIn << " from " << roomPtr->getName() << "." << std::endl;
+		
+		return;
 	}
 	// room name as noun
 	else if(roomPtr->isRoomAttached(getRoom(nounIn)) == true)
 	{
 		currentPlayer->setLocation(getRoom(nounIn));
+		
+		return;
 	}
 	// counldn't find room name
 	else
 	{
 		std::cout << "You can not get there from " << roomPtr->getName() << "." << std::endl;
+		
+		return;
 	}
 	
 }
