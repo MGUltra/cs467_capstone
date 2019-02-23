@@ -1,4 +1,4 @@
-/******************************************************************
+ /******************************************************************
 ** Program: Capstone Project - Team Homam - W2019
 ** Author: Kendal Droddy (Rozalija Zibrat, Matthew Garner)
 ** Date: 17 March 2019
@@ -38,12 +38,24 @@ int main()
         inFile.open("roomText/cellShort.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
+        inFile.open("roomFeatures/cellLight.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/cellSuspects.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
         break;
       case 2:
         inFile.open("roomText/policeStationLong.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
         inFile.open("roomText/policeStationShort.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/policeChief.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/policeDesk.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
         break;
@@ -54,12 +66,24 @@ int main()
         inFile.open("roomText/labShort.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
-        break;
-      case 4:
-        inFile.open("roomText/carlsLivingRoomLong.txt", std::ios::out);
+        inFile.open("roomFeatures/forensicBeaker.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
-        inFile.open("roomText/carlsLivingRoomShort.txt", std::ios::out);
+        inFile.open("roomFeatures/forensicComp.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        break;
+      case 4:
+        inFile.open("roomText/carlsDenLong.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomText/carlsDenShort.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/carlLivingChair.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/carlLivingDresser.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
         break;
@@ -70,12 +94,24 @@ int main()
         inFile.open("roomText/carlsGarageShort.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
+        inFile.open("roomFeatures/carlGarageHammer.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/carlGarageBlood.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
         break;
       case 6:
         inFile.open("roomText/carlsBathroomLong.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
         inFile.open("roomText/carlsBathroomShort.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/carlBathMedCabinet.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/carlBathFirstAid.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
         break;
@@ -86,12 +122,24 @@ int main()
         inFile.open("roomText/carlsKitchenShort.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
-        break;
-      case 8:
-        inFile.open("roomText/dansKitchenLong.txt", std::ios::out);
+        inFile.open("roomFeatures/carlKitchenBlood.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
-        inFile.open("roomText/dansKitchenShort.txt", std::ios::out);
+        inFile.open("roomFeatures/carlKitchenUtensils.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        break;
+      case 8:
+        inFile.open("roomText/dansGalleyLong.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomText/dansGalleyShort.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/danKitchenPic.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/danKitchenPizza.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
         break;
@@ -102,12 +150,24 @@ int main()
         inFile.open("roomText/dansLivingRoomShort.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
+        inFile.open("roomFeatures/danLivingCoat.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/danLivingWallet.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
         break;
       case 10:
         inFile.open("roomText/dansBedroomLong.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
         inFile.open("roomText/dansBedroomShort.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/danBedroomCell.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/danBedroomPill.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
         break;
@@ -118,6 +178,12 @@ int main()
         inFile.open("roomText/dansPorchShort.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
+        inFile.open("roomFeatures/danPorchRag.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/danPorchWrench.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
         break;
       case 12:
         inFile.open("roomText/vincesFoyerLong.txt", std::ios::out);
@@ -126,20 +192,38 @@ int main()
         inFile.open("roomText/vincesFoyerShort.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
-        break;
-      case 13:
-        inFile.open("roomText/vincesLivingRoomLong.txt", std::ios::out);
+        inFile.open("roomFeatures/vinceFoyerBoots.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
-        inFile.open("roomText/vincesLivingRoomShort.txt", std::ios::out);
+        inFile.open("roomFeatures/vinceFoyerStatue.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        break;
+      case 13:
+        inFile.open("roomText/vincesSalonLong.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomText/vincesSalonShort.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/vinceLivingNews.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/vinceLivingPainting.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
         break;
       case 14:
-        inFile.open("roomText/vincesBedroomLong.txt", std::ios::out);
+        inFile.open("roomText/vincesBedchamberLong.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
-        inFile.open("roomText/vincesBedroomShort.txt", std::ios::out);
+        inFile.open("roomText/vincesBedchamberShort.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/vinceBedroomRobe.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/vinceBedroomTrophy.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
         break;
@@ -148,6 +232,26 @@ int main()
         readFileDefault(inFile);
         inFile.close();
         inFile.open("roomText/vincesOfficeShort.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/vinceOfficeCigar.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/vinceOfficeTickets.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        break;
+      case 16:
+        inFile.open("roomText/copCarLong.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomText/copCarShort.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/copCarCoffee.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("roomFeatures/copCarRadio.txt", std::ios::out);
         readFileDefault(inFile);
         inFile.close();
         break;

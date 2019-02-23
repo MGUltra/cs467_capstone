@@ -4,16 +4,17 @@
 |  1. Holding Cell                                                            |
 |  2. Police Station                                                          |
 |  3. Forensics Lab                                                           |
-|  4. Carl's Living Room                                                      |
+|  4. Carl's Den                                                              |
 |  5. Carl's Garage                                                           |
 |  6. Carl's Bathroom                                                         |
 |  7. Carl's Kitchen                                                          |
-|  8. Dan's Kitchen                                                           |
+|  8. Dan's Galley                                                            |
 |  9. Dan's Living Room                                                       |
 | 10. Dan's Bedroom                                                           |
 | 11. Dan's Porch                                                             |
 | 12. Vince's Foyer                                                           |
-| 13. Vince's Living Room                                                     |
-| 14. Vince's Bedroom                                                         |
+| 13. Vince's Salon                                                           |
+| 14. Vince's Bedchamber                                                      |
 | 15. Vince's Office                                                          |
+| 16. Cop Car                                                                 |
 |-----------------------------------------------------------------------------|

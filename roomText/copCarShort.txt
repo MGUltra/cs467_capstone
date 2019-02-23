@@ -1,0 +1,9 @@
+|-----------------------------------------------------------------------------|
+| Cop Car                                                    ___Ç___          |
+|---------------------------------------------------- _____//__Ø____\\_____  -|
+| This old, dusty cop car belongs to Precint 42.     /-------POLICE--------\  |
+| Leather bench seats are in the front and back.     `--(@)===========(@)--`  |
+| There's a radio surrounded by buttons and knobs. A cup of coffee is in the  |
+| cup holder. Drive North to Carl's house, West to Dan's house, or East to    |
+| Vince's house.                                                              |
+|-----------------------------------------------------------------------------|

@@ -1,9 +1,9 @@
 |-----------------------------------------------------------------------------|
-| Vince's Living Room                                           |DAILY NEWS|  |
+| Vince's Salon                                                 |DAILY NEWS|  |
 |---------------------------------------------------------------|&&& ======|--|
 | A deep red, Italian leather sofa is the highlight of the room.|=== == %%$|  |
 | A newspaper lays across the armrest. A painting of a fisher-  |[_] ======|  |
 | man hangs on one wall. A card table holding cards and chips   |=== ===!##|  |
-| sits off to the side. The Western door heads to the office.   |=== ======|  |
-| Head East to enter the bedroom.                               |__________|  |
+| sits off to the side. The Western door heads to the foyer.    |=== ======|  |
+| Head North to enter the bedchamer.                            |__________|  |
 |-----------------------------------------------------------------------------|
