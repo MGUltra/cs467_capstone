@@ -12,14 +12,14 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Item::Item(std::string name, std::string description, std::string forensicAnalysis)
+Item::Item(std::string name, std::string description, std::string forensicAnalysis, Suspect* suspect)
 {
 	setName(name);
 	setDescription(description);
 	setForensicAnalysis(forensicAnalysis);
 	setAvailable(false);
 	setAnalyzed(false);
-
+	setBelongsTo(suspect);
 }
 
 /*******************************************************************************
@@ -49,6 +49,11 @@ bool Item::getAnalyzed()
 	return this->analyzed;
 }
 
+Suspect* Item::getBelongsTo()
+{
+	return belongsTo;
+}
+
 
 /*******************************************************************************
 *		SET FUNCTIONS
@@ -76,6 +81,11 @@ void Item::setAvailable(bool newBool)
 void Item::setAnalyzed(bool newBool)
 {
 	this->analyzed = newBool;
+}
+
+void Item::setBelongsTo(Suspect* suspect)
+{
+	belongsTo = suspect;
 }
 
 
