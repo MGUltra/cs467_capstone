@@ -1,0 +1,3 @@
+| This is a nice radio - it can pick up both AM and FM frequencies. Rigth now |
+| it's set to the local channel - but a tuning dial allows for quick and easy |
+| adjustment.                                                                 |
