@@ -93,6 +93,6 @@ void Item::revealedByFeature()
 {
 	setAvailable(true);
 	
-	std::cout << "Your search has revealed " << this->name << "." << std::endl;
+	std::cout << "| Your search has revealed " << this->name << "." << std::endl;
 	
 }

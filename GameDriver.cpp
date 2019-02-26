@@ -24,6 +24,7 @@
 #include "Item.hpp"
 #include "Notebook.hpp"
 #include "parser.hpp"
+#include "dataRead.hpp"
 
 
 
@@ -182,6 +183,8 @@ int main()
 		{
 			break;
 		}
+		
+		clearScreen();
 		
 		// Call newMessage to run parser on input
 		commandParser->newMessage(inputString);
@@ -746,19 +749,33 @@ Room* getRoom(std::string roomName)
 ------------------------------------------------------------------------------*/
 void currentRoomPrompt(Room* currentRoom)
 {
-	std::cout << std::endl;
-	std::cout << "You are in: " << currentRoom->getName() << std::endl;
+	
+	std::ifstream inFile;
+  std::string input;
+	
+	//std::cout << std::endl;
+	//std::cout << "You are in: " << currentRoom->getName() << std::endl;
 	
 	// test if room has been visited
 	if(currentRoom->getAlreadyVisited() == true)
 	{
 		// if yes output short description
-		std::cout << currentRoom->getShortDescription() << std::endl;
+		inFile.open(currentRoom->getShortDescription(), std::ios::out);
+		readFileDefault(inFile);
+		inFile.close();
+		
+		// if yes output short description
+		//std::cout << currentRoom->getShortDescription() << std::endl;
 	}
 	else
 	{
 		// if no output long description
-		std::cout << currentRoom->getLongDescription() << std::endl;
+		inFile.open(currentRoom->getLongDescription(), std::ios::out);
+		readFileDefault(inFile);
+		inFile.close();
+		
+		// if no output long description
+		//std::cout << currentRoom->getLongDescription() << std::endl;
 		
 		// and set visited alreadyVisited to true
 		currentRoom->setAlreadyVisited(true);
@@ -810,7 +827,7 @@ void itemsInRoomPrompt(Room* currentRoom)
 void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 {
 
-	clearScreen();
+	//clearScreen();
 	
 	int functionToCall = 0;
 	
@@ -933,7 +950,12 @@ void movePlayer(Player* currentPlayer, std::string verbIn, std::string nounIn)
 ------------------------------------------------------------------------------*/
 void dropItem(Player* currentPlayer, std::string nounIn)
 {
-	currentPlayer->dropItem(itemMap[nounIn]);
+	
+	// test if item
+	if(itemMap.find(nounIn) != itemMap.end())
+		currentPlayer->dropItem(itemMap[nounIn]);
+	else
+		std::cout << "| you cannot drop " << nounIn << std::endl;
 }
 
 /*------------------------------------------------------------------------------
@@ -941,8 +963,11 @@ void dropItem(Player* currentPlayer, std::string nounIn)
 ------------------------------------------------------------------------------*/
 void takeItem(Player* currentPlayer, std::string nounIn)
 {
-	currentPlayer->pickUpItem(itemMap[nounIn]);
-
+	// test if item
+	if(itemMap.find(nounIn) != itemMap.end())
+		currentPlayer->pickUpItem(itemMap[nounIn]);
+	else
+		std::cout << "| you cannot pick up " << nounIn << std::endl;
 }
 
 
@@ -968,11 +993,17 @@ void inspectObject(Player* currentPlayer, std::string nounIn)
 			// test if feature already inspected
 			if(roomPtr->isFeatureExamined(featurePtr) == false)
 			{
+				std::ifstream inFile;
+				
+				inFile.open(featurePtr->getDescription(), std::ios::out);
+				readFileDefault(inFile);
+				inFile.close();
+				
 				featurePtr->inspected();
 			}
 			else
 			{
-				std::cout << "You've already examined " << featurePtr->getName() << "." << std::endl;
+				std::cout << "| You've already examined " << featurePtr->getName() << "." << std::endl;
 			}
 		}
 	}
@@ -998,12 +1029,12 @@ void inspectObject(Player* currentPlayer, std::string nounIn)
 		}
 		else
 		{
-			std::cout << "You can not learn anything from that" << std::endl;
+			std::cout << "| You can not learn anything from that" << std::endl;
 		}
 	}
 	else
 	{
-		std::cout << "You can not learn anything from that" << std::endl;
+		std::cout << "| You can not learn anything from that" << std::endl;
 	}		
 }
 
