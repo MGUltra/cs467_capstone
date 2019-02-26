@@ -77,7 +77,7 @@ void Feature::setItemAffected(Item* newItem)
 
 void Feature::inspected()
 {
-	std::cout << "You take a closer look at the " << this->getName() << "." << std::endl;
+	//std::cout << "You take a closer look at the " << this->getName() << "." << std::endl;
 	
 	this->itemAffected->revealedByFeature();
 	

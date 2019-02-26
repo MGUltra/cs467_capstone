@@ -33,11 +33,11 @@ den
 item8
 light
 roomFeatures/cellLight.txt
-cell
+cells
 item9
 suspects
 roomFeatures/cellSuspects.txt
-cell
+cells
 item10
 coffee
 roomFeatures/copCarCoffee.txt

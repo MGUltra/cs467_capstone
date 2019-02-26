@@ -1,5 +1,5 @@
 16
-cell
+cells
 roomText/cellLong.txt
 roomText/cellShort.txt
 station
@@ -54,7 +54,7 @@ station
 east
 station
 west
-cell
+cells
 east
 car
 north

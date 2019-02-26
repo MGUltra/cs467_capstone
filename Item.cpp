@@ -89,10 +89,16 @@ void Item::setBelongsTo(Suspect* suspect)
 }
 
 
+void Item::analyzeItem()
+{
+	this->setAnalyzed(true);
+}
+
+
 void Item::revealedByFeature()
 {
 	setAvailable(true);
 	
-	std::cout << "Your search has revealed " << this->name << "." << std::endl;
+	std::cout << "| Your search has revealed " << this->name << "." << std::endl;
 	
 }

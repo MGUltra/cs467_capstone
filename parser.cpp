@@ -11,7 +11,7 @@
 
 Parser::Parser()
 	: metaSet({"help, save"})
-	, verbSet({"help", "drop", "take", "inventory", "pick", "gather", "move", "go", "look", "inspect", "examine", "remove"})
+	, verbSet({"help", "drop", "take", "inventory", "pick", "gather", "move", "go", "look", "inspect", "examine", "remove", "analyze", "test"})
 	, nounSet({"north", "south", "east", "west"})
 	, locationSet({"north", "south", "east", "west"})
 	, messageIn("")
@@ -291,7 +291,7 @@ void Parser::parserFunction()
 	
 			// test for meta
 			// save/load/help/inventory
-	std::cout << "parsedStrings[0]: " << parsedStrings[0] << std::endl;
+	//std::cout << "parsedStrings[0]: " << parsedStrings[0] << std::endl;
 	
 	if (this->metaSet.find(parsedStrings[0]) != this->metaSet.end())
 	{
@@ -359,13 +359,14 @@ void Parser::parserFunction()
 			
 			//TEST
 			//std::cout << "Calling new" << std::endl;
-			
-			tempWord = new Noun(individualString, true);
+			if(numActions > 0)
+			{
+				tempWord = new Noun(individualString, true);
 					
 					
-			// call addNounToVerb
-			addNounToVerb(tempWord);
-					
+				// call addNounToVerb
+				addNounToVerb(tempWord);
+			}			
 					
 		}
 		
