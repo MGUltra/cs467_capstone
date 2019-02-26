@@ -1,5 +1,5 @@
 16
-cell
+cells
 roomText/cellLong.txt
 roomText/cellShort.txt
 station

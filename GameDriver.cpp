@@ -86,6 +86,8 @@ void showInventory(Player*);
 void hackComputer(Player*, std::string);
 void getStatement(Player*, std::string);
 void interrogateSuspect(Player*, std::string);
+void analyzeItem(Player*, std::string);
+
 
 void helpPlayer();
 
@@ -1113,6 +1115,49 @@ void interrogateSuspect(Player* currentPlayer, std::string name)
 		}
 	}
 }
+
+
+
+/*------------------------------------------------------------------------------
+		ANALYZE ITEM
+------------------------------------------------------------------------------*/
+void analyzeItem(Player* currentPlayer, std::string nounIn)
+{
+	// test if in lab
+	if(currentPlayer->getLocation() == roomMap["lab"])
+	{
+		// test if item
+		if(itemMap.find(nounIn) != itemMap.end())
+		{
+			// test if in inventory
+			if(currentPlayer->itemInInventory(itemMap[nounIn]) == true)
+			{
+				// if so, analyze
+				
+			}
+			else
+			{
+				// if not, prompt
+				std::cout << "| " << "you are not currently carrying " << nounIn << std::endl;
+				
+			}
+		
+			
+		}
+		else // if not item
+		{
+			std::cout << "| " << nounIn << " cannot be analyzed" << std::endl;
+		}
+
+	}
+	else
+	{
+		std::cout << "| You must be in the lab to analyze objects" << std::endl;
+	}
+}
+
+
+
 
 
 /*------------------------------------------------------------------------------
