@@ -3,23 +3,29 @@ diary
 The victim's diary. There are several bunnyeard pages. The lab can pull forensics.
 This is the diary forensic analysis.
 bedroom
+Michael
 photograph
 A photograph of the victim with what looks like a man, but a cigarette burn has removed his face.
 This is the photograph forensic analysis.
 bedroom
+Michael
 plate
 An oddly ornate place. It doesn't match the other plates in the victims cabinet
 This is the plate forensic analysis.
 kitchen
+Danny
 letter
 A letter to the victim's sister. It's an apology, but doesn't say for what. It isn't finished
 This is the letter forensic analysis.
 kitchen
+Danny
 map
 A topographic map of the nearby national park. A location is circled.
 This is the map forensic analysis.
 basement
+Angus
 shovel
 A dirty shovel with what looks like blood and hair on the edge
 This is the basement forensic analysis.
 basement
+Angus
