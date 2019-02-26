@@ -149,7 +149,7 @@ int main()
 	createRooms(commandParser);
 	
 	// create suspects
-	
+	createSuspects(commandParser);
 	
 	// Create Items - requires rooms and suspects be completed
 	createItems(commandParser);

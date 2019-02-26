@@ -47,7 +47,7 @@ roomText/vincesBedchamberShort.txt
 office
 roomText/vincesOfficeLong.txt
 roomText/vincesOfficeShort.txt
-19
+18
 lab
 west
 station
@@ -120,7 +120,3 @@ foyer
 west
 salon
 east
-kitchen
-south
-bedroom
-north
