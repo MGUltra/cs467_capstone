@@ -51,6 +51,8 @@ class Item
 	
 	// actions
 	
+	void analyzeItem();
+	
 	void revealedByFeature();
 	
 };

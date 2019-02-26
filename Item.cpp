@@ -89,6 +89,12 @@ void Item::setBelongsTo(Suspect* suspect)
 }
 
 
+void Item::analyzeItem()
+{
+	this->setAnalyzed(true);
+}
+
+
 void Item::revealedByFeature()
 {
 	setAvailable(true);

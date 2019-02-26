@@ -847,8 +847,10 @@ void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 		functionToCall = 4;
 	else if(verb == "inventory")
 		functionToCall = 5;
-	else if(verb == "help")
+	else if(verb == "test" || verb == "analyze")
 		functionToCall = 6;
+	else if(verb == "help")
+		functionToCall = 7;
 
 	
 	
@@ -869,7 +871,10 @@ void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 		case 5:	// inventory
 			showInventory(currentPlayer);
 			break;
-		case 6: // help
+		case 6: // analyze
+			analyzeItem(currentPlayer, noun);
+			break;
+		case 7: // help
 			helpPlayer();
 			break;
 		default: // message unclear then help
@@ -1017,16 +1022,36 @@ void inspectObject(Player* currentPlayer, std::string nounIn)
 		
 		Item* itemPtr = itemMap[nounIn];
 		
+		// test if item is either in the room, or in your inventory
 		if(currentPlayer->itemInInventory(itemPtr) == true || roomPtr->isItemInRoom(itemPtr) == true)
 		{
 			
 			
 			// test if item has gone to the lab yet to get mundane or analysis response
-			
+			/*
 			if(itemPtr->getAnalyzed() == true)
 				std::cout << itemPtr->getForensicAnalysis() << std::endl;
 			else
 				std::cout << itemPtr->getDescription() << std::endl;
+			*/
+			
+			// test if item has gone to the lab yet to get mundane or analysis response			
+			if(itemPtr->getAnalyzed() == true)
+			{
+				std::ifstream inFile;
+				
+				inFile.open(itemPtr->getForensicAnalysis(), std::ios::out);
+				readFileDefault(inFile);
+				inFile.close();
+			}
+			else
+			{
+				std::ifstream inFile;
+				
+				inFile.open(itemPtr->getDescription(), std::ios::out);
+				readFileDefault(inFile);
+				inFile.close();
+			}
 			
 		}
 		else
@@ -1129,16 +1154,32 @@ void analyzeItem(Player* currentPlayer, std::string nounIn)
 		// test if item
 		if(itemMap.find(nounIn) != itemMap.end())
 		{
-			// test if in inventory
-			if(currentPlayer->itemInInventory(itemMap[nounIn]) == true)
+			// test if in inventory or in room
+			if(currentPlayer->itemInInventory(itemMap[nounIn]) == true || (currentPlayer->getLocation())->isItemInRoom(itemMap[nounIn]) == true)
 			{
-				// if so, analyze
+				// if so, test if analyzed
+				if(itemMap[nounIn]->getAnalyzed() == false) // if item not analyzed yet, analyze
+				{
+					
+					itemMap[nounIn]->analyzeItem();
+					
+					std::ifstream inFile;
+				
+					inFile.open(itemMap[nounIn]->getForensicAnalysis(), std::ios::out);
+					readFileDefault(inFile);
+					inFile.close();
+				}
+				else // if already analyzed, prompt
+				{
+					std::cout << "| " << nounIn << " has already been analyzed in the lab" << std::endl;
+					std::cout << "| " << "examine " << nounIn << " to review labwork" << std::endl;
+				}
 				
 			}
 			else
 			{
 				// if not, prompt
-				std::cout << "| " << "you are not currently carrying " << nounIn << std::endl;
+				std::cout << "| " << nounIn << " is not available to analyze"  << std::endl;
 				
 			}
 		

@@ -47,7 +47,7 @@ none
 item10
 gameItems/item10.txt
 gameItems/item10Analysis.txt
-cells0
+cells
 none
 item11
 gameItems/item11.txt
