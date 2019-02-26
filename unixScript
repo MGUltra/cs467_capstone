@@ -10,10 +10,8 @@ dos2unix verb.cpp
 dos2unix word.cpp
 dos2unix Feature.hpp
 dos2unix Inventory.cpp
-dos2unix Items.txt
 dos2unix parser.cpp
 dos2unix Player.hpp
-dos2unix Rooms.txt
 dos2unix verb.hpp
 dos2unix word.hpp
 dos2unix Game.cpp
@@ -31,3 +29,7 @@ dos2unix parserTest.cpp
 dos2unix Room.cpp
 dos2unix Suspect.hpp
 dos2unix Victim.hpp
+dos2unix Items.txt
+dos2unix Rooms.txt
+dos2unix Features.txt
+dos2unix Suspects.txt

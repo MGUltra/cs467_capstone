@@ -81,6 +81,11 @@ void dropItem(Player*, std::string);
 void takeItem(Player*, std::string);
 void inspectObject(Player*, std::string);
 void showInventory(Player*);
+
+void hackComputer(Player*, std::string);
+void getStatement(Player*, std::string);
+void interrogateSuspect(Player*, std::string);
+
 void helpPlayer();
 
 // Cleanup function
@@ -139,17 +144,23 @@ int main()
 	------------------------------------------------------------------------------*/	
 	commandParser = new Parser();
 	
+	
+	// Create Rooms
 	createRooms(commandParser);
 	
+	// create suspects
+	createSuspects(commandParser);
+	
+	// Create Items - requires rooms and suspects be completed
 	createItems(commandParser);
 	
-	// create features
-	
+
+	// create features - requires rooms and items be completed	
 	createFeatures(commandParser);
 	
 	// create victim
 	
-	// create suspects
+
 
 	currentPlayer = new Player("player 1", getRoom("bedroom"));
 
@@ -1015,7 +1026,7 @@ void hackComputer(Player* currentPlayer, std::string nounIn)
 	// If the player has the computer in inventory, they can hack it.
 	if (currentPlayer->itemInInventory(itemMap[nounIn]))
 	{
-		std::cout << itemMap[nounIn]->getDescription << endl << endl;
+		std::cout << itemMap[nounIn]->getDescription() << std::endl << std::endl;
 	}
 }
 
@@ -1025,15 +1036,15 @@ void hackComputer(Player* currentPlayer, std::string nounIn)
 void getStatement(Player* currentPlayer, std::string name)
 {
 	// If the player is in the same room as the witness...
-	if (currentPlayer->getLocation == witnessMap[name]->getLocation)
+	if (currentPlayer->getLocation() == witnessMap[name]->getLocation())
 	{
-		std::string introduction = witnessMap[name]->getIntroduction;
-		std::cout << introduction << endl << endl;
-		std::cout << name << " tells you what they know." << endl << endl;
-		std::string statement = witnessMap[name]->getAnswer1;
-		std::cout << statement << endl << endl;
+		std::string introduction = witnessMap[name]->getIntroduction();
+		std::cout << introduction << std::endl << std::endl;
+		std::cout << name << " tells you what they know." << std::endl << std::endl;
+		std::string statement = witnessMap[name]->getAnswer1();
+		std::cout << statement << std::endl << std::endl;
 
-		std::cout << "You add this information to your notebook." << endl << endl;
+		std::cout << "You add this information to your notebook." << std::endl << std::endl;
 
 		std::string entry = introduction + " " + statement;
 
@@ -1041,31 +1052,31 @@ void getStatement(Player* currentPlayer, std::string name)
 	}
 	else
 	{
-		std::cout << "That witness is not here." << endl;
+		std::cout << "That witness is not here." << std::endl;
 	}
 }
 
 /*------------------------------------------------------------------------------
 		INTERROGATE SUSPECT
 ------------------------------------------------------------------------------*/
-void hackComputer(Player* currentPlayer, std::string name)
+void interrogateSuspect(Player* currentPlayer, std::string name)
 {
 	// If the player is in the cell room...
-	if (currentPlayer->getLocation == roomMap["cells"])
+	if (currentPlayer->getLocation() == roomMap["cells"])
 	{
-		if (suspectMap[name]->getSigItemFound == true)
+		if (suspectMap[name]->getSigItemFound() == true)
 		{
-			std::cout << "You press " << name << " about what you found in his home earlier." << endl;
-			std::cout << suspectMap[name]->getAnswer2() << endl;
-			std::cout << "You add this information to your notebook." << endl;
+			std::cout << "You press " << name << " about what you found in his home earlier." << std::endl;
+			std::cout << suspectMap[name]->getAnswer2() << std::endl;
+			std::cout << "You add this information to your notebook." << std::endl;
 			std::string entry = suspectMap[name]->getAnswer1() + " " + suspectMap[name]->getAnswer2();
 			playerNotebook.setEntry(name, entry);
 		}
 		else
 		{
-			std::cout << "You ask " << name << " about what he knows." << endl;
-			std::cout << suspectMap[name]->getAnswer1() << endl;
-			std::cout << "You add this information to your notebook." << endl;
+			std::cout << "You ask " << name << " about what he knows." << std::endl;
+			std::cout << suspectMap[name]->getAnswer1() << std::endl;
+			std::cout << "You add this information to your notebook." << std::endl;
 			std::string entry = suspectMap[name]->getAnswer1();
 			playerNotebook.setEntry(name, entry);
 		}
