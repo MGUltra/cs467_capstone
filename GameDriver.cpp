@@ -144,17 +144,23 @@ int main()
 	------------------------------------------------------------------------------*/	
 	commandParser = new Parser();
 	
+	
+	// Create Rooms
 	createRooms(commandParser);
 	
+	// create suspects
+	
+	
+	// Create Items - requires rooms and suspects be completed
 	createItems(commandParser);
 	
-	// create features
-	
+
+	// create features - requires rooms and items be completed	
 	createFeatures(commandParser);
 	
 	// create victim
 	
-	// create suspects
+
 
 	currentPlayer = new Player("player 1", getRoom("bedroom"));
 

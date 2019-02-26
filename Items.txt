@@ -1,3 +1,12 @@
+32
+item1
+filepath/to/item1
+analysis/of/item1
+
+
+
+
+
 6
 diary
 The victim's diary. There are several bunnyeard pages. The lab can pull forensics.
