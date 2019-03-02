@@ -136,7 +136,9 @@ public:
 	void reflectOnCase();
 	void clearSuspect(std::string);
 
-
+	// game meta functions
+	void saveGame();
+	void loadGame();
 	void helpPlayer();
 	
 	// Cleanup function
