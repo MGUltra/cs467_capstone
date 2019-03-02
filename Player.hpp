@@ -29,6 +29,7 @@ private:
 
 public:
 	//constructor
+	Player();
 	Player(std::string, Room*);
 
 	//get

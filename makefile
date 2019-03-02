@@ -21,13 +21,10 @@ PARSESRCS = parser.cpp word.cpp verb.cpp noun.cpp
 PARSEHEADERS = parser.hpp word.hpp verb.hpp noun.hpp
 
 # Driver Variables
-DRIVEROBJECTS = Room.o Player.o Victim.o Suspect.o Feature.o Inventory.o Item.o GameDriver.o Witness.o Notebook.o
-DRIVERSRCS = Room.cpp Player.cpp Victim.cpp Suspect.cpp Feature.cpp Inventory.cpp Item.cpp GameDriver.cpp Witness.cpp Notebook.cpp
-DRIVERHEADERS = Room.hpp Player.hpp Victim.hpp Suspect.hpp Feature.hpp Inventory.hpp Item.hpp Witness.hpp Notebook.hpp dataRead.hpp
+DRIVEROBJECTS = Room.o Player.o Victim.o Suspect.o Feature.o Inventory.o Item.o Gamedriver.o Witness.o Notebook.o dataRead.o
+DRIVERSRCS = Room.cpp Player.cpp Victim.cpp Suspect.cpp Feature.cpp Inventory.cpp Item.cpp Gamedriver.cpp Witness.cpp Notebook.cpp dataRead.cpp
+DRIVERHEADERS = Room.hpp Player.hpp Victim.hpp Suspect.hpp Feature.hpp Inventory.hpp Item.hpp Witness.hpp Notebook.hpp dataRead.hpp Gamedriver.hpp
 
-# Data Read test Variables
-ROOMTESTSRCS = dataTest.cpp
-ROOMTESTHEADERS = dataRead.hpp
 
 #include "Room.hpp"
 #include "Player.hpp"
@@ -36,28 +33,22 @@ ROOMTESTHEADERS = dataRead.hpp
 #include "parser.hpp"
 
 
-all: gamedriver test
+all: gamedriver 
 
 clean:
-	-rm ${PARSEOBJECTS} ${DRIVEROBJECTS} parsertest gamedriver wordtest roomtest
+	-rm ${PARSEOBJECTS} ${DRIVEROBJECTS} gamedriver main.o
 #-rm parser.o word.o verb.o noun.o wordtest.o parsertest.o wordtest parsertest
 
-test: roomtest
+test:
 
 wordtest: word.o verb.o noun.o parser.o wordTest.cpp
 	g++ -g -std=c++11 -o wordtest wordTest.cpp word.o verb.o noun.o
-	
-#parsertest: word.o verb.o noun.o parser.o parserTest.cpp
-#	g++ -g -std=c++11 -o parsertest parserTest.cpp word.o verb.o noun.o parser.o
-
-roomtest: ${ROOMTESTHEADERS} 
-	${CXX} -std=c++11 ${ROOMTESTSRCS} -o roomtest
 	
 parsertest: ${PARSEOBJECTS} ${PARSEHEADERS}
 	${CXX} -std=c++11 ${PARSEOBJECTS} parserTest.cpp -o parsertest
 	
 gamedriver: ${DRIVEROBJECTS} ${DRIVERHEADERS} ${PARSEHEADERS}
-	${CXX} ${DRIVEROBJECTS} ${PARSEOBJECTS} -o gamedriver
+	${CXX} -std=c++11 main.cpp ${DRIVEROBJECTS} ${PARSEOBJECTS} -o gamedriver
 	
 	
 	
