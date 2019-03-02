@@ -255,6 +255,39 @@ int main()
         readFileDefault(inFile);
         inFile.close();
         break;
+    case 17:
+        inFile.open("suspectText/vince.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("suspectText/vinceAnsOne.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("suspectText/vinceAnsTwo.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        break;
+    case 18:
+        inFile.open("suspectText/carl.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("suspectText/carlAnsOne.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("suspectText/carlAnsTwo.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        break;
+    case 19:
+        inFile.open("suspectText/dan.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("suspectText/danAnsOne.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        inFile.open("suspectText/danAnsTwo.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        break;
     } 
   }
   return 0;
