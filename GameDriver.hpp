@@ -105,6 +105,8 @@ public:
 	// Save and Load
 	void serialize(Archive&, GameDriver&, const unsigned int);
 	void save(Player*);
+
+	GameDriver();
 };
 
 #endif
