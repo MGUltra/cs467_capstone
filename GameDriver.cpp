@@ -871,10 +871,10 @@ void Gamestate::exeCommand(std::string verb)
 			this->accuseSuspect(this->nounVector[0]);
 			break;
 		case 19: // save
-			this->accuseSuspect();
+			this->saveGame();
 			break;
 		case 20: // load
-			this->accuseSuspect();
+			this->loadGame();
 			break;	
 		default: // message unclear then help
 			this->helpPlayer();
