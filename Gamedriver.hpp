@@ -18,6 +18,11 @@
 #include <sstream>
 #include <string>
 #include <unordered_map>
+#include <sys/ioctl.h>
+#include <stdio.h>
+#include <unistd.h>
+
+
 
 #include "Room.hpp"
 #include "Player.hpp"
@@ -72,6 +77,12 @@ private:
 
 public:
 
+	Gamestate();
+	~Gamestate();
+
+
+
+
 	// play game
 	void playGame();
 
@@ -119,9 +130,9 @@ public:
 
 
 	void helpPlayer();
-
+	
 	// Cleanup function
-	void cleanup(Parser*, Player*);
+	void cleanup();
 
 
 

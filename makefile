@@ -21,13 +21,10 @@ PARSESRCS = parser.cpp word.cpp verb.cpp noun.cpp
 PARSEHEADERS = parser.hpp word.hpp verb.hpp noun.hpp
 
 # Driver Variables
-DRIVEROBJECTS = Room.o Player.o Victim.o Suspect.o Feature.o Inventory.o Item.o GameDriver.o Witness.o Notebook.o
-DRIVERSRCS = Room.cpp Player.cpp Victim.cpp Suspect.cpp Feature.cpp Inventory.cpp Item.cpp GameDriver.cpp Witness.cpp Notebook.cpp
-DRIVERHEADERS = Room.hpp Player.hpp Victim.hpp Suspect.hpp Feature.hpp Inventory.hpp Item.hpp Witness.hpp Notebook.hpp dataRead.hpp
+DRIVEROBJECTS = Room.o Player.o Victim.o Suspect.o Feature.o Inventory.o Item.o Gamestate.o Witness.o Notebook.o dataRead.o
+DRIVERSRCS = Room.cpp Player.cpp Victim.cpp Suspect.cpp Feature.cpp Inventory.cpp Item.cpp Gamestate.cpp Witness.cpp Notebook.cpp dataRead.cpp
+DRIVERHEADERS = Room.hpp Player.hpp Victim.hpp Suspect.hpp Feature.hpp Inventory.hpp Item.hpp Witness.hpp Notebook.hpp dataRead.hpp Gamestate.hpp
 
-# Data Read test Variables
-ROOMTESTSRCS = dataTest.cpp
-ROOMTESTHEADERS = dataRead.hpp
 
 #include "Room.hpp"
 #include "Player.hpp"
@@ -57,7 +54,7 @@ parsertest: ${PARSEOBJECTS} ${PARSEHEADERS}
 	${CXX} -std=c++11 ${PARSEOBJECTS} parserTest.cpp -o parsertest
 	
 gamedriver: ${DRIVEROBJECTS} ${DRIVERHEADERS} ${PARSEHEADERS}
-	${CXX} ${DRIVEROBJECTS} ${PARSEOBJECTS} -o gamedriver
+	${CXX} -std=c++11 main.cpp ${DRIVEROBJECTS} ${PARSEOBJECTS} -o gamedriver
 	
 	
 	

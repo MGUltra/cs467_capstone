@@ -12,6 +12,13 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
+Player::Player()
+{
+	playerInventory = Inventory();
+}
+
+
+
 Player::Player(std::string name, Room* currentLocation)
 {
 	setName(name);
