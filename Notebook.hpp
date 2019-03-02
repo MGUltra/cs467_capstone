@@ -32,7 +32,7 @@ public:
 	bool getEntry(std::string);
 
 	// add
-	void setEntry(std::string, std::string);
+	void setEntry(std::string, bool);
 	
 	// change flags
 	void changeEntry(std::string, bool);

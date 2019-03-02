@@ -21,16 +21,21 @@ Notebook::Notebook()
 /*******************************************************************************
 *		GET FUNCTIONS
 *******************************************************************************/
-std::string Notebook::getEntry(std::string name)
+bool Notebook::getEntry(std::string name)
 {
-	return notebookEntries[name];
+	return gameFlags[name];
 }
 
 
 /*******************************************************************************
 *		ADD FUNCTION
 *******************************************************************************/
-void Notebook::setEntry(std::string name, std::string entry)
+void Notebook::setEntry(std::string name, bool entry)
 {
-	notebookEntries[name] = entry;
+	gameFlags[name] = entry;
+}
+
+void Notebook::changeEntry(std::string name, bool entry)
+{
+	gameFlags[name] = entry;
 }

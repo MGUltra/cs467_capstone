@@ -1,5 +1,5 @@
 
-#include "Gamestate.hpp"
+#include "Gamedriver.hpp"
 
 /***************************************************************
 ***																													 ***
@@ -611,7 +611,7 @@ void Gamestate::createNotebook()
 	entry = fileLine;
 	this->checkLineEndings(&entry);
 
-	this->playerNotebook.setEntry(name, entry);
+	//this->playerNotebook.setEntry(name, entry);
 
 	// Close inputFile.
 	inputFile.close();
@@ -998,7 +998,7 @@ void Gamestate::getStatement(std::string name)
 
 		std::string entry = introduction + " " + statement;
 
-		this->playerNotebook.setEntry(name, entry);
+		//this->playerNotebook.setEntry(name, entry);
 	}
 	else
 	{
@@ -1020,7 +1020,7 @@ void Gamestate::interrogateSuspect(std::string name)
 			std::cout << this->suspectMap[name]->getAnswer2() << std::endl;
 			std::cout << "You add this information to your notebook." << std::endl;
 			std::string entry = this->suspectMap[name]->getAnswer1() + " " + this->suspectMap[name]->getAnswer2();
-			this->playerNotebook.setEntry(name, entry);
+			//this->playerNotebook.setEntry(name, entry);
 		}
 		else
 		{
@@ -1028,7 +1028,7 @@ void Gamestate::interrogateSuspect(std::string name)
 			std::cout << this->suspectMap[name]->getAnswer1() << std::endl;
 			std::cout << "You add this information to your notebook." << std::endl;
 			std::string entry = this->suspectMap[name]->getAnswer1();
-			this->playerNotebook.setEntry(name, entry);
+			//this->playerNotebook.setEntry(name, entry);
 		}
 	}
 }
@@ -1207,7 +1207,7 @@ void Gamestate::reflectOnCase()
 	// prompt with status of each suspect and the evidence
 }
 
-void Gamestate::clearSuspect(std::String personIn)
+void Gamestate::clearSuspect(std::string personIn)
 {
 	// test if personIn is suspect
 		// if so

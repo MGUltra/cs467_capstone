@@ -7,8 +7,8 @@
 ** decide who committed the murder.
 *******************************************************************************/
 
-#ifndef GAMESTATE_HPP
-#define GAMESTATE_HPP
+#ifndef GAMEDRIVER_HPP
+#define GAMEDRIVER_HPP
 
 /*------------------------------------------------------------------------------
 		LIBRARIES
@@ -130,11 +130,11 @@ public:
 	void sampleFeature(std::string);
 	void askAboutItem(std::string, std::string);
 	void useItemOnFeature(std::string, std::string);
-	void drinkFeature(std::string, std::string);
+	void drinkFeature(std::string);
 	void listenToRecording(std::string);
 	void talkToPerson(std::string);
-	void reflectOnCase(std::string);
-	void clearSuspect(std::String);
+	void reflectOnCase();
+	void clearSuspect(std::string);
 
 
 	void helpPlayer();
