@@ -101,13 +101,20 @@ void Gamestate::playGame()
 			{
 				if(currentVerb == "ask" || currentVerb == "use")
 				{
-					for(int y = 0; y < numberOfNouns; y++)
+					if(numberOfNouns == 2)
 					{
-						this->nounVector.push_back((((Verb*)((*actionsInCurrentMessage)[x]))->getIndexNounText(y)));
+						for(int y = 0; y < numberOfNouns; y++)
+						{
+							this->nounVector.push_back((((Verb*)((*actionsInCurrentMessage)[x]))->getIndexNounText(y)));
+						}
+						
+						exeCommand(currentVerb);
 					}
-					
-					exeCommand(currentVerb);
-					
+					else
+					{
+						exeCommand("help");
+						continue;
+					}
 				}
 				else
 				{
@@ -131,7 +138,9 @@ void Gamestate::playGame()
 				exeCommand((*actionsInCurrentMessage)[x]->getText());
 			}
 		}
-		
+	
+	
+	// test if game won
 		
 		
 	}while(exitStatus != true);
@@ -777,7 +786,32 @@ void Gamestate::exeCommand(std::string verb)
 		functionToCall = 6;
 	else if(verb == "help")
 		functionToCall = 7;
-
+	else if(verb == "hack")
+		functionToCall = 8;
+	else if(verb == "interrogate")
+		functionToCall = 9;
+	else if(verb == "sample")
+		functionToCall = 10;
+	else if(verb == "ask")
+		functionToCall = 11;
+	else if(verb == "use")
+		functionToCall = 12;
+	else if(verb == "drink")
+		functionToCall = 13;
+	else if(verb == "listen" || verb == "play")
+		functionToCall = 14;
+	else if(verb == "talk")
+		functionToCall = 15;
+	else if(verb == "reflect")
+		functionToCall = 16;
+	else if(verb == "clear")
+		functionToCall = 17;
+	else if(verb == "accuse")
+		functionToCall = 18;
+	else if(verb == "save")
+		functionToCall = 19;
+	else if(verb == "load")
+		functionToCall = 20;
 	
 	
 	switch(functionToCall) {
@@ -803,6 +837,45 @@ void Gamestate::exeCommand(std::string verb)
 		case 7: // help
 			this->helpPlayer();
 			break;
+		case 8: // hack
+			this->hackComputer(this->nounVector[0]);
+			break;
+		case 9: // interrogate
+			this->interrogateSuspect(this->nounVector[0]);
+			break;
+		case 10: // sample
+			this->sampleFeature(this->nounVector[0]);
+			break;	
+		case 11: // ask
+			this->askAboutItem(this->nounVector[0], this->nounVector[1]);
+			break;
+		case 12: // use
+			this->useItemOnFeature(this->nounVector[0], this->nounVector[1]);
+			break;
+		case 13: // drink
+			this->drinkFeature(this->nounVector[0]);
+			break;
+		case 14: // listen/play
+			this->listenToRecording(this->nounVector[0]);
+			break;
+		case 15: // talk
+			this->talkToPerson(this->nounVector[0]);
+			break;
+		case 16: // reflect
+			this->reflectOnCase();
+			break;	
+		case 17: // clear
+			this->clearSuspect(this->nounVector[0]);
+			break;	
+		case 18: // accuse
+			this->accuseSuspect(this->nounVector[0]);
+			break;
+		case 19: // save
+			this->saveGame();
+			break;
+		case 20: // load
+			this->loadGame();
+			break;	
 		default: // message unclear then help
 			this->helpPlayer();
 	}
@@ -1260,6 +1333,16 @@ void Gamestate::clearSuspect(std::string personIn)
 }
 
 
+void Gamestate::saveGame()
+{
+	
+}
+
+
+void Gamestate::loadGame()
+{
+	
+}
 
 
 
