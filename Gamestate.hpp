@@ -77,7 +77,14 @@ public:
 
 
 	// Game Initialization functions
+	void createGame();
 	
+	void createRooms();
+	void createFeatures();
+	void createItems();
+	void createVictim();
+	void createSuspects();
+	void createWitnesses();
 	void createNotebook();
 
 	
@@ -98,7 +105,17 @@ public:
 
 
 	// GAME ACTIONS
+	void exeCommand(std::string, std::string);
+	void movePlayer(std::string, std::string);
+	void dropItem(std::string);
+	void takeItem(std::string);
+	void inspectObject(std::string);
+	void showInventory();
 
+	void hackComputer(std::string);
+	void getStatement(std::string);
+	void interrogateSuspect(std::string);
+	void analyzeItem(std::string);
 
 
 	void helpPlayer();

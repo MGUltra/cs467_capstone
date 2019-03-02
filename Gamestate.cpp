@@ -113,30 +113,38 @@ void Gamestate::playGame()
 ***							      																						 ***
 **********************************************************************/
 
+void Gamestate::createGame()
 {
 	/*------------------------------------------------------------------------------
 		INITIALIZE GAME
 	------------------------------------------------------------------------------*/	
+	//commandParser = new Parser();
 	
 	
 	// Create Rooms
+	createRooms();
 	
 	// create suspects
+	createSuspects();
 	
 	// Create Items - requires rooms and suspects be completed
+	createItems();
 	
 
 	// create features - requires rooms and items be completed	
+	createFeatures();
 	
 	// create victim
 	
 
 
+	//this->currentPlayer = new Player("player 1", getRoom("bedroom"));
 }
 
 /*------------------------------------------------------------------------------
 		CREATE ROOMS
 ------------------------------------------------------------------------------*/
+void Gamestate::createRooms()
 {
 	std::ifstream inputFile;
 
@@ -247,6 +255,7 @@ void Gamestate::playGame()
 /*------------------------------------------------------------------------------
 		CREATE FEATURES
 ------------------------------------------------------------------------------*/
+void Gamestate::createFeatures()
 {
 	std::ifstream inputFile;
 
@@ -327,6 +336,7 @@ void Gamestate::playGame()
 /*------------------------------------------------------------------------------
 		CREATE ITEMS
 ------------------------------------------------------------------------------*/
+void Gamestate::createItems()
 {
 	std::ifstream inputFile;
 
@@ -407,6 +417,7 @@ void Gamestate::playGame()
 /*------------------------------------------------------------------------------
 		CREATE VICTIM
 ------------------------------------------------------------------------------*/
+void Gamestate::createVictim()
 {
 	std::ifstream inputFile;
 
@@ -447,6 +458,7 @@ void Gamestate::playGame()
 /*------------------------------------------------------------------------------
 		CREATE SUSPECTS
 ------------------------------------------------------------------------------*/
+void Gamestate::createSuspects()
 {
 	std::ifstream inputFile;
 
@@ -507,6 +519,7 @@ void Gamestate::playGame()
 /*------------------------------------------------------------------------------
 CREATE WITNESSES
 ------------------------------------------------------------------------------*/
+void Gamestate::createWitnesses()
 {
 	std::ifstream inputFile;
 
@@ -615,6 +628,7 @@ Room* Gamestate::getRoom(std::string roomName)
 	if(roomName == "nonoun")
 		return NULL;
 	
+	return this->roomMap[roomName];
 }
 
 
@@ -705,6 +719,7 @@ void Gamestate::itemsInRoomPrompt(Room* currentRoom)
 /*------------------------------------------------------------------------------
 		Execute Command
 ------------------------------------------------------------------------------*/
+void Gamestate::exeCommand(std::string verb, std::string noun)
 {
 
 	//clearScreen();
@@ -735,16 +750,22 @@ void Gamestate::itemsInRoomPrompt(Room* currentRoom)
 	switch(functionToCall) {
 		
 		case 1:	// change rooms
+			movePlayer(verb, noun);
 			break;
 		case 2: // drop item
+			dropItem(noun);
 			break;
 		case 3: // pick up item
+			takeItem(noun);
 			break;
 		case 4: // inspect
+			inspectObject(noun);
 			break;
 		case 5:	// inventory
+			showInventory();
 			break;
 		case 6: // analyze
+			analyzeItem(noun);
 			break;
 		case 7: // help
 			helpPlayer();
@@ -760,10 +781,12 @@ void Gamestate::itemsInRoomPrompt(Room* currentRoom)
 /*------------------------------------------------------------------------------
 		Change Rooms
 ------------------------------------------------------------------------------*/
+void Gamestate::movePlayer(std::string verbIn, std::string nounIn)
 {
 	
 	// TODO: Add test for available room, either in this or getLocation
 	//	function in the Player class
+	Room* roomPtr = currentPlayer.getLocation();
 	
 	
 	// Single word room name
@@ -771,6 +794,7 @@ void Gamestate::itemsInRoomPrompt(Room* currentRoom)
 	{
 		if(roomPtr->isRoomAttached(getRoom(verbIn)) == true)
 		{
+			currentPlayer.setLocation(getRoom(verbIn));
 		}
 		else
 		{
@@ -785,6 +809,7 @@ void Gamestate::itemsInRoomPrompt(Room* currentRoom)
 		Room* newRoom = roomPtr->getCardinalDirection(verbIn);
 		
 		if(newRoom != NULL)
+			currentPlayer.setLocation(newRoom);
 		else
 			std::cout << "You can not go " << verbIn << " from " << roomPtr->getName() << "." << std::endl;
 		
@@ -797,6 +822,7 @@ void Gamestate::itemsInRoomPrompt(Room* currentRoom)
 		Room* newRoom = roomPtr->getCardinalDirection(nounIn);
 		
 		if(newRoom != NULL)
+			currentPlayer.setLocation(newRoom);
 		else
 			std::cout << "You can not go " << nounIn << " from " << roomPtr->getName() << "." << std::endl;
 		
@@ -805,6 +831,7 @@ void Gamestate::itemsInRoomPrompt(Room* currentRoom)
 	// room name as noun
 	else if(roomPtr->isRoomAttached(getRoom(nounIn)) == true)
 	{
+		currentPlayer.setLocation(getRoom(nounIn));
 		
 		return;
 	}
@@ -821,9 +848,12 @@ void Gamestate::itemsInRoomPrompt(Room* currentRoom)
 /*------------------------------------------------------------------------------
 		Drop item
 ------------------------------------------------------------------------------*/
+void Gamestate::dropItem(std::string nounIn)
 {
 	
 	// test if item
+	if(this->itemMap.find(nounIn) != this->itemMap.end())
+		this->currentPlayer.dropItem(this->itemMap[nounIn]);
 	else
 		std::cout << "| you cannot drop " << nounIn << std::endl;
 }
@@ -831,8 +861,11 @@ void Gamestate::itemsInRoomPrompt(Room* currentRoom)
 /*------------------------------------------------------------------------------
 		pick up items
 ------------------------------------------------------------------------------*/
+void Gamestate::takeItem(std::string nounIn)
 {
 	// test if item
+	if(this->itemMap.find(nounIn) != this->itemMap.end())
+		this->currentPlayer.pickUpItem(itemMap[nounIn]);
 	else
 		std::cout << "| you cannot pick up " << nounIn << std::endl;
 }
@@ -848,8 +881,11 @@ void Gamestate::inspectObject(Player* currentPlayer, std::string nounIn)
 	// variable.
 	
 	
+	if(this->featureMap.find(nounIn) != this->featureMap.end()) // test if feature 
 	{
+		Room* roomPtr = this->currentPlayer.getLocation();
 		
+		Feature* featurePtr = this->featureMap[nounIn];
 		
 		// test if feature is present in the current room 
 		if(roomPtr->isFeatureInRoom(featurePtr) == true)
@@ -871,13 +907,16 @@ void Gamestate::inspectObject(Player* currentPlayer, std::string nounIn)
 			}
 		}
 	}
+	else if(this->itemMap.find(nounIn) != this->itemMap.end()) // test if item
 	{
 	// if item in room or players inventory
 		// test if item is present in either the current room or inventory 
+		Room* roomPtr = this->currentPlayer.getLocation();
 		
 		Item* itemPtr = itemMap[nounIn];
 		
 		// test if item is either in the room, or in your inventory
+		if(this->currentPlayer.itemInInventory(itemPtr) == true || roomPtr->isItemInRoom(itemPtr) == true)
 		{
 			
 			
@@ -922,35 +961,45 @@ void Gamestate::inspectObject(Player* currentPlayer, std::string nounIn)
 /*------------------------------------------------------------------------------
 		display inventory
 ------------------------------------------------------------------------------*/
+void Gamestate::showInventory()
 {
 	// test if empty
 		// prompt if so
 	
+	this->currentPlayer.showInventory();
 }
 
 /*------------------------------------------------------------------------------
 		HACK COMPUTER 
 ------------------------------------------------------------------------------*/
+void Gamestate::hackComputer(std::string nounIn)
 {
 	// If the player has the computer in inventory, they can hack it.
+	if (this->currentPlayer.itemInInventory(this->itemMap[nounIn]))
 	{
+		std::cout << this->itemMap[nounIn]->getDescription() << std::endl << std::endl;
 	}
 }
 
 /*------------------------------------------------------------------------------
 		TAKE WITNESS STATEMENT
 ------------------------------------------------------------------------------*/
+void Gamestate::getStatement(std::string name)
 {
 	// If the player is in the same room as the witness...
+	if (this->currentPlayer.getLocation() == this->witnessMap[name]->getLocation())
 	{
+		std::string introduction = this->witnessMap[name]->getIntroduction();
 		std::cout << introduction << std::endl << std::endl;
 		std::cout << name << " tells you what they know." << std::endl << std::endl;
+		std::string statement = this->witnessMap[name]->getAnswer1();
 		std::cout << statement << std::endl << std::endl;
 
 		std::cout << "You add this information to your notebook." << std::endl << std::endl;
 
 		std::string entry = introduction + " " + statement;
 
+		this->playerNotebook.setEntry(name, entry);
 	}
 	else
 	{
@@ -961,17 +1010,26 @@ void Gamestate::inspectObject(Player* currentPlayer, std::string nounIn)
 /*------------------------------------------------------------------------------
 		INTERROGATE SUSPECT
 ------------------------------------------------------------------------------*/
+void Gamestate::interrogateSuspect(std::string name)
 {
 	// If the player is in the cell room...
+	if (this->currentPlayer.getLocation() == this->roomMap["cells"])
 	{
+		if (this->suspectMap[name]->getSigItemFound() == true)
 		{
 			std::cout << "You press " << name << " about what you found in his home earlier." << std::endl;
+			std::cout << this->suspectMap[name]->getAnswer2() << std::endl;
 			std::cout << "You add this information to your notebook." << std::endl;
+			std::string entry = this->suspectMap[name]->getAnswer1() + " " + this->suspectMap[name]->getAnswer2();
+			this->playerNotebook.setEntry(name, entry);
 		}
 		else
 		{
 			std::cout << "You ask " << name << " about what he knows." << std::endl;
+			std::cout << this->suspectMap[name]->getAnswer1() << std::endl;
 			std::cout << "You add this information to your notebook." << std::endl;
+			std::string entry = this->suspectMap[name]->getAnswer1();
+			this->playerNotebook.setEntry(name, entry);
 		}
 	}
 }
@@ -981,6 +1039,7 @@ void Gamestate::inspectObject(Player* currentPlayer, std::string nounIn)
 /*------------------------------------------------------------------------------
 		ANALYZE ITEM
 ------------------------------------------------------------------------------*/
+void Gamestate::analyzeItem(std::string nounIn)
 {
 	// test if in lab
 	if(currentPlayer->getLocation() == roomMap["lab"])
