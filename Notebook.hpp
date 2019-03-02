@@ -49,6 +49,7 @@ private:
 	// key is item name, value is either room name or inventory;
 	std::unordered_map<std::string, std::string> itemLocations;
 	
+	std::string playerLocation;
 	
 public:
 	// constructor
