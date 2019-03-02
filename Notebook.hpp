@@ -28,6 +28,10 @@ public:
 	// destructor
 	//~Notebook();
 
+
+	template <typename Archive>
+	void serialize(Archive&, const unsigned int);
+
 	// get
 	std::string getEntry(std::string);
 

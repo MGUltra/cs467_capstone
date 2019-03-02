@@ -34,3 +34,10 @@ void Notebook::setEntry(std::string name, std::string entry)
 {
 	notebookEntries[name] = entry;
 }
+
+
+template <typename Archive>
+void Notebook::serialize(Archive& ar, const unsigned int version)
+{
+	ar& notebookEntries;
+}
