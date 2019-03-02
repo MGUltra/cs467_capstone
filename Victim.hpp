@@ -16,7 +16,6 @@ LIBRARIES
 #include <iostream>
 #include <string>
 
-using namespace std;
 
 class Victim
 {

@@ -26,8 +26,21 @@ private:
 	std::string name;
 	std::string description;
 	std::string location;
+	
+	
 	bool alreadyInspected;
+	
+	// if the feature capable of being acted on directly
+	bool actionAble;
+	
+	// has the feature been acted on already 
+	bool alreadyActioned;
+	
+	
 	Item* itemAffected;
+	
+	//Item* actionItem;
+	
 
 public:
 	//constructor
