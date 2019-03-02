@@ -7,251 +7,12 @@
 ** decide who committed the murder.
 *******************************************************************************/
 
-/*------------------------------------------------------------------------------
-		LIBRARIES
-------------------------------------------------------------------------------*/
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <unordered_map>
-
-#include "Room.hpp"
-#include "Player.hpp"
-#include "Victim.hpp"
-#include "Suspect.hpp"
-#include "Witness.hpp"
-#include "Item.hpp"
-#include "Notebook.hpp"
-#include "parser.hpp"
-#include "dataRead.hpp"
-
-
-
-
-/*------------------------------------------------------------------------------
-		TEXT FILES
-------------------------------------------------------------------------------*/
-
-//should not be global
-std::string RoomsFile = "Rooms.txt";
-std::string FeaturesFile = "Features.txt";
-std::string ItemsFile = "Items.txt";
-std::string VictimFile = "Victim.txt";
-std::string SuspectsFile = "Suspects.txt";
-std::string WitnessesFile = "Witnesses.txt";
-std::string MurderNotes = "MurderNotes.txt";
-
-
-
-
-
-/*------------------------------------------------------------------------------
-		Function Declarations
-------------------------------------------------------------------------------*/
-
-// Game Initialization functions
-void createRooms(Parser*);
-void createFeatures(Parser*);
-void createItems(Parser*);
-void createVictim(Parser*);
-void createSuspects(Parser*);
-void createWitnesses(Parser*);
-void createNotebook();
-
-
-int findArrayIndex(std::string);
-Room* getRoom(string);
-void printRooms();
-void printRoom(Room*);
-void checkLineEndings(std::string*);
-
-
-
-// Game Prompts
-void currentRoomPrompt(Room*);
-void featuresInRoomPrompt(Room*);
-void itemsInRoomPrompt(Room*);
-void clearScreen();
-
-
-// GAME ACTIONS
-void exeCommand(std::string, std::string, Player*);
-void movePlayer(Player*, std::string, std::string);
-void dropItem(Player*, std::string);
-void takeItem(Player*, std::string);
-void inspectObject(Player*, std::string);
-void showInventory(Player*);
-
-void hackComputer(Player*, std::string);
-void getStatement(Player*, std::string);
-void interrogateSuspect(Player*, std::string);
-void analyzeItem(Player*, std::string);
-
-
-void helpPlayer();
-
-// Cleanup function
-void cleanup(Parser*, Player*);
-
-
-
-
-
-
-
-/*------------------------------------------------------------------------------
-		GAME VARIABLES
-------------------------------------------------------------------------------*/
-
-// Ideally we shouldn't use global variables
-
-std::unordered_map<std::string, Item*> itemMap;
-std::unordered_map<std::string, Room*> roomMap;
-std::unordered_map<std::string, Feature*> featureMap;
-std::unordered_map<std::string, Suspect*> suspectMap;
-std::unordered_map<std::string, Witness*> witnessMap;
-std::vector<std::string> roomTestVector;
-
-Notebook playerNotebook;
-
-
-
-
-
-/*********************************************************************
-***					      																								 ***
-***                             MAIN                               ***
-***							      																						 ***
-**********************************************************************/
-int main()
-{
-	
-	/*------------------------------------------------------------------------------
-		GAME VARIABLES
-	------------------------------------------------------------------------------*/
-	std::string inputString;
-	
-	std::vector<Word*>* actionsInCurrentMessage;
-	
-	int numberOfActions, numberOfNouns;
-	
-	bool exitStatus = false;
-	
-	Parser* commandParser;
-	
-	Player* currentPlayer;
-	
-	/*------------------------------------------------------------------------------
-		INITIALIZE GAME
-	------------------------------------------------------------------------------*/	
-	commandParser = new Parser();
-	
-	
-	// Create Rooms
-	createRooms(commandParser);
-	
-	// create suspects
-	createSuspects(commandParser);
-	
-	// Create Items - requires rooms and suspects be completed
-	createItems(commandParser);
-	
-
-	// create features - requires rooms and items be completed	
-	createFeatures(commandParser);
-	
-	// create victim
-	
-
-
-	currentPlayer = new Player("player 1", getRoom("bedroom"));
-
-	
-	/*------------------------------------------------------------------------------
-		GAME LOOP
-	------------------------------------------------------------------------------*/
-	do
-	{
-		
-		currentRoomPrompt(currentPlayer->getLocation());
-		
-		std::cout << "What would you like to do?" << std::endl;
-		std::cout << "(Type 'help' if you need a list of actions you can take!)" << std::endl;
-		
-		getline(cin, inputString);
-		
-		if(inputString == "exit")
-		{
-			break;
-		}
-		
-		clearScreen();
-		
-		// Call newMessage to run parser on input
-		commandParser->newMessage(inputString);
-		
-		// get pointer to vector of word pointers
-		actionsInCurrentMessage = commandParser->getGameActions();
-		
-		// number of actions will be number of verbs
-		// verbs may have multiple nouns
-		numberOfActions = commandParser->getNumActions();
-		
-		// Iterate through verbs
-		for(int x = 0; x < numberOfActions; x++)
-		{
-			// get number of nouns for current verb
-			numberOfNouns = (((Verb*)((*actionsInCurrentMessage)[x]))->getNumberOfNouns());
-			
-			if(numberOfNouns > 0)
-			{
-				// iterate through nouns of current verb
-				for(int y = 0; y < numberOfNouns; y++)
-				{
-					exeCommand((*actionsInCurrentMessage)[x]->getText(), (((Verb*)((*actionsInCurrentMessage)[x]))->getIndexNounText(y)), currentPlayer);
-				}
-			}
-			else
-			{
-				exeCommand((*actionsInCurrentMessage)[x]->getText(), "nonoun", currentPlayer);
-			}
-		}
-		
-		
-		
-	}while(exitStatus != true);
-
-
-	//printRooms();
-	
-	//parserTest(commandParser);
-
-
-
-	cleanup(commandParser, currentPlayer);
-	
-
-
-	return 0;
-}
-
-
-
-
-
-/*********************************************************************
-***					      																								 ***
-***                 Game Initializing Functions                    ***
-***							      																						 ***
-**********************************************************************/
-
-
+#include "GameDriver.hpp"
 
 /*------------------------------------------------------------------------------
 		CREATE ROOMS
 ------------------------------------------------------------------------------*/
-void createRooms(Parser* commandParser)
+void GameDriver::createRooms(Parser* commandParser)
 {
 	std::ifstream inputFile;
 
@@ -362,7 +123,7 @@ void createRooms(Parser* commandParser)
 /*------------------------------------------------------------------------------
 		CREATE FEATURES
 ------------------------------------------------------------------------------*/
-void createFeatures(Parser* commandParser)
+void GameDriver::createFeatures(Parser* commandParser)
 {
 	std::ifstream inputFile;
 
@@ -443,7 +204,7 @@ void createFeatures(Parser* commandParser)
 /*------------------------------------------------------------------------------
 		CREATE ITEMS
 ------------------------------------------------------------------------------*/
-void createItems(Parser* commandParser)
+void GameDriver::createItems(Parser* commandParser)
 {
 	std::ifstream inputFile;
 
@@ -524,7 +285,7 @@ void createItems(Parser* commandParser)
 /*------------------------------------------------------------------------------
 		CREATE VICTIM
 ------------------------------------------------------------------------------*/
-void createVictim(Parser* commandParser)
+void GameDriver::createVictim(Parser* commandParser)
 {
 	std::ifstream inputFile;
 
@@ -565,7 +326,7 @@ void createVictim(Parser* commandParser)
 /*------------------------------------------------------------------------------
 		CREATE SUSPECTS
 ------------------------------------------------------------------------------*/
-void createSuspects(Parser* commandParser)
+void GameDriver::createSuspects(Parser* commandParser)
 {
 	std::ifstream inputFile;
 
@@ -626,7 +387,7 @@ void createSuspects(Parser* commandParser)
 /*------------------------------------------------------------------------------
 CREATE WITNESSES
 ------------------------------------------------------------------------------*/
-void createWitnesses(Parser* commandParser)
+void GameDriver::createWitnesses(Parser* commandParser)
 {
 	std::ifstream inputFile;
 
@@ -693,7 +454,7 @@ void createWitnesses(Parser* commandParser)
 /*------------------------------------------------------------------------------
 CREATE NOTEBOOK
 ------------------------------------------------------------------------------*/
-void createNotebook()
+void GameDriver::createNotebook()
 {
 	std::ifstream inputFile;
 
@@ -730,7 +491,7 @@ void createNotebook()
 /*------------------------------------------------------------------------------
 		GET ROOM
 ------------------------------------------------------------------------------*/
-Room* getRoom(std::string roomName)
+Room* GameDriver::getRoom(std::string roomName)
 {
 	if(roomName == "nonoun")
 		return NULL;
@@ -749,11 +510,11 @@ Room* getRoom(std::string roomName)
 /*------------------------------------------------------------------------------
 		current Room Prompt
 ------------------------------------------------------------------------------*/
-void currentRoomPrompt(Room* currentRoom)
+void GameDriver::currentRoomPrompt(Room* currentRoom)
 {
 	
 	std::ifstream inFile;
-  std::string input;
+	std::string input;
 	
 	//std::cout << std::endl;
 	//std::cout << "You are in: " << currentRoom->getName() << std::endl;
@@ -799,7 +560,7 @@ void currentRoomPrompt(Room* currentRoom)
 /*------------------------------------------------------------------------------
 		Features in Room Prompt
 ------------------------------------------------------------------------------*/
-void featuresInRoomPrompt(Room* currentRoom)
+void GameDriver::featuresInRoomPrompt(Room* currentRoom)
 {
 	
 }
@@ -808,7 +569,7 @@ void featuresInRoomPrompt(Room* currentRoom)
 /*------------------------------------------------------------------------------
 		Items in Room Prompt
 ------------------------------------------------------------------------------*/
-void itemsInRoomPrompt(Room* currentRoom)
+void GameDriver::itemsInRoomPrompt(Room* currentRoom)
 {
 	
 }
@@ -816,17 +577,17 @@ void itemsInRoomPrompt(Room* currentRoom)
 
 
 
-/*********************************************************************
-***					      																								 ***
-***                    Game Action Functions                       ***
-***							      																						 ***
-**********************************************************************/
+/*******************************************************************************
+***					      											
+***                    Game Action Functions                      
+***							      									
+*******************************************************************************/
 
 
 /*------------------------------------------------------------------------------
 		Execute Command
 ------------------------------------------------------------------------------*/
-void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
+void GameDriver::exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 {
 
 	//clearScreen();
@@ -888,7 +649,7 @@ void exeCommand(std::string verb, std::string noun, Player* currentPlayer)
 /*------------------------------------------------------------------------------
 		Change Rooms
 ------------------------------------------------------------------------------*/
-void movePlayer(Player* currentPlayer, std::string verbIn, std::string nounIn)
+void GameDriver::movePlayer(Player* currentPlayer, std::string verbIn, std::string nounIn)
 {
 	
 	// TODO: Add test for available room, either in this or getLocation
@@ -955,7 +716,7 @@ void movePlayer(Player* currentPlayer, std::string verbIn, std::string nounIn)
 /*------------------------------------------------------------------------------
 		Drop item
 ------------------------------------------------------------------------------*/
-void dropItem(Player* currentPlayer, std::string nounIn)
+void GameDriver::dropItem(Player* currentPlayer, std::string nounIn)
 {
 	
 	// test if item
@@ -968,7 +729,7 @@ void dropItem(Player* currentPlayer, std::string nounIn)
 /*------------------------------------------------------------------------------
 		pick up items
 ------------------------------------------------------------------------------*/
-void takeItem(Player* currentPlayer, std::string nounIn)
+void GameDriver::takeItem(Player* currentPlayer, std::string nounIn)
 {
 	// test if item
 	if(itemMap.find(nounIn) != itemMap.end())
@@ -981,7 +742,7 @@ void takeItem(Player* currentPlayer, std::string nounIn)
 /*------------------------------------------------------------------------------
 		inspect 
 ------------------------------------------------------------------------------*/
-void inspectObject(Player* currentPlayer, std::string nounIn)
+void GameDriver::inspectObject(Player* currentPlayer, std::string nounIn)
 {
 	// cannot access item or feature descriptions from player/room/inventory class
 	// because theire vectors contain only strings... will have to use map global 
@@ -1068,7 +829,7 @@ void inspectObject(Player* currentPlayer, std::string nounIn)
 /*------------------------------------------------------------------------------
 		display inventory
 ------------------------------------------------------------------------------*/
-void showInventory(Player* currentPlayer)
+void GameDriver::showInventory(Player* currentPlayer)
 {
 	// test if empty
 		// prompt if so
@@ -1079,7 +840,7 @@ void showInventory(Player* currentPlayer)
 /*------------------------------------------------------------------------------
 		HACK COMPUTER 
 ------------------------------------------------------------------------------*/
-void hackComputer(Player* currentPlayer, std::string nounIn)
+void GameDriver::hackComputer(Player* currentPlayer, std::string nounIn)
 {
 	// If the player has the computer in inventory, they can hack it.
 	if (currentPlayer->itemInInventory(itemMap[nounIn]))
@@ -1091,7 +852,7 @@ void hackComputer(Player* currentPlayer, std::string nounIn)
 /*------------------------------------------------------------------------------
 		TAKE WITNESS STATEMENT
 ------------------------------------------------------------------------------*/
-void getStatement(Player* currentPlayer, std::string name)
+void GameDriver::getStatement(Player* currentPlayer, std::string name)
 {
 	// If the player is in the same room as the witness...
 	if (currentPlayer->getLocation() == witnessMap[name]->getLocation())
@@ -1117,7 +878,7 @@ void getStatement(Player* currentPlayer, std::string name)
 /*------------------------------------------------------------------------------
 		INTERROGATE SUSPECT
 ------------------------------------------------------------------------------*/
-void interrogateSuspect(Player* currentPlayer, std::string name)
+void GameDriver::interrogateSuspect(Player* currentPlayer, std::string name)
 {
 	// If the player is in the cell room...
 	if (currentPlayer->getLocation() == roomMap["cells"])
@@ -1146,7 +907,7 @@ void interrogateSuspect(Player* currentPlayer, std::string name)
 /*------------------------------------------------------------------------------
 		ANALYZE ITEM
 ------------------------------------------------------------------------------*/
-void analyzeItem(Player* currentPlayer, std::string nounIn)
+void GameDriver::analyzeItem(Player* currentPlayer, std::string nounIn)
 {
 	// test if in lab
 	if(currentPlayer->getLocation() == roomMap["lab"])
@@ -1204,8 +965,7 @@ void analyzeItem(Player* currentPlayer, std::string nounIn)
 /*------------------------------------------------------------------------------
 		Help - Displays the list of actions that the player can take.
 ------------------------------------------------------------------------------*/
-
-void helpPlayer()
+void GameDriver::helpPlayer()
 {
 	std::cout << "Here is the lits of actions you are able to take:\n" << std::endl;
 
@@ -1232,7 +992,7 @@ void helpPlayer()
 }
 
 
-void clearScreen()
+void GameDriver::clearScreen()
 {
 	std::cout << "\033[2J\033[1;1H";
 }
@@ -1243,7 +1003,7 @@ void clearScreen()
 		cleanup
 ------------------------------------------------------------------------------*/
 
-void cleanup(Parser* currentParser, Player* currentPlayer)
+void GameDriver::cleanup(Parser* currentParser, Player* currentPlayer)
 {
 	// Deletes all instantiated class Word derived objects
 	currentParser->clearMessage();
@@ -1259,7 +1019,7 @@ void cleanup(Parser* currentParser, Player* currentPlayer)
 /*------------------------------------------------------------------------------
 		CHECK LINE ENDINGS
 ------------------------------------------------------------------------------*/
-void checkLineEndings(std::string* thisString)
+void GameDriver::checkLineEndings(std::string* thisString)
 {
 	int length = thisString->length();
 
@@ -1277,7 +1037,7 @@ void checkLineEndings(std::string* thisString)
 		Test Functions
 ------------------------------------------------------------------------------*/
 /*
-void printRooms()
+void GameDriver::printRooms()
 {
 	int numRooms = roomTestVector.size();
 	std::cout << "There are a total of " << numRooms << " rooms." << std::endl;
@@ -1290,7 +1050,7 @@ void printRooms()
 
 
 
-void printRoom(Room* room)
+void GameDriver::printRoom(Room* room)
 {
 	std::cout << "You are in the " << room->getName() << "." << std::endl;
 	std::cout << room->getLongDescription() << std::endl;
@@ -1308,4 +1068,29 @@ void printRoom(Room* room)
 }
 */
 
+template <typename Archive>
+void GameDriver::serialize(Archive& ar, GameDriver& savedGame, const unsigned int version)
+{
+	ar& savedGame.itemMap;
+	ar& savedGame.roomMap;
+	ar& savedGame.featureMap;
+	ar& savedGame.suspectMap;
+	ar& savedGame.witnessMap;
+	ar& savedGame.roomTestVector;
+	ar& savedGame.playerNotebook;
+}
 
+void GameDriver::save(Player* currentPlayer)
+{
+	std::ofstream outputFileStream("saveFile");
+	boost::archive::text_oarchive outputArchive(outputFileStream);
+	
+	outputArchive << *this;
+
+	GameDriver* newGame;
+
+	std::ifstream inputFileStream("saveFile");
+	boost::archive::text_iarchive inputArchive(inputFileStream);
+	inputArchive >> newGame;
+	currentRoomPrompt(currentPlayer->getLocation());
+}
