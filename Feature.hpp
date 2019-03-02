@@ -30,16 +30,23 @@ private:
 	
 	bool alreadyInspected;
 	
-	// if the feature capable of being acted on directly
+	// if the feature can be sampled.
+	bool canSample;
+	
+	// has the feature been acted on already 
+	bool alreadySampled;
+	
+	// if the feature capable of being acted on directly by an item
 	bool actionAble;
 	
 	// has the feature been acted on already 
 	bool alreadyActioned;
 	
+	// item that can affect this feature
+	std::string itemToUse;
 	
+	// item revealed or added to inventory from this feature
 	Item* itemAffected;
-	
-	//Item* actionItem;
 	
 
 public:

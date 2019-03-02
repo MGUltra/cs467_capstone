@@ -122,11 +122,19 @@ public:
 	void takeItem(std::string);
 	void inspectObject(std::string);
 	void showInventory();
-
 	void hackComputer(std::string);
 	void getStatement(std::string);
 	void interrogateSuspect(std::string);
 	void analyzeItem(std::string);
+	void accuseSuspect(std::string);
+	void sampleFeature(std::string);
+	void askAboutItem(std::string, std::string);
+	void useItemOnFeature(std::string, std::string);
+	void drinkFeature(std::string, std::string);
+	void listenToRecording(std::string);
+	void talkToPerson(std::string);
+	void reflectOnCase(std::string);
+	void clearSuspect(std::String);
 
 
 	void helpPlayer();

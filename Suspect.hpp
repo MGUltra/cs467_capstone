@@ -23,7 +23,11 @@ private:
 	std::string description;
 	std::string answer1;
 	std::string answer2;
-
+	std::string talkResponse;
+	std::string interrogateResponse;
+	std::string accuseResponseTrue;
+	std::string accuseResponseFalse;
+	
 	bool sigItemFound;
 
 public:

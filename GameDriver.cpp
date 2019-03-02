@@ -973,11 +973,11 @@ void Gamestate::showInventory()
 ------------------------------------------------------------------------------*/
 void Gamestate::hackComputer(std::string nounIn)
 {
-	// If the player has the computer in inventory, they can hack it.
-	if (this->currentPlayer.itemInInventory(this->itemMap[nounIn]))
-	{
-		std::cout << this->itemMap[nounIn]->getDescription() << std::endl << std::endl;
-	}
+	// Computer will be feature that adds item to inventory
+	//if (this->currentPlayer.itemInInventory(this->itemMap[nounIn]))
+	//{
+	//	std::cout << this->itemMap[nounIn]->getDescription() << std::endl << std::endl;
+	//}
 }
 
 /*------------------------------------------------------------------------------
@@ -1088,6 +1088,147 @@ void Gamestate::analyzeItem(std::string nounIn)
 		std::cout << "| You must be in the lab to analyze objects" << std::endl;
 	}
 }
+
+
+
+void Gamestate::accuseSuspect(std::string personIn)
+{
+	// test if suspect, witness, chief
+	
+	// if suspect
+		
+		// test if other two suspects exonerated
+			// if not - prompt to clear innocent parties first
+				// send response from suspect as well
+				// can be generic "You've got nothing on me"
+		
+			// if so
+				// test if enough evidence gathered
+					// if so - success
+					// game ends
+	
+	// if witness
+		// incredulous response
+	
+	// if chief
+		// generic response
+}
+
+void Gamestate::sampleFeature(std::string featureIn)
+{
+	// test if featureIn is able to be sampled
+	
+		// if so - test if sample has already been taken
+		
+			// if so - prompt that sample has already been taken and return
+			
+			// if not - set sample taken to true, flag in notebook, add sample item to inventory
+			
+		// if not, do nothing
+		// prompt "Sampling this will not accomplish anything"
+}
+
+void Gamestate::askAboutItem(std::string personIn, std::string itemIn)
+{
+	// test if personIn is witness, chief, suspect
+	
+	// chief
+		// generic response about being the brass and not going to do your job
+		
+	// witness
+		// test if they have a response to item
+			// if so - flag in notebook and return response
+			// if not - return generic response
+			
+	// suspect
+		// test if they have a response to item
+			// if so - flag in notebook and return response
+			// if not - return generic response
+}
+
+void Gamestate::useItemOnFeature(std::string itemIn, std::string featureIn)
+{
+	// test if featureIn is affected by an item - feature variable actionAble
+	
+		// if so - test if itemIn is the item that can affect feature
+			
+			// if so - test if itemIn already used on feature - feature variable alreadyActioned
+			
+				// if so - prompt that nothing more can be done
+				// if not - flag in notebook - set alreadyActioned to true - and reveal item
+			
+			// if not - promp that the item does nothing
+		
+		// if not - prompt that the item does nothing
+		
+		
+}
+
+void Gamestate::drinkFeature(std::string featureIn)
+{
+	// test if featureIn is actionable
+		
+		// if so - test if feature is coffee
+			// prompt that you drink the coffee - set flag in notebook (coffee breath) - set flag in feature
+		
+		// if not - prompt "drinking this will do nothing good"
+}
+
+void Gamestate::listenToRecording(std::string itemIn)
+{
+	// test if answering machine (feature) or recording (item)
+	
+	// if answering machine - test if listened to before
+		// if not - prompt with recording dialog and add recording item to inventory
+		// if so - prompt that you've already taken the recording
+	
+	// if recording
+		// if in inventory or room - prompt with recording dialog
+		// if not in room - say you dont have it right now
+		
+		
+}
+
+void Gamestate::talkToPerson(std::string personIn)
+{
+	// if personIn is suspect or witness and in the same room
+		// prompt with response
+		
+	// if personIn is chief and in the same room
+		// test notebook for progress
+			// return with appropriate response 
+			
+	// if personIn is none of the above or not in the room
+		// prompt that its not healthy to talk to oneself
+}
+
+void Gamestate::reflectOnCase()
+{
+	// prompt with status of each suspect and the evidence
+}
+
+void Gamestate::clearSuspect(std::String personIn)
+{
+	// test if personIn is suspect
+		// if so
+			// test if enough evidence to clear them
+				// if so, set flag for suspect to cleared in notebook
+					// remove suspect from cells
+				
+				// if not, prompt that more evidence is needed before they can be released
+				
+		// if not suspect
+			// if witness and in same room
+				// prompt "I know I didn't do it"
+		
+			// if chief and in the same room
+				// prompt "get back to work" or something
+}
+
+
+
+
+
 
 
 

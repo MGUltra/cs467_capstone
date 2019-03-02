@@ -20,7 +20,7 @@ LIBRARIES
 class Notebook
 {
 private:
-	std::unordered_map<std::string, std::string> notebookEntries;
+	std::unordered_map<std::string, bool> gameFlags;
 
 public:
 	// constructor
@@ -29,9 +29,14 @@ public:
 	//~Notebook();
 
 	// get
-	std::string getEntry(std::string);
+	bool getEntry(std::string);
 
 	// add
 	void setEntry(std::string, std::string);
+	
+	// change flags
+	void changeEntry(std::string, bool);
+	
+	
 };
 #endif
