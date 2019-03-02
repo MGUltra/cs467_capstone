@@ -102,11 +102,6 @@ public:
 	// Cleanup function
 	void cleanup(Parser*, Player*);
 
-	// Save and Load
-	template <typename Archive>
-	void serialize(Archive&, GameDriver&, const unsigned int);
-	void save(Player*);
-
 	GameDriver();
 };
 

@@ -122,3 +122,30 @@ GameDriver* load(GameDriver* newGame)
 	boost::archive::text_iarchive inputArchive(inputFileStream);
 	inputArchive >> newGame;
 }
+
+template <typename Archive>
+void serialize(Archive& ar, GameDriver& savedGame, const unsigned int version)
+{
+	ar& savedGame.itemMap;
+	ar& savedGame.roomMap;
+	ar& savedGame.featureMap;
+	ar& savedGame.suspectMap;
+	ar& savedGame.witnessMap;
+	ar& savedGame.roomTestVector;
+	ar& savedGame.playerNotebook;
+}
+
+void save(Player* currentPlayer, GameDriver* gameDriver)
+{
+	std::ofstream outputFileStream("saveFile");
+	boost::archive::text_oarchive outputArchive(outputFileStream);
+
+	outputArchive << gameDriver;
+
+	GameDriver* newGame;
+
+	std::ifstream inputFileStream("saveFile");
+	boost::archive::text_iarchive inputArchive(inputFileStream);
+	inputArchive >> newGame;
+	currentRoomPrompt(currentPlayer->getLocation());
+}

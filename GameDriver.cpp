@@ -1073,30 +1073,3 @@ void GameDriver::printRoom(Room* room)
 	}
 }
 */
-
-
-void GameDriver::serialize(Archive& ar, GameDriver& savedGame, const unsigned int version)
-{
-	ar& savedGame.itemMap;
-	ar& savedGame.roomMap;
-	ar& savedGame.featureMap;
-	ar& savedGame.suspectMap;
-	ar& savedGame.witnessMap;
-	ar& savedGame.roomTestVector;
-	ar& savedGame.playerNotebook;
-}
-
-void GameDriver::save(Player* currentPlayer)
-{
-	std::ofstream outputFileStream("saveFile");
-	boost::archive::text_oarchive outputArchive(outputFileStream);
-	
-	outputArchive << *this;
-
-	GameDriver* newGame;
-
-	std::ifstream inputFileStream("saveFile");
-	boost::archive::text_iarchive inputArchive(inputFileStream);
-	inputArchive >> newGame;
-	currentRoomPrompt(currentPlayer->getLocation());
-}
