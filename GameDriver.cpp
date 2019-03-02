@@ -1074,7 +1074,7 @@ void GameDriver::printRoom(Room* room)
 }
 */
 
-template <typename Archive>
+
 void GameDriver::serialize(Archive& ar, GameDriver& savedGame, const unsigned int version)
 {
 	ar& savedGame.itemMap;
