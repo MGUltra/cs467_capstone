@@ -39,3 +39,16 @@ void Notebook::changeEntry(std::string name, bool entry)
 {
 	gameFlags[name] = entry;
 }
+
+
+void Notebook::saveGame()
+{
+	
+}
+
+
+
+void Notebook::loadGame()
+{
+	
+}

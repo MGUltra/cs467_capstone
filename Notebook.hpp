@@ -21,7 +21,35 @@ class Notebook
 {
 private:
 	std::unordered_map<std::string, bool> gameFlags;
-
+	
+	
+	//item flags - for each item
+	// itemnameAvailable
+	// itemnameAnalyzed
+	std::unordered_map<std::string, bool> itemFlags;
+	
+	
+	// feature flags - for each feature
+	// featurenameAlreadyInspected
+	// featurenameAlreadySampled
+	// featurenameAlreadyActioned
+	std::unordered_map<std::string, bool> featureFlags;
+	
+	// room flags - for each room
+	// roomnameAlreadyVisited
+	std::unordered_map<std::string, bool> roomFlags;
+	
+	
+	std::unordered_map<std::string, bool> suspectFlags;
+	
+	std::unordered_map<std::string, bool> witnessFlags;
+	
+	std::unordered_map<std::string, bool> chiefFlags;
+	
+	// key is item name, value is either room name or inventory;
+	std::unordered_map<std::string, std::string> itemLocations;
+	
+	
 public:
 	// constructor
 	Notebook();
@@ -36,6 +64,11 @@ public:
 	
 	// change flags
 	void changeEntry(std::string, bool);
+	
+	
+	void saveGame();
+	
+	void loadGame();
 	
 	
 };

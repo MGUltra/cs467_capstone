@@ -28,6 +28,10 @@ private:
 	std::string accuseResponseTrue;
 	std::string accuseResponseFalse;
 	
+	bool isGuilty;
+	bool isCleared;
+	bool isAccused;
+	
 	bool sigItemFound;
 
 public:

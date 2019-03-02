@@ -50,7 +50,9 @@ private:
 	std::unordered_map<std::string, Suspect*> suspectMap;
 	std::unordered_map<std::string, Witness*> witnessMap;
 	std::vector<std::string> roomTestVector;
-
+	std::vector<std::string> nounVector;
+	
+	
 	std::string RoomsFile;
 	std::string FeaturesFile;
 	std::string ItemsFile;
@@ -67,8 +69,6 @@ private:
 	
 	bool exitStatus;
 	
-	
-	// pointers or actual objects?
 	Parser commandParser;
 	
 	Player currentPlayer;
@@ -116,7 +116,7 @@ public:
 
 
 	// GAME ACTIONS
-	void exeCommand(std::string, std::string);
+	void exeCommand(std::string);
 	void movePlayer(std::string, std::string);
 	void dropItem(std::string);
 	void takeItem(std::string);

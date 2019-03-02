@@ -52,8 +52,14 @@ Gamestate::~Gamestate()
 
 void Gamestate::playGame()
 {
+	std::string currentVerb;
+	
 	do
 	{
+		
+		currentVerb.clear();
+		
+		this->nounVector.clear();
 		
 		currentRoomPrompt(this->currentPlayer.getLocation());
 		
@@ -82,20 +88,47 @@ void Gamestate::playGame()
 		// Iterate through verbs
 		for(int x = 0; x < numberOfActions; x++)
 		{
+			currentVerb.clear();
+			
+			this->nounVector.clear();
+			
 			// get number of nouns for current verb
 			numberOfNouns = (((Verb*)((*actionsInCurrentMessage)[x]))->getNumberOfNouns());
 			
+			currentVerb = (*actionsInCurrentMessage)[x]->getText();
+			
 			if(numberOfNouns > 0)
 			{
-				// iterate through nouns of current verb
-				for(int y = 0; y < numberOfNouns; y++)
+				if(currentVerb == "ask" || currentVerb == "use")
 				{
-					exeCommand((*actionsInCurrentMessage)[x]->getText(), (((Verb*)((*actionsInCurrentMessage)[x]))->getIndexNounText(y)));
+					for(int y = 0; y < numberOfNouns; y++)
+					{
+						this->nounVector.push_back((((Verb*)((*actionsInCurrentMessage)[x]))->getIndexNounText(y)));
+					}
+					
+					exeCommand(currentVerb);
+					
+				}
+				else
+				{
+					// iterate through nouns of current verb
+					for(int y = 0; y < numberOfNouns; y++)
+					{
+						
+						this->nounVector.clear();
+						
+						this->nounVector.push_back(((Verb*)((*actionsInCurrentMessage)[x]))->getIndexNounText(y));
+						
+						exeCommand((*actionsInCurrentMessage)[x]->getText());
+					}
 				}
 			}
 			else
 			{
-				exeCommand((*actionsInCurrentMessage)[x]->getText(), "nonoun");
+				
+				this->nounVector.push_back("nonoun");
+				
+				exeCommand((*actionsInCurrentMessage)[x]->getText());
 			}
 		}
 		
@@ -442,6 +475,7 @@ void Gamestate::createVictim()
 	description = fileLine;
 	this->checkLineEndings(&description);
 
+	// this will be destroyed as soon as it goes out of scope
 	Victim newVictim = Victim(name, description);
 	
 	// populate parser noun set
@@ -718,7 +752,7 @@ void Gamestate::itemsInRoomPrompt(Room* currentRoom)
 /*------------------------------------------------------------------------------
 		Execute Command
 ------------------------------------------------------------------------------*/
-void Gamestate::exeCommand(std::string verb, std::string noun)
+void Gamestate::exeCommand(std::string verb)
 {
 
 	//clearScreen();
@@ -749,22 +783,22 @@ void Gamestate::exeCommand(std::string verb, std::string noun)
 	switch(functionToCall) {
 		
 		case 1:	// change rooms
-			this->movePlayer(verb, noun);
+			this->movePlayer(verb, this->nounVector[0]);
 			break;
 		case 2: // drop item
-			this->dropItem(noun);
+			this->dropItem(this->nounVector[0]);
 			break;
 		case 3: // pick up item
-			this->takeItem(noun);
+			this->takeItem(this->nounVector[0]);
 			break;
 		case 4: // inspect
-			this->inspectObject(noun);
+			this->inspectObject(this->nounVector[0]);
 			break;
 		case 5:	// inventory
 			this->showInventory();
 			break;
 		case 6: // analyze
-			this->analyzeItem(noun);
+			this->analyzeItem(this->nounVector[0]);
 			break;
 		case 7: // help
 			this->helpPlayer();
