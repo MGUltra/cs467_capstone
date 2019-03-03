@@ -1,11 +1,19 @@
+/*******************************************************************************
+** Program: Capstone Project - Team Homam - W2019
+** Author: Rozalija Zibrat, Matthew Garner, Kendal Droddy
+** Date: 17 March 2019
+** Description: A murder mystery game where the player has to interrogate
+** suspects, investigate the crime scene, search for evidence, and ultimately
+** decide who committed the murder.
+*******************************************************************************/
 
 #include "Gamedriver.hpp"
 
-/***************************************************************
-***																													 ***
-***                      Constructor                         ***
-***																													 ***
-****************************************************************/
+/*******************************************************************************
+***																			 ***
+***                      Constructor										 ***
+***																			 ***
+*******************************************************************************/
 
 Gamestate::Gamestate()
 	: itemMap()
@@ -36,11 +44,11 @@ Gamestate::Gamestate()
 
 
 
-/***************************************************************
-***																													 ***
-***                      Destructor                          ***
-***																													 ***
-****************************************************************/
+/*******************************************************************************
+***																			 ***
+***                      Destructor											 ***
+***																			 ***
+*******************************************************************************/
 
 
 Gamestate::~Gamestate()
@@ -149,11 +157,11 @@ void Gamestate::playGame()
 
 
 
-/*********************************************************************
-***					      																								 ***
-***                 Game Initializing Functions                    ***
-***							      																						 ***
-**********************************************************************/
+/*******************************************************************************
+***					      													 ***
+***                 Game Initializing Functions								 ***
+***							      											 ***
+*******************************************************************************/
 
 void Gamestate::createGame()
 {
@@ -180,6 +188,14 @@ void Gamestate::createGame()
 	
 	this->currentPlayer.setLocation(this->getRoom("station"));
 	
+	//IF LOADING A SAVED GAME
+	//		CHANGE FLAGS 
+	//		IF ITEM IN INVENTORY
+	//			MOVE ITEM TO INVENTORY
+	//			SET LOCATION TO NULL
+	//		ELSE
+	//			MOVE ITEM TO GIVEN LOCATION
+
 }
 
 /*------------------------------------------------------------------------------
@@ -673,7 +689,16 @@ Room* Gamestate::getRoom(std::string roomName)
 	return this->roomMap[roomName];
 }
 
+/*------------------------------------------------------------------------------
+GET SUSPECT
+------------------------------------------------------------------------------*/
+Suspect* Gamestate::getSuspect(std::string suspectName)
+{
+	if (suspectName == "nonoun")
+		return NULL;
 
+	return this->suspectMap[suspectName];
+}
 
 
 
@@ -751,11 +776,11 @@ void Gamestate::itemsInRoomPrompt(Room* currentRoom)
 
 
 
-/*********************************************************************
-***					      																								 ***
-***                    Game Action Functions                       ***
-***							      																						 ***
-**********************************************************************/
+/*******************************************************************************
+***					      													 ***
+***                    Game Action Functions								 ***
+***							      											 ***
+*******************************************************************************/
 
 
 /*------------------------------------------------------------------------------
@@ -976,7 +1001,6 @@ void Gamestate::takeItem(std::string nounIn)
 		std::cout << "| you cannot pick up " << nounIn << std::endl;
 }
 
-
 /*------------------------------------------------------------------------------
 		inspect 
 ------------------------------------------------------------------------------*/
@@ -1140,8 +1164,6 @@ void Gamestate::interrogateSuspect(std::string name)
 	}
 }
 
-
-
 /*------------------------------------------------------------------------------
 		ANALYZE ITEM
 ------------------------------------------------------------------------------*/
@@ -1200,25 +1222,66 @@ void Gamestate::analyzeItem(std::string nounIn)
 
 void Gamestate::accuseSuspect(std::string personIn)
 {
-	// test if suspect, witness, chief
-	
-	// if suspect
-		
-		// test if other two suspects exonerated
-			// if not - prompt to clear innocent parties first
-				// send response from suspect as well
-				// can be generic "You've got nothing on me"
-		
-			// if so
-				// test if enough evidence gathered
-					// if so - success
-					// game ends
-	
-	// if witness
-		// incredulous response
-	
-	// if chief
-		// generic response
+	if (currentPlayer.getLocation() == getRoom("station"))
+	{
+		// if suspect
+		if (suspectMap.find(personIn) != suspectMap.end())
+		{
+			Suspect* currentSuspect = getSuspect(personIn);
+			if (currentSuspect->getIsCleared())
+			{
+				std::cout << "He's already been cleared!  It must be one of the other two." << std::endl;
+			}
+			else
+			{
+				// test if other two suspects exonerated
+				// Iterator pointing to begining of map
+				std::unordered_map<std::string, Suspect*>::iterator it = suspectMap.begin();
+				// check how many suspects have been cleared
+				int clearedSuspects = 0;
+				while (it != suspectMap.end())
+				{
+					if (it->second->getIsCleared())
+					{
+						clearedSuspects++;
+					}
+					it++;
+				}
+
+				// accused is not clear, but the other two are
+				// WINNING CONDITION
+				if (clearedSuspects == 2 && currentSuspect->getSigItemFound())
+				{
+					std::cout << "You got him!" << std::endl;
+				}
+				//accused is not clear, and one or both of the others isn't either.
+				else
+				{
+					std::cout << "You can't say it's " << personIn 
+							<< " for sure. You need to clear the other suspects first." << std::endl;
+				}
+			}
+		}
+		// if witness
+		if (witnessMap.find(personIn) != witnessMap.end())
+		{
+			std::cout << "That's preposterous! " << personIn <<" is a witness!" << std::endl;
+		}
+		// if chief
+		if (personIn == "chief")
+		{
+			std::cout << "Ha Ha Ha. Get back to work!" << std::endl;
+		}
+		// not a suspect, witness, or chief
+		else
+		{
+			std::cout << "Who is that?  They're not involved in this case." << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "No one hears your accusation.  Try again at the station." << std::endl;
+	}
 }
 
 void Gamestate::sampleFeature(std::string featureIn)
@@ -1422,6 +1485,4 @@ void Gamestate::checkLineEndings(std::string* thisString)
 	//else
 		//std::cout << "Nothing removed" << std::endl;
 }
-
-
 

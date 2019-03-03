@@ -50,6 +50,21 @@ bool Suspect::getSigItemFound()
 	return sigItemFound;
 }
 
+bool Suspect::getIsGuilty()
+{
+	return isGuilty;
+}
+
+bool Suspect::getIsCleared()
+{
+	return isCleared;
+}
+
+bool Suspect::getIsAccused()
+{
+	return isAccused;
+}
+
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/

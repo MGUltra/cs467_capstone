@@ -22,8 +22,6 @@
 #include <stdio.h>
 #include <unistd.h>
 
-
-
 #include "Room.hpp"
 #include "Player.hpp"
 #include "Victim.hpp"
@@ -33,7 +31,6 @@
 #include "Notebook.hpp"
 #include "parser.hpp"
 #include "dataRead.hpp"
-
 
 
 
@@ -81,8 +78,6 @@ public:
 	~Gamestate();
 
 
-
-
 	// play game
 	void playGame();
 
@@ -102,10 +97,10 @@ public:
 	// helper functions
 	int findArrayIndex(std::string);
 	Room* getRoom(std::string);
+	Suspect* getSuspect(std::string);
 	void printRooms();
 	void printRoom(Room*);
 	void checkLineEndings(std::string*);
-
 
 
 	// Game Prompts
@@ -143,11 +138,5 @@ public:
 	
 	// Cleanup function
 	void cleanup();
-
-
-
-
-
-
 };
 #endif

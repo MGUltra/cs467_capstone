@@ -44,6 +44,10 @@ public:
 	std::string getAnswer1();
 	std::string getAnswer2();
 	bool getSigItemFound();
+	bool getIsGuilty();
+	bool getIsCleared();
+	bool getIsAccused();
+
 
 	//set
 	void setName(std::string);
