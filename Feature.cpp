@@ -44,6 +44,25 @@ bool Feature::getAlreadyInspected()
 	return alreadyInspected;
 }
 
+bool Feature::getAlreadyActioned()
+{
+	return alreadyActioned;
+}
+
+bool Feature::getCanSample()
+{
+	return canSample;
+}
+
+bool Feature::getCanHack()
+{
+	return canHack;
+}
+
+bool Feature::actionAble()
+{
+	return alreadyInspected;
+}
 
 /*******************************************************************************
 *		SET FUNCTIONS
@@ -73,13 +92,32 @@ void Feature::setItemAffected(Item* newItem)
 	this->itemAffected = newItem;
 }
 
+void setAlreadyActioned(bool boolIn)
+{
+	this->alreadyActioned = boolIn;
+}
+
+void setCanSample(bool boolIn)
+{
+	this->canSample = boolIn;
+}
+
+void setCanHack(bool boolIn)
+{
+	this->canHack = boolIn;
+}
+
+void setActionAble(bool boolIn)
+{
+	this->actionAble = boolIn;
+}
 
 
 void Feature::inspected()
 {
-	//std::cout << "You take a closer look at the " << this->getName() << "." << std::endl;
 	
 	this->itemAffected->revealedByFeature();
 	
 	this->setAlreadyInspected(true);
+	
 }

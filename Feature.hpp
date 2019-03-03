@@ -24,29 +24,19 @@ class Feature
 {
 private:
 	std::string name;
-	std::string description;
+	std::string descriptionFirst; // description sent when first examined or acted upon
+	std::string descriptionAfter; // description sent after examined or acted upon
 	std::string location;
+	std::string itemToUse;	// item that can affect this feature
+	bool canSample;					// if the feature can be sampled.
+	bool canHack;						// if the feature can be hacked.
+	bool actionAble;				// if the feature capable of being acted on directly by an item
 	
+	bool alreadyInspected;	// has the feature been inspected
+	bool alreadyActioned;		// has the feature been acted on already - sample, Hacked, or use item on
 	
-	bool alreadyInspected;
+	Item* itemAffected;			// item revealed or added to inventory from this feature
 	
-	// if the feature can be sampled.
-	bool canSample;
-	
-	// has the feature been acted on already 
-	bool alreadySampled;
-	
-	// if the feature capable of being acted on directly by an item
-	bool actionAble;
-	
-	// has the feature been acted on already 
-	bool alreadyActioned;
-	
-	// item that can affect this feature
-	std::string itemToUse;
-	
-	// item revealed or added to inventory from this feature
-	Item* itemAffected;
 	
 
 public:
@@ -58,13 +48,23 @@ public:
 	std::string getDescription();
 	std::string getLocation();
 	bool getAlreadyInspected();
-
+	bool getAlreadyActioned();
+	bool getCanSample();
+	bool getCanHack();
+	bool getActionAble();
+	
 	// set
 	void setName(std::string);
 	void setDescription(std::string);
 	void setLocation(std::string);
 	void setAlreadyInspected(bool);
 	void setItemAffected(Item*);
+	void setAlreadyActioned(bool);
+	void setCanSample(bool);
+	void setCanHack(bool);
+	void setActionAble(bool);
+	
+	
 	
 	void inspected();
 };

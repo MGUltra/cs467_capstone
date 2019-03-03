@@ -996,8 +996,25 @@ void Gamestate::inspectObject(std::string nounIn)
 		// test if feature is present in the current room 
 		if(roomPtr->isFeatureInRoom(featurePtr) == true)
 		{
+			
+			// test if canSample || canHack || actionAble are true
+			if(featurePtr->getCanSample() == true || featurePtr->getCanHack() == true || featurePtr->getActionAble() == true)
+			{
+				// if any of the above - test if already actioned
+				if(featurePtr->getAlreadyActioned() == false)
+				{
+					// output descriptionFirst
+					// do not update alreadyInspected
+				}
+			
+			
+				// output descriptionFirst
+				// do not update alreadyInspected
+			
+			}
+			// if not 
 			// test if feature already inspected
-			if(roomPtr->isFeatureExamined(featurePtr) == false)
+			else if(roomPtr->isFeatureExamined(featurePtr) == false)
 			{
 				std::ifstream inFile;
 				

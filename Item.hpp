@@ -27,6 +27,7 @@ class Item
 	std::string forensicAnalysis;
 	bool available;
 	bool analyzed;
+	bool usable;
 	Suspect* belongsTo;
 
 	public:
