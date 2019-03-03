@@ -98,6 +98,7 @@ public:
 	int findArrayIndex(std::string);
 	Room* getRoom(std::string);
 	Suspect* getSuspect(std::string);
+	Feature* getFeature(std::string);
 	void printRooms();
 	void printRoom(Room*);
 	void checkLineEndings(std::string*);

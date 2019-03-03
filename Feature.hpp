@@ -57,7 +57,13 @@ public:
 	std::string getName();
 	std::string getDescription();
 	std::string getLocation();
+	
 	bool getAlreadyInspected();
+	bool getAlreadySampled();
+	bool getCanSample();
+	bool getActionAble();
+	bool getAlreadyActioned();
+	Item* getAffectedItem();
 
 	// set
 	void setName(std::string);
@@ -65,6 +71,8 @@ public:
 	void setLocation(std::string);
 	void setAlreadyInspected(bool);
 	void setItemAffected(Item*);
+	void setAlreadySampled();
+	void setAlreadyActioned();
 	
 	void inspected();
 };

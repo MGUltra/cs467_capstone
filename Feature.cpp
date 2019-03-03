@@ -44,6 +44,31 @@ bool Feature::getAlreadyInspected()
 	return alreadyInspected;
 }
 
+bool Feature::getAlreadySampled()
+{
+	return alreadySampled;
+}
+
+bool Feature::getCanSample()
+{
+	return canSample;
+}
+
+bool Feature::getActionAble()
+{
+	return actionAble;
+}
+
+bool Feature::getAlreadyActioned()
+{
+	return alreadyActioned;
+}
+
+Item* Feature::getAffectedItem()
+{
+	return itemAffected;
+}
+
 
 /*******************************************************************************
 *		SET FUNCTIONS
@@ -73,7 +98,15 @@ void Feature::setItemAffected(Item* newItem)
 	this->itemAffected = newItem;
 }
 
+void Feature::setAlreadyActioned()
+{
+	alreadyActioned = true;
+}
 
+void Feature::setAlreadySampled()
+{
+	alreadySampled = true;
+}
 
 void Feature::inspected()
 {

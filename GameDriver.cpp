@@ -700,7 +700,16 @@ Suspect* Gamestate::getSuspect(std::string suspectName)
 	return this->suspectMap[suspectName];
 }
 
+/*------------------------------------------------------------------------------
+GET FEATURE
+------------------------------------------------------------------------------*/
+Feature* Gamestate::getFeature(std::string featureName)
+{
+	if (featureName == "nonoun")
+		return NULL;
 
+	return this->featureMap[featureName];
+}
 
 
 
@@ -1263,12 +1272,12 @@ void Gamestate::accuseSuspect(std::string personIn)
 			}
 		}
 		// if witness
-		if (witnessMap.find(personIn) != witnessMap.end())
+		else if (witnessMap.find(personIn) != witnessMap.end())
 		{
 			std::cout << "That's preposterous! " << personIn <<" is a witness!" << std::endl;
 		}
 		// if chief
-		if (personIn == "chief")
+		else if (personIn == "chief")
 		{
 			std::cout << "Ha Ha Ha. Get back to work!" << std::endl;
 		}
@@ -1286,16 +1295,25 @@ void Gamestate::accuseSuspect(std::string personIn)
 
 void Gamestate::sampleFeature(std::string featureIn)
 {
-	// test if featureIn is able to be sampled
-	
-		// if so - test if sample has already been taken
-		
-			// if so - prompt that sample has already been taken and return
-			
-			// if not - set sample taken to true, flag in notebook, add sample item to inventory
-			
-		// if not, do nothing
-		// prompt "Sampling this will not accomplish anything"
+	Feature* currentFeature = getFeature(featureIn);
+
+	if (currentFeature->getCanSample())
+	{
+		if (currentFeature->getAlreadySampled())
+		{
+			std::cout << "You already sampled this." << std::endl;
+		}
+		else
+		{
+			std::cout << "You take a sample." << std::endl;
+			currentFeature->setAlreadySampled();
+			currentPlayer.pickUpItem(currentFeature->getAffectedItem());
+		}
+	}
+	else
+	{
+		std::cout << "It wouldn't do much good to sample this." << std::endl;
+	}
 }
 
 void Gamestate::askAboutItem(std::string personIn, std::string itemIn)
