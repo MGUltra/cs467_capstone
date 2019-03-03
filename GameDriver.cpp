@@ -1004,12 +1004,23 @@ void Gamestate::inspectObject(std::string nounIn)
 				if(featurePtr->getAlreadyActioned() == false)
 				{
 					// output descriptionFirst
+					std::ifstream inFile;
+				
+					inFile.open(featurePtr->getDescriptionFirst(), std::ios::out);
+					readFileDefault(inFile);
+					inFile.close();
+					
 					// do not update alreadyInspected
 				}
-			
-			
-				// output descriptionFirst
-				// do not update alreadyInspected
+				else // if not already actioned
+				{
+					// output descriptionAfter
+					std::ifstream inFile;
+				
+					inFile.open(featurePtr->getDescriptionAfter(), std::ios::out);
+					readFileDefault(inFile);
+					inFile.close();					
+				}
 			
 			}
 			// if not 

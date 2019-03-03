@@ -45,8 +45,11 @@ public:
 
 	// get
 	std::string getName();
-	std::string getDescription();
+	std::string getDescriptionFirst();
+	std::string getDescriptionAfter();
 	std::string getLocation();
+	std::string getitemToUse();
+	
 	bool getAlreadyInspected();
 	bool getAlreadyActioned();
 	bool getCanSample();
@@ -55,7 +58,6 @@ public:
 	
 	// set
 	void setName(std::string);
-	void setDescription(std::string);
 	void setLocation(std::string);
 	void setAlreadyInspected(bool);
 	void setItemAffected(Item*);

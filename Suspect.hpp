@@ -21,12 +21,14 @@ class Suspect
 private:
 	std::string name;
 	std::string description;
-	std::string answer1;
-	std::string answer2;
 	std::string talkResponse;
 	std::string interrogateResponse;
 	std::string accuseResponseTrue;
 	std::string accuseResponseFalse;
+	std::string itemResponse1;
+	std::string itemResponse2;
+	std::string itemResponse3;
+	std::string itemResponseGeneric;
 	
 	bool isGuilty;
 	bool isCleared;
@@ -41,15 +43,11 @@ public:
 	//get
 	std::string getName();
 	std::string getDescription();
-	std::string getAnswer1();
-	std::string getAnswer2();
 	bool getSigItemFound();
 
 	//set
 	void setName(std::string);
 	void setDescription(std::string);
-	void setAnswer1(std::string);
-	void setAnswer2(std::string);
 	void setSigItemFound();
 };
 

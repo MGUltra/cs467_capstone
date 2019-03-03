@@ -29,9 +29,14 @@ std::string Feature::getName()
 	return name;
 }
 
-std::string Feature::getDescription()
+std::string Feature::getDescriptionFirst()
 {
-	return description;
+	return descriptionFirst;
+}
+
+std::string Feature::getDescriptionAfter()
+{
+	return descriptionAfter;
 }
 
 std::string Feature::getLocation()
@@ -70,11 +75,6 @@ bool Feature::actionAble()
 void Feature::setName(std::string givenName)
 {
 	name = givenName;
-}
-
-void Feature::setDescription(std::string givenDescription)
-{
-	description = givenDescription;
 }
 
 void Feature::setLocation(std::string givenLocation)

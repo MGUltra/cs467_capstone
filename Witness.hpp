@@ -22,9 +22,13 @@ class Witness
 {
 private:
 	std::string name;
-	std::string introduction;
-	std::string answer1;
-	std::string answer2;
+	std::string talkResponse;
+	std::string interrogateResponse;
+	std::string accuseResponse;
+	std::string itemResponse1;
+	std::string itemResponse2;
+	std::string itemResponse3;
+	std::string itemResponseGeneric;
 	Room* location;
 
 public:
