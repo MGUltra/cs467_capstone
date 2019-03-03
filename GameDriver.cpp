@@ -1299,14 +1299,14 @@ void Gamestate::sampleFeature(std::string featureIn)
 
 	if (currentFeature->getCanSample())
 	{
-		if (currentFeature->getAlreadySampled())
+		if (currentFeature->getAlreadyActioned())
 		{
 			std::cout << "You already sampled this." << std::endl;
 		}
 		else
 		{
 			std::cout << "You take a sample." << std::endl;
-			currentFeature->setAlreadySampled();
+			currentFeature->setAlreadyActioned();
 			currentPlayer.pickUpItem(currentFeature->getAffectedItem());
 		}
 	}

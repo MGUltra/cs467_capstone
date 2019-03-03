@@ -44,11 +44,6 @@ bool Feature::getAlreadyInspected()
 	return alreadyInspected;
 }
 
-bool Feature::getAlreadySampled()
-{
-	return alreadySampled;
-}
-
 bool Feature::getCanSample()
 {
 	return canSample;
@@ -101,11 +96,6 @@ void Feature::setItemAffected(Item* newItem)
 void Feature::setAlreadyActioned()
 {
 	alreadyActioned = true;
-}
-
-void Feature::setAlreadySampled()
-{
-	alreadySampled = true;
 }
 
 void Feature::inspected()

@@ -59,7 +59,6 @@ public:
 	std::string getLocation();
 	
 	bool getAlreadyInspected();
-	bool getAlreadySampled();
 	bool getCanSample();
 	bool getActionAble();
 	bool getAlreadyActioned();
@@ -71,7 +70,6 @@ public:
 	void setLocation(std::string);
 	void setAlreadyInspected(bool);
 	void setItemAffected(Item*);
-	void setAlreadySampled();
 	void setAlreadyActioned();
 	
 	void inspected();
