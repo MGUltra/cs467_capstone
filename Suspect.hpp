@@ -37,7 +37,8 @@ private:
 
 public:
 	//constructor
-	Suspect(std::string, std::string);
+	Suspect(std::string, std::string, std::string, std::string, std::string,
+					std::string, std::string, std::string, std::string, std::string, bool);
 
 	//get
 	std::string getName();
@@ -49,7 +50,10 @@ public:
 	std::string getItemResponse1();
 	std::string getItemResponse2();
 	std::string getItemResponse3();
-	std::string getInspectResponse();
+	std::string getItemResponseGeneric();
+	
+	bool getIsGuilty();
+	bool getIsCleared();
 
 	//set
 	void setName(std::string);
@@ -61,7 +65,10 @@ public:
 	void setItemResponse1(std::string);
 	void setItemResponse2(std::string);
 	void setItemResponse3(std::string);
-	void setInspectResponse(std::string);
+	void setItemResponseGeneric(std::string);
+	
+	void setIsGuilty(bool);
+	void setIsCleared(bool);
 };
 
 #endif

@@ -53,6 +53,7 @@ public:
 	bool getCanSample();
 	bool getCanHack();
 	bool getActionAble();
+	Item* getitemAffected();
 	
 	
 	// set
@@ -68,6 +69,9 @@ public:
 	
 	// other
 	void inspected();
+	void hacked();
+	void sampled();
+	void itemUsed();
 };
 
 #endif

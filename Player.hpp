@@ -46,7 +46,6 @@ public:
 	// Player actions
 	void pickUpItem(Item*);
 	void dropItem(Item*);
-	void inspectItem(std::string);
 	void showInventory();
 	
 };

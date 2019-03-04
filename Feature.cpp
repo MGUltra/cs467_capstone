@@ -80,6 +80,11 @@ bool Feature::actionAble()
 	return alreadyInspected;
 }
 
+Item* Feature::getitemAffected()
+{
+	return this->itemAffected;
+}
+
 /*******************************************************************************
 *		SET FUNCTIONS
 *******************************************************************************/
@@ -140,3 +145,26 @@ void Feature::inspected()
 	this->setAlreadyInspected(true);
 	
 }
+
+void Feature::hacked()
+{
+		this->itemAffected->revealedByHack(this->name);
+		
+		this->setAlreadyActioned(true);
+}
+
+void Feature::sampled()
+{
+		this->itemAffected->revealedByFeature(this->name);
+		
+		this->setAlreadyActioned(true);
+}
+
+void Feature::itemUsed()
+{
+		this->itemAffected->revealedByFeature(this->name, this->useItem);
+		
+		this->setAlreadyActioned(true);
+}
+
+

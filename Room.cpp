@@ -129,7 +129,9 @@ void Room::removeItemFromRoom(Item* removeThisItem)
 {
 
 	int index = findVectorIndex(removeThisItem);
-	itemsInRoom.erase(itemsInRoom.begin() + index);
+	
+	if(index != 999)
+		itemsInRoom.erase(itemsInRoom.begin() + index);
 	
 }
 
@@ -147,6 +149,8 @@ int Room::findVectorIndex(Item* removeThisItem)
 			return i;
 		}
 	}
+	
+	return 999;
 }
 
 

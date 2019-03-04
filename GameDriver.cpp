@@ -449,38 +449,54 @@ void Gamestate::createItems()
 
 	for (int i = 0; i < numItems; i++)
 	{
-		std::string name, description, forensicAnalysis, location, suspectString;
+		std::string name, description, forensicAnalysis, location, suspectString, useString;
 		Room* room;
 		Item* item;
+		bool useBool;
 		
+		// name
 		getline(inputFile, fileLine);
 		name = fileLine;
 		boost::algorithm::to_lower(name);
 		this->checkLineEndings(&name);
 		
+		// description filepath
 		getline(inputFile, fileLine);
 		description = fileLine;
 		this->checkLineEndings(&description);
 
+		// forensicAnalysis filepath
 		getline(inputFile, fileLine);
 		forensicAnalysis = fileLine;
 		this->checkLineEndings(&forensicAnalysis);
 
+		// location
 		getline(inputFile, fileLine);
 		location = fileLine;
 		this->checkLineEndings(&location);
 
 		boost::algorithm::to_lower(location);
 
+		// suspects name
 		getline(inputFile, fileLine);
 		suspectString = fileLine;
 		this->checkLineEndings(&suspectString);
 
+		// item useable
+		getline(inputFile, fileLine);
+		useString = fileLine;
+		this->checkLineEndings(&useString);
+		
+		if(useString == "true")
+			useBool = true;
+		else
+			useBool = false;
+		
 		Suspect* suspect = this->suspectMap[suspectString];
 		
 		room = this->getRoom(location);
 		
-		this->itemMap[name] = new Item(name, description, forensicAnalysis, suspect);
+		this->itemMap[name] = new Item(name, description, forensicAnalysis, suspect, useBool);
 
 		// item pointer
 		item = this->itemMap[name];
@@ -572,26 +588,75 @@ void Gamestate::createSuspects()
 
 	for (int i = 0; i < numSuspects; i++)
 	{
-		std::string name, description, answer1, answer2;
-
+		std::string nameIn, inspectResponseIn, talkResponseIn, interrogateResponseIn, accuseResponseTrueIn, 
+								accuseResponseFalseIn, itemResponse1In, itemResponse2In, itemResponse3In, itemResponseGenericIn, isGuiltyIn;
+		bool isGuiltyBool;
+		
+		// name
 		getline(inputFile, fileLine);
 		name = fileLine;
 		boost::algorithm::to_lower(name);
 		this->checkLineEndings(&name);
 		
+		// inspect Response In
 		getline(inputFile, fileLine);
-		description = fileLine;
-		this->checkLineEndings(&description);
+		inspectResponseIn = fileLine;
+		this->checkLineEndings(&inspectResponseIn);
 
+		// talkResponseIn
 		getline(inputFile, fileLine);
-		answer1 = fileLine;
-		this->checkLineEndings(&answer1);
+		talkResponseIn = fileLine;
+		this->checkLineEndings(&talkResponseIn);
 
+		// interrogateResponseIn
 		getline(inputFile, fileLine);
-		answer2 = fileLine;
-		this->checkLineEndings(&answer2);
-
-		this->suspectMap[name] = new Suspect(name, description, answer1, answer2);
+		interrogateResponseIn = fileLine;
+		this->checkLineEndings(&interrogateResponseIn);
+	
+		// accuseResponseTrueIn
+		getline(inputFile, fileLine);
+		accuseResponseTrueIn = fileLine;
+		this->checkLineEndings(&accuseResponseTrueIn);
+		
+		// accuseResponseFalseIn
+		getline(inputFile, fileLine);
+		accuseResponseFalseIn = fileLine;
+		this->checkLineEndings(&accuseResponseFalseIn);
+		
+		// itemResponse1In
+		getline(inputFile, fileLine);
+		itemResponse1In = fileLine;
+		this->checkLineEndings(&itemResponse1In);
+		
+		// itemResponse2In
+		getline(inputFile, fileLine);
+		itemResponse2In = fileLine;
+		this->checkLineEndings(&itemResponse2In);
+		
+		// itemResponse3In
+		getline(inputFile, fileLine);
+		itemResponse3In = fileLine;
+		this->checkLineEndings(&itemResponse3In);
+		
+		// itemResponseGenericIn
+		getline(inputFile, fileLine);
+		itemResponseGenericIn = fileLine;
+		this->checkLineEndings(&itemResponseGenericIn);
+		
+		// isGuiltyIn
+		getline(inputFile, fileLine);
+		isGuiltyIn = fileLine;
+		this->checkLineEndings(&isGuiltyIn);
+		
+		if(isGuiltyIn == "true")
+			isGuiltyBool == true;
+		else
+			isGuiltyBool == false;
+		
+		
+		this->suspectMap[name] = new Suspect(name, inspectResponseIn, talkResponseIn, interrogateResponseIn, accuseResponseTrueIn, 
+																				 accuseResponseTrueIn, accuseResponseFalseIn, itemResponse1In, itemResponse2In, itemResponse3In,
+																				 itemResponseGenericIn, isGuiltyBool);
 		
 		// populate parser noun set
 		this->commandParser.setNounSet(name);		
@@ -1156,11 +1221,51 @@ void Gamestate::showInventory()
 ------------------------------------------------------------------------------*/
 void Gamestate::hackComputer(std::string nounIn)
 {
-	// Computer will be feature that adds item to inventory
-	//if (this->currentPlayer.itemInInventory(this->itemMap[nounIn]))
-	//{
-	//	std::cout << this->itemMap[nounIn]->getDescription() << std::endl << std::endl;
-	//}
+	if(this->featureMap.find(nounIn) != this->featureMap.end()) // test if feature
+	{
+		Feature* currentFeature = featureMap[nounIn];
+		Room* currentRoom = this->currentPlayer.getLocation();
+		
+		// test if feature is in room
+		if(currentRoom->isFeatureInRoom(currentFeature) == true) // if in room
+		{
+			
+			
+			// test if feature is hackable - canHack
+			if(currentFeature->getCanHack() == true) // if it is hackable
+			{									
+				// test if already hacked - alreadyActioned
+				if(currentFeature->getAlreadyActioned() == false)	// if not already hacked
+				{
+					// hack computer
+					currentFeature->hacked();
+					
+					// add item					
+					this->currentPlayer.pickUpItem(currentFeature->getItemAffected());
+
+				}			
+				else	// if already hacked	
+				{
+					// prompt
+					std::cout << "| You have already Hacked " << nounIn << "." << std::endl;
+				}			
+			}	
+			else // if it is not hackable
+			{
+				// prompt
+				std::cout << "| You can not hack " << nounIn << "." << std::endl;
+			}
+		}
+		else // if not in room
+		{
+			// prompt
+			std::cout << "| " << nounIn << " doesn't seem to be in this room." << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "| " << nounIn << " can not be Hacked" << std::endl;
+	}
 }
 
 

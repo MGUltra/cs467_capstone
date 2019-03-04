@@ -12,7 +12,7 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Item::Item(std::string name, std::string description, std::string forensicAnalysis, Suspect* suspect)
+Item::Item(std::string name, std::string description, std::string forensicAnalysis, Suspect* suspect, bool usableIn)
 {
 	setName(name);
 	setDescription(description);
@@ -20,6 +20,7 @@ Item::Item(std::string name, std::string description, std::string forensicAnalys
 	setAvailable(false);
 	setAnalyzed(false);
 	setBelongsTo(suspect);
+	setUseable(usableIn);
 }
 
 /*******************************************************************************
@@ -44,9 +45,15 @@ bool Item::getAvailable()
 {
 	return this->available;
 }
+
 bool Item::getAnalyzed()
 {
 	return this->analyzed;
+}
+
+bool Item::getUseable()
+{
+	return this->usable;
 }
 
 Suspect* Item::getBelongsTo()
@@ -83,10 +90,21 @@ void Item::setAnalyzed(bool newBool)
 	this->analyzed = newBool;
 }
 
+void Item::setUseable(bool newBool)
+{
+	this->usable = newBool;
+}
+
 void Item::setBelongsTo(Suspect* suspect)
 {
 	belongsTo = suspect;
 }
+
+
+
+/*******************************************************************************
+*		OTHER FUNCTIONS
+*******************************************************************************/
 
 
 void Item::analyzeItem()
@@ -101,4 +119,25 @@ void Item::revealedByFeature()
 	
 	std::cout << "| Your search has revealed " << this->name << "." << std::endl;
 	
+}
+
+void Item::revealedByHack(std::string nameIn)
+{
+	setAvailable(true);
+	
+	std::cout << "| Hacking " << nameIn << " has produced " << this->name << "." << std::endl;
+}
+
+void Item::revealedBySample(std::string nameIn)
+{
+	setAvailable(true);
+	
+	std::cout << "| taking a sample of " << nameIn << " has added " << this->name << " to your inventory." << std::endl;
+}
+
+void Item::revealedByItemUsed(std::string nameIn, std::string usedIn)
+{
+	setAvailable(true);
+	
+	std::cout << "| using the " << usedIn << " on the " << nameIn << " has revealed " << this->name << "." << std::endl;
 }

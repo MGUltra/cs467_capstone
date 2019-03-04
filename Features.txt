@@ -104,7 +104,7 @@ roomFeatures/copCarRadioAfter.txt
 car
 item12
 false
-false
+true
 false
 none
 mobile
@@ -113,7 +113,7 @@ roomFeatures/danBedroomCellAfter.txt
 bedroom
 item13
 false
-false
+true
 false
 none
 pill
@@ -194,7 +194,7 @@ roomFeatures/forensicCompAfter.txt
 lab
 item22
 false
-false
+true
 false
 none
 chief

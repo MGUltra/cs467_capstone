@@ -9,8 +9,7 @@ suspectText/carlItemResponse1.txt
 suspectText/carlItemResponse2.txt
 suspectText/carlItemResponse3.txt
 suspectText/carlItemResponseGeneric.txt
-suspectText/{true|false} - isGuilty
-suspectText/{true|false} - isCleared
+false
 Vince
 suspectText/vinceInspectResponse.txt
 suspectText/vincealkResponse.txt
@@ -21,8 +20,7 @@ suspectText/vinceItemResponse1.txt
 suspectText/vinceItemResponse2.txt
 suspectText/vinceItemResponse3.txt
 suspectText/vinceItemResponseGeneric.txt
-suspectText/{true|false} - isGuilty
-suspectText/{true|false} - isCleared
+false
 Dan
 suspectText/danInspectResponse.txt
 suspectText/danTalkResponse.txt
@@ -33,5 +31,4 @@ suspectText/danItemResponse1.txt
 suspectText/danItemResponse2.txt
 suspectText/danItemResponse3.txt
 suspectText/danItemResponseGeneric.txt
-suspectText/{true|false} - isGuilty
-suspectText/{true|false} - isCleared
+true
