@@ -30,7 +30,7 @@ private:
 	std::string itemToUse;	// item that can affect this feature
 	bool canSample;					// if the feature can be sampled.
 	bool canHack;						// if the feature can be hacked.
-	bool actionAble;				// if the feature capable of being acted on directly by an item
+	bool actionAble;				// if the feature capable of being acted on directly by an item through Use
 	
 	bool alreadyInspected;	// has the feature been inspected
 	bool alreadyActioned;		// has the feature been acted on already - sample, Hacked, or use item on
@@ -61,7 +61,7 @@ public:
 	void setLocation(std::string);
 	void setAlreadyInspected(bool);
 	void setItemAffected(Item*);
-	void setAlreadyActioned(bool);
+	void setAlreadyActioned();
 	void setCanSample(bool);
 	void setCanHack(bool);
 	void setActionAble(bool);

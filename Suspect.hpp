@@ -32,23 +32,22 @@ private:
 	
 	bool isGuilty;
 	bool isCleared;
-	bool isAccused;
 	
-	bool sigItemFound;
+
 
 public:
 	//constructor
-	Suspect(std::string, std::string, std::string, std::string);
+	Suspect(std::string, std::string);
 
 	//get
 	std::string getName();
 	std::string getDescription();
-	bool getSigItemFound();
+
 
 	//set
 	void setName(std::string);
 	void setDescription(std::string);
-	void setSigItemFound();
+
 };
 
 #endif

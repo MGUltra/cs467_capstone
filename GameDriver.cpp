@@ -1029,7 +1029,7 @@ void Gamestate::inspectObject(std::string nounIn)
 			{
 				std::ifstream inFile;
 				
-				inFile.open(featurePtr->getDescription(), std::ios::out);
+				inFile.open(featurePtr->getDescriptionFirst(), std::ios::out);
 				readFileDefault(inFile);
 				inFile.close();
 				
@@ -1037,7 +1037,11 @@ void Gamestate::inspectObject(std::string nounIn)
 			}
 			else
 			{
-				std::cout << "| You've already examined " << featurePtr->getName() << "." << std::endl;
+				std::ifstream inFile;
+				
+				inFile.open(featurePtr->getDescriptionAfter(), std::ios::out);
+				readFileDefault(inFile);
+				inFile.close();
 			}
 		}
 	}
@@ -1115,31 +1119,6 @@ void Gamestate::hackComputer(std::string nounIn)
 	//}
 }
 
-/*------------------------------------------------------------------------------
-		TAKE WITNESS STATEMENT
-------------------------------------------------------------------------------*/
-void Gamestate::getStatement(std::string name)
-{
-	// If the player is in the same room as the witness...
-	if (this->currentPlayer.getLocation() == this->witnessMap[name]->getLocation())
-	{
-		std::string introduction = this->witnessMap[name]->getIntroduction();
-		std::cout << introduction << std::endl << std::endl;
-		std::cout << name << " tells you what they know." << std::endl << std::endl;
-		std::string statement = this->witnessMap[name]->getAnswer1();
-		std::cout << statement << std::endl << std::endl;
-
-		std::cout << "You add this information to your notebook." << std::endl << std::endl;
-
-		std::string entry = introduction + " " + statement;
-
-		//this->playerNotebook.setEntry(name, entry);
-	}
-	else
-	{
-		std::cout << "That witness is not here." << std::endl;
-	}
-}
 
 /*------------------------------------------------------------------------------
 		INTERROGATE SUSPECT

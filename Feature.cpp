@@ -92,9 +92,9 @@ void Feature::setItemAffected(Item* newItem)
 	this->itemAffected = newItem;
 }
 
-void setAlreadyActioned(bool boolIn)
+void setAlreadyActioned()
 {
-	this->alreadyActioned = boolIn;
+	this->alreadyActioned = true;
 }
 
 void setCanSample(bool boolIn)

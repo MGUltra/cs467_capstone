@@ -17,8 +17,6 @@ Suspect::Suspect(std::string name, std::string description)
 	setName(name);
 	setDescription(description);
 
-
-	sigItemFound = false;
 }
 
 /*******************************************************************************
@@ -36,10 +34,7 @@ std::string Suspect::getDescription()
 
 
 
-bool Suspect::getSigItemFound()
-{
-	return sigItemFound;
-}
+
 
 /*******************************************************************************
 *		SET FUNCTIONS
@@ -54,8 +49,3 @@ void Suspect::setDescription(std::string givenDescription)
 	description = givenDescription;
 }
 
-
-void Suspect::setSigItemFound()
-{
-	sigItemFound = true;
-}

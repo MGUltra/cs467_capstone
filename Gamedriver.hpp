@@ -123,7 +123,6 @@ public:
 	void inspectObject(std::string);
 	void showInventory();
 	void hackComputer(std::string);
-	void getStatement(std::string);
 	void interrogateSuspect(std::string);
 	void analyzeItem(std::string);
 	void accuseSuspect(std::string);
