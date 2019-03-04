@@ -12,12 +12,26 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Witness::Witness(std::string name, std::string introduction, std::string answer1, std::string answer2, Room* location)
+Witness::Witness(std::string nameIn,
+								std::string inspectIn, 
+								std::string talkIn, 
+								std::string interrogateIn, 
+								std::string accuseIn,
+								std::string item1In, 
+								std::string item2In, 
+								std::string item3In, 
+								std::string itemGeneric, 
+								Room* location)
 {
-	setName(name);
-	setIntroduction(introduction);
-	setAnswer1(answer1);
-	setAnswer2(answer2);
+	setName(nameIn);
+	setInspectResponse(inspectIn);
+	setTalkResponse(talkIn);
+	setInterrogateResponse(interrogateIn);
+	setAccuseResponse(accuseIn);
+	setItemResponse1(item1In);
+	setItemResponse2(item2In);
+	setItemResponse3(item3In);
+	setItemResponseGeneric(itemGeneric);
 	setLocation(location);
 }
 
@@ -29,19 +43,44 @@ std::string Witness::getName()
 	return name;
 }
 
-std::string Witness::getIntroduction()
+std::string Witness::getInspectResponse()
 {
-	return introduction;
+	return inspectResponse;
 }
 
-std::string Witness::getAnswer1()
+std::string Witness::getTalkResponse()
 {
-	return answer1;
+	return talkResponse;
 }
 
-std::string Witness::getAnswer2()
+std::string Witness::getInterrogateResponse()
 {
-	return answer2;
+	return interrogateResponse;
+}
+
+std::string Witness::getAccuseResponse()
+{
+	return accuseResponse;
+}
+
+std::string Witness::getItemResponse1()
+{
+	return itemResponse1;
+}
+
+std::string Witness::getItemResponse2()
+{
+	return itemResponse2;
+}
+
+std::string Witness::getItemResponse3()
+{
+	return itemResponse3;
+}
+
+std::string Witness::getItemResponseGeneric()
+{
+	return itemResponseGeneric;
 }
 
 Room* Witness::getLocation()
@@ -57,20 +96,54 @@ void Witness::setName(std::string givenName)
 	name = givenName;
 }
 
-void Witness::setIntroduction(std::string givenIntroduction)
+void Witness::setInspectResponse(std::string stringin)
 {
-	introduction = givenIntroduction;
+	this->inspectResponse = stringin;
 }
 
-void Witness::setAnswer1(std::string givenAnswer1)
+
+void Witness::setTalkResponse(std::string stringin)
 {
-	answer1 = givenAnswer1;
+	this->talkResponse = stringin;
 }
 
-void Witness::setAnswer2(std::string givenAnswer2)
+
+void Witness::setInterrogateResponse(std::string stringin)
 {
-	answer2 = givenAnswer2;
+	this->interrogateResponse = stringin;
 }
+
+
+void Witness::setAccuseResponse(std::string stringin)
+{
+	this->accuseResponse = stringin;
+}
+
+
+void Witness::setItemResponse1(std::string stringin)
+{
+	this->itemResponse1 = stringin;
+}
+
+
+void Witness::setItemResponse2(std::string stringin)
+{
+	this->itemResponse2 = stringin;
+}
+
+
+void Witness::setItemResponse3(std::string stringin)
+{
+	this->itemResponse3 = stringin;
+}
+
+
+void Witness::setItemResponseGeneric(std::string stringin)
+{
+	this->itemResponseGeneric= stringin;
+}
+
+
 
 void Witness::setLocation(Room* givenLocation)
 {

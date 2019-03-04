@@ -21,6 +21,7 @@ Feature::Feature(std::string nameIn, std::string descriptionFirstIn, std::string
 	setLocation(locationIn);
 	setItemAffected(itemAffectedIn);
 	setAlreadyInspected(false);
+	setAlreadyActioned(false);
 	setCanSample(canSampleIn);
 	setCanHack(canHackIn);
 	setActionAble(actionAbleIn);
@@ -52,7 +53,7 @@ std::string Feature::getLocation()
 
 std::string Feature::getUseItem()
 {
-	return this->itemToUse;
+	return this->useItem;
 }
 
 bool Feature::getAlreadyInspected()
@@ -75,9 +76,9 @@ bool Feature::getCanHack()
 	return canHack;
 }
 
-bool Feature::actionAble()
+bool Feature::getActionAble()
 {
-	return alreadyInspected;
+	return actionAble;
 }
 
 Item* Feature::getitemAffected()
@@ -91,6 +92,16 @@ Item* Feature::getitemAffected()
 void Feature::setName(std::string givenName)
 {
 	name = givenName;
+}
+
+void Feature::setDescriptionFirst(std::string stringIn)
+{
+	this->descriptionFirst = stringIn;
+}
+
+void Feature::setDescriptionAfter(std::string stringIn)
+{
+	this->descriptionAfter = stringIn;
 }
 
 void Feature::setLocation(std::string givenLocation)
@@ -155,14 +166,14 @@ void Feature::hacked()
 
 void Feature::sampled()
 {
-		this->itemAffected->revealedByFeature(this->name);
+		this->itemAffected->revealedBySample(this->name);
 		
 		this->setAlreadyActioned(true);
 }
 
 void Feature::itemUsed()
 {
-		this->itemAffected->revealedByFeature(this->name, this->useItem);
+		this->itemAffected->revealedByItemUsed(this->name, this->useItem);
 		
 		this->setAlreadyActioned(true);
 }

@@ -49,7 +49,7 @@ class Item
 	void setForensicAnalysis(std::string);
 	void setAvailable(bool);
 	void setAnalyzed(bool);
-	bool setUseable(bool);
+	void setUseable(bool);
 	void setBelongsTo(Suspect*);
 	
 	// actions

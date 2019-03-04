@@ -123,7 +123,7 @@ public:
 	void inspectObject(std::string);
 	void showInventory();
 	void hackComputer(std::string);
-	void interrogateSuspect(std::string);
+	void interrogate(std::string);
 	void analyzeItem(std::string);
 	void accuseSuspect(std::string);
 	void sampleFeature(std::string);
@@ -143,7 +143,8 @@ public:
 	// Cleanup function
 	void cleanup();
 
-
+	// TestFunctions
+	void testFeature(Feature*);
 
 
 

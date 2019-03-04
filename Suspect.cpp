@@ -12,9 +12,17 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Suspect::Suspect(std::string nameIn, std::string inspectResponseIn, std::string talkResponseIn, std::string interrogateResponseIn,
-								 std::string accuseResponseTrueIn, std::string accuseResponseFalseIn, std::string itemResponse1In, 
-								 std::string itemResponse2In, std::string itemResponse3In, std::string itemResponseGenericIn, bool isGuiltyIn)
+Suspect::Suspect(std::string nameIn,
+								std::string inspectResponseIn,
+								std::string talkResponseIn,
+								std::string interrogateResponseIn,
+								std::string accuseResponseTrueIn,
+								std::string accuseResponseFalseIn,
+								std::string itemResponse1In, 
+								std::string itemResponse2In,
+								std::string itemResponse3In,
+								std::string itemResponseGenericIn,
+								bool isGuiltyIn)
 {
 	setName(nameIn);
 	setInspectResponse(inspectResponseIn);

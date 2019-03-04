@@ -369,9 +369,9 @@ void Gamestate::createFeatures()
 		this->checkLineEndings(&canSampleStr);
 		
 		if(canSampleStr == "true")
-			canSample == true;
+			canSample = true;
 		else
-			canSample == false;
+			canSample = false;
 		
 		// canHack Value
 		
@@ -380,9 +380,9 @@ void Gamestate::createFeatures()
 		this->checkLineEndings(&canHackStr);
 		
 		if(canHackStr == "true")
-			canHack == true;
+			canHack = true;
 		else
-			canHack == false;
+			canHack = false;
 		
 		// actionAble value -- for "use" command
 		
@@ -391,14 +391,16 @@ void Gamestate::createFeatures()
 		this->checkLineEndings(&actionAbleStr);		
 
 		if(actionAbleStr == "true")
-			actionAble == true;
+			actionAble = true;
 		else
-			actionAble == false;
+			actionAble = false;
 		
 		// useName -- item for "use" command
 		getline(inputFile, fileLine);
 		useName = fileLine;
 		this->checkLineEndings(&useName);		
+		
+
 		
 		// create new feature
 		this->featureMap[name] = new Feature(name, descriptionFirst, descriptionAfter, location, item, canSample, canHack, actionAble, useName);
@@ -594,9 +596,9 @@ void Gamestate::createSuspects()
 		
 		// name
 		getline(inputFile, fileLine);
-		name = fileLine;
-		boost::algorithm::to_lower(name);
-		this->checkLineEndings(&name);
+		nameIn = fileLine;
+		boost::algorithm::to_lower(nameIn);
+		this->checkLineEndings(&nameIn);
 		
 		// inspect Response In
 		getline(inputFile, fileLine);
@@ -654,12 +656,20 @@ void Gamestate::createSuspects()
 			isGuiltyBool == false;
 		
 		
-		this->suspectMap[name] = new Suspect(name, inspectResponseIn, talkResponseIn, interrogateResponseIn, accuseResponseTrueIn, 
-																				 accuseResponseTrueIn, accuseResponseFalseIn, itemResponse1In, itemResponse2In, itemResponse3In,
-																				 itemResponseGenericIn, isGuiltyBool);
+		this->suspectMap[nameIn] = new Suspect(nameIn, 
+																					inspectResponseIn,
+																					talkResponseIn,
+																					interrogateResponseIn,
+																					accuseResponseTrueIn, 
+																					accuseResponseFalseIn,
+																					itemResponse1In,
+																					itemResponse2In,
+																					itemResponse3In,
+																					itemResponseGenericIn,
+																					isGuiltyBool);
 		
 		// populate parser noun set
-		this->commandParser.setNounSet(name);		
+		this->commandParser.setNounSet(nameIn);		
 	}
 
 	// Close inputFile.
@@ -698,33 +708,75 @@ void Gamestate::createWitnesses()
 
 	for (int i = 0; i < numWitnesses; i++)
 	{
-		std::string name, location, description, answer1, answer2;
+		std::string name, location, inspectResponseIn, talkResponseIn, interrogateResponseIn, accuseResponseIn, 
+								itemResponse1In, itemResponse2In, itemResponse3In, itemResponseGenericIn;
 		Room* room;
 
+		// name
 		getline(inputFile, fileLine);
 		name = fileLine;
 		boost::algorithm::to_lower(name);
 		this->checkLineEndings(&name);
-
+		
+		// location
 		getline(inputFile, fileLine);
 		location = fileLine;
 		this->checkLineEndings(&location);
 
+		// inspectResponseIn
 		getline(inputFile, fileLine);
-		description = fileLine;
-		this->checkLineEndings(&description);
+		inspectResponseIn = fileLine;
+		this->checkLineEndings(&inspectResponseIn);
 
+		// talkResponseIn
 		getline(inputFile, fileLine);
-		answer1 = fileLine;
-		this->checkLineEndings(&answer1);
+		talkResponseIn = fileLine;
+		this->checkLineEndings(&talkResponseIn);
 
+		// interrogateResponseIn
 		getline(inputFile, fileLine);
-		answer2 = fileLine;
-		this->checkLineEndings(&answer2);
+		interrogateResponseIn = fileLine;
+		this->checkLineEndings(&interrogateResponseIn);
+		
+		// accuseResponseIn
+		getline(inputFile, fileLine);
+		accuseResponseIn = fileLine;
+		this->checkLineEndings(&accuseResponseIn);
+		
+		// itemResponse1In
+		getline(inputFile, fileLine);
+		itemResponse1In = fileLine;
+		this->checkLineEndings(&itemResponse1In);
+		
+		// itemResponse2In
+		getline(inputFile, fileLine);
+		itemResponse2In = fileLine;
+		this->checkLineEndings(&itemResponse2In);
+		
+		// itemResponse3In
+		getline(inputFile, fileLine);
+		itemResponse3In = fileLine;
+		this->checkLineEndings(&itemResponse3In);
+		
+		// itemResponseGenericIn
+		getline(inputFile, fileLine);
+		itemResponseGenericIn = fileLine;
+		this->checkLineEndings(&itemResponseGenericIn);
+		
+		
 
 		room = this->getRoom(location);
 
-		this->witnessMap[name] = new Witness(name, description, answer1, answer2, room);
+		this->witnessMap[name] = new Witness(name, 
+																				inspectResponseIn, 
+																				talkResponseIn, 
+																				interrogateResponseIn, 
+																				accuseResponseIn, 
+																				itemResponse1In, 
+																				itemResponse2In, 
+																				itemResponse3In, 
+																				itemResponseGenericIn, 
+																				room);
 
 		// populate parser noun set
 		this->commandParser.setNounSet(name);
@@ -950,7 +1002,7 @@ void Gamestate::exeCommand(std::string verb)
 			this->hackComputer(this->nounVector[0]);
 			break;
 		case 9: // interrogate
-			this->interrogateSuspect(this->nounVector[0]);
+			this->interrogate(this->nounVector[0]);
 			break;
 		case 10: // sample
 			this->sampleFeature(this->nounVector[0]);
@@ -1226,6 +1278,7 @@ void Gamestate::hackComputer(std::string nounIn)
 		Feature* currentFeature = featureMap[nounIn];
 		Room* currentRoom = this->currentPlayer.getLocation();
 		
+		
 		// test if feature is in room
 		if(currentRoom->isFeatureInRoom(currentFeature) == true) // if in room
 		{
@@ -1241,7 +1294,7 @@ void Gamestate::hackComputer(std::string nounIn)
 					currentFeature->hacked();
 					
 					// add item					
-					this->currentPlayer.pickUpItem(currentFeature->getItemAffected());
+					this->currentPlayer.pickUpItem(currentFeature->getitemAffected());
 
 				}			
 				else	// if already hacked	
@@ -1270,30 +1323,11 @@ void Gamestate::hackComputer(std::string nounIn)
 
 
 /*------------------------------------------------------------------------------
-		INTERROGATE SUSPECT
+		INTERROGATE
 ------------------------------------------------------------------------------*/
-void Gamestate::interrogateSuspect(std::string name)
+void Gamestate::interrogate(std::string name)
 {
-	// If the player is in the cell room...
-	if (this->currentPlayer.getLocation() == this->roomMap["cells"])
-	{
-		if (this->suspectMap[name]->getSigItemFound() == true)
-		{
-			std::cout << "You press " << name << " about what you found in his home earlier." << std::endl;
-			std::cout << this->suspectMap[name]->getAnswer2() << std::endl;
-			std::cout << "You add this information to your notebook." << std::endl;
-			std::string entry = this->suspectMap[name]->getAnswer1() + " " + this->suspectMap[name]->getAnswer2();
-			//this->playerNotebook.setEntry(name, entry);
-		}
-		else
-		{
-			std::cout << "You ask " << name << " about what he knows." << std::endl;
-			std::cout << this->suspectMap[name]->getAnswer1() << std::endl;
-			std::cout << "You add this information to your notebook." << std::endl;
-			std::string entry = this->suspectMap[name]->getAnswer1();
-			//this->playerNotebook.setEntry(name, entry);
-		}
-	}
+
 }
 
 
@@ -1379,16 +1413,43 @@ void Gamestate::accuseSuspect(std::string personIn)
 
 void Gamestate::sampleFeature(std::string featureIn)
 {
-	// test if featureIn is able to be sampled
+	if(this->featureMap.find(nounIn) != this->featureMap.end()) // test if feature
+	{
+		Feature* currentFeature = featureMap[nounIn];
+		Room* currentRoom = this->currentPlayer.getLocation();
 	
-		// if so - test if sample has already been taken
-		
-			// if so - prompt that sample has already been taken and return
+		// test if featureIn is able to be sampled
+		if(currentFeature->getCanSample() == true) // if can sample
+		{
+			// test if sample has already been taken
+			if(currentFeature->getAlreadyActioned() == true)
+			{
+				// if so - prompt that sample has already been taken and return
+				std::cout << "You have already sampled " << featureIn << " ." << std::endl;
+				
+			}
+			else // sample not yet taken
+			{
+				// if not - set sample taken to true, flag in notebook, add sample item to inventory
+				currentFeature->sampled();
+				
+				this->currentPlayer.pickUpItem(currentFeature->getitemAffected());
+			}
+		}
+		else // can not sample
+		{
+				// if not, do nothing
+				// prompt "Sampling this will not accomplish anything"
+				
+				std::cout << "You can not sample " << featureIn << " ." << std::endl;
+		}
 			
-			// if not - set sample taken to true, flag in notebook, add sample item to inventory
-			
-		// if not, do nothing
-		// prompt "Sampling this will not accomplish anything"
+
+	}
+	else // not feature
+	{
+		std::cout << "You can not sample " << featureIn << " ." << std::endl;
+	}
 }
 
 void Gamestate::askAboutItem(std::string personIn, std::string itemIn)
@@ -1579,5 +1640,39 @@ void Gamestate::checkLineEndings(std::string* thisString)
 		//std::cout << "Nothing removed" << std::endl;
 }
 
+/*------------------------------------------------------------------------------
+		TEST HACK / SAMPLE
 
+	std::string getName();
+	std::string getDescriptionFirst();
+	std::string getDescriptionAfter();
+	std::string getLocation();
+	std::string getUseItem();
+	
+	bool getAlreadyInspected();
+	bool getAlreadyActioned();
+	bool getCanSample();
+	bool getCanHack();
+	bool getActionAble();
+	Item* getitemAffected();
 
+------------------------------------------------------------------------------*/
+
+void Gamestate::testFeature(Feature* currentFeature)
+{
+	bool testBool;
+	
+	std::cout << "Feature Name: " << currentFeature->getName() << std::endl;
+	
+	std::cout << "Can be hacked: " << currentFeature->getCanSample()<< std::endl;
+	
+	std::cout << "can be Sampled: " << currentFeature->getCanHack()<< std::endl;
+	
+	std::cout << "Can have Item used on it: " << currentFeature->getActionAble() << std::endl;
+	
+	std::cout << "Already Inspected: " << currentFeature->getAlreadyInspected() << std::endl;
+	
+	std::cout << "Already Actioned: " << currentFeature->getAlreadyActioned() << std::endl;
+	
+	
+}
