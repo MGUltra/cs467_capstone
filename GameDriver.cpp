@@ -1413,9 +1413,14 @@ void Gamestate::accuseSuspect(std::string personIn)
 
 void Gamestate::sampleFeature(std::string featureIn)
 {
-	if(this->featureMap.find(nounIn) != this->featureMap.end()) // test if feature
+	if(featureIn == "nonoun")
 	{
-		Feature* currentFeature = featureMap[nounIn];
+		std::cout << "You must specify what you want to try to sample" << std::endl;
+		return;
+	}
+	if(this->featureMap.find(featureIn) != this->featureMap.end()) // test if feature
+	{
+		Feature* currentFeature = featureMap[featureIn];
 		Room* currentRoom = this->currentPlayer.getLocation();
 	
 		// test if featureIn is able to be sampled
@@ -1454,6 +1459,8 @@ void Gamestate::sampleFeature(std::string featureIn)
 
 void Gamestate::askAboutItem(std::string personIn, std::string itemIn)
 {
+
+	
 	// test if personIn is witness, chief, suspect
 	
 	// chief
@@ -1472,7 +1479,26 @@ void Gamestate::askAboutItem(std::string personIn, std::string itemIn)
 
 void Gamestate::useItemOnFeature(std::string itemIn, std::string featureIn)
 {
+	
+	Feature* currentFeature = featureMap[featureIn];
+	Room* currentRoom = this->currentPlayer.getLocation();
+	
+	if(this->featureMap.find(featureIn) != this->featureMap.end() 			&& // test that featureIn is a feature
+		this->itemMap.find(itemIn) != this->itemMap.end())								&& // test that itemIn is an item
+		currentFeature->isFeatureInRoom() == true													&& // test that the feature is in the room
+		this->currentPlayer.itemInInventory(this->itemMap[itemIn]) == true)  // test that the item is in the players inventory
+	{
+
+	}
+	else // if all 4 conditions are not true, then operation can not be complete
+	{
+		std::cout << "You can not do that under the current conditions" << std::endl;
+	}
+	
+	
 	// test if featureIn is affected by an item - feature variable actionAble
+	
+	
 	
 		// if so - test if itemIn is the item that can affect feature
 			

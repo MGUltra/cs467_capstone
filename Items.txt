@@ -1,5 +1,5 @@
 32
-item1
+shirt
 gameItems/item1.txt
 gameItems/item1Analysis.txt
 bathroom
@@ -11,7 +11,7 @@ gameItems/item2Analysis.txt
 bathroom
 carl
 false
-item3
+dna
 gameItems/item3.txt
 gameItems/item3Analysis.txt
 Garage
@@ -29,12 +29,12 @@ gameItems/item5Analysis.txt
 kitchen
 carl
 false
-item6
+key
 gameItems/item6.txt
 gameItems/item6Analysis.txt
 kitchen
 carl
-false
+true
 item7
 gameItems/item7.txt
 gameItems/item7Analysis.txt
@@ -149,12 +149,12 @@ gameItems/item25Analysis.txt
 bedchamber
 vince
 false
-item26
+combination 
 gameItems/item26.txt
 gameItems/item26Analysis.txt
 bedchamber
 vince
-false
+true
 item27
 gameItems/item27.txt
 gameItems/item27Analysis.txt
@@ -185,7 +185,7 @@ gameItems/item31Analysis.txt
 office
 vince
 false
-item32
+tickets
 gameItems/item32.txt
 gameItems/item32Analysis.txt
 office
