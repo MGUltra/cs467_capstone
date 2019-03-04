@@ -172,7 +172,6 @@ void Gamestate::createGame()
 	// Create Items - requires rooms and suspects be completed
 	createItems();
 	
-
 	// create features - requires rooms and items be completed	
 	createFeatures();
 	
@@ -324,20 +323,27 @@ void Gamestate::createFeatures()
 
 	for (int i = 0; i < numFeatures; i++)
 	{
-		std::string name, description, location, itemName;
+		std::string name, descriptionFirst, descriptionAfter, location, itemName, canSampleStr, canHackStr, actionAbleStr, useName;
 		Room* room;
 		Item* item;
-
+		bool canSample, canHack, actionAble;
+		
+		
 		// feature name
 		getline(inputFile, fileLine);
 		name = fileLine;
 		boost::algorithm::to_lower(name);
 		this->checkLineEndings(&name);
 		
-		// feature description
+		// feature descriptionFirst
 		getline(inputFile, fileLine);
-		description = fileLine;
-		this->checkLineEndings(&description);
+		descriptionFirst = fileLine;
+		this->checkLineEndings(&descriptionFirst);
+		
+		// feature descriptionAfter
+		getline(inputFile, fileLine);
+		descriptionAfter = fileLine;
+		this->checkLineEndings(&descriptionAfter);
 
 		// room/location name
 		getline(inputFile, fileLine);
@@ -356,8 +362,46 @@ void Gamestate::createFeatures()
 		// item pointer
 		item = this->itemMap[itemName];
 		
+		// canSample Value
+		
+		getline(inputFile, fileLine);
+		canSampleStr = fileLine;
+		this->checkLineEndings(&canSampleStr);
+		
+		if(canSampleStr == "true")
+			canSample == true;
+		else
+			canSample == false;
+		
+		// canHack Value
+		
+		getline(inputFile, fileLine);
+		canHackStr = fileLine;
+		this->checkLineEndings(&canHackStr);
+		
+		if(canHackStr == "true")
+			canHack == true;
+		else
+			canHack == false;
+		
+		// actionAble value -- for "use" command
+		
+		getline(inputFile, fileLine);
+		actionAbleStr = fileLine;
+		this->checkLineEndings(&actionAbleStr);		
+
+		if(actionAbleStr == "true")
+			actionAble == true;
+		else
+			actionAble == false;
+		
+		// useName -- item for "use" command
+		getline(inputFile, fileLine);
+		useName = fileLine;
+		this->checkLineEndings(&useName);		
+		
 		// create new feature
-		this->featureMap[name] = new Feature(name, description, location, item);
+		this->featureMap[name] = new Feature(name, descriptionFirst, descriptionAfter, location, item, canSample, canHack, actionAble, useName);
 
 		Feature* newFeature = this->featureMap[name];
 		

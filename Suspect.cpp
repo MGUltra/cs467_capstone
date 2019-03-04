@@ -27,12 +27,50 @@ std::string Suspect::getName()
 	return name;
 }
 
-std::string Suspect::getDescription()
+std::string Suspect::getInspectResponse()
 {
-	return description;
+	return inspectResponse;
 }
 
+std::string Suspect::getTalkResponse()
+{
+	
+}
 
+std::string Suspect::getIinterrogateResponse()
+{
+	
+}
+
+std::string Suspect::getAccuseResponseTrue()
+{
+	
+}
+
+std::string Suspect::getAccuseResponseFalse()
+{
+	
+}
+
+std::string Suspect::getItemResponse1()
+{
+	
+}
+
+std::string Suspect::getItemResponse2()
+{
+	
+}
+
+std::string Suspect::getItemResponse3()
+{
+	
+}
+
+std::string Suspect::getInspectResponse()
+{
+	
+}
 
 
 
@@ -44,8 +82,48 @@ void Suspect::setName(std::string givenName)
 	name = givenName;
 }
 
-void Suspect::setDescription(std::string givenDescription)
+void Suspect::setInspectResponse(std::string giveninspectResponse)
 {
-	description = givenDescription;
+	inspectResponse = giveninspectResponse;
+}
+
+void Suspect::setTalkResponse(std::string)
+{
+	
+}
+
+void Suspect::setIinterrogateResponse(std::string)
+{
+	
+}
+
+void Suspect::setAccuseResponseTrue(std::string)
+{
+	
+}
+
+void Suspect::setAccuseResponseFalse(std::string)
+{
+	
+}
+
+void Suspect::setItemResponse1(std::string)
+{
+	
+}
+
+void Suspect::setItemResponse2(std::string)
+{
+	
+}
+
+void Suspect::setItemResponse3(std::string)
+{
+	
+}
+
+void Suspect::setInspectResponse(std::string)
+{
+	
 }
 

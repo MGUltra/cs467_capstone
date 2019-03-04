@@ -12,13 +12,19 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Feature::Feature(std::string name, std::string description, std::string location, Item* itemAffected)
+Feature::Feature(std::string nameIn, std::string descriptionFirstIn, std::string descriptionAfterIn, std::string locationIn, Item* itemAffectedIn, 
+								 bool canSampleIn, bool canHackIn, bool actionAbleIn, std::string useItemIn)
 {
-	setName(name);
-	setDescription(description);
-	setLocation(location);
-	setItemAffected(itemAffected);
-	alreadyInspected = false;
+	setName(nameIn);
+	setDescriptionFirst(descriptionFirstIn);
+	setDescriptionAfter(descriptionAfterIn);
+	setLocation(locationIn);
+	setItemAffected(itemAffectedIn);
+	setAlreadyInspected(false);
+	setCanSample(canSampleIn);
+	setCanHack(canHackIn);
+	setActionAble(actionAbleIn);
+	setUseItem(useItemIn);
 }
 
 /*******************************************************************************
@@ -42,6 +48,11 @@ std::string Feature::getDescriptionAfter()
 std::string Feature::getLocation()
 {
 	return location;
+}
+
+std::string Feature::getUseItem()
+{
+	return this->itemToUse;
 }
 
 bool Feature::getAlreadyInspected()
@@ -92,26 +103,34 @@ void Feature::setItemAffected(Item* newItem)
 	this->itemAffected = newItem;
 }
 
-void setAlreadyActioned()
+void Feature::setAlreadyActioned(bool boolIn)
 {
-	this->alreadyActioned = true;
+	this->alreadyActioned = boolIn;
 }
 
-void setCanSample(bool boolIn)
+void Feature::setCanSample(bool boolIn)
 {
 	this->canSample = boolIn;
 }
 
-void setCanHack(bool boolIn)
+void Feature::setCanHack(bool boolIn)
 {
 	this->canHack = boolIn;
 }
 
-void setActionAble(bool boolIn)
+void Feature::setActionAble(bool boolIn)
 {
 	this->actionAble = boolIn;
 }
 
+void Feature::setUseItem(std::string itemIn)
+{
+	this->useItem = itemIn;
+}
+
+/*******************************************************************************
+*		OTHER FUNCTIONS
+*******************************************************************************/
 
 void Feature::inspected()
 {

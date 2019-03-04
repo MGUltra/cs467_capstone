@@ -20,7 +20,7 @@ class Suspect
 {
 private:
 	std::string name;
-	std::string description;
+	std::string inspectResponse;
 	std::string talkResponse;
 	std::string interrogateResponse;
 	std::string accuseResponseTrue;
@@ -41,13 +41,27 @@ public:
 
 	//get
 	std::string getName();
-	std::string getDescription();
-
+	std::string getInspectResponse();
+	std::string getTalkResponse();
+	std::string getIinterrogateResponse();
+	std::string getAccuseResponseTrue();
+	std::string getAccuseResponseFalse();
+	std::string getItemResponse1();
+	std::string getItemResponse2();
+	std::string getItemResponse3();
+	std::string getInspectResponse();
 
 	//set
 	void setName(std::string);
-	void setDescription(std::string);
-
+	void setInspectResponse(std::string);
+	void setTalkResponse(std::string);
+	void setIinterrogateResponse(std::string);
+	void setAccuseResponseTrue(std::string);
+	void setAccuseResponseFalse(std::string);
+	void setItemResponse1(std::string);
+	void setItemResponse2(std::string);
+	void setItemResponse3(std::string);
+	void setInspectResponse(std::string);
 };
 
 #endif
