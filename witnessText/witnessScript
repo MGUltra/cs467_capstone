@@ -1,0 +1,14 @@
+#!/bin/bash
+
+for NAME in dan vince carl
+do
+	echo $NAME
+	echo ${NAME}TalktResponse >> ${NAME}TalkResponse.txt
+	echo ${NAME}interrogateResponse >> ${NAME}InterrogateResponse.txt
+	echo ${NAME}accuseResponseTrue >> ${NAME}AccuseResponseTrue.txt
+	echo ${NAME}accuseResponseFalse >> ${NAME}AccuseResponseFalse.txt
+	echo ${NAME}itemResponse1 >> ${NAME}ItemResponse1.txt
+	echo ${NAME}itemResponse2 >> ${NAME}ItemResponse2.txt
+	echo ${NAME}itemResponse3 >> ${NAME}ItemResponse3.txt
+	echo ${NAME}itemResponseGeneric >> ${NAME}ItemResponseGeneric.txt
+done
