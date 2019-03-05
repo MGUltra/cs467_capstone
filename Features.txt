@@ -48,7 +48,7 @@ drawer
 roomFeatures/carlKitchenUtensilsFirst.txt
 roomFeatures/carlKitchenUtensilsAfter.txt
 kitchen
-item6
+key
 false
 false
 false

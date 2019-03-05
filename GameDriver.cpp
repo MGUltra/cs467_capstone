@@ -834,6 +834,27 @@ Room* Gamestate::getRoom(std::string roomName)
 	return this->roomMap[roomName];
 }
 
+/*------------------------------------------------------------------------------
+GET SUSPECT
+------------------------------------------------------------------------------*/
+Suspect* Gamestate::getSuspect(std::string suspectName)
+{
+	if (suspectName == "nonoun")
+		return NULL;
+
+	return this->suspectMap[suspectName];
+}
+
+/*------------------------------------------------------------------------------
+GET FEATURE
+------------------------------------------------------------------------------*/
+Feature* Gamestate::getFeature(std::string featureName)
+{
+	if (featureName == "nonoun")
+		return NULL;
+
+	return this->featureMap[featureName];
+}
 
 
 
@@ -1393,6 +1414,71 @@ void Gamestate::analyzeItem(std::string nounIn)
 
 void Gamestate::accuseSuspect(std::string personIn)
 {
+	if (currentPlayer.getLocation() == getRoom("station") || currentPlayer.getLocation() == getRoom("cells"))
+	{
+		// if suspect
+		if (suspectMap.find(personIn) != suspectMap.end())
+		{
+			Suspect* currentSuspect = getSuspect(personIn);
+			if (currentSuspect->getIsCleared())
+			{
+				std::cout << "He's already been cleared!  It must be one of the other two." << std::endl;
+			}
+			else
+			{
+				// test if other two suspects exonerated
+				// Iterator pointing to begining of map
+				std::unordered_map<std::string, Suspect*>::iterator it = suspectMap.begin();
+				// check how many suspects have been cleared
+				int clearedSuspects = 0;
+				while (it != suspectMap.end())
+				{
+					if (it->second->getIsCleared())
+					{
+						clearedSuspects++;
+					}
+					it++;
+				}
+
+				// accused is not clear, but the other two are
+				// WINNING CONDITION
+				if (clearedSuspects == 2)
+				{
+					std::cout << "You got him!" << std::endl;
+				}
+				//accused is not clear, and one or both of the others isn't either.
+				else
+				{
+					std::cout << "You can't say it's " << personIn 
+							<< " for sure. You need to clear the other suspects first." << std::endl;
+				}
+			}
+		}
+		// if witness
+		else if (witnessMap.find(personIn) != witnessMap.end())
+		{
+			std::cout << "That's preposterous! " << personIn <<" is a witness!" << std::endl;
+		}
+		// if chief
+		else if (personIn == "chief")
+		{
+			std::cout << "Ha Ha Ha. Get back to work!" << std::endl;
+		}
+		// not a suspect, witness, or chief
+		else
+		{
+			std::cout << "Who is that?  They're not involved in this case." << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "No one hears your accusation.  Try again at the station." << std::endl;
+	}
+	
+	
+	
+	
+	
 	// test if suspect, witness, chief
 	
 	// if suspect
@@ -1500,10 +1586,10 @@ void Gamestate::useItemOnFeature(std::string itemIn, std::string featureIn)
 	Feature* currentFeature = featureMap[featureIn];
 	Room* currentRoom = this->currentPlayer.getLocation();
 	
-	if(this->featureMap.find(featureIn) != this->featureMap.end() 			&& // test that featureIn is a feature
-		this->itemMap.find(itemIn) != this->itemMap.end())								&& // test that itemIn is an item
-		currentFeature->isFeatureInRoom() == true													&& // test that the feature is in the room
-		this->currentPlayer.itemInInventory(this->itemMap[itemIn]) == true)  // test that the item is in the players inventory
+	if((this->featureMap.find(featureIn) != this->featureMap.end()) 			&& // test that featureIn is a feature
+		(this->itemMap.find(itemIn) != this->itemMap.end())								&& // test that itemIn is an item
+		(currentRoom->isFeatureInRoom(currentFeature) == true)													&& // test that the feature is in the room
+		(this->currentPlayer.itemInInventory(this->itemMap[itemIn]) == true))  // test that the item is in the players inventory
 	{
 		
 		// test if featureIn is affected by an item - feature variable actionAble
@@ -1530,6 +1616,7 @@ void Gamestate::useItemOnFeature(std::string itemIn, std::string featureIn)
 				{
 					
 					// if so - prompt that nothing more can be done		
+					std::cout << "Using " << itemIn << " again accomplished nothing." <<  std::endl;
 					
 				}
 
@@ -1539,7 +1626,7 @@ void Gamestate::useItemOnFeature(std::string itemIn, std::string featureIn)
 			}
 			else // itemIn can NOT be used on feature
 			{
-				
+				std::cout << "Using " << itemIn << " on " << featureIn << " doesn't accomplish anything. Try something else." << std::endl;
 			}
 			
 		}
