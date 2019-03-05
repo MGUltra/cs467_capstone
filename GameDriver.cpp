@@ -1387,6 +1387,9 @@ void Gamestate::analyzeItem(std::string nounIn)
 }
 
 
+/*------------------------------------------------------------------------------
+		ACCUSE 
+------------------------------------------------------------------------------*/
 
 void Gamestate::accuseSuspect(std::string personIn)
 {
@@ -1411,6 +1414,10 @@ void Gamestate::accuseSuspect(std::string personIn)
 		// generic response
 }
 
+
+/*------------------------------------------------------------------------------
+		SAMPLE FEATURE 
+------------------------------------------------------------------------------*/
 void Gamestate::sampleFeature(std::string featureIn)
 {
 	if(featureIn == "nonoun")
@@ -1457,11 +1464,16 @@ void Gamestate::sampleFeature(std::string featureIn)
 	}
 }
 
+/*------------------------------------------------------------------------------
+		ASK ABOUT ITEM
+------------------------------------------------------------------------------*/
+
 void Gamestate::askAboutItem(std::string personIn, std::string itemIn)
 {
 
 	
-	// test if personIn is witness, chief, suspect
+	// test if personIn is witness, chief, suspect && if they are in the room
+	// test if itemIn is an item and in the players inventory
 	
 	// chief
 		// generic response about being the brass and not going to do your job
@@ -1477,6 +1489,11 @@ void Gamestate::askAboutItem(std::string personIn, std::string itemIn)
 			// if not - return generic response
 }
 
+
+
+/*------------------------------------------------------------------------------
+		USE ITEM ON FEATURE
+------------------------------------------------------------------------------*/
 void Gamestate::useItemOnFeature(std::string itemIn, std::string featureIn)
 {
 	
@@ -1488,32 +1505,60 @@ void Gamestate::useItemOnFeature(std::string itemIn, std::string featureIn)
 		currentFeature->isFeatureInRoom() == true													&& // test that the feature is in the room
 		this->currentPlayer.itemInInventory(this->itemMap[itemIn]) == true)  // test that the item is in the players inventory
 	{
+		
+		// test if featureIn is affected by an item - feature variable actionAble
+		
+		if(currentFeature->getActionAble() == true) // if the feature can have an item used on it
+		{
+			
+			// test if itemIn is the item that can affect feature
+			
+			if(currentFeature->getUseItem() == itemIn) // itemIn can be used on feature
+			{
+				
+				// if so - test if itemIn already used on feature - feature variable alreadyActioned
+				
+				if(currentFeature->getAlreadyActioned() == false) // item Has Not been used on feature yet
+				{
+					
+					// if not - flag in notebook - set alreadyActioned to true - and reveal item
+					currentFeature->itemUsed();
+					
+					
+				}
+				else // item Has been used on feature
+				{
+					
+					// if so - prompt that nothing more can be done		
+					
+				}
 
+
+				
+				
+			}
+			else // itemIn can NOT be used on feature
+			{
+				
+			}
+			
+		}
+		else // if the feature can NOT have an item used on it
+		{
+			std::cout << featureIn << " doesn't look like anythin useful will happen by using an item on it" << std::endl;
+		}
 	}
 	else // if all 4 conditions are not true, then operation can not be complete
 	{
 		std::cout << "You can not do that under the current conditions" << std::endl;
 	}
-	
-	
-	// test if featureIn is affected by an item - feature variable actionAble
-	
-	
-	
-		// if so - test if itemIn is the item that can affect feature
-			
-			// if so - test if itemIn already used on feature - feature variable alreadyActioned
-			
-				// if so - prompt that nothing more can be done
-				// if not - flag in notebook - set alreadyActioned to true - and reveal item
-			
-			// if not - promp that the item does nothing
-		
-		// if not - prompt that the item does nothing
-		
 		
 }
 
+
+/*------------------------------------------------------------------------------
+		DRINK FEATURE
+------------------------------------------------------------------------------*/
 void Gamestate::drinkFeature(std::string featureIn)
 {
 	// test if featureIn is actionable
@@ -1524,6 +1569,10 @@ void Gamestate::drinkFeature(std::string featureIn)
 		// if not - prompt "drinking this will do nothing good"
 }
 
+
+/*------------------------------------------------------------------------------
+		LISTEN
+------------------------------------------------------------------------------*/
 void Gamestate::listenToRecording(std::string itemIn)
 {
 	// test if answering machine (feature) or recording (item)
@@ -1539,6 +1588,10 @@ void Gamestate::listenToRecording(std::string itemIn)
 		
 }
 
+
+/*------------------------------------------------------------------------------
+		TALK
+------------------------------------------------------------------------------*/
 void Gamestate::talkToPerson(std::string personIn)
 {
 	// if personIn is suspect or witness and in the same room
@@ -1552,11 +1605,19 @@ void Gamestate::talkToPerson(std::string personIn)
 		// prompt that its not healthy to talk to oneself
 }
 
+
+/*------------------------------------------------------------------------------
+		REFLECT
+------------------------------------------------------------------------------*/
 void Gamestate::reflectOnCase()
 {
 	// prompt with status of each suspect and the evidence
 }
 
+
+/*------------------------------------------------------------------------------
+		CLEAR SUSPECT
+------------------------------------------------------------------------------*/
 void Gamestate::clearSuspect(std::string personIn)
 {
 	// test if personIn is suspect
@@ -1576,15 +1637,38 @@ void Gamestate::clearSuspect(std::string personIn)
 }
 
 
+/*------------------------------------------------------------------------------
+		SAVE GAME
+------------------------------------------------------------------------------*/
 void Gamestate::saveGame()
 {
-	
+
+		
 }
 
-
+/*------------------------------------------------------------------------------
+		LOAD GAME
+------------------------------------------------------------------------------*/
 void Gamestate::loadGame()
 {
+	// Player location
 	
+	// Item locations
+		// place in rooms and player inventory
+	
+	// Item Status
+		// set available
+		// set analyzed
+	
+	// Feature Status
+		// set alreadyInspected
+		// set alreadyActioned
+		
+	// Room Status
+		// set already visited
+		
+	// suspect status
+		// set is cleared	
 }
 
 
