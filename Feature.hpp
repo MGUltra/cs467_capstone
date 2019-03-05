@@ -23,50 +23,59 @@ LIBRARIES
 class Feature
 {
 private:
-	std::string name;
-	std::string description;
-	std::string location;
-	
-	
-	bool alreadyInspected;
-	
-	// if the feature can be sampled.
-	bool canSample;
-	
-	// has the feature been acted on already 
-	bool alreadySampled;
-	
-	// if the feature capable of being acted on directly by an item
-	bool actionAble;
-	
-	// has the feature been acted on already 
-	bool alreadyActioned;
-	
-	// item that can affect this feature
-	std::string itemToUse;
-	
-	// item revealed or added to inventory from this feature
-	Item* itemAffected;
+	std::string name;							// name of feature
+	std::string descriptionFirst; // description sent when first examined or acted upon
+	std::string descriptionAfter; // description sent after examined or acted upon
+	std::string location;					// location of feature
+	std::string useItem;					// item that can affect this feature
+	bool canSample;								// if the feature can be sampled.
+	bool canHack;									// if the feature can be hacked.
+	bool actionAble;							// if the feature capable of being acted on directly by an item through Use
+	bool alreadyInspected;				// has the feature been inspected
+	bool alreadyActioned;					// has the feature been acted on already - sample, Hacked, or use item on
+	Item* itemAffected;						// item revealed or added to inventory from this feature
+
 	
 
 public:
 	//constructor
-	Feature(std::string, std::string, std::string, Item*);
+	Feature(std::string, std::string, std::string, std::string, Item*, bool, bool, bool, std::string);
 
 	// get
 	std::string getName();
-	std::string getDescription();
+	std::string getDescriptionFirst();
+	std::string getDescriptionAfter();
 	std::string getLocation();
+	std::string getUseItem();
+	
 	bool getAlreadyInspected();
-
+	bool getAlreadyActioned();
+	bool getCanSample();
+	bool getCanHack();
+	bool getActionAble();
+	Item* getitemAffected();
+	
+	
 	// set
 	void setName(std::string);
-	void setDescription(std::string);
+	void setDescriptionFirst(std::string);
+	void setDescriptionAfter(std::string);
+	void setAlreadyInspected(std::string);
+	void setAlreadyActioned(std::string);
 	void setLocation(std::string);
 	void setAlreadyInspected(bool);
 	void setItemAffected(Item*);
+	void setAlreadyActioned(bool);
+	void setCanSample(bool);
+	void setCanHack(bool);
+	void setActionAble(bool);
+	void setUseItem(std::string);
 	
+	// other
 	void inspected();
+	void hacked();
+	void sampled();
+	void itemUsed();
 };
 
 #endif

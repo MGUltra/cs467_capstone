@@ -22,27 +22,43 @@ class Witness
 {
 private:
 	std::string name;
-	std::string introduction;
-	std::string answer1;
-	std::string answer2;
+	std::string inspectResponse;	
+	std::string talkResponse;
+	std::string interrogateResponse;
+	std::string accuseResponse;
+	std::string itemResponse1;
+	std::string itemResponse2;
+	std::string itemResponse3;
+	std::string itemResponseGeneric;
 	Room* location;
 
 public:
 	//constructor
-	Witness(std::string, std::string, std::string, std::string, Room*);
+	Witness(std::string, std::string, std::string, std::string, std::string,
+					std::string, std::string, std::string, std::string, Room*);
 
 	//get
 	std::string getName();
-	std::string getIntroduction();
-	std::string getAnswer1();
-	std::string getAnswer2();
+	std::string getInspectResponse();
+	std::string getTalkResponse();
+	std::string getInterrogateResponse();
+	std::string getAccuseResponse();
+	std::string getItemResponse1();
+	std::string getItemResponse2();
+	std::string getItemResponse3();
+	std::string getItemResponseGeneric();
 	Room* getLocation();
 
 	//set
 	void setName(std::string);
-	void setIntroduction(std::string);
-	void setAnswer1(std::string);
-	void setAnswer2(std::string);
+	void setInspectResponse(std::string);
+	void setTalkResponse(std::string);
+	void setInterrogateResponse(std::string);
+	void setAccuseResponse(std::string);
+	void setItemResponse1(std::string);
+	void setItemResponse2(std::string);
+	void setItemResponse3(std::string);
+	void setItemResponseGeneric(std::string);
 	void setLocation(Room*);
 };
 

@@ -70,7 +70,7 @@ bool Player::itemInInventory(Item* currentItem)
 *******************************************************************************/
 void Player::pickUpItem(Item* currentItem)
 {
-	if(location->isItemInRoom(currentItem) == true)
+	if(location->isItemInRoom(currentItem) == true && currentItem->getAvailable() == true)
 	{
 		playerInventory.addItemToInventory(currentItem);
 		
@@ -102,10 +102,6 @@ void Player::dropItem(Item* currentItem)
 	
 }
 
-void inspectItem(std::string currentItem)
-{
-	
-}
 
 
 

@@ -27,11 +27,12 @@ class Item
 	std::string forensicAnalysis;
 	bool available;
 	bool analyzed;
+	bool usable;
 	Suspect* belongsTo;
 
 	public:
 	//constructor
-	Item(std::string, std::string, std::string, Suspect*);
+	Item(std::string, std::string, std::string, Suspect*, bool);
 
 	//get
 	std::string getName();
@@ -39,6 +40,7 @@ class Item
 	std::string getForensicAnalysis();
 	bool getAvailable();
 	bool getAnalyzed();
+	bool getUseable();
 	Suspect* getBelongsTo();
 
 	//set
@@ -47,6 +49,7 @@ class Item
 	void setForensicAnalysis(std::string);
 	void setAvailable(bool);
 	void setAnalyzed(bool);
+	void setUseable(bool);
 	void setBelongsTo(Suspect*);
 	
 	// actions
@@ -54,6 +57,9 @@ class Item
 	void analyzeItem();
 	
 	void revealedByFeature();
+	void revealedByHack(std::string);
+	void revealedBySample(std::string);
+	void revealedByItemUsed(std::string, std::string);
 	
 };
 

@@ -20,37 +20,55 @@ class Suspect
 {
 private:
 	std::string name;
-	std::string description;
-	std::string answer1;
-	std::string answer2;
+	std::string inspectResponse;
 	std::string talkResponse;
 	std::string interrogateResponse;
 	std::string accuseResponseTrue;
 	std::string accuseResponseFalse;
+	std::string itemResponse1;
+	std::string itemResponse2;
+	std::string itemResponse3;
+	std::string itemResponseGeneric;
 	
 	bool isGuilty;
 	bool isCleared;
-	bool isAccused;
 	
-	bool sigItemFound;
+
 
 public:
 	//constructor
-	Suspect(std::string, std::string, std::string, std::string);
+	Suspect(std::string, std::string, std::string, std::string, std::string,
+					std::string, std::string, std::string, std::string, std::string, bool);
 
 	//get
 	std::string getName();
-	std::string getDescription();
-	std::string getAnswer1();
-	std::string getAnswer2();
-	bool getSigItemFound();
+	std::string getInspectResponse();
+	std::string getTalkResponse();
+	std::string getIinterrogateResponse();
+	std::string getAccuseResponseTrue();
+	std::string getAccuseResponseFalse();
+	std::string getItemResponse1();
+	std::string getItemResponse2();
+	std::string getItemResponse3();
+	std::string getItemResponseGeneric();
+	
+	bool getIsGuilty();
+	bool getIsCleared();
 
 	//set
 	void setName(std::string);
-	void setDescription(std::string);
-	void setAnswer1(std::string);
-	void setAnswer2(std::string);
-	void setSigItemFound();
+	void setInspectResponse(std::string);
+	void setTalkResponse(std::string);
+	void setIinterrogateResponse(std::string);
+	void setAccuseResponseTrue(std::string);
+	void setAccuseResponseFalse(std::string);
+	void setItemResponse1(std::string);
+	void setItemResponse2(std::string);
+	void setItemResponse3(std::string);
+	void setItemResponseGeneric(std::string);
+	
+	void setIsGuilty(bool);
+	void setIsCleared(bool);
 };
 
 #endif

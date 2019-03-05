@@ -102,6 +102,8 @@ public:
 	// helper functions
 	int findArrayIndex(std::string);
 	Room* getRoom(std::string);
+	Suspect* getSuspect(std::string);
+	Feature* getFeature(std::string);
 	void printRooms();
 	void printRoom(Room*);
 	void checkLineEndings(std::string*);
@@ -123,8 +125,7 @@ public:
 	void inspectObject(std::string);
 	void showInventory();
 	void hackComputer(std::string);
-	void getStatement(std::string);
-	void interrogateSuspect(std::string);
+	void interrogate(std::string);
 	void analyzeItem(std::string);
 	void accuseSuspect(std::string);
 	void sampleFeature(std::string);
@@ -144,7 +145,8 @@ public:
 	// Cleanup function
 	void cleanup();
 
-
+	// TestFunctions
+	void testFeature(Feature*);
 
 
 

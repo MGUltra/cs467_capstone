@@ -12,13 +12,20 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Feature::Feature(std::string name, std::string description, std::string location, Item* itemAffected)
+Feature::Feature(std::string nameIn, std::string descriptionFirstIn, std::string descriptionAfterIn, std::string locationIn, Item* itemAffectedIn, 
+								 bool canSampleIn, bool canHackIn, bool actionAbleIn, std::string useItemIn)
 {
-	setName(name);
-	setDescription(description);
-	setLocation(location);
-	setItemAffected(itemAffected);
-	alreadyInspected = false;
+	setName(nameIn);
+	setDescriptionFirst(descriptionFirstIn);
+	setDescriptionAfter(descriptionAfterIn);
+	setLocation(locationIn);
+	setItemAffected(itemAffectedIn);
+	setAlreadyInspected(false);
+	setAlreadyActioned(false);
+	setCanSample(canSampleIn);
+	setCanHack(canHackIn);
+	setActionAble(actionAbleIn);
+	setUseItem(useItemIn);
 }
 
 /*******************************************************************************
@@ -29,9 +36,14 @@ std::string Feature::getName()
 	return name;
 }
 
-std::string Feature::getDescription()
+std::string Feature::getDescriptionFirst()
 {
-	return description;
+	return descriptionFirst;
+}
+
+std::string Feature::getDescriptionAfter()
+{
+	return descriptionAfter;
 }
 
 std::string Feature::getLocation()
@@ -39,11 +51,40 @@ std::string Feature::getLocation()
 	return location;
 }
 
+std::string Feature::getUseItem()
+{
+	return this->useItem;
+}
+
 bool Feature::getAlreadyInspected()
 {
 	return alreadyInspected;
 }
 
+bool Feature::getAlreadyActioned()
+{
+	return alreadyActioned;
+}
+
+bool Feature::getCanSample()
+{
+	return canSample;
+}
+
+bool Feature::getCanHack()
+{
+	return canHack;
+}
+
+bool Feature::getActionAble()
+{
+	return actionAble;
+}
+
+Item* Feature::getitemAffected()
+{
+	return this->itemAffected;
+}
 
 /*******************************************************************************
 *		SET FUNCTIONS
@@ -53,9 +94,14 @@ void Feature::setName(std::string givenName)
 	name = givenName;
 }
 
-void Feature::setDescription(std::string givenDescription)
+void Feature::setDescriptionFirst(std::string stringIn)
 {
-	description = givenDescription;
+	this->descriptionFirst = stringIn;
+}
+
+void Feature::setDescriptionAfter(std::string stringIn)
+{
+	this->descriptionAfter = stringIn;
 }
 
 void Feature::setLocation(std::string givenLocation)
@@ -73,13 +119,63 @@ void Feature::setItemAffected(Item* newItem)
 	this->itemAffected = newItem;
 }
 
+void Feature::setAlreadyActioned(bool boolIn)
+{
+	this->alreadyActioned = boolIn;
+}
 
+void Feature::setCanSample(bool boolIn)
+{
+	this->canSample = boolIn;
+}
+
+void Feature::setCanHack(bool boolIn)
+{
+	this->canHack = boolIn;
+}
+
+void Feature::setActionAble(bool boolIn)
+{
+	this->actionAble = boolIn;
+}
+
+void Feature::setUseItem(std::string itemIn)
+{
+	this->useItem = itemIn;
+}
+
+/*******************************************************************************
+*		OTHER FUNCTIONS
+*******************************************************************************/
 
 void Feature::inspected()
 {
-	//std::cout << "You take a closer look at the " << this->getName() << "." << std::endl;
 	
 	this->itemAffected->revealedByFeature();
 	
 	this->setAlreadyInspected(true);
+	
 }
+
+void Feature::hacked()
+{
+		this->itemAffected->revealedByHack(this->name);
+		
+		this->setAlreadyActioned(true);
+}
+
+void Feature::sampled()
+{
+		this->itemAffected->revealedBySample(this->name);
+		
+		this->setAlreadyActioned(true);
+}
+
+void Feature::itemUsed()
+{
+		this->itemAffected->revealedByItemUsed(this->name, this->useItem);
+		
+		this->setAlreadyActioned(true);
+}
+
+

@@ -12,14 +12,31 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Suspect::Suspect(std::string name, std::string description, std::string answer1, std::string answer2)
+Suspect::Suspect(std::string nameIn,
+								std::string inspectResponseIn,
+								std::string talkResponseIn,
+								std::string interrogateResponseIn,
+								std::string accuseResponseTrueIn,
+								std::string accuseResponseFalseIn,
+								std::string itemResponse1In, 
+								std::string itemResponse2In,
+								std::string itemResponse3In,
+								std::string itemResponseGenericIn,
+								bool isGuiltyIn)
 {
-	setName(name);
-	setDescription(description);
-	setAnswer1(answer1);
-	setAnswer2(answer2);
+	setName(nameIn);
+	setInspectResponse(inspectResponseIn);
+	setTalkResponse(talkResponseIn);
+	setIinterrogateResponse(interrogateResponseIn);
+	setAccuseResponseTrue(accuseResponseTrueIn);
+	setAccuseResponseFalse(accuseResponseFalseIn);
+	setItemResponse1(itemResponse1In);
+	setItemResponse2(itemResponse2In);
+	setItemResponse3(itemResponse3In);
+	setInspectResponse(itemResponseGenericIn);
+	setIsGuilty(isGuiltyIn);
+	setIsCleared(false);
 
-	sigItemFound = false;
 }
 
 /*******************************************************************************
@@ -30,24 +47,59 @@ std::string Suspect::getName()
 	return name;
 }
 
-std::string Suspect::getDescription()
+std::string Suspect::getInspectResponse()
 {
-	return description;
+	return inspectResponse;
 }
 
-std::string Suspect::getAnswer1()
+std::string Suspect::getTalkResponse()
 {
-	return answer1;
+	return talkResponse;
 }
 
-std::string Suspect::getAnswer2()
+std::string Suspect::getIinterrogateResponse()
 {
-	return answer2;
+	return interrogateResponse;
 }
 
-bool Suspect::getSigItemFound()
+std::string Suspect::getAccuseResponseTrue()
 {
-	return sigItemFound;
+	return accuseResponseTrue;
+}
+
+std::string Suspect::getAccuseResponseFalse()
+{
+	return accuseResponseFalse;
+}
+
+std::string Suspect::getItemResponse1()
+{
+	return itemResponse1;
+}
+
+std::string Suspect::getItemResponse2()
+{
+	return itemResponse2;
+}
+
+std::string Suspect::getItemResponse3()
+{
+	return itemResponse3;
+}
+
+std::string Suspect::getItemResponseGeneric()
+{
+	return itemResponseGeneric;
+}
+
+bool Suspect::getIsGuilty()
+{
+	return isGuilty;
+}
+
+bool Suspect::getIsCleared()
+{
+	return isCleared;
 }
 
 /*******************************************************************************
@@ -58,22 +110,59 @@ void Suspect::setName(std::string givenName)
 	name = givenName;
 }
 
-void Suspect::setDescription(std::string givenDescription)
+void Suspect::setInspectResponse(std::string giveninspectResponse)
 {
-	description = givenDescription;
+	inspectResponse = giveninspectResponse;
 }
 
-void Suspect::setAnswer1(std::string givenAnswer1)
+void Suspect::setTalkResponse(std::string stringIn)
 {
-	answer1 = givenAnswer1;
+	talkResponse = stringIn;
 }
 
-void Suspect::setAnswer2(std::string givenAnswer2)
+void Suspect::setIinterrogateResponse(std::string stringIn)
 {
-	answer2 = givenAnswer2;
+	interrogateResponse = stringIn;
 }
 
-void Suspect::setSigItemFound()
+void Suspect::setAccuseResponseTrue(std::string stringIn)
 {
-	sigItemFound = true;
+	accuseResponseTrue = stringIn;
 }
+
+void Suspect::setAccuseResponseFalse(std::string stringIn)
+{
+	accuseResponseFalse = stringIn;
+}
+
+void Suspect::setItemResponse1(std::string stringIn)
+{
+	itemResponse1 = stringIn;
+}
+
+void Suspect::setItemResponse2(std::string stringIn)
+{
+	itemResponse2 = stringIn;
+}
+
+void Suspect::setItemResponse3(std::string stringIn)
+{
+	itemResponse3 = stringIn;
+}
+
+void Suspect::setItemResponseGeneric(std::string stringIn)
+{
+	itemResponseGeneric = stringIn;
+}
+
+void Suspect::setIsGuilty(bool boolIn)
+{
+	isGuilty = boolIn;
+}
+
+void Suspect::setIsCleared(bool boolIn)
+{
+	isCleared = boolIn;	
+}
+	
+	
