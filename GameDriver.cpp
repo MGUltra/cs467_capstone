@@ -846,6 +846,17 @@ Suspect* Gamestate::getSuspect(std::string suspectName)
 }
 
 /*------------------------------------------------------------------------------
+GET WITNESS
+------------------------------------------------------------------------------*/
+Witness* Gamestate::getWitness(std::string witnessName)
+{
+	if (witnessName == "nonoun")
+		return NULL;
+
+	return this->witnessMap[witnessName];
+}
+
+/*------------------------------------------------------------------------------
 GET FEATURE
 ------------------------------------------------------------------------------*/
 Feature* Gamestate::getFeature(std::string featureName)
@@ -1414,16 +1425,41 @@ void Gamestate::analyzeItem(std::string nounIn)
 
 void Gamestate::accuseSuspect(std::string personIn)
 {
-	if (currentPlayer.getLocation() == getRoom("station") || currentPlayer.getLocation() == getRoom("cells"))
+	if (currentPlayer.getLocation() == getRoom("station"))
+	{
+		// if witness
+		if (witnessMap.find(personIn) != witnessMap.end())
+		{
+			Witness* currentWitness = getWitness(personIn);
+			std::cout << currentWitness->getAccuseResponse() << std::endl;
+		}
+		// if chief
+		else if (personIn == "chief")
+		{
+			std::cout << "Ha Ha Ha. Get back to work!" << std::endl;
+		}
+		else if (suspectMap.find(personIn) != suspectMap.end())
+		{
+			std::cout << "They can't hear you from this room. Try again in the cells." << std::endl;
+		}
+		// not a suspect, witness, or chief
+		else
+		{
+			std::cout << "Who is that?  They're not involved in this case." << std::endl;
+		}
+	}
+	else if (currentPlayer.getLocation() == getRoom("cells"))
 	{
 		// if suspect
 		if (suspectMap.find(personIn) != suspectMap.end())
 		{
+			// If suspect is cleared
 			Suspect* currentSuspect = getSuspect(personIn);
 			if (currentSuspect->getIsCleared())
 			{
-				std::cout << "He's already been cleared!  It must be one of the other two." << std::endl;
+				std::cout << currentSuspect->getAccuseResponseFalse() << std::endl;
 			}
+			// Suspect is not cleared.
 			else
 			{
 				// test if other two suspects exonerated
@@ -1449,22 +1485,16 @@ void Gamestate::accuseSuspect(std::string personIn)
 				//accused is not clear, and one or both of the others isn't either.
 				else
 				{
-					std::cout << "You can't say it's " << personIn 
-							<< " for sure. You need to clear the other suspects first." << std::endl;
+					std::cout << currentSuspect->getAccuseResponseFalse << std::endl;
+					std::cout << "You can't say it's " << personIn
+						<< " for sure. You need to clear the other suspects first." << std::endl;
 				}
 			}
 		}
-		// if witness
-		else if (witnessMap.find(personIn) != witnessMap.end())
+		else if (witnessMap.find(personIn) != witnessMap.end() || personIn == "chief")
 		{
-			std::cout << "That's preposterous! " << personIn <<" is a witness!" << std::endl;
+			std::cout << "They can't hear you in the station from this room.  That might be for the best!" << std::endl;
 		}
-		// if chief
-		else if (personIn == "chief")
-		{
-			std::cout << "Ha Ha Ha. Get back to work!" << std::endl;
-		}
-		// not a suspect, witness, or chief
 		else
 		{
 			std::cout << "Who is that?  They're not involved in this case." << std::endl;
@@ -1472,12 +1502,9 @@ void Gamestate::accuseSuspect(std::string personIn)
 	}
 	else
 	{
-		std::cout << "No one hears your accusation.  Try again at the station." << std::endl;
+		std::cout << "No one hears your accusation.  Try again at the station or in the cells." << std::endl;
 	}
-	
-	
-	
-	
+
 	
 	// test if suspect, witness, chief
 	
