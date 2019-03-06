@@ -1868,6 +1868,38 @@ void Gamestate::reflectOnCase()
 ------------------------------------------------------------------------------*/
 void Gamestate::clearSuspect(std::string personIn)
 {
+	if (currentPlayer.getLocation() == getRoom("station"))
+	{
+		// if witness
+		if (witnessMap.find(personIn) != witnessMap.end())
+		{
+			std::cout << "Well of course I'm cleared!  I wasn't ever a suspect!" << std::endl;
+		}
+		// if chief
+		else if (personIn == "chief")
+		{
+			std::cout << "You're hilarious.  Now get back to work!" << std::endl;
+		}
+		//suspect
+		else if (suspectMap.find(personIn) != suspectMap.end())
+		{
+			// test if enough evidence to clear them
+			// if so, set flag for suspect to cleared in notebook
+				// remove suspect from cells
+
+			// if not, prompt that more evidence is needed before they can be released
+		}
+		// not a suspect, witness, or chief
+		else
+		{
+			std::cout << "Who is that?" << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "It doesn't do much good to declare that here, does it? Try again at the station." << std::endl;
+	}
+
 	// test if personIn is suspect
 		// if so
 			// test if enough evidence to clear them
@@ -1890,7 +1922,8 @@ void Gamestate::clearSuspect(std::string personIn)
 ------------------------------------------------------------------------------*/
 void Gamestate::saveGame()
 {
-
+	//write flags from notebook to file
+	//write tiem locations to file
 		
 }
 
