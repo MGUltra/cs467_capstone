@@ -48,7 +48,7 @@ parsertest: ${PARSEOBJECTS} ${PARSEHEADERS}
 	${CXX} -std=c++11 ${PARSEOBJECTS} parserTest.cpp -o parsertest
 	
 gamedriver: ${DRIVEROBJECTS} ${DRIVERHEADERS} ${PARSEHEADERS}
-	${CXX} -std=c++11 main.cpp ${DRIVEROBJECTS} ${PARSEOBJECTS} -o gamedriver
+	${CXX} -std=c++11 -g main.cpp ${DRIVEROBJECTS} ${PARSEOBJECTS} -o gamedriver
 	
 	
 	

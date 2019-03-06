@@ -3,7 +3,7 @@ hamper
 roomFeatures/carlBathFirstAidFirst.txt
 roomFeatures/carlBathFirstAidAfter.txt
 bathroom
-item1
+shirt
 false
 false
 false
@@ -282,7 +282,7 @@ envelope
 roomFeatures/vinceOfficeTicketsFirst.txt
 roomFeatures/vinceOfficeTicketsAfter.txt
 office
-item32
+tickets
 false
 false
 false

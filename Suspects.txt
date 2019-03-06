@@ -10,9 +10,12 @@ suspectText/carlItemResponse2.txt
 suspectText/carlItemResponse3.txt
 suspectText/carlItemResponseGeneric.txt
 false
+shirt
+item2
+key
 Vince
 suspectText/vinceInspectResponse.txt
-suspectText/vincealkResponse.txt
+suspectText/vinceTalkResponse.txt
 suspectText/vinceInterrogateResponse.txt
 suspectText/vinceAccuseResponseTrue.txt
 suspectText/vinceAccuseResponseFalse.txt
@@ -21,6 +24,9 @@ suspectText/vinceItemResponse2.txt
 suspectText/vinceItemResponse3.txt
 suspectText/vinceItemResponseGeneric.txt
 false
+tickets
+item31
+combination
 Dan
 suspectText/danInspectResponse.txt
 suspectText/danTalkResponse.txt
@@ -32,3 +38,6 @@ suspectText/danItemResponse2.txt
 suspectText/danItemResponse3.txt
 suspectText/danItemResponseGeneric.txt
 true
+item15
+item16
+item17

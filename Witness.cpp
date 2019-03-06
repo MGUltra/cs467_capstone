@@ -21,7 +21,10 @@ Witness::Witness(std::string nameIn,
 								std::string item2In, 
 								std::string item3In, 
 								std::string itemGeneric, 
-								Room* location)
+								Room* location,
+								std::string item1, 
+								std::string item2, 
+								std::string item3)
 {
 	setName(nameIn);
 	setInspectResponse(inspectIn);
@@ -33,6 +36,9 @@ Witness::Witness(std::string nameIn,
 	setItemResponse3(item3In);
 	setItemResponseGeneric(itemGeneric);
 	setLocation(location);
+	setItem1(item1);
+	setItem2(item2);
+	setItem3(item3);
 }
 
 /*******************************************************************************
@@ -81,6 +87,21 @@ std::string Witness::getItemResponse3()
 std::string Witness::getItemResponseGeneric()
 {
 	return itemResponseGeneric;
+}
+
+std::string Witness::getItem1()
+{
+	return item1;
+}
+
+std::string Witness::getItem2()
+{
+	return item2;
+}
+
+std::string Witness::getItem3()
+{
+	return item3;
 }
 
 Room* Witness::getLocation()
@@ -137,15 +158,45 @@ void Witness::setItemResponse3(std::string stringin)
 	this->itemResponse3 = stringin;
 }
 
-
 void Witness::setItemResponseGeneric(std::string stringin)
 {
 	this->itemResponseGeneric= stringin;
 }
 
+void Witness::setItem1(std::string stringin)
+{
+	this->item1 = stringin;
+}
 
+void Witness::setItem2(std::string stringin)
+{
+	this->item2 = stringin;
+}
+
+void Witness::setItem3(std::string stringin)
+{
+	this->item3 = stringin;
+}
 
 void Witness::setLocation(Room* givenLocation)
 {
 	location = givenLocation;
 }
+
+
+
+/*******************************************************************************
+*		OTHER FUNCTIONS
+*******************************************************************************/
+std::string Witness::askItemResponse(std::string itemIn)
+{
+	if(itemIn == item1)
+		return getItemResponse1();
+	else if(itemIn == item2)
+		return getItemResponse2();
+	else if(itemIn == item3)
+		return getItemResponse3();	
+	else
+		return getItemResponseGeneric();
+}
+
