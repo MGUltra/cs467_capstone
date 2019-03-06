@@ -1772,6 +1772,43 @@ void Gamestate::talkToPerson(std::string personIn)
 void Gamestate::reflectOnCase()
 {
 	// prompt with status of each suspect and the evidence
+
+	std::cout << "Here's what we know so far." << std::endl << std::endl;
+
+	std::unordered_map<std::string, Suspect*>::iterator it = suspectMap.begin();
+	while (it != suspectMap.end())
+	{	
+		// name of suspect
+		std::cout << it->second->getName();
+		if (it->second->getIsCleared())
+		{
+			std::cout << " has been cleared of this murder." << std::endl;
+		}
+		else
+		{
+			std::cout << " has NOT been cleared of this murder." << std::endl;
+		}
+
+		// get relevant evidence that has been found and analyzed
+		std::unordered_map<std::string, Item*>::iterator it2 = itemMap.begin();
+		while (it2 != itemMap.end())
+		{
+			std::cout << "\tThe following relevant evidence has been found:" << std::endl;
+
+			// if item belongs to current suspect and has already been analyzed
+			if (it2->second->getBelongsTo() == it->second && it2->second->getAnalyzed())
+			{
+				// item name and analysis results
+				std::cout << "\t\t- " << it2->second->getName() << " : " << it2->second->getForensicAnalysis()<< std::endl;
+			}
+
+			// increment iterator
+			it2++;
+		}
+
+		// increment iterator
+		it++;
+	}
 }
 
 
