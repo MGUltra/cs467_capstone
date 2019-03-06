@@ -1,4 +1,4 @@
-// flags
+// game object status flags
 
 Witness1interrogate
 Witness1accuse
@@ -48,3 +48,5 @@ itamAnalyzed
 x32
 featureAlreadyInspected
 featureAlreadyActioned
+
+// game progress flags

@@ -74,6 +74,7 @@ void Gamestate::playGame()
 		}
 		
 		clearScreen();
+
 		
 		// Call newMessage to run parser on input
 		commandParser.newMessage(inputString);
@@ -143,7 +144,7 @@ void Gamestate::playGame()
 	
 	
 	// test if game won
-		
+	
 		
 	}while(exitStatus != true);
 }
@@ -903,7 +904,16 @@ Witness* Gamestate::getWitness(std::string witnessName)
 	return this->witnessMap[witnessName];
 }
 
+/*------------------------------------------------------------------------------
+GET ITEM
+------------------------------------------------------------------------------*/
+Item* Gamestate::getItem(std::string itemName)
+{
+	if (itemName == "nonoun")
+		return NULL;
 
+	return this->itemMap[itemName];
+}
 
 
 
@@ -1185,7 +1195,7 @@ void Gamestate::dropItem(std::string nounIn)
 	
 	// test if item
 	if(this->itemMap.find(nounIn) != this->itemMap.end())
-		this->currentPlayer.dropItem(this->itemMap[nounIn]);
+		this->currentPlayer.dropItem(getItem(nounIn));
 	else
 		std::cout << "| you cannot drop " << nounIn << std::endl;
 }
@@ -1197,7 +1207,7 @@ void Gamestate::takeItem(std::string nounIn)
 {
 	// test if item
 	if(this->itemMap.find(nounIn) != this->itemMap.end())
-		this->currentPlayer.pickUpItem(itemMap[nounIn]);
+		this->currentPlayer.pickUpItem(getItem(nounIn));
 	else
 		std::cout << "| you cannot pick up " << nounIn << std::endl;
 }
@@ -1478,16 +1488,41 @@ void Gamestate::analyzeItem(std::string nounIn)
 
 void Gamestate::accuseSuspect(std::string personIn)
 {
-	if (currentPlayer.getLocation() == getRoom("station") || currentPlayer.getLocation() == getRoom("cells"))
+	if (currentPlayer.getLocation() == getRoom("station"))
+	{
+		// if witness
+		if (witnessMap.find(personIn) != witnessMap.end())
+		{
+			Witness* currentWitness = getWitness(personIn);
+			std::cout << currentWitness->getAccuseResponse() << std::endl;
+		}
+		// if chief
+		else if (personIn == "chief")
+		{
+			std::cout << "Ha Ha Ha. Get back to work!" << std::endl;
+		}
+		else if (suspectMap.find(personIn) != suspectMap.end())
+		{
+			std::cout << "They can't hear you from this room. Try again in the cells." << std::endl;
+		}
+		// not a suspect, witness, or chief
+		else
+		{
+			std::cout << "Who is that?  They're not involved in this case." << std::endl;
+		}
+	}
+	else if (currentPlayer.getLocation() == getRoom("cells"))
 	{
 		// if suspect
 		if (suspectMap.find(personIn) != suspectMap.end())
 		{
+			// If suspect is cleared
 			Suspect* currentSuspect = getSuspect(personIn);
 			if (currentSuspect->getIsCleared())
 			{
-				std::cout << "He's already been cleared!  It must be one of the other two." << std::endl;
+				std::cout << currentSuspect->getAccuseResponseFalse() << std::endl;
 			}
+			// Suspect is not cleared.
 			else
 			{
 				// test if other two suspects exonerated
@@ -1513,22 +1548,16 @@ void Gamestate::accuseSuspect(std::string personIn)
 				//accused is not clear, and one or both of the others isn't either.
 				else
 				{
-					std::cout << "You can't say it's " << personIn 
-							<< " for sure. You need to clear the other suspects first." << std::endl;
+					std::cout << currentSuspect->getAccuseResponseFalse() << std::endl;
+					std::cout << "You can't say it's " << personIn
+						<< " for sure. You need to clear the other suspects first." << std::endl;
 				}
 			}
 		}
-		// if witness
-		else if (witnessMap.find(personIn) != witnessMap.end())
+		else if (witnessMap.find(personIn) != witnessMap.end() || personIn == "chief")
 		{
-			std::cout << "That's preposterous! " << personIn <<" is a witness!" << std::endl;
+			std::cout << "They can't hear you in the station from this room.  That might be for the best!" << std::endl;
 		}
-		// if chief
-		else if (personIn == "chief")
-		{
-			std::cout << "Ha Ha Ha. Get back to work!" << std::endl;
-		}
-		// not a suspect, witness, or chief
 		else
 		{
 			std::cout << "Who is that?  They're not involved in this case." << std::endl;
@@ -1536,7 +1565,7 @@ void Gamestate::accuseSuspect(std::string personIn)
 	}
 	else
 	{
-		std::cout << "No one hears your accusation.  Try again at the station." << std::endl;
+		std::cout << "No one hears your accusation.  Try again at the station or in the cells." << std::endl;
 	}
 	
 	
@@ -1628,60 +1657,67 @@ void Gamestate::askAboutItem(std::string personIn, std::string itemIn)
 		return;
 	}
 
-	// test if item is in player's inventory
-	if(this->currentPlayer.itemInInventory(this->itemMap[itemIn]) == true) // item in inventory
+	
+	
+	if(this->itemMap.find(itemIn) != this->itemMap.end())
 	{
-
-		Room* currentRoom = this->currentPlayer.getLocation();
+		Item* currentItem = getItem(itemIn);
 		
-		// test if suspect and current location is in cells
-		if(suspectMap.find(personIn) != suspectMap.end() &&	currentRoom->getName() == "cells")
+		// test if item is in player's inventory
+		if(this->currentPlayer.itemInInventory(currentItem) == true) // item in inventory
 		{
+
+			Room* currentRoom = this->currentPlayer.getLocation();
 			
-			Suspect* currentSuspect = getSuspect(personIn);
-			
-			std::ifstream inFile;
-			
-			inFile.open(currentSuspect->askItemResponse(itemIn), std::ios::out);
-			readFileDefault(inFile);
-			inFile.close();
-			// suspect
-				// test if they have a response to item
-					// if so - flag in notebook and return response
-					// if not - return generic response
-		}		
-		// test if witness or chief, and current location is in station
-		else if(currentRoom->getName() == "station"	&& (witnessMap.find(personIn) != witnessMap.end() || personIn == "chief"))
-		{
-			// chief
-				// generic response about being the brass and not going to do your job
-			
-			if(personIn == "chief")
+			// test if suspect and current location is in cells
+			if(suspectMap.find(personIn) != suspectMap.end() &&	currentRoom->getName() == "cells")
 			{
-				std::cout << "Why are you asking me about " << itemIn << "? You should be investigating these things, not me." <<  std::endl;
-			}
-			else
-			{
-				Witness* currentWitness = getWitness(personIn);
-			
+				
+				Suspect* currentSuspect = getSuspect(personIn);
+				
 				std::ifstream inFile;
-			
-				inFile.open(currentWitness->askItemResponse(itemIn), std::ios::out);
+				
+				inFile.open(currentSuspect->askItemResponse(itemIn), std::ios::out);
 				readFileDefault(inFile);
 				inFile.close();
-			}
+				// suspect
+					// test if they have a response to item
+						// if so - flag in notebook and return response
+						// if not - return generic response
+			}		
+			// test if witness or chief, and current location is in station
+			else if(currentRoom->getName() == "station"	&& (witnessMap.find(personIn) != witnessMap.end() || personIn == "chief"))
+			{
+				// chief
+					// generic response about being the brass and not going to do your job
 				
-		}
-		// if neither of the above then operation is not possible
-		else
-		{
-			std::cout << "that person isn't here to ask" <<  std::endl;
-		}
+				if(personIn == "chief")
+				{
+					std::cout << "Why are you asking me about " << itemIn << "? You should be investigating these things, not me." <<  std::endl;
+				}
+				else
+				{
+					Witness* currentWitness = getWitness(personIn);
+				
+					std::ifstream inFile;
+				
+					inFile.open(currentWitness->askItemResponse(itemIn), std::ios::out);
+					readFileDefault(inFile);
+					inFile.close();
+				}
+					
+			}
+			// if neither of the above then operation is not possible
+			else
+			{
+				std::cout << "that person isn't here to ask" <<  std::endl;
+			}
 
-	}
-	else // Item not in inventory
-	{
-		std::cout << itemIn << " is not in your inventory" <<  std::endl;
+		}
+		else // Item not in inventory
+		{
+			std::cout << itemIn << " is not in your inventory" <<  std::endl;
+		}
 	}
 }
 
@@ -1801,6 +1837,46 @@ void Gamestate::drinkFeature(std::string featureIn)
 ------------------------------------------------------------------------------*/
 void Gamestate::listenToRecording(std::string itemIn)
 {
+	
+	if (itemIn == "answering")
+	{
+		Feature* currentFeature = getFeature(itemIn);
+		Item* currentItem = currentFeature->getitemAffected();
+
+		if (currentPlayer.getLocation() == getRoom(currentFeature->getLocation()))
+		{
+			if (currentFeature->getAlreadyActioned())
+			{
+				std::cout << "You've already added the recording to your inventory." << std::endl;
+			}
+			else
+			{
+				currentFeature->setAlreadyActioned(true);
+				std::cout << "You listen to the recording." << std::endl;
+				std::cout << currentItem->getDescription() << std::endl;
+				std::cout << "You add the recording to your inventory." << std::endl;
+				// add recording to inventory
+				currentPlayer.pickUpItem(currentItem);
+
+			}
+		}
+		else
+		{
+			std::cout << "You're not in the same room as the answering machine." << std::endl;
+		}
+	}
+	else if (itemIn == "recording")
+	{
+		Item* currentItem = getItem(itemIn);
+		// Play recording.
+		std::cout << currentItem->getDescription() << std::endl;
+	}
+	else
+	{
+		std::cout << "You can't listen to that." << std::endl;
+	}
+
+	
 	// test if answering machine (feature) or recording (item)
 	
 	// if answering machine - test if listened to before
@@ -1820,6 +1896,53 @@ void Gamestate::listenToRecording(std::string itemIn)
 ------------------------------------------------------------------------------*/
 void Gamestate::talkToPerson(std::string personIn)
 {
+
+	if (currentPlayer.getLocation() == getRoom("station"))
+	{
+		// if witness
+		if (witnessMap.find(personIn) != witnessMap.end())
+		{
+			Witness* currentWitness = getWitness(personIn);
+			std::cout << currentWitness->getTalkResponse() << std::endl;
+		}
+		// if chief
+		else if (personIn == "chief")
+		{
+			std::cout << "Let's have a look at your progress." << std::endl;
+			reflectOnCase();
+		}
+		else if (suspectMap.find(personIn) != suspectMap.end())
+		{
+			std::cout << "They can't hear you from this room. Try again in the cells." << std::endl;
+		}
+		// not a suspect, witness, or chief
+		else
+		{
+			std::cout << "Who is that? It's not really healthy to talk to yourself, is it?" << std::endl;
+		}
+	}
+	else if (currentPlayer.getLocation() == getRoom("cells"))
+	{
+		// if suspect
+		if (suspectMap.find(personIn) != suspectMap.end())
+		{
+			Suspect* currentSuspect = getSuspect(personIn);
+			std::cout << currentSuspect->getTalkResponse() << std::endl;
+		}
+		else if (witnessMap.find(personIn) != witnessMap.end() || personIn == "chief")
+		{
+			std::cout << "They can't hear you in the station from this room." << std::endl;
+		}
+		else
+		{
+			std::cout << "Who is that? It's not really healthy to talk to yourself, is it?" << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "It's not really healthy to talk to yourself, is it?" << std::endl;
+	}
+	
 	// if personIn is suspect or witness and in the same room
 		// prompt with response
 		
@@ -1838,6 +1961,45 @@ void Gamestate::talkToPerson(std::string personIn)
 void Gamestate::reflectOnCase()
 {
 	// prompt with status of each suspect and the evidence
+	// prompt with status of each suspect and the evidence
+
+	std::cout << "Here's what we know so far." << std::endl << std::endl;
+
+	std::unordered_map<std::string, Suspect*>::iterator it = suspectMap.begin();
+	while (it != suspectMap.end())
+	{	
+		// name of suspect
+		std::cout << it->second->getName();
+		if (it->second->getIsCleared())
+		{
+			std::cout << " has been cleared of this murder." << std::endl;
+		}
+		else
+		{
+			std::cout << " has NOT been cleared of this murder." << std::endl;
+		}
+
+//>>>>>>THOUGHT - should the relevant evidence only be listed if the suspect is not cleared?  keep things clear and concise?
+		// get relevant evidence that has been found and analyzed
+		std::unordered_map<std::string, Item*>::iterator it2 = itemMap.begin();
+		while (it2 != itemMap.end())
+		{
+			std::cout << "\tThe following relevant evidence has been found:" << std::endl;
+
+			// if item belongs to current suspect and has already been analyzed
+			if (it2->second->getBelongsTo() == it->second && it2->second->getAnalyzed())
+			{
+				// item name and analysis results
+				std::cout << "\t\t- " << it2->second->getName() << " : " << it2->second->getForensicAnalysis()<< std::endl;
+			}
+
+			// increment iterator
+			it2++;
+		}
+
+		// increment iterator
+		it++;
+	}
 }
 
 
@@ -1846,6 +2008,40 @@ void Gamestate::reflectOnCase()
 ------------------------------------------------------------------------------*/
 void Gamestate::clearSuspect(std::string personIn)
 {
+	
+	if (currentPlayer.getLocation() == getRoom("station"))
+	{
+		// if witness
+		if (witnessMap.find(personIn) != witnessMap.end())
+		{
+			std::cout << "Well of course I'm cleared!  I wasn't ever a suspect!" << std::endl;
+		}
+		// if chief
+		else if (personIn == "chief")
+		{
+			std::cout << "You're hilarious.  Now get back to work!" << std::endl;
+		}
+		//suspect
+		else if (suspectMap.find(personIn) != suspectMap.end())
+		{
+			// test if enough evidence to clear them
+			// if so, set flag for suspect to cleared in notebook
+				// remove suspect from cells
+
+			// if not, prompt that more evidence is needed before they can be released
+		}
+		// not a suspect, witness, or chief
+		else
+		{
+			std::cout << "Who is that?" << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "It doesn't do much good to declare that here, does it? Try again at the station." << std::endl;
+	}
+	
+	
 	// test if personIn is suspect
 		// if so
 			// test if enough evidence to clear them
@@ -1883,7 +2079,8 @@ void Gamestate::talkToChief()
 ------------------------------------------------------------------------------*/
 void Gamestate::saveGame()
 {
-
+	//write flags from notebook to file
+	//write tiem locations to file
 		
 }
 
@@ -2026,4 +2223,13 @@ void Gamestate::testFeature(Feature* currentFeature)
 	std::cout << "Already Actioned: " << currentFeature->getAlreadyActioned() << std::endl;
 	
 	
+}
+
+void Gamestate::keyValuePrint()
+{
+	for(auto keys : this->itemMap) 
+	{
+    std::cout << keys.first << std::endl;
+
+	}
 }
