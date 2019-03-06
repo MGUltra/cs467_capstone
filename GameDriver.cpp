@@ -1708,6 +1708,52 @@ void Gamestate::listenToRecording(std::string itemIn)
 ------------------------------------------------------------------------------*/
 void Gamestate::talkToPerson(std::string personIn)
 {
+	if (currentPlayer.getLocation() == getRoom("station"))
+	{
+		// if witness
+		if (witnessMap.find(personIn) != witnessMap.end())
+		{
+			Witness* currentWitness = getWitness(personIn);
+			std::cout << currentWitness->getTalkResponse() << std::endl;
+		}
+		// if chief
+		else if (personIn == "chief")
+		{
+			std::cout << "Let's have a look at your progress." << std::endl;
+			reflectOnCase();
+		}
+		else if (suspectMap.find(personIn) != suspectMap.end())
+		{
+			std::cout << "They can't hear you from this room. Try again in the cells." << std::endl;
+		}
+		// not a suspect, witness, or chief
+		else
+		{
+			std::cout << "Who is that? It's not really healthy to talk to yourself, is it?" << std::endl;
+		}
+	}
+	else if (currentPlayer.getLocation() == getRoom("cells"))
+	{
+		// if suspect
+		if (suspectMap.find(personIn) != suspectMap.end())
+		{
+			Suspect* currentSuspect = getSuspect(personIn);
+			std::cout << currentSuspect->getTalkResponse() << std::endl;
+		}
+		else if (witnessMap.find(personIn) != witnessMap.end() || personIn == "chief")
+		{
+			std::cout << "They can't hear you in the station from this room." << std::endl;
+		}
+		else
+		{
+			std::cout << "Who is that? It's not really healthy to talk to yourself, is it?" << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "It's not really healthy to talk to yourself, is it?" << std::endl;
+	}
+
 	// if personIn is suspect or witness and in the same room
 		// prompt with response
 		
