@@ -31,11 +31,15 @@ private:
 	std::string itemResponse3;
 	std::string itemResponseGeneric;
 	Room* location;
+	std::string item1;
+	std::string	item2;
+	std::string	item3;
 
 public:
 	//constructor
 	Witness(std::string, std::string, std::string, std::string, std::string,
-					std::string, std::string, std::string, std::string, Room*);
+					std::string, std::string, std::string, std::string, Room*,
+					std::string, std::string, std::string);
 
 	//get
 	std::string getName();
@@ -47,6 +51,9 @@ public:
 	std::string getItemResponse2();
 	std::string getItemResponse3();
 	std::string getItemResponseGeneric();
+	std::string getItem1();
+	std::string getItem2();
+	std::string getItem3();
 	Room* getLocation();
 
 	//set
@@ -59,7 +66,14 @@ public:
 	void setItemResponse2(std::string);
 	void setItemResponse3(std::string);
 	void setItemResponseGeneric(std::string);
+	void setItem1(std::string);
+	void setItem2(std::string);
+	void setItem3(std::string);
 	void setLocation(Room*);
+	
+	// other
+	std::string askItemResponse(std::string);
+	
 };
 
 #endif

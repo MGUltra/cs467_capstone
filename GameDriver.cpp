@@ -109,6 +109,7 @@ void Gamestate::playGame()
 						}
 						
 						exeCommand(currentVerb);
+						continue;
 					}
 					else
 					{
@@ -133,6 +134,7 @@ void Gamestate::playGame()
 			else
 			{
 				
+				this->nounVector.push_back("nonoun");
 				this->nounVector.push_back("nonoun");
 				
 				exeCommand((*actionsInCurrentMessage)[x]->getText());
@@ -591,7 +593,8 @@ void Gamestate::createSuspects()
 	for (int i = 0; i < numSuspects; i++)
 	{
 		std::string nameIn, inspectResponseIn, talkResponseIn, interrogateResponseIn, accuseResponseTrueIn, 
-								accuseResponseFalseIn, itemResponse1In, itemResponse2In, itemResponse3In, itemResponseGenericIn, isGuiltyIn;
+								accuseResponseFalseIn, itemResponse1In, itemResponse2In, itemResponse3In, itemResponseGenericIn, isGuiltyIn,
+								item1In, item2In, item3In;
 		bool isGuiltyBool;
 		
 		// name
@@ -656,6 +659,22 @@ void Gamestate::createSuspects()
 			isGuiltyBool == false;
 		
 		
+		// item1
+		getline(inputFile, fileLine);
+		item1In = fileLine;
+		this->checkLineEndings(&item1In);
+		
+		// item2
+		getline(inputFile, fileLine);
+		item2In = fileLine;
+		this->checkLineEndings(&item2In);		
+		
+		// item3
+		getline(inputFile, fileLine);
+		item2In = fileLine;
+		this->checkLineEndings(&item2In);
+		
+		
 		this->suspectMap[nameIn] = new Suspect(nameIn, 
 																					inspectResponseIn,
 																					talkResponseIn,
@@ -666,7 +685,10 @@ void Gamestate::createSuspects()
 																					itemResponse2In,
 																					itemResponse3In,
 																					itemResponseGenericIn,
-																					isGuiltyBool);
+																					isGuiltyBool,
+																					item1In,
+																					item2In,
+																					item3In);
 		
 		// populate parser noun set
 		this->commandParser.setNounSet(nameIn);		
@@ -709,7 +731,7 @@ void Gamestate::createWitnesses()
 	for (int i = 0; i < numWitnesses; i++)
 	{
 		std::string name, location, inspectResponseIn, talkResponseIn, interrogateResponseIn, accuseResponseIn, 
-								itemResponse1In, itemResponse2In, itemResponse3In, itemResponseGenericIn;
+								itemResponse1In, itemResponse2In, itemResponse3In, itemResponseGenericIn, item1In, item2In, item3In;
 		Room* room;
 
 		// name
@@ -763,8 +785,22 @@ void Gamestate::createWitnesses()
 		itemResponseGenericIn = fileLine;
 		this->checkLineEndings(&itemResponseGenericIn);
 		
+		// item1
+		getline(inputFile, fileLine);
+		item1In = fileLine;
+		this->checkLineEndings(&item1In);
 		
+		// item2
+		getline(inputFile, fileLine);
+		item2In = fileLine;
+		this->checkLineEndings(&item2In);		
+		
+		// item3
+		getline(inputFile, fileLine);
+		item2In = fileLine;
+		this->checkLineEndings(&item2In);	
 
+		
 		room = this->getRoom(location);
 
 		this->witnessMap[name] = new Witness(name, 
@@ -776,7 +812,10 @@ void Gamestate::createWitnesses()
 																				itemResponse2In, 
 																				itemResponse3In, 
 																				itemResponseGenericIn, 
-																				room);
+																				room,
+																				item1In,
+																				item2In,
+																				item3In);
 
 		// populate parser noun set
 		this->commandParser.setNounSet(name);
@@ -856,8 +895,13 @@ Feature* Gamestate::getFeature(std::string featureName)
 	return this->featureMap[featureName];
 }
 
-
-
+/*------------------------------------------------------------------------------
+GET Witness
+------------------------------------------------------------------------------*/
+Witness* Gamestate::getWitness(std::string witnessName)
+{
+	return this->witnessMap[witnessName];
+}
 
 
 
@@ -1349,6 +1393,26 @@ void Gamestate::hackComputer(std::string nounIn)
 void Gamestate::interrogate(std::string name)
 {
 
+	// test that name is a suspect/witness/chief and the person is in the same room
+	
+	// suspects
+	
+		// test any interrogation conditions
+		
+			// output interrogationResponse
+	
+	// witnesses
+	
+		// test any interrogation conditions
+		
+			// output interrogationResponse
+	
+	// chief
+	
+		// test any interrogation conditions
+		
+			// output interrogationResponse
+	
 }
 
 
@@ -1557,24 +1621,71 @@ void Gamestate::sampleFeature(std::string featureIn)
 void Gamestate::askAboutItem(std::string personIn, std::string itemIn)
 {
 
-	
-	// test if personIn is witness, chief, suspect && if they are in the room
-	// test if itemIn is an item and in the players inventory
-	
-	// chief
-		// generic response about being the brass and not going to do your job
+	if(personIn == "nonoun")
+	{
+		std::cout << "You must ask a person about an item.. ie, 'Ask dan about key'" << std::endl;
 		
-	// witness
-		// test if they have a response to item
-			// if so - flag in notebook and return response
-			// if not - return generic response
+		return;
+	}
+
+	// test if item is in player's inventory
+	if(this->currentPlayer.itemInInventory(this->itemMap[itemIn]) == true) // item in inventory
+	{
+
+		Room* currentRoom = this->currentPlayer.getLocation();
+		
+		// test if suspect and current location is in cells
+		if(suspectMap.find(personIn) != suspectMap.end() &&	currentRoom->getName() == "cells")
+		{
 			
-	// suspect
-		// test if they have a response to item
-			// if so - flag in notebook and return response
-			// if not - return generic response
+			Suspect* currentSuspect = getSuspect(personIn);
+			
+			std::ifstream inFile;
+			
+			inFile.open(currentSuspect->askItemResponse(itemIn), std::ios::out);
+			readFileDefault(inFile);
+			inFile.close();
+			// suspect
+				// test if they have a response to item
+					// if so - flag in notebook and return response
+					// if not - return generic response
+		}		
+		// test if witness or chief, and current location is in station
+		else if(currentRoom->getName() == "station"	&& (witnessMap.find(personIn) != witnessMap.end() || personIn == "chief"))
+		{
+			// chief
+				// generic response about being the brass and not going to do your job
+			
+			if(personIn == "chief")
+			{
+				std::cout << "Why are you asking me about " << itemIn << "? You should be investigating these things, not me." <<  std::endl;
+			}
+			else
+			{
+				Witness* currentWitness = getWitness(personIn);
+			
+				std::ifstream inFile;
+			
+				inFile.open(currentWitness->askItemResponse(itemIn), std::ios::out);
+				readFileDefault(inFile);
+				inFile.close();
+			}
+				
+		}
+		// if neither of the above then operation is not possible
+		else
+		{
+			std::cout << "that person isn't here to ask" <<  std::endl;
+		}
+
+	}
+	else // Item not in inventory
+	{
+		std::cout << itemIn << " is not in your inventory" <<  std::endl;
+	}
 }
 
+	
 
 
 /*------------------------------------------------------------------------------
@@ -1586,10 +1697,10 @@ void Gamestate::useItemOnFeature(std::string itemIn, std::string featureIn)
 	Feature* currentFeature = featureMap[featureIn];
 	Room* currentRoom = this->currentPlayer.getLocation();
 	
-	if((this->featureMap.find(featureIn) != this->featureMap.end()) 			&& // test that featureIn is a feature
-		(this->itemMap.find(itemIn) != this->itemMap.end())								&& // test that itemIn is an item
-		(currentRoom->isFeatureInRoom(currentFeature) == true)													&& // test that the feature is in the room
-		(this->currentPlayer.itemInInventory(this->itemMap[itemIn]) == true))  // test that the item is in the players inventory
+	if((this->featureMap.find(featureIn) != this->featureMap.end()) 				&& // test that featureIn is a feature
+		(this->itemMap.find(itemIn) != this->itemMap.end())										&& // test that itemIn is an item
+		(currentRoom->isFeatureInRoom(currentFeature) == true)								&& // test that the feature is in the room
+		(this->currentPlayer.itemInInventory(this->itemMap[itemIn]) == true))		 // test that the item is in the players inventory
 	{
 		
 		// test if featureIn is affected by an item - feature variable actionAble
@@ -1619,8 +1730,6 @@ void Gamestate::useItemOnFeature(std::string itemIn, std::string featureIn)
 					std::cout << "Using " << itemIn << " again accomplished nothing." <<  std::endl;
 					
 				}
-
-
 				
 				
 			}
@@ -1648,12 +1757,42 @@ void Gamestate::useItemOnFeature(std::string itemIn, std::string featureIn)
 ------------------------------------------------------------------------------*/
 void Gamestate::drinkFeature(std::string featureIn)
 {
-	// test if featureIn is actionable
+	// test if featureIn is drinkable
+	if(featureIn == "coffee" || featureIn == "canteen" || featureIn == "flask")
+	{
+		Feature* currentFeature = featureMap[featureIn];
+		Room* currentRoom = this->currentPlayer.getLocation();
 		
-		// if so - test if feature is coffee
-			// prompt that you drink the coffee - set flag in notebook (coffee breath) - set flag in feature
 		
-		// if not - prompt "drinking this will do nothing good"
+		if(currentRoom->isFeatureInRoom(currentFeature) == true)
+		{
+			
+			if(featureIn == "coffee")
+			{
+				
+			}
+			else if(featureIn == "canteen")
+			{
+				
+			}
+			else if(featureIn == "flask")
+			{
+				
+			}
+
+		}
+		else
+		{
+			std::cout << "You don't see any " << featureIn << " in this room" << std::endl;
+		}
+
+	}
+	else
+	{
+		std::cout << "Trying to drink that is a bad idea" << std::endl;
+	}
+		
+
 }
 
 
@@ -1722,6 +1861,21 @@ void Gamestate::clearSuspect(std::string personIn)
 			// if chief and in the same room
 				// prompt "get back to work" or something
 }
+
+
+/*------------------------------------------------------------------------------
+		TALK TO CHIEF
+------------------------------------------------------------------------------*/
+void Gamestate::talkToChief()
+{
+	// this function only called by talkToPerson()
+	
+	// comment on current state of investigation
+	
+	
+}
+
+
 
 
 /*------------------------------------------------------------------------------

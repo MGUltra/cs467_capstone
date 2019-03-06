@@ -79,7 +79,7 @@ void Player::pickUpItem(Item* currentItem)
 	}
 	else
 	{
-			std::cout << currentItem << " not found in " << location->getName() << "." << std::endl;
+			std::cout << currentItem->getName() << " not found in " << location->getName() << "." << std::endl;
 			std::cout << std::endl;
 	}		
 }
@@ -96,7 +96,7 @@ void Player::dropItem(Item* currentItem)
 	}
 	else
 	{
-			std::cout << currentItem << " not found in inventory" << std::endl;
+			std::cout << currentItem->getName() << " not found in inventory" << std::endl;
 			std::cout << std::endl;
 	}
 	

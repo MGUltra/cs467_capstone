@@ -104,6 +104,7 @@ public:
 	Room* getRoom(std::string);
 	Suspect* getSuspect(std::string);
 	Feature* getFeature(std::string);
+	Witness* getWitness(std::string);
 	void printRooms();
 	void printRoom(Room*);
 	void checkLineEndings(std::string*);
@@ -136,7 +137,8 @@ public:
 	void talkToPerson(std::string);
 	void reflectOnCase();
 	void clearSuspect(std::string);
-
+	void talkToChief();
+	
 	// game meta functions
 	void saveGame();
 	void loadGame();

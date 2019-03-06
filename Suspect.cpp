@@ -22,7 +22,10 @@ Suspect::Suspect(std::string nameIn,
 								std::string itemResponse2In,
 								std::string itemResponse3In,
 								std::string itemResponseGenericIn,
-								bool isGuiltyIn)
+								bool isGuiltyIn,
+								std::string item1,
+								std::string item2,
+								std::string item3)
 {
 	setName(nameIn);
 	setInspectResponse(inspectResponseIn);
@@ -33,9 +36,12 @@ Suspect::Suspect(std::string nameIn,
 	setItemResponse1(itemResponse1In);
 	setItemResponse2(itemResponse2In);
 	setItemResponse3(itemResponse3In);
-	setInspectResponse(itemResponseGenericIn);
+	setItemResponseGeneric(itemResponseGenericIn);
 	setIsGuilty(isGuiltyIn);
 	setIsCleared(false);
+	setItem1(item1);
+	setItem2(item2);
+	setItem3(item3);
 
 }
 
@@ -90,6 +96,21 @@ std::string Suspect::getItemResponse3()
 std::string Suspect::getItemResponseGeneric()
 {
 	return itemResponseGeneric;
+}
+
+std::string Suspect::getItem1()
+{
+	return item1;
+}
+
+std::string Suspect::getItem2()
+{
+	return item2;
+}
+
+std::string Suspect::getItem3()
+{
+	return item3;
 }
 
 bool Suspect::getIsGuilty()
@@ -164,5 +185,41 @@ void Suspect::setIsCleared(bool boolIn)
 {
 	isCleared = boolIn;	
 }
+
+void Suspect::setItem1(std::string stringIn)
+{
+
+	item1 = stringIn;
+}
+
+void Suspect::setItem2(std::string stringIn)
+{
+
+	item2 = stringIn;
+}
+
+void Suspect::setItem3(std::string stringIn)
+{
+
+	item3 = stringIn;
+}
+
+
 	
-	
+/*******************************************************************************
+*		OTHER FUNCTIONS
+*******************************************************************************/
+
+std::string Suspect::askItemResponse(std::string itemIn)
+{
+	if(itemIn == item1)
+		return getItemResponse1();
+	else if(itemIn == item2)
+		return getItemResponse2();
+	else if(itemIn == item3)
+		return getItemResponse3();	
+	else
+	{	
+		return getItemResponseGeneric();
+	}
+}
