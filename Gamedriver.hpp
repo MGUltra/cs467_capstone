@@ -105,6 +105,7 @@ public:
 	Suspect* getSuspect(std::string);
 	Feature* getFeature(std::string);
 	Witness* getWitness(std::string);
+	Item* getItem(std::string);
 	void printRooms();
 	void printRoom(Room*);
 	void checkLineEndings(std::string*);

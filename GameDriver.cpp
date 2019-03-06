@@ -867,6 +867,17 @@ Feature* Gamestate::getFeature(std::string featureName)
 	return this->featureMap[featureName];
 }
 
+/*------------------------------------------------------------------------------
+GET ITEM
+------------------------------------------------------------------------------*/
+Item* Gamestate::getItem(std::string itemName)
+{
+	if (itemName == "nonoun")
+		return NULL;
+
+	return this->itemMap[itemName];
+}
+
 
 
 
@@ -1689,6 +1700,45 @@ void Gamestate::drinkFeature(std::string featureIn)
 ------------------------------------------------------------------------------*/
 void Gamestate::listenToRecording(std::string itemIn)
 {
+	if (itemIn == "answering machine")
+	{
+		Feature* currentFeature = getFeature(itemIn);
+		Item* currentItem = currentFeature->getitemAffected();
+
+		if (currentPlayer.getLocation() == getRoom(currentFeature->getLocation()))
+		{
+			if (currentFeature->getAlreadyActioned())
+			{
+				std::cout << "You've already added the recording to your inventory." << std::endl;
+			}
+			else
+			{
+				currentFeature->setAlreadyActioned(true);
+				std::cout << "You listen to the recording." << std::endl;
+				std::cout << currentItem->getDescription() << std::endl;
+				std::cout << "You add the recording to your inventory." << std::endl;
+				// add recording to inventory
+				currentPlayer.pickUpItem(currentItem);
+
+			}
+		}
+		else
+		{
+			std::cout << "You're not in the same room as the answering machine." << std::endl;
+		}
+	}
+	else if (itemIn == "recording")
+	{
+		Item* currentItem = getItem(itemIn);
+		// Play recording.
+		std::cout << currentItem->getDescription() << std::endl;
+	}
+	else
+	{
+		std::cout << "You can't listen to that." << std::endl;
+	}
+	
+	
 	// test if answering machine (feature) or recording (item)
 	
 	// if answering machine - test if listened to before
@@ -1900,7 +1950,7 @@ void Gamestate::helpPlayer()
 	std::cout << "\t(N)Take Statement - Take notes from a witness." << std::endl;
 	std::cout << "\t(N)Take Sample - Take a sample of hair/blood/saliva." << std::endl;
 	std::cout << "\t(N)Magnify <Object> - Take a closer look at an object." << std::endl;
-	std::cout << "\t(N)Hack Computer - Search a suspect's computer for evidence. (Pick it up first!)" << std::endl;
+	std::cout << "\t(N)Hack Computer - Search a suspect's computer for evidence." << std::endl;
 	std::cout << "\t(N)Analyze <Object> - Submit an item for forensic analysis. Must be in Forensics Lab." << std::endl;
 	std::cout << "\t(N)Hint - Get a hint for your current room." << std::endl;
 
