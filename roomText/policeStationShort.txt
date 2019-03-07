@@ -2,9 +2,9 @@
 | Police Station                                               ,   /\   ,     |
 |-------------------------------------------------------------/ '-'  '-' \----|
 | Through the flickering fluorescent lights you spot the     |   POLICE   |   |
-| police chief seated at his desk. To the West you see a     \    .--.    /   |
-| room holding lab equipment. To the East  - the cell         |  ( 19 )  |    |
-| holding the three suspected murderers. Head North out the   \   '--'   /    |
-| main entrance to hop into the cop car.                       `--.  .--'     |
-|                                                                  \/         |
+| police chief seated at his desk. Herbert, Louise, and Roy  \    .--.    /   |
+| are seated on a bench. To the West you see a room holding   |  ( 19 )  |    |
+| lab equipment. To the East  - the cell holding the three    \   '--'   /    |
+| suspected murderers. Head North out the main entrance to     `--.  .--'     |
+| hop into the cop car.                                            \/         |
 |-----------------------------------------------------------------------------|
