@@ -12,10 +12,12 @@
 | to adjust. Old mahogany desks are scattered about, each     / '-'  '-' \    |
 | littered with file folders and loose papers. Straight      |   POLICE   |   |
 | ahead is the police chief seated at his desk, slowly       \    .--.    /   |
-| sipping his coffee. In the shadows to the West you notice   |  ( 19 )  |    |
-| a room containing what looks to be some lab equipment -     \   '--'   /    |
-| possibly used for testing evidence. To the East is the       '--.  .--'     |
-| station's dank holding cell room. You can make out the           \/         |
+| sipping his coffee. Along one wall sit three individuals    |  ( 19 )  |    |
+| on a dated wooden bench. Each person wears a name badge     \   '--'   /    |
+| that's just legible: Herbert, Louise, and Roy. In the        '--.  .--'     |
+| shadows to the West you notice a room containing what            \/         |
+| looks to be some lab equipment possibly used for testing evidence. To the   |
+| East is the station's dank holding cell room. You can make out the          |
 | silhouettes of three individuals - the three suspected murderers - standing |
 | by the bars. Head North out the main entrance to hop into the cop car.      |
 |-----------------------------------------------------------------------------|
