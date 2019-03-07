@@ -288,6 +288,11 @@ int main()
         readFileDefault(inFile);
         inFile.close();
         break;
+    case 20:
+        inFile.open("gameText/titleScreen.txt", std::ios::out);
+        readFileDefault(inFile);
+        inFile.close();
+        break;
     } 
   }
   return 0;
