@@ -1,5 +1,5 @@
-4
-witness1
+3
+herbert
 station
 witnessText/witness1inspectResponse.txt
 witnessText/witness1talkResponse.txt
@@ -12,7 +12,7 @@ witnessText/witness1itemResponseGeneric.txt
 
 
 
-witness2
+louise
 station
 witnessText/witness2InspectResponse.txt
 witnessText/witness2talkResponse.txt
@@ -25,7 +25,7 @@ witnessText/witness2itemResponseGeneric.txt
 
 
 
-witness3
+roy
 station
 witnessText/witness3InspectResponse.txt
 witnessText/witness3talkResponse.txt

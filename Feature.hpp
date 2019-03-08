@@ -24,6 +24,7 @@ class Feature
 {
 private:
 	std::string name;							// name of feature
+	std::string displayName;      // display name of feature
 	std::string descriptionFirst; // description sent when first examined or acted upon
 	std::string descriptionAfter; // description sent after examined or acted upon
 	std::string location;					// location of feature

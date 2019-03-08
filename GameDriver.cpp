@@ -1403,26 +1403,54 @@ void Gamestate::hackComputer(std::string nounIn)
 void Gamestate::interrogate(std::string name)
 {
 
-	// test that name is a suspect/witness/chief and the person is in the same room
-	
-	// suspects
-	
-		// test any interrogation conditions
-		
-			// output interrogationResponse
-	
-	// witnesses
-	
-		// test any interrogation conditions
-		
-			// output interrogationResponse
-	
-	// chief
-	
-		// test any interrogation conditions
-		
-			// output interrogationResponse
-	
+	Room* currentRoom = this->currentPlayer.getLocation();
+
+	if(this->witnessMap.find(name) != this->witnessMap.end()) // witnesses
+	{
+		// test if in station
+		if(currentRoom->getName() == "station")		
+		{
+				// test any interrogation conditions
+			
+				// output interrogationResponse
+			std::ifstream inFile;
+				
+			inFile.open(witnessMap[name]->getInterrogateResponse(), std::ios::out);
+			readFileDefault(inFile);
+			inFile.close();	
+		}
+	}
+	else if(this->suspectMap.find(name) != this->suspectMap.end()) // suspects
+	{
+		// test if in cells
+		if(currentRoom->getName() == "cells")		
+		{
+				// test any interrogation conditions
+			
+				// output interrogationResponse
+			std::ifstream inFile;
+				
+			inFile.open(suspectMap[name]->getInterrogateResponse(), std::ios::out);
+			readFileDefault(inFile);
+			inFile.close();
+		}
+	}
+	else if(name == "chief") // chief
+	{
+		// test if in station
+		if(currentRoom->getName() == "station")		
+		{
+				// test any interrogation conditions
+			
+				// output interrogationResponse
+				std::cout << "I'm not someone you should be trying to interrogate. Get back to work, Detective." << std::endl;
+
+		}
+	}
+	else
+	{
+		std::cout << "" << std::endl;
+	}
 }
 
 
@@ -1805,15 +1833,16 @@ void Gamestate::drinkFeature(std::string featureIn)
 			
 			if(featureIn == "coffee")
 			{
+				// test flag drinkCoffee
 				
 			}
 			else if(featureIn == "canteen")
 			{
-				
+				// test flag drinkCoffee
 			}
 			else if(featureIn == "flask")
 			{
-				
+				// test flag drinkCoffee
 			}
 
 		}
@@ -1867,9 +1896,18 @@ void Gamestate::listenToRecording(std::string itemIn)
 	}
 	else if (itemIn == "recording")
 	{
+		
 		Item* currentItem = getItem(itemIn);
-		// Play recording.
-		std::cout << currentItem->getDescription() << std::endl;
+		// test if in inventory
+		if(this->currentPlayer.itemInInventory(currentItem) == true)
+		{		
+			// Play recording.
+			std::cout << currentItem->getDescription() << std::endl;
+		}
+		else
+		{
+			std::cout << "the recording is not in your inventory." << std::endl;
+		}
 	}
 	else
 	{
