@@ -19,6 +19,7 @@ LIBRARIES
 #include "Inventory.hpp"
 #include "Room.hpp"
 #include "Item.hpp"
+#include "Notebook.hpp"
 
 class Player
 {

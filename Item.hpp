@@ -17,7 +17,7 @@
 #include <string>
 
 #include "Suspect.hpp"
-
+#include "Notebook.hpp"
 
 class Item
 {
