@@ -1403,26 +1403,46 @@ void Gamestate::hackComputer(std::string nounIn)
 void Gamestate::interrogate(std::string name)
 {
 
-	// test that name is a suspect/witness/chief and the person is in the same room
-	
-	// suspects
-	
-		// test any interrogation conditions
-		
-			// output interrogationResponse
-	
-	// witnesses
-	
-		// test any interrogation conditions
-		
-			// output interrogationResponse
-	
-	// chief
-	
-		// test any interrogation conditions
-		
-			// output interrogationResponse
-	
+	Room* currentRoom = this->currentPlayer.getLocation();
+
+	if(this->witnessMap.find(name) != this->witnessMap.end()) // witnesses
+	{
+		// test if in station
+		if(currentRoom->getName() == "station")		
+		{
+				// test any interrogation conditions
+			
+				// output interrogationResponse
+				
+		}
+	}
+	else if(this->suspectMap.find(name) != this->suspectMap.end()) // suspects
+	{
+		// test if in cells
+		if(currentRoom->getName() == "cells")		
+		{
+				// test any interrogation conditions
+			
+				// output interrogationResponse
+			
+		}
+	}
+	else if(name == "chief") // chief
+	{
+		// test if in station
+		if(currentRoom->getName() == "station")		
+		{
+				// test any interrogation conditions
+			
+				// output interrogationResponse
+				std::cout << "" << std::endl;
+
+		}
+	}
+	else
+	{
+		std::cout << "" << std::endl;
+	}
 }
 
 
