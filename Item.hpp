@@ -23,6 +23,7 @@ class Item
 {
 	private:
 	std::string name;
+	std::string displayName;      // display name of item
 	std::string description;
 	std::string forensicAnalysis;
 	bool available;

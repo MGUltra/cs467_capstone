@@ -1413,7 +1413,11 @@ void Gamestate::interrogate(std::string name)
 				// test any interrogation conditions
 			
 				// output interrogationResponse
+			std::ifstream inFile;
 				
+			inFile.open(witnessMap[name]->getInterrogateResponse(), std::ios::out);
+			readFileDefault(inFile);
+			inFile.close();	
 		}
 	}
 	else if(this->suspectMap.find(name) != this->suspectMap.end()) // suspects
@@ -1424,7 +1428,11 @@ void Gamestate::interrogate(std::string name)
 				// test any interrogation conditions
 			
 				// output interrogationResponse
-			
+			std::ifstream inFile;
+				
+			inFile.open(suspectMap[name]->getInterrogateResponse(), std::ios::out);
+			readFileDefault(inFile);
+			inFile.close();
 		}
 	}
 	else if(name == "chief") // chief
@@ -1435,7 +1443,7 @@ void Gamestate::interrogate(std::string name)
 				// test any interrogation conditions
 			
 				// output interrogationResponse
-				std::cout << "" << std::endl;
+				std::cout << "I'm not someone you should be trying to interrogate. Get back to work, Detective." << std::endl;
 
 		}
 	}
@@ -1825,15 +1833,16 @@ void Gamestate::drinkFeature(std::string featureIn)
 			
 			if(featureIn == "coffee")
 			{
+				// test flag drinkCoffee
 				
 			}
 			else if(featureIn == "canteen")
 			{
-				
+				// test flag drinkCoffee
 			}
 			else if(featureIn == "flask")
 			{
-				
+				// test flag drinkCoffee
 			}
 
 		}
@@ -1887,9 +1896,18 @@ void Gamestate::listenToRecording(std::string itemIn)
 	}
 	else if (itemIn == "recording")
 	{
+		
 		Item* currentItem = getItem(itemIn);
-		// Play recording.
-		std::cout << currentItem->getDescription() << std::endl;
+		// test if in inventory
+		if(this->currentPlayer.itemInInventory(currentItem) == true)
+		{		
+			// Play recording.
+			std::cout << currentItem->getDescription() << std::endl;
+		}
+		else
+		{
+			std::cout << "the recording is not in your inventory." << std::endl;
+		}
 	}
 	else
 	{

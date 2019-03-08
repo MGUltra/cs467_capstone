@@ -48,7 +48,7 @@ public:
 	std::string getName();
 	std::string getInspectResponse();
 	std::string getTalkResponse();
-	std::string getIinterrogateResponse();
+	std::string getInterrogateResponse();
 	std::string getAccuseResponseTrue();
 	std::string getAccuseResponseFalse();
 	std::string getItemResponse1();
@@ -66,7 +66,7 @@ public:
 	void setName(std::string);
 	void setInspectResponse(std::string);
 	void setTalkResponse(std::string);
-	void setIinterrogateResponse(std::string);
+	void setInterrogateResponse(std::string);
 	void setAccuseResponseTrue(std::string);
 	void setAccuseResponseFalse(std::string);
 	void setItemResponse1(std::string);

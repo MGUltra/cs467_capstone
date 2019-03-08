@@ -30,7 +30,7 @@ Suspect::Suspect(std::string nameIn,
 	setName(nameIn);
 	setInspectResponse(inspectResponseIn);
 	setTalkResponse(talkResponseIn);
-	setIinterrogateResponse(interrogateResponseIn);
+	setInterrogateResponse(interrogateResponseIn);
 	setAccuseResponseTrue(accuseResponseTrueIn);
 	setAccuseResponseFalse(accuseResponseFalseIn);
 	setItemResponse1(itemResponse1In);
@@ -63,7 +63,7 @@ std::string Suspect::getTalkResponse()
 	return talkResponse;
 }
 
-std::string Suspect::getIinterrogateResponse()
+std::string Suspect::getInterrogateResponse()
 {
 	return interrogateResponse;
 }
@@ -141,7 +141,7 @@ void Suspect::setTalkResponse(std::string stringIn)
 	talkResponse = stringIn;
 }
 
-void Suspect::setIinterrogateResponse(std::string stringIn)
+void Suspect::setInterrogateResponse(std::string stringIn)
 {
 	interrogateResponse = stringIn;
 }
