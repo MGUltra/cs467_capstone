@@ -1,0 +1,30 @@
+#!/bin/bash
+
+for NAME in herbert louise roy
+do
+	echo $NAME
+	echo ${NAME}InspectResponse 
+  cat ${NAME}InspectResponse.txt
+  printf "\n"
+  echo ${NAME}TalkResponse
+  cat ${NAME}TalkResponse.txt
+  printf "\n"
+  echo ${NAME}InterrogateResponse
+  cat ${NAME}InterrogateResponse.txt
+  printf "\n"
+  echo ${NAME}AccuseResponse
+  cat ${NAME}AccuseResponse.txt
+  printf "\n"
+  echo ${NAME}ItemResponse1
+  cat ${NAME}ItemResponse1.txt
+  printf "\n"
+  echo ${NAME}ItemResponse2
+  cat ${NAME}ItemResponse2.txt
+  printf "\n"
+  echo ${NAME}ItemResponse3
+  cat ${NAME}ItemResponse3.txt
+  printf "\n"
+  echo ${NAME}InspectResponseGeneric
+  cat ${NAME}ItemResponseGeneric.txt
+  printf "\n"
+done
