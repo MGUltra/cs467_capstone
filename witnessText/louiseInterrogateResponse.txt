@@ -1,1 +1,3 @@
-louiseinterrogateResponse
+| "I didn't notice anything strange at Carl's house yesterday. I was on the   |
+| porch reading when his little friend Emma showed up. But she was only there |
+| a short while before she left and Carl went back to work in his garage."    |

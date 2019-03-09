@@ -1,1 +1,4 @@
-herbertTalkResponse
+| "Yeah detective, the name's Herbert. I've worked down at the Horseshoe      |
+| Casino for the past twelve years. Sure, you could bet on the fights through |
+| the house, but all the high-rollers come to me. I know everybody who's      |
+| anybody at the Horseshoe."                                                  |

@@ -1,1 +1,1 @@
-herbertitemResponseGeneric
+| "I'm sorry detective - I don't know anything about that item."              |

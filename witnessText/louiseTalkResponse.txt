@@ -1,1 +1,4 @@
-louiseTalkResponse
+| "I've known Carl for as long as I've lived here - such a sweet boy. He's    |
+| a great neighbor - never been a bother at all. In fact, he'll even help me  |
+| with my groceries if he's in his garage working when I get home from the    |
+| store. He's always out in that garage of his working on something or other!"|
