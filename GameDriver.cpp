@@ -74,7 +74,7 @@ void Gamestate::playGame()
 		}
 		
 		clearScreen();
-
+		playerNotebook.printGameFlags();
 		
 		// Call newMessage to run parser on input
 		commandParser.newMessage(inputString);
@@ -182,7 +182,7 @@ void Gamestate::createGame()
 	createFeatures();
 	
 	// create witnesses
-	
+	createWitnesses();
 	
 	
 	this->currentPlayer.setLocation(this->getRoom("station"));
@@ -677,8 +677,8 @@ void Gamestate::createSuspects()
 		
 		// item3
 		getline(inputFile, fileLine);
-		item2In = fileLine;
-		this->checkLineEndings(&item2In);
+		item3In = fileLine;
+		this->checkLineEndings(&item3In);
 		
 		
 		this->suspectMap[nameIn] = new Suspect(nameIn, 
@@ -736,15 +736,15 @@ void Gamestate::createWitnesses()
 
 	for (int i = 0; i < numWitnesses; i++)
 	{
-		std::string name, location, inspectResponseIn, talkResponseIn, interrogateResponseIn, accuseResponseIn, 
+		std::string nameIn, location, inspectResponseIn, talkResponseIn, interrogateResponseIn, accuseResponseIn, 
 								itemResponse1In, itemResponse2In, itemResponse3In, itemResponseGenericIn, item1In, item2In, item3In;
 		Room* room;
 
 		// name
 		getline(inputFile, fileLine);
-		name = fileLine;
-		boost::algorithm::to_lower(name);
-		this->checkLineEndings(&name);
+		nameIn = fileLine;
+		boost::algorithm::to_lower(nameIn);
+		this->checkLineEndings(&nameIn);
 		
 		// location
 		getline(inputFile, fileLine);
@@ -803,13 +803,13 @@ void Gamestate::createWitnesses()
 		
 		// item3
 		getline(inputFile, fileLine);
-		item2In = fileLine;
-		this->checkLineEndings(&item2In);	
+		item3In = fileLine;
+		this->checkLineEndings(&item3In);	
 
 		
 		room = this->getRoom(location);
 
-		this->witnessMap[name] = new Witness(name, 
+		this->witnessMap[nameIn] = new Witness(nameIn, 
 																				inspectResponseIn, 
 																				talkResponseIn, 
 																				interrogateResponseIn, 
@@ -824,7 +824,9 @@ void Gamestate::createWitnesses()
 																				item3In);
 
 		// populate parser noun set
-		this->commandParser.setNounSet(name);
+		
+		this->commandParser.setNounSet(nameIn);
+		
 	}
 
 	// Close inputFile.
@@ -975,6 +977,7 @@ void Gamestate::currentRoomPrompt(Room* currentRoom)
 		
 		// and set visited alreadyVisited to true
 		currentRoom->setAlreadyVisited(true);
+		playerNotebook.setRoomVisited(currentRoom->getName(), true);
 	}
 	
 	
@@ -1159,7 +1162,7 @@ void Gamestate::movePlayer(std::string verbIn, std::string nounIn)
 	{
 		if(roomPtr->isRoomAttached(this->getRoom(verbIn)) == true)
 		{
-			this->currentPlayer.setLocation(this->getRoom(verbIn), &playerNotebook);
+			this->currentPlayer.changeLocation(this->getRoom(verbIn), &playerNotebook);
 		}
 		else
 		{
@@ -1174,7 +1177,7 @@ void Gamestate::movePlayer(std::string verbIn, std::string nounIn)
 		Room* newRoom = roomPtr->getCardinalDirection(verbIn);
 		
 		if(newRoom != NULL)
-			this->currentPlayer.setLocation(newRoom, &playerNotebook);
+			this->currentPlayer.changeLocation(newRoom, &playerNotebook);
 		else
 			std::cout << "You can not go " << verbIn << " from " << roomPtr->getName() << "." << std::endl;
 		
@@ -1187,7 +1190,7 @@ void Gamestate::movePlayer(std::string verbIn, std::string nounIn)
 		Room* newRoom = roomPtr->getCardinalDirection(nounIn);
 		
 		if(newRoom != NULL)
-			this->currentPlayer.setLocation(newRoom, &playerNotebook);
+			this->currentPlayer.changeLocation(newRoom, &playerNotebook);
 		else
 			std::cout << "You can not go " << nounIn << " from " << roomPtr->getName() << "." << std::endl;
 		
@@ -1196,7 +1199,7 @@ void Gamestate::movePlayer(std::string verbIn, std::string nounIn)
 	// room name as noun
 	else if(roomPtr->isRoomAttached(this->getRoom(nounIn)) == true)
 	{
-		this->currentPlayer.setLocation(this->getRoom(nounIn), &playerNotebook);
+		this->currentPlayer.changeLocation(this->getRoom(nounIn), &playerNotebook);
 		
 		return;
 	}
@@ -1398,7 +1401,7 @@ void Gamestate::hackComputer(std::string nounIn)
 					currentFeature->hacked(&playerNotebook);
 					
 					// add item					
-					this->currentPlayer.pickUpItem(currentFeature->getitemAffected());
+					this->currentPlayer.pickUpItem(currentFeature->getitemAffected(), &playerNotebook);
 
 					// TODO: In Notebook
 					// TODO: set feature alreadyActioned
@@ -1831,7 +1834,7 @@ void Gamestate::sampleFeature(std::string featureIn)
 				// if not - set sample taken to true, flag in notebook, add sample item to inventory
 				currentFeature->sampled(&playerNotebook);
 				
-				this->currentPlayer.pickUpItem(currentFeature->getitemAffected());
+				this->currentPlayer.pickUpItem(currentFeature->getitemAffected(), &playerNotebook);
 				
 									
 				// TODO: In Notebook
@@ -1870,8 +1873,6 @@ void Gamestate::askAboutItem(std::string personIn, std::string itemIn)
 		
 		return;
 	}
-
-	
 	
 	if(this->itemMap.find(itemIn) != this->itemMap.end())
 	{
@@ -1892,7 +1893,7 @@ void Gamestate::askAboutItem(std::string personIn, std::string itemIn)
 				std::ifstream inFile;
 				
 
-				inFile.open(currentSuspect->askItemResponse(itemIn), std::ios::out);
+				inFile.open(currentSuspect->askItemResponse(itemIn, &playerNotebook), std::ios::out);
 				readFileDefault(inFile);
 				inFile.close();
 				// suspect
@@ -1914,9 +1915,10 @@ void Gamestate::askAboutItem(std::string personIn, std::string itemIn)
 				{
 					Witness* currentWitness = getWitness(personIn);
 				
+				
 					std::ifstream inFile;
 				
-					inFile.open(currentWitness->askItemResponse(itemIn), std::ios::out);
+					inFile.open(currentWitness->askItemResponse(itemIn, &playerNotebook), std::ios::out);
 					readFileDefault(inFile);
 					inFile.close();
 				}
@@ -2023,16 +2025,18 @@ void Gamestate::drinkFeature(std::string featureIn)
 			
 			if(featureIn == "coffee")
 			{
-				// test flag drinkCoffee
+				// set game flag coffeeBreath
 				
 			}
 			else if(featureIn == "canteen")
 			{
 				// test flag drinkCoffee
+				
 			}
 			else if(featureIn == "flask")
 			{
 				// test flag drinkCoffee
+				
 			}
 
 		}
@@ -2079,7 +2083,7 @@ void Gamestate::listenToRecording(std::string itemIn)
 				currentFeature->listened(&playerNotebook);
 				
 				// add recording to inventory
-				currentPlayer.pickUpItem(currentItem);
+				currentPlayer.pickUpItem(currentItem, &playerNotebook);
 
 			}
 		}
@@ -2194,6 +2198,14 @@ void Gamestate::reflectOnCase()
 {
 	// prompt with status of each suspect and the evidence
 	// prompt with status of each suspect and the evidence
+	
+	// vince and roy
+	
+	
+	// carl and
+	
+	
+	// dan and 
 
 	std::cout << "Here's what we know so far." << std::endl << std::endl;
 
@@ -2261,7 +2273,7 @@ void Gamestate::clearSuspect(std::string personIn)
 			{
 				if(playerNotebook.vinceCanClear() == true)
 				{
-					playerNotebook.setGameFlags("vinceCleared", true)
+					playerNotebook.setGameFlags("vinceCleared", true);
 				}
 				else
 				{
@@ -2272,7 +2284,7 @@ void Gamestate::clearSuspect(std::string personIn)
 			{
 				if(playerNotebook.carlCanClear() == true)
 				{
-					playerNotebook.setGameFlags("carlCleared", true)
+					playerNotebook.setGameFlags("carlCleared", true);
 				}
 				else
 				{
