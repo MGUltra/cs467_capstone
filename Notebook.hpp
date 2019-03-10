@@ -61,6 +61,7 @@ public:
 	bool getFeatureSampled(std::string);
 	bool getFeatureActioned(std::string);
 	bool getRoomVisited(std::string);
+	std::string setItemLocations(std::string);
 	std::string getCurrentRoom();	
 
 	// add
@@ -72,23 +73,24 @@ public:
 	void setFeatureSampled(std::string, bool);
 	void setFeatureActioned(std::string, bool);
 	void setRoomVisited(std::string, bool);
-	
+	void setItemLocations(std::string, std::string);	
 	void setCurrentRoom(std::string);
+	
 	
 	// change flags
 	void changeEntry(std::string, bool);
 	
 	
 	// check specific status
-	bool vinceInterrogate();
-	bool vinceClear();
-	bool carlInterrogate();
-	bool carlClear();
-	bool danInterrogate();
-	bool danAccuse();
-	bool royInterrogate();
-	bool louiseInterrogate();
-	bool herbertInterrogate();
+	bool vinceCanInterrogate();
+	bool vinceCanClear();
+	bool carlCanInterrogate();
+	bool carlCanClear();
+	bool danCanInterrogate();
+	bool danCanAccuse();
+	bool royCanInterrogate();
+	bool louiseCanInterrogate();
+	bool herbertCanInterrogate();
 	
 	
 	void saveGame();

@@ -58,6 +58,11 @@ bool Notebook::getRoomVisited(std::string stringIn)
 
 }
 
+std::string Notebook::getItemLocations(std::string stringIn)
+{
+	
+}
+
 std::string Notebook::getCurrentRoom()
 {
 
@@ -79,37 +84,42 @@ void Notebook::setGameFlags(std::string stringIn, bool boolIn)
 
 void Notebook::setItemAvailable(std::string stringIn, bool boolIn)
 {
-
+	itemAvailable[stringIn] = boolIn;
 }
 
 void Notebook::setItemAnalyzed(std::string stringIn, bool boolIn)
 {
-
+	itemAnalyzed[stringIn] = boolIn;
 }
 
 void Notebook::setFeatureInspected(std::string stringIn, bool boolIn)
 {
-
+	featureInspected[stringIn] = boolIn;
 }
 
 void Notebook::setFeatureSampled(std::string stringIn, bool boolIn)
 {
-
+	featureSampled[stringIn] = boolIn;
 }
 
 void Notebook::setFeatureActioned(std::string stringIn, bool boolIn)
 {
-
+	featureActioned[stringIn] = boolIn;
 }
 
 void Notebook::setRoomVisited(std::string stringIn, bool boolIn)
 {
+	roomVisited[stringIn] = boolIn;
+}
 
+void Notebook::setItemLocations(std::string itemNameIn, std::string roomNameIn)
+{
+	itemLocations[itemNameIn] = roomNameIn;
 }
 
 void Notebook::setCurrentRoom(std::string stringIn)
 {
-
+	playerLocation == stringIn;
 }
 
 	
@@ -117,48 +127,67 @@ void Notebook::setCurrentRoom(std::string stringIn)
 *		PROGRESS CHECK FUNCTIONS
 *******************************************************************************/
 
-bool Notebook::vinceInterrogate()
+	
+bool Notebook::vinceCanInterrogate()
+{
+	if(gameFlags["vinceLocketAsk"] == true 		&& 
+		 gameFlags["vinceArticleAsk"] == true		&&
+		 gameFlags["vinceTicketsAsk"] == true		&&
+		 gameFlags["royInterrogated"] == true)
+	{
+		return true;
+	}
+	else 
+		return false;
+}
+
+bool Notebook::vinceCanClear()
+{
+	if(gameFlags["vinceInterrogated"] == true)
+	{
+		return true;
+	}
+	else 
+		return false;
+}
+
+bool Notebook::carlCanInterrogate()
 {
 
 }
 
-bool Notebook::vinceClear()
+bool Notebook::carlCanClear()
 {
 
 }
 
-bool Notebook::carlInterrogate()
+bool Notebook::danCanInterrogate()
 {
 
 }
 
-bool Notebook::carlClear()
+bool Notebook::danCanAccuse()
 {
 
 }
 
-bool Notebook::danInterrogate()
+bool Notebook::royCanInterrogate()
+{
+	if(gameFlags["royTapeAsk"] == true &&
+		 gameFlags["royTapeAsk"] == true)
+	{
+		return true;
+	}
+	else 
+		return false;
+}
+
+bool Notebook::louiseCanInterrogate()
 {
 
 }
 
-bool Notebook::danAccuse()
-{
-
-}
-
-
-bool Notebook::royInterrogate()
-{
-
-}
-
-bool Notebook::louiseInterrogate()
-{
-
-}
-
-bool Notebook::herbertInterrogate()
+bool Notebook::herbertCanInterrogate()
 {
 
 }

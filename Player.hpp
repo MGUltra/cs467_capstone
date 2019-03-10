@@ -45,8 +45,8 @@ public:
 	bool itemInInventory(Item*);
 	
 	// Player actions
-	void pickUpItem(Item*);
-	void dropItem(Item*);
+	void pickUpItem(Item*, playerNotebook*);
+	void dropItem(Item*, playerNotebook*);
 	void showInventory();
 	
 };

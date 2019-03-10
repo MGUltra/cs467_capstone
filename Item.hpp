@@ -55,7 +55,7 @@ class Item
 	
 	// actions
 	
-	void analyzeItem();
+	void analyzeItem(Notebook*);
 	
 	void revealedByFeature();
 	void revealedByHack(std::string);

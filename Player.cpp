@@ -68,13 +68,15 @@ bool Player::itemInInventory(Item* currentItem)
 /*******************************************************************************
 *		PLAYER ACTIONS
 *******************************************************************************/
-void Player::pickUpItem(Item* currentItem)
+void Player::pickUpItem(Item* currentItem, playerNotebook* notebook)
 {
 	if(location->isItemInRoom(currentItem) == true && currentItem->getAvailable() == true)
 	{
 		playerInventory.addItemToInventory(currentItem);
 		
 		location->removeItemFromRoom(currentItem);
+	
+		notebook->setItemLocations(currentItem->getName(), "inventory")
 	
 	}
 	else
@@ -85,13 +87,15 @@ void Player::pickUpItem(Item* currentItem)
 }
 
 
-void Player::dropItem(Item* currentItem)
+void Player::dropItem(Item* currentItem, playerNotebook* notebook)
 {
 	if(playerInventory.isItemInInventory(currentItem) == true)
 	{
 		playerInventory.removeItemFromInventory(currentItem);
 		
 		location->addItemInRoom(currentItem);
+		
+		notebook->setItemLocations(currentItem->getName(), this->location->getName())
 	
 	}
 	else

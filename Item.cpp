@@ -107,9 +107,11 @@ void Item::setBelongsTo(Suspect* suspect)
 *******************************************************************************/
 
 
-void Item::analyzeItem()
+void Item::analyzeItem(Notebook* notebook)
 {
 	this->setAnalyzed(true);
+	
+	notebook->setItemAnalyzed(this->getName(), true);
 }
 
 
