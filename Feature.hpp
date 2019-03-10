@@ -77,6 +77,7 @@ public:
 	void hacked(Notebook*);
 	void sampled(Notebook*);
 	void itemUsed(Notebook*);
+	void listened(Notebook*);
 };
 
 #endif

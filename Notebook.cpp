@@ -30,42 +30,42 @@ bool Notebook::getGameFlags(std::string stringIn)
 
 bool Notebook::getItemAvailable(std::string stringIn)
 {
-
+	return gameFlags[stringIn];
 }
 
 bool Notebook::getItemAnalyzed(std::string stringIn)
 {
-
+	return gameFlags[stringIn];
 }
 
 bool Notebook::getFeatureInspected(std::string stringIn)
 {
-
+	return gameFlags[stringIn];
 }
 
 bool Notebook::getFeatureSampled(std::string stringIn)
 {
-
+	return gameFlags[stringIn];
 }
 
 bool Notebook::getFeatureActioned(std::string stringIn)
 {
-
+	return gameFlags[stringIn];
 }
 
 bool Notebook::getRoomVisited(std::string stringIn)
 {
-
+	return gameFlags[stringIn];
 }
 
 std::string Notebook::getItemLocations(std::string stringIn)
 {
-	
+	return gameFlags[stringIn];
 }
 
 std::string Notebook::getCurrentRoom()
 {
-
+	return playerLocation;
 }
 
 	
@@ -130,10 +130,11 @@ void Notebook::setCurrentRoom(std::string stringIn)
 	
 bool Notebook::vinceCanInterrogate()
 {
-	if(gameFlags["vinceLocketAsk"] == true 		&& 
-		 gameFlags["vinceArticleAsk"] == true		&&
-		 gameFlags["vinceTicketsAsk"] == true		&&
-		 gameFlags["royInterrogated"] == true)
+	if(this->gameFlags["vinceLocketAsk"] 	== true		&& 
+		 this->gameFlags["vinceCashAsk"] 		== true		&&
+		 this->gameFlags["vinceTicketsAsk"] == true		&&
+		 this->gameFlags["royInterrogated"] == true		&&
+		 this->itemAnalyzed["article"] 			== true)
 	{
 		return true;
 	}
@@ -143,7 +144,7 @@ bool Notebook::vinceCanInterrogate()
 
 bool Notebook::vinceCanClear()
 {
-	if(gameFlags["vinceInterrogated"] == true)
+	if(this->gameFlags["vinceInterrogated"] == true)
 	{
 		return true;
 	}
@@ -173,8 +174,8 @@ bool Notebook::danCanAccuse()
 
 bool Notebook::royCanInterrogate()
 {
-	if(gameFlags["royTapeAsk"] == true &&
-		 gameFlags["royCashAsk"] == true)
+	if(this->gameFlags["royRecordingAsk"] == true	&&
+		 this->gameFlags["royCashAsk"] 			== true)
 	{
 		return true;
 	}

@@ -166,6 +166,9 @@ void Gamestate::createGame()
 	//commandParser = new Parser();
 	
 	
+	// create notebook
+	createNotebook();
+	
 	// Create Rooms
 	createRooms();
 	
@@ -180,7 +183,6 @@ void Gamestate::createGame()
 	
 	// create witnesses
 	
-	// create notebook
 	
 	
 	this->currentPlayer.setLocation(this->getRoom("station"));
@@ -840,7 +842,7 @@ void Gamestate::createNotebook()
 
 	// vince asked
 	this->playerNotebook.setGameFlags("vinceLocketAsk", false);
-	this->playerNotebook.setGameFlags("vinceArticleAsk", false);
+	this->playerNotebook.setGameFlags("vinceCashAsk", false);
 	this->playerNotebook.setGameFlags("vinceTicketsAsk", false);
 	
 	
@@ -851,7 +853,7 @@ void Gamestate::createNotebook()
 	
 	
 	// roy asked
-	this->playerNotebook.setGameFlags("royTapeAsk", false);
+	this->playerNotebook.setGameFlags("royRecordingAsk", false);
 	this->playerNotebook.setGameFlags("royCashAsk", false);
 	
 	
@@ -862,8 +864,13 @@ void Gamestate::createNotebook()
 	
 	
 	// interrogated
+	this->playerNotebook.setGameFlags("vinceInterrogated", false);
+	this->playerNotebook.setGameFlags("carlInterrogated", false);
+	this->playerNotebook.setGameFlags("danInterrogated", false);
 	this->playerNotebook.setGameFlags("royInterrogated", false);
-	this->playerNotebook.setGameFlags("vinceInterrogated", false);	
+	this->playerNotebook.setGameFlags("louiseInterrogated", false);
+	this->playerNotebook.setGameFlags("herbertInterrogated", false);
+		
 	
 	
 	// cleared
@@ -1287,7 +1294,7 @@ void Gamestate::inspectObject(std::string nounIn)
 				readFileDefault(inFile);
 				inFile.close();
 				
-				featurePtr->inspected();
+				featurePtr->inspected(&playerNotebook);
 				
 				// TODO: UPDATE NOTEBOOK
 				// TODO: set feature inspected true
@@ -1388,7 +1395,7 @@ void Gamestate::hackComputer(std::string nounIn)
 				if(currentFeature->getAlreadyActioned() == false)	// if not already hacked
 				{
 					// hack computer
-					currentFeature->hacked();
+					currentFeature->hacked(&playerNotebook);
 					
 					// add item					
 					this->currentPlayer.pickUpItem(currentFeature->getitemAffected());
@@ -1441,7 +1448,7 @@ void Gamestate::interrogate(std::string name)
 				// roy
 				if(name == "roy")
 				{
-					if(this->playerNotebook.royInterrogate() == true)
+					if(this->playerNotebook.royCanInterrogate() == true)
 					{
 						// output interrogationResponse
 						std::ifstream inFile;
@@ -1450,6 +1457,10 @@ void Gamestate::interrogate(std::string name)
 						readFileDefault(inFile);
 						inFile.close();
 						
+						if(this->playerNotebook.getGameFlags("royInterrogated") == false)
+						{
+							this->playerNotebook.setGameFlags("royInterrogated", true);
+						}
 						// TODO: In Notebook
 						// TODO: set royInterrogate to true						
 					}
@@ -1463,7 +1474,7 @@ void Gamestate::interrogate(std::string name)
 				// louise
 				else if(name == "louise")
 				{
-					if(this->playerNotebook.louiseInterrogate() == true)
+					if(this->playerNotebook.louiseCanInterrogate() == true)
 					{
 						// output interrogationResponse
 						std::ifstream inFile;
@@ -1472,6 +1483,10 @@ void Gamestate::interrogate(std::string name)
 						readFileDefault(inFile);
 						inFile.close();
 						
+						if(this->playerNotebook.getGameFlags("louiseInterrogated") == false)
+						{
+							this->playerNotebook.setGameFlags("louiseInterrogated", true);
+						}						
 						// TODO: In Notebook
 						// TODO: set louiseInterrogate to true
 
@@ -1487,15 +1502,19 @@ void Gamestate::interrogate(std::string name)
 				// herbert
 				else if(name == "herbert")
 				{
-					if(this->playerNotebook.herbertInterrogate() == true)
+					if(this->playerNotebook.herbertCanInterrogate() == true)
 					{
 						// output interrogationResponse
 						std::ifstream inFile;
 							
 						inFile.open(witnessMap[name]->getInterrogateResponse(), std::ios::out);
 						readFileDefault(inFile);
-						inFile.close();	
+						inFile.close();
 						
+						if(this->playerNotebook.getGameFlags("herbertInterrogated") == false)
+						{
+							this->playerNotebook.setGameFlags("herbertInterrogated", true);
+						}								
 						// TODO: In Notebook
 						// TODO: set herbertInterrogate to true
 						
@@ -1518,16 +1537,74 @@ void Gamestate::interrogate(std::string name)
 		if(currentRoom->getName() == "cells")		
 		{
 				// test any interrogation conditions
-			
-				// output interrogationResponse
-			std::ifstream inFile;
-				
-			inFile.open(suspectMap[name]->getInterrogateResponse(), std::ios::out);
-			readFileDefault(inFile);
-			inFile.close();
-			
-			// TODO: In Notebook
-			// TODO: set suspectInterrogate to true
+			if(name == "vince")
+			{
+				if(this->playerNotebook.vinceCanInterrogate() == true)
+				{
+					std::ifstream inFile;
+						
+					inFile.open(suspectMap[name]->getInterrogateResponse(), std::ios::out);
+					readFileDefault(inFile);
+					inFile.close();
+					
+					if(this->playerNotebook.getGameFlags("vinceInterrogated") == false)
+					{
+						this->playerNotebook.setGameFlags("vinceInterrogated", true);
+					}	
+					
+				}
+				else
+				{
+					std::cout << "'I don't have any more information, Detective.'" << std::endl;
+					
+					std::cout << "You may need to ask vince about more evidence before he can be successfully interrogated" << std::endl;
+				}
+			}
+			else if(name == "carl")
+			{
+				if(this->playerNotebook.carlCanInterrogate() == true)
+				{
+					std::ifstream inFile;
+						
+					inFile.open(suspectMap[name]->getInterrogateResponse(), std::ios::out);
+					readFileDefault(inFile);
+					inFile.close();
+					
+					if(this->playerNotebook.getGameFlags("carlInterrogated") == false)
+					{
+						this->playerNotebook.setGameFlags("carlInterrogated", true);
+					}	
+				}
+				else
+				{
+					std::cout << "'I don't have any more information, Detective.'" << std::endl;
+					
+					std::cout << "You may need to ask carl about more evidence before he can be successfully interrogated" << std::endl;
+				}
+			}
+			else if(name == "dan")
+			{
+				if(this->playerNotebook.danCanInterrogate() == true)
+				{
+					std::ifstream inFile;
+						
+					inFile.open(suspectMap[name]->getInterrogateResponse(), std::ios::out);
+					readFileDefault(inFile);
+					inFile.close();
+					
+					if(this->playerNotebook.getGameFlags("danInterrogated") == false)
+					{
+						this->playerNotebook.setGameFlags("danInterrogated", true);
+					}	
+				}
+				else
+				{
+					std::cout << "'I don't have any more information, Detective.'" << std::endl;
+					
+					std::cout << "You may need to ask dan about more evidence before he can be successfully interrogated" << std::endl;
+				}
+			}
+
 			
 			
 			
@@ -1752,7 +1829,7 @@ void Gamestate::sampleFeature(std::string featureIn)
 			else // sample not yet taken
 			{
 				// if not - set sample taken to true, flag in notebook, add sample item to inventory
-				currentFeature->sampled();
+				currentFeature->sampled(&playerNotebook);
 				
 				this->currentPlayer.pickUpItem(currentFeature->getitemAffected());
 				
@@ -1814,6 +1891,7 @@ void Gamestate::askAboutItem(std::string personIn, std::string itemIn)
 				
 				std::ifstream inFile;
 				
+
 				inFile.open(currentSuspect->askItemResponse(itemIn), std::ios::out);
 				readFileDefault(inFile);
 				inFile.close();
@@ -1892,7 +1970,7 @@ void Gamestate::useItemOnFeature(std::string itemIn, std::string featureIn)
 				{
 					
 					// if not - flag in notebook - set alreadyActioned to true - and reveal item
-					currentFeature->itemUsed();
+					currentFeature->itemUsed(&playerNotebook);
 				
 					// TODO: In Notebook
 					// TODO: set feature alreadyActioned true
@@ -1992,12 +2070,15 @@ void Gamestate::listenToRecording(std::string itemIn)
 			}
 			else
 			{
-				currentFeature->setAlreadyActioned(true);
+				
 				std::cout << "You listen to the recording." << std::endl;
 				std::cout << currentItem->getDescription() << std::endl;
 				std::cout << "You add the recording to your inventory." << std::endl;
+				
+				
+				currentFeature->listened(&playerNotebook);
+				
 				// add recording to inventory
-				currentItem->setAvailable(true);
 				currentPlayer.pickUpItem(currentItem);
 
 			}
@@ -2182,6 +2263,10 @@ void Gamestate::clearSuspect(std::string personIn)
 				{
 					playerNotebook.setGameFlags("vinceCleared", true)
 				}
+				else
+				{
+					std::cout << "You're going to need some more evidence to clear them" << std::endl;
+				}
 			}
 			else if(personIn == "carl")
 			{
@@ -2189,10 +2274,14 @@ void Gamestate::clearSuspect(std::string personIn)
 				{
 					playerNotebook.setGameFlags("carlCleared", true)
 				}
+				else
+				{
+					std::cout << "You're going to need some more evidence to clear them" << std::endl;
+				}
 			}
 			else if(personIn == "dan")
 			{
-				
+				std::cout << "You're going to need some more evidence to clear them" << std::endl;
 			}
 			// test if enough evidence to clear them
 			// if so, set flag for suspect to cleared in notebook

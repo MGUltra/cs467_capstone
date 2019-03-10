@@ -61,6 +61,7 @@ class Item
 	void revealedByHack(std::string, Notebook*);
 	void revealedBySample(std::string, Notebook*);
 	void revealedByItemUsed(std::string, std::string, Notebook*);
+	void revealedByListen(Notebook*);
 	
 };
 

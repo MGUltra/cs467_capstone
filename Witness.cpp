@@ -188,15 +188,74 @@ void Witness::setLocation(Room* givenLocation)
 /*******************************************************************************
 *		OTHER FUNCTIONS
 *******************************************************************************/
-std::string Witness::askItemResponse(std::string itemIn)
+std::string Witness::askItemResponse(std::string itemIn, Notebook* notebook)
 {
-	if(itemIn == item1)
-		return getItemResponse1();
-	else if(itemIn == item2)
-		return getItemResponse2();
-	else if(itemIn == item3)
-		return getItemResponse3();	
+	if(this->getName() == "roy")
+	{
+		if(itemIn == item1) // recording
+		{
+			if(notebook->getGameFlags("royRecordingAsk") == false)
+			{
+				notebook->setGameFlags("royRecordingAsk", true);
+			}
+			
+			return getItemResponse1();
+		}
+		else if(itemIn == item2) // tickets
+		{
+			
+			return getItemResponse2();
+		}
+		else if(itemIn == item3) // cash
+		{
+			if(notebook->getGameFlags("royCashAsk") == false)
+			{
+				notebook->setGameFlags("royCashAsk", true);
+			}
+			return getItemResponse3();
+		}
+		else
+			return getItemResponseGeneric();
+	}
+	else if(this->getName() == "herbert")
+	{
+		if(itemIn == item1)
+		{
+			
+			return getItemResponse1();
+		}
+		else if(itemIn == item2)
+		{
+			
+			return getItemResponse2();
+		}
+		else if(itemIn == item3)
+		{
+			
+			return getItemResponse3();
+		}
+		else
+			return getItemResponseGeneric();		
+	}
 	else
-		return getItemResponseGeneric();
+	{
+		if(itemIn == item1)
+		{
+			
+			return getItemResponse1();
+		}
+		else if(itemIn == item2)
+		{
+			
+			return getItemResponse2();
+		}
+		else if(itemIn == item3)
+		{
+			
+			return getItemResponse3();
+		}
+		else
+			return getItemResponseGeneric();		
+	}
 }
 

@@ -34,8 +34,9 @@ private:
 	// featurenameAlreadySampled
 	// featurenameAlreadyActioned
 	std::unordered_map<std::string, bool> featureInspected;
-	//std::unordered_map<std::string, bool> featureSampled;
 	std::unordered_map<std::string, bool> featureActioned;
+	
+	//std::unordered_map<std::string, bool> featureSampled;
 	
 	// room flags - for each room
 	// roomnameAlreadyVisited

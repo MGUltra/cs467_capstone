@@ -15,6 +15,7 @@ LIBRARIES
 ------------------------------------------------------------------------------*/
 #include <iostream>
 #include <string>
+#include "Notebook.hpp"
 
 class Suspect
 {
@@ -82,7 +83,8 @@ public:
 	
 	
 	// other
-	std::string askItemResponse(std::string);
+	std::string askItemResponse(std::string, Notebook*);
+
 	
 	
 };

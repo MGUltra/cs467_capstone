@@ -151,7 +151,7 @@ void Feature::setUseItem(std::string itemIn)
 void Feature::inspected(Notebook* notebook)
 {
 	
-	this->itemAffected->revealedByFeature();
+	this->itemAffected->revealedByFeature(notebook);
 	
 	this->setAlreadyInspected(true);
 	
@@ -161,7 +161,7 @@ void Feature::inspected(Notebook* notebook)
 
 void Feature::hacked(Notebook* notebook)
 {
-		this->itemAffected->revealedByHack(this->name);
+		this->itemAffected->revealedByHack(this->name, notebook);
 		
 		this->setAlreadyActioned(true);
 		
@@ -170,7 +170,7 @@ void Feature::hacked(Notebook* notebook)
 
 void Feature::sampled(Notebook* notebook)
 {
-		this->itemAffected->revealedBySample(this->name);
+		this->itemAffected->revealedBySample(this->name, notebook);
 		
 		this->setAlreadyActioned(true);
 		
@@ -179,11 +179,23 @@ void Feature::sampled(Notebook* notebook)
 
 void Feature::itemUsed(Notebook* notebook)
 {
-		this->itemAffected->revealedByItemUsed(this->name, this->useItem);
+		this->itemAffected->revealedByItemUsed(this->name, this->useItem, notebook);
 		
 		this->setAlreadyActioned(true);
 		
 		notebook->setFeatureActioned(this->getName(), true);
 }
+
+void Feature::listened(Notebook* notebook)
+{
+	this->itemAffected->revealedByListen(notebook);
+	
+	this->setAlreadyActioned(true);
+	
+	notebook->setFeatureActioned(this->getName(), true);
+	
+}
+
+
 
 

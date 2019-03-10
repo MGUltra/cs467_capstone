@@ -17,6 +17,7 @@ LIBRARIES
 #include <string>
 
 #include "Room.hpp"
+#include "Notebook.hpp"
 
 class Witness
 {
@@ -72,7 +73,8 @@ public:
 	void setLocation(Room*);
 	
 	// other
-	std::string askItemResponse(std::string);
+	std::string askItemResponse(std::string, Notebook*);
+
 	
 };
 

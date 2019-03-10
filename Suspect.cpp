@@ -210,16 +210,77 @@ void Suspect::setItem3(std::string stringIn)
 *		OTHER FUNCTIONS
 *******************************************************************************/
 
-std::string Suspect::askItemResponse(std::string itemIn)
+std::string Suspect::askItemResponse(std::string itemIn, Notebook* notebook)
 {
-	if(itemIn == item1)
-		return getItemResponse1();
-	else if(itemIn == item2)
-		return getItemResponse2();
-	else if(itemIn == item3)
-		return getItemResponse3();	
+	if(this->getName() == "vince")
+	{
+		if(itemIn == item1) // recording
+		{
+			if(notebook->getGameFlags("vinceTicketsAsk") == false)
+			{
+				notebook->setGameFlags("vinceTicketsAsk", true);
+			}
+			
+			return getItemResponse1();
+		}
+		else if(itemIn == item2) // tickets
+		{
+			if(notebook->getGameFlags("vinceLocketAsk") == false)
+			{
+				notebook->setGameFlags("vinceLocketAsk", true);
+			}
+			return getItemResponse2();
+		}
+		else if(itemIn == item3) // cash
+		{
+			if(notebook->getGameFlags("vinceCashAsk") == false)
+			{
+				notebook->setGameFlags("vinceCashAsk", true);
+			}
+			return getItemResponse3();
+		}
+		else
+			return getItemResponseGeneric();
+	}
+	else if(this->getName() == "herbert")
+	{
+		if(itemIn == item1)
+		{
+			
+			return getItemResponse1();
+		}
+		else if(itemIn == item2)
+		{
+			
+			return getItemResponse2();
+		}
+		else if(itemIn == item3)
+		{
+			
+			return getItemResponse3();
+		}
+		else
+			return getItemResponseGeneric();		
+	}
 	else
-	{	
-		return getItemResponseGeneric();
+	{
+		if(itemIn == item1)
+		{
+			
+			return getItemResponse1();
+		}
+		else if(itemIn == item2)
+		{
+			
+			return getItemResponse2();
+		}
+		else if(itemIn == item3)
+		{
+			
+			return getItemResponse3();
+		}
+		else
+			return getItemResponseGeneric();		
 	}
 }
+

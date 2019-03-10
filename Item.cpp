@@ -151,3 +151,14 @@ void Item::revealedByItemUsed(std::string nameIn, std::string usedIn, Notebook* 
 	
 	std::cout << "| using the " << usedIn << " on the " << nameIn << " has revealed " << this->name << "." << std::endl;
 }
+
+void revealedByListen(Notebook* notebook)
+{
+	this->setAvailable(true);
+	
+	notebook->setItemAvailable(this->getName(), true);
+	
+	
+}
+
+
