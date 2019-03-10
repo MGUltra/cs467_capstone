@@ -148,34 +148,42 @@ void Feature::setUseItem(std::string itemIn)
 *		OTHER FUNCTIONS
 *******************************************************************************/
 
-void Feature::inspected()
+void Feature::inspected(Notebook* notebook)
 {
 	
 	this->itemAffected->revealedByFeature();
 	
 	this->setAlreadyInspected(true);
 	
+	notebook->setFeatureInspected(this->getName(), true);
+	
 }
 
-void Feature::hacked()
+void Feature::hacked(Notebook* notebook)
 {
 		this->itemAffected->revealedByHack(this->name);
 		
 		this->setAlreadyActioned(true);
+		
+		notebook->setFeatureActioned(this->getName(), true);
 }
 
-void Feature::sampled()
+void Feature::sampled(Notebook* notebook)
 {
 		this->itemAffected->revealedBySample(this->name);
 		
 		this->setAlreadyActioned(true);
+		
+		notebook->setFeatureActioned(this->getName(), true);
 }
 
-void Feature::itemUsed()
+void Feature::itemUsed(Notebook* notebook)
 {
 		this->itemAffected->revealedByItemUsed(this->name, this->useItem);
 		
 		this->setAlreadyActioned(true);
+		
+		notebook->setFeatureActioned(this->getName(), true);
 }
 
 

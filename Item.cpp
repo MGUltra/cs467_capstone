@@ -115,31 +115,39 @@ void Item::analyzeItem(Notebook* notebook)
 }
 
 
-void Item::revealedByFeature()
+void Item::revealedByFeature(Notebook* notebook)
 {
 	setAvailable(true);
+	
+	notebook->setItemAvailable(this->getName(), true);
 	
 	std::cout << "| Your search has revealed " << this->name << "." << std::endl;
 	
 }
 
-void Item::revealedByHack(std::string nameIn)
+void Item::revealedByHack(std::string nameIn, Notebook* notebook)
 {
 	setAvailable(true);
+	
+	notebook->setItemAvailable(this->getName(), true);
 	
 	std::cout << "| Hacking " << nameIn << " has produced " << this->name << "." << std::endl;
 }
 
-void Item::revealedBySample(std::string nameIn)
+void Item::revealedBySample(std::string nameIn, Notebook* notebook)
 {
 	setAvailable(true);
+	
+	notebook->setItemAvailable(this->getName(), true);
 	
 	std::cout << "| taking a sample of " << nameIn << " has added " << this->name << " to your inventory." << std::endl;
 }
 
-void Item::revealedByItemUsed(std::string nameIn, std::string usedIn)
+void Item::revealedByItemUsed(std::string nameIn, std::string usedIn, Notebook* notebook)
 {
 	setAvailable(true);
+	
+	notebook->setItemAvailable(this->getName(), true);
 	
 	std::cout << "| using the " << usedIn << " on the " << nameIn << " has revealed " << this->name << "." << std::endl;
 }

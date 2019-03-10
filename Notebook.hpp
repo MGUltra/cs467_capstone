@@ -34,7 +34,7 @@ private:
 	// featurenameAlreadySampled
 	// featurenameAlreadyActioned
 	std::unordered_map<std::string, bool> featureInspected;
-	std::unordered_map<std::string, bool> featureSampled;
+	//std::unordered_map<std::string, bool> featureSampled;
 	std::unordered_map<std::string, bool> featureActioned;
 	
 	// room flags - for each room
@@ -58,7 +58,7 @@ public:
 	bool getItemAvailable(std::string);
 	bool getItemAnalyzed(std::string);
 	bool getFeatureInspected(std::string);
-	bool getFeatureSampled(std::string);
+	//bool getFeatureSampled(std::string);
 	bool getFeatureActioned(std::string);
 	bool getRoomVisited(std::string);
 	std::string setItemLocations(std::string);
@@ -70,7 +70,7 @@ public:
 	void setItemAvailable(std::string, bool);
 	void setItemAnalyzed(std::string, bool);
 	void setFeatureInspected(std::string, bool);
-	void setFeatureSampled(std::string, bool);
+	//void setFeatureSampled(std::string, bool);
 	void setFeatureActioned(std::string, bool);
 	void setRoomVisited(std::string, bool);
 	void setItemLocations(std::string, std::string);	

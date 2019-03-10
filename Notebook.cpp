@@ -174,7 +174,7 @@ bool Notebook::danCanAccuse()
 bool Notebook::royCanInterrogate()
 {
 	if(gameFlags["royTapeAsk"] == true &&
-		 gameFlags["royTapeAsk"] == true)
+		 gameFlags["royCashAsk"] == true)
 	{
 		return true;
 	}

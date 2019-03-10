@@ -834,16 +834,46 @@ CREATE NOTEBOOK
 ------------------------------------------------------------------------------*/
 void Gamestate::createNotebook()
 {
+
+
+
+
+	// vince asked
 	this->playerNotebook.setGameFlags("vinceLocketAsk", false);
 	this->playerNotebook.setGameFlags("vinceArticleAsk", false);
 	this->playerNotebook.setGameFlags("vinceTicketsAsk", false);
+	
+	
+	// carl asked
+	
+	
+	// dan asked
+	
+	
+	// roy asked
 	this->playerNotebook.setGameFlags("royTapeAsk", false);
 	this->playerNotebook.setGameFlags("royCashAsk", false);
-	this->playerNotebook.setGameFlags("royInterrogate", false);
-	this->playerNotebook.setGameFlags("vinceInterrogate", false);
-	this->playerNotebook.setGameFlags("vinceCleared", false);
 	
-
+	
+	// herbert asked
+	
+	
+	// louise asked
+	
+	
+	// interrogated
+	this->playerNotebook.setGameFlags("royInterrogated", false);
+	this->playerNotebook.setGameFlags("vinceInterrogated", false);	
+	
+	
+	// cleared
+	this->playerNotebook.setGameFlags("vinceCleared", false);
+	this->playerNotebook.setGameFlags("carlCleared", false);
+	
+	
+	// accused
+	this->playerNotebook.setGameFlags("danAccused", false);
+	
 	
 }
 
@@ -1122,7 +1152,7 @@ void Gamestate::movePlayer(std::string verbIn, std::string nounIn)
 	{
 		if(roomPtr->isRoomAttached(this->getRoom(verbIn)) == true)
 		{
-			this->currentPlayer.setLocation(this->getRoom(verbIn));
+			this->currentPlayer.setLocation(this->getRoom(verbIn), &playerNotebook);
 		}
 		else
 		{
@@ -1137,7 +1167,7 @@ void Gamestate::movePlayer(std::string verbIn, std::string nounIn)
 		Room* newRoom = roomPtr->getCardinalDirection(verbIn);
 		
 		if(newRoom != NULL)
-			this->currentPlayer.setLocation(newRoom);
+			this->currentPlayer.setLocation(newRoom, &playerNotebook);
 		else
 			std::cout << "You can not go " << verbIn << " from " << roomPtr->getName() << "." << std::endl;
 		
@@ -1150,7 +1180,7 @@ void Gamestate::movePlayer(std::string verbIn, std::string nounIn)
 		Room* newRoom = roomPtr->getCardinalDirection(nounIn);
 		
 		if(newRoom != NULL)
-			this->currentPlayer.setLocation(newRoom);
+			this->currentPlayer.setLocation(newRoom, &playerNotebook);
 		else
 			std::cout << "You can not go " << nounIn << " from " << roomPtr->getName() << "." << std::endl;
 		
@@ -1159,7 +1189,7 @@ void Gamestate::movePlayer(std::string verbIn, std::string nounIn)
 	// room name as noun
 	else if(roomPtr->isRoomAttached(this->getRoom(nounIn)) == true)
 	{
-		this->currentPlayer.setLocation(this->getRoom(nounIn));
+		this->currentPlayer.setLocation(this->getRoom(nounIn), &playerNotebook);
 		
 		return;
 	}
@@ -1182,7 +1212,7 @@ void Gamestate::dropItem(std::string nounIn)
 	// test if item
 	if(this->itemMap.find(nounIn) != this->itemMap.end())
 	{
-		this->currentPlayer.dropItem(getItem(nounIn));
+		this->currentPlayer.dropItem(getItem(nounIn), &playerNotebook);
 	}
 	else
 		std::cout << "| you cannot drop " << nounIn << std::endl;
@@ -1195,7 +1225,7 @@ void Gamestate::takeItem(std::string nounIn)
 {
 	// test if item
 	if(this->itemMap.find(nounIn) != this->itemMap.end())
-		this->currentPlayer.pickUpItem(getItem(nounIn));
+		this->currentPlayer.pickUpItem(getItem(nounIn), &playerNotebook);
 	else
 		std::cout << "| you cannot pick up " << nounIn << std::endl;
 }
@@ -1541,7 +1571,7 @@ void Gamestate::analyzeItem(std::string nounIn)
 				if(this->itemMap[nounIn]->getAnalyzed() == false) // if item not analyzed yet, analyze
 				{
 					
-					this->itemMap[nounIn]->analyzeItem();
+					this->itemMap[nounIn]->analyzeItem(&playerNotebook);
 					
 					// TODO: In Notebook
 					// TODO: set item analyzed true
@@ -2145,6 +2175,25 @@ void Gamestate::clearSuspect(std::string personIn)
 		//suspect
 		else if (suspectMap.find(personIn) != suspectMap.end())
 		{
+			
+			if(personIn == "vince")
+			{
+				if(playerNotebook.vinceCanClear() == true)
+				{
+					playerNotebook.setGameFlags("vinceCleared", true)
+				}
+			}
+			else if(personIn == "carl")
+			{
+				if(playerNotebook.carlCanClear() == true)
+				{
+					playerNotebook.setGameFlags("carlCleared", true)
+				}
+			}
+			else if(personIn == "dan")
+			{
+				
+			}
 			// test if enough evidence to clear them
 			// if so, set flag for suspect to cleared in notebook
 				// remove suspect from cells
@@ -2177,19 +2226,6 @@ void Gamestate::clearSuspect(std::string personIn)
 		
 			// if chief and in the same room
 				// prompt "get back to work" or something
-}
-
-
-/*------------------------------------------------------------------------------
-		TALK TO CHIEF
-------------------------------------------------------------------------------*/
-void Gamestate::talkToChief()
-{
-	// this function only called by talkToPerson()
-	
-	// comment on current state of investigation
-	
-	
 }
 
 

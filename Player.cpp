@@ -48,9 +48,11 @@ void Player::setName(std::string givenName)
 	name = givenName;
 }
 
-void Player::setLocation(Room* currentLocation)
+void Player::setLocation(Room* currentLocation, Notebook* notebook)
 {
 	location = currentLocation;
+	
+	notebook->setCurrentRoom(currentLocation->getName());
 }
 
 
@@ -68,7 +70,7 @@ bool Player::itemInInventory(Item* currentItem)
 /*******************************************************************************
 *		PLAYER ACTIONS
 *******************************************************************************/
-void Player::pickUpItem(Item* currentItem, playerNotebook* notebook)
+void Player::pickUpItem(Item* currentItem, Notebook* notebook)
 {
 	if(location->isItemInRoom(currentItem) == true && currentItem->getAvailable() == true)
 	{
@@ -87,7 +89,7 @@ void Player::pickUpItem(Item* currentItem, playerNotebook* notebook)
 }
 
 
-void Player::dropItem(Item* currentItem, playerNotebook* notebook)
+void Player::dropItem(Item* currentItem, Notebook* notebook)
 {
 	if(playerInventory.isItemInInventory(currentItem) == true)
 	{

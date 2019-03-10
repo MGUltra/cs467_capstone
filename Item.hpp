@@ -57,10 +57,10 @@ class Item
 	
 	void analyzeItem(Notebook*);
 	
-	void revealedByFeature();
-	void revealedByHack(std::string);
-	void revealedBySample(std::string);
-	void revealedByItemUsed(std::string, std::string);
+	void revealedByFeature(Notebook*);
+	void revealedByHack(std::string, Notebook*);
+	void revealedBySample(std::string, Notebook*);
+	void revealedByItemUsed(std::string, std::string, Notebook*);
 	
 };
 

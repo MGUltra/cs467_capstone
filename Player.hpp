@@ -39,14 +39,14 @@ public:
 
 	//set
 	void setName(std::string);
-	void setLocation(Room*);
+	void setLocation(Room*, Notebook*);
 
 	
 	bool itemInInventory(Item*);
 	
 	// Player actions
-	void pickUpItem(Item*, playerNotebook*);
-	void dropItem(Item*, playerNotebook*);
+	void pickUpItem(Item*, Notebook*);
+	void dropItem(Item*, Notebook*);
 	void showInventory();
 	
 };
