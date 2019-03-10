@@ -35,6 +35,6 @@ witnessText/royItemResponse1.txt
 witnessText/royItemResponse2.txt
 witnessText/royItemResponse3.txt
 witnessText/royItemResponseGeneric.txt
-recordIng
+recording
 tickets
 cash

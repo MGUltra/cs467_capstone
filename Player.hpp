@@ -39,7 +39,7 @@ public:
 
 	//set
 	void setName(std::string);
-	void setLocation(Room*, Notebook*);
+	void setLocation(Room*);
 
 	
 	bool itemInInventory(Item*);
@@ -47,6 +47,7 @@ public:
 	// Player actions
 	void pickUpItem(Item*, Notebook*);
 	void dropItem(Item*, Notebook*);
+	void changeLocation(Room*, Notebook*);
 	void showInventory();
 	
 };

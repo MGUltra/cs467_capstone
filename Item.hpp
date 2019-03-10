@@ -37,6 +37,7 @@ class Item
 
 	//get
 	std::string getName();
+	std::string getDisplayName();
 	std::string getDescription();
 	std::string getForensicAnalysis();
 	bool getAvailable();
@@ -46,6 +47,7 @@ class Item
 
 	//set
 	void setName(std::string);
+	void setDisplayName(std::string);
 	void setDescription(std::string);
 	void setForensicAnalysis(std::string);
 	void setAvailable(bool);

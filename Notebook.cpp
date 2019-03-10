@@ -30,37 +30,32 @@ bool Notebook::getGameFlags(std::string stringIn)
 
 bool Notebook::getItemAvailable(std::string stringIn)
 {
-	return gameFlags[stringIn];
+	return itemAvailable[stringIn];
 }
 
 bool Notebook::getItemAnalyzed(std::string stringIn)
 {
-	return gameFlags[stringIn];
+	return itemAnalyzed[stringIn];
 }
 
 bool Notebook::getFeatureInspected(std::string stringIn)
 {
-	return gameFlags[stringIn];
-}
-
-bool Notebook::getFeatureSampled(std::string stringIn)
-{
-	return gameFlags[stringIn];
+	return featureInspected[stringIn];
 }
 
 bool Notebook::getFeatureActioned(std::string stringIn)
 {
-	return gameFlags[stringIn];
+	return featureActioned[stringIn];
 }
 
 bool Notebook::getRoomVisited(std::string stringIn)
 {
-	return gameFlags[stringIn];
+	return roomVisited[stringIn];
 }
 
 std::string Notebook::getItemLocations(std::string stringIn)
 {
-	return gameFlags[stringIn];
+	return itemLocations[stringIn];
 }
 
 std::string Notebook::getCurrentRoom()
@@ -95,11 +90,6 @@ void Notebook::setItemAnalyzed(std::string stringIn, bool boolIn)
 void Notebook::setFeatureInspected(std::string stringIn, bool boolIn)
 {
 	featureInspected[stringIn] = boolIn;
-}
-
-void Notebook::setFeatureSampled(std::string stringIn, bool boolIn)
-{
-	featureSampled[stringIn] = boolIn;
 }
 
 void Notebook::setFeatureActioned(std::string stringIn, bool boolIn)
@@ -207,6 +197,26 @@ void Notebook::saveGame()
 
 
 void Notebook::loadGame()
+{
+	
+}
+
+
+/*******************************************************************************
+*		SAVE / LOAD FUNCTIONs
+*******************************************************************************/
+
+void Notebook::printGameFlags()
+{
+	  std::cout << "Gameflags:" << std::endl;
+		
+  for ( auto it = gameFlags.begin(); it != gameFlags.end(); ++it )
+    std::cout << " " << it->first << ":" << it->second << std::endl;
+  
+	std::cout << std::endl;
+}
+
+void Notebook::printAll()
 {
 	
 }

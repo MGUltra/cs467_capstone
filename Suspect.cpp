@@ -214,35 +214,60 @@ std::string Suspect::askItemResponse(std::string itemIn, Notebook* notebook)
 {
 	if(this->getName() == "vince")
 	{
-		if(itemIn == item1) // recording
+		if(itemIn == item1) // tickets
 		{
-			if(notebook->getGameFlags("vinceTicketsAsk") == false)
-			{
-				notebook->setGameFlags("vinceTicketsAsk", true);
-			}
 			
-			return getItemResponse1();
-		}
-		else if(itemIn == item2) // tickets
-		{
-			if(notebook->getGameFlags("vinceLocketAsk") == false)
-			{
-				notebook->setGameFlags("vinceLocketAsk", true);
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{			
+				if(notebook->getGameFlags("vinceTicketsAsk") == false)
+				{
+					notebook->setGameFlags("vinceTicketsAsk", true);
+				}
+				
+				return getItemResponse1();
 			}
-			return getItemResponse2();
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				return getItemResponseGeneric();					
+			}
+		}
+		else if(itemIn == item2) // locket
+		{
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{		
+				if(notebook->getGameFlags("vinceLocketAsk") == false)
+				{
+					notebook->setGameFlags("vinceLocketAsk", true);
+				}
+				return getItemResponse2();
+			}
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				return getItemResponseGeneric();	
+			}
 		}
 		else if(itemIn == item3) // cash
 		{
-			if(notebook->getGameFlags("vinceCashAsk") == false)
-			{
-				notebook->setGameFlags("vinceCashAsk", true);
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{		
+				if(notebook->getGameFlags("vinceCashAsk") == false)
+				{
+					notebook->setGameFlags("vinceCashAsk", true);
+				}
+				return getItemResponse3();
 			}
-			return getItemResponse3();
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				return getItemResponseGeneric();				
+			}
 		}
 		else
 			return getItemResponseGeneric();
 	}
-	else if(this->getName() == "herbert")
+	else if(this->getName() == "carl")
 	{
 		if(itemIn == item1)
 		{

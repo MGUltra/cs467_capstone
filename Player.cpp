@@ -48,11 +48,11 @@ void Player::setName(std::string givenName)
 	name = givenName;
 }
 
-void Player::setLocation(Room* currentLocation, Notebook* notebook)
+void Player::setLocation(Room* currentLocation)
 {
 	location = currentLocation;
 	
-	notebook->setCurrentRoom(currentLocation->getName());
+
 }
 
 
@@ -78,7 +78,7 @@ void Player::pickUpItem(Item* currentItem, Notebook* notebook)
 		
 		location->removeItemFromRoom(currentItem);
 	
-		notebook->setItemLocations(currentItem->getName(), "inventory")
+		notebook->setItemLocations(currentItem->getName(), "inventory");
 	
 	}
 	else
@@ -97,7 +97,7 @@ void Player::dropItem(Item* currentItem, Notebook* notebook)
 		
 		location->addItemInRoom(currentItem);
 		
-		notebook->setItemLocations(currentItem->getName(), this->location->getName())
+		notebook->setItemLocations(currentItem->getName(), this->location->getName());
 	
 	}
 	else
@@ -108,7 +108,12 @@ void Player::dropItem(Item* currentItem, Notebook* notebook)
 	
 }
 
-
+void Player::changeLocation(Room* locationIn, Notebook* notebook)
+{
+	setLocation(locationIn);
+	
+	notebook->setCurrentRoom(locationIn->getName());
+}
 
 
 void Player::showInventory()

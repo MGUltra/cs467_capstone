@@ -31,6 +31,11 @@ std::string Item::getName()
 	return name;
 }
 
+std::string Item::getDisplayName()
+{
+	return displayName;
+}
+
 std::string Item::getDescription()
 {
 	return description;
@@ -68,6 +73,11 @@ Suspect* Item::getBelongsTo()
 void Item::setName(std::string givenName)
 {
 	name = givenName;
+}
+
+void Item::setDisplayName(std::string nameIn)
+{
+	displayName = nameIn;
 }
 
 void Item::setDescription(std::string givenDescription)
@@ -152,7 +162,7 @@ void Item::revealedByItemUsed(std::string nameIn, std::string usedIn, Notebook* 
 	std::cout << "| using the " << usedIn << " on the " << nameIn << " has revealed " << this->name << "." << std::endl;
 }
 
-void revealedByListen(Notebook* notebook)
+void Item::revealedByListen(Notebook* notebook)
 {
 	this->setAvailable(true);
 	

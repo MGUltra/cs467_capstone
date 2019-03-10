@@ -149,7 +149,7 @@ gameItems/item25Analysis.txt
 bedchamber
 vince
 false
-combination 
+combination
 gameItems/item26.txt
 gameItems/item26Analysis.txt
 bedchamber

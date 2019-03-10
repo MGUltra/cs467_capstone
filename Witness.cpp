@@ -194,25 +194,43 @@ std::string Witness::askItemResponse(std::string itemIn, Notebook* notebook)
 	{
 		if(itemIn == item1) // recording
 		{
-			if(notebook->getGameFlags("royRecordingAsk") == false)
-			{
-				notebook->setGameFlags("royRecordingAsk", true);
-			}
 			
-			return getItemResponse1();
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{
+				if(notebook->getGameFlags("royRecordingAsk") == false)
+				{
+					notebook->setGameFlags("royRecordingAsk", true);
+				}
+				
+				return getItemResponse1();
+			}
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				
+				return getItemResponseGeneric();	
+			}
 		}
 		else if(itemIn == item2) // tickets
 		{
-			
 			return getItemResponse2();
 		}
 		else if(itemIn == item3) // cash
 		{
-			if(notebook->getGameFlags("royCashAsk") == false)
+			if(notebook->getItemAnalyzed(itemIn) == true)
 			{
-				notebook->setGameFlags("royCashAsk", true);
+				if(notebook->getGameFlags("royCashAsk") == false)
+				{
+					notebook->setGameFlags("royCashAsk", true);
+				}
+				return getItemResponse3();
 			}
-			return getItemResponse3();
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				
+				return getItemResponseGeneric();				
+			}
 		}
 		else
 			return getItemResponseGeneric();
