@@ -144,22 +144,42 @@ bool Notebook::vinceCanClear()
 
 bool Notebook::carlCanInterrogate()
 {
-
+	if(this->gameFlags[""] == true)
+	{
+		return true;
+	}
+	else 
+		return false;
 }
 
 bool Notebook::carlCanClear()
 {
-
+	if(this->gameFlags[""] == true)
+	{
+		return true;
+	}
+	else 
+		return false;
 }
 
 bool Notebook::danCanInterrogate()
 {
-
+	if(this->gameFlags[""] == true)
+	{
+		return true;
+	}
+	else 
+		return false;
 }
 
 bool Notebook::danCanAccuse()
 {
-
+	if(this->gameFlags[""] == true)
+	{
+		return true;
+	}
+	else 
+		return false;
 }
 
 bool Notebook::royCanInterrogate()
@@ -175,12 +195,22 @@ bool Notebook::royCanInterrogate()
 
 bool Notebook::louiseCanInterrogate()
 {
-
+	if(this->gameFlags[""] == true)
+	{
+		return true;
+	}
+	else 
+		return false;
 }
 
 bool Notebook::herbertCanInterrogate()
 {
-
+	if(this->gameFlags[""] == true)
+	{
+		return true;
+	}
+	else 
+		return false;
 }
 
 	
