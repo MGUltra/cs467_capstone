@@ -1262,7 +1262,7 @@ void Gamestate::inspectObject(std::string nounIn)
 		{
 			
 			// test if canSample || canHack || actionAble are true
-			if(featurePtr->getCanSample() == true || featurePtr->getCanHack() == true || featurePtr->getActionAble() == true)
+			if(featurePtr->getCanSample() == true || featurePtr->getCanHack() == true || featurePtr->getActionAble() == true || nounIn == "answering")
 			{
 				// if any of the above - test if already actioned
 				if(featurePtr->getAlreadyActioned() == false)
@@ -2253,7 +2253,7 @@ void Gamestate::reflectOnCase()
 void Gamestate::clearSuspect(std::string personIn)
 {
 	
-	if (currentPlayer.getLocation() == getRoom("station"))
+	if(currentPlayer.getLocation() == getRoom("station"))
 	{
 		// if witness
 		if (witnessMap.find(personIn) != witnessMap.end())
@@ -2265,8 +2265,11 @@ void Gamestate::clearSuspect(std::string personIn)
 		{
 			std::cout << "You're hilarious.  Now get back to work!" << std::endl;
 		}
+	}
+	else if(currentPlayer.getLocation() == getRoom("cells"))
+	{
 		//suspect
-		else if (suspectMap.find(personIn) != suspectMap.end())
+		if (suspectMap.find(personIn) != suspectMap.end())
 		{
 			
 			if(personIn == "vince")
@@ -2309,7 +2312,7 @@ void Gamestate::clearSuspect(std::string personIn)
 	}
 	else
 	{
-		std::cout << "It doesn't do much good to declare that here, does it? Try again at the station." << std::endl;
+		std::cout << "You need to be in the same room as the person you are trying to clear of the crime" << std::endl;
 	}
 	
 	
