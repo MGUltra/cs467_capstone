@@ -25,8 +25,8 @@ suspectText/vinceItemResponse3.txt
 suspectText/vinceItemResponseGeneric.txt
 false
 tickets
-item31
-combination
+locket
+cash
 Dan
 suspectText/danInspectResponse.txt
 suspectText/danTalkResponse.txt

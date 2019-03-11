@@ -16,7 +16,7 @@ LIBRARIES
 #include <iostream>
 #include <string>
 
-//#include "Room.hpp"
+#include "Notebook.hpp"
 #include "Item.hpp"
 
 
@@ -73,10 +73,11 @@ public:
 	void setUseItem(std::string);
 	
 	// other
-	void inspected();
-	void hacked();
-	void sampled();
-	void itemUsed();
+	void inspected(Notebook*);
+	void hacked(Notebook*);
+	void sampled(Notebook*);
+	void itemUsed(Notebook*);
+	void listened(Notebook*);
 };
 
 #endif

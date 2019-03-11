@@ -138,7 +138,6 @@ public:
 	void talkToPerson(std::string);
 	void reflectOnCase();
 	void clearSuspect(std::string);
-	void talkToChief();
 	
 	// game meta functions
 	void saveGame();

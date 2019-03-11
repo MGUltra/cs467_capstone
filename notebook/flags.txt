@@ -1,11 +1,5 @@
 // game object status flags
 
-Witness1interrogate
-Witness1accuse
-witness1itemResponse1
-witness1itemResponse2
-witness1itemResponse3
-
 witness2interrogate
 witness2accuse
 witness2itemResponse1
@@ -18,21 +12,10 @@ witness3itemResponse1
 witness3itemResponse2
 witness3itemResponse3
 
-
-
-carlinterrogate
-carlaccuse
 carlitemResponse1
 carlitemResponse2
 carlitemResponse3
 carlcleared
-
-vinceinterrogate
-vinceaccuse
-vinceitemResponse1
-vinceitemResponse2
-vinceitemResponse3
-vincecleared
 
 daninterrogate
 danaccuse
@@ -50,3 +33,26 @@ featureAlreadyInspected
 featureAlreadyActioned
 
 // game progress flags
+
+// clearing vince
+
+vinceLocketAsk
+vinceArticleAsk
+vinceTicketsAsk
+royTapeAsk
+royCashAsk
+royInterrogate		
+vinceInterrogate
+vinceCleared
+
+// clearing carl
+
+
+
+carlinterrogate
+carlcleared
+
+// accusing dan
+
+
+

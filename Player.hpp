@@ -19,6 +19,7 @@ LIBRARIES
 #include "Inventory.hpp"
 #include "Room.hpp"
 #include "Item.hpp"
+#include "Notebook.hpp"
 
 class Player
 {
@@ -44,8 +45,9 @@ public:
 	bool itemInInventory(Item*);
 	
 	// Player actions
-	void pickUpItem(Item*);
-	void dropItem(Item*);
+	void pickUpItem(Item*, Notebook*);
+	void dropItem(Item*, Notebook*);
+	void changeLocation(Room*, Notebook*);
 	void showInventory();
 	
 };

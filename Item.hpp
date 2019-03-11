@@ -17,7 +17,7 @@
 #include <string>
 
 #include "Suspect.hpp"
-
+#include "Notebook.hpp"
 
 class Item
 {
@@ -37,6 +37,7 @@ class Item
 
 	//get
 	std::string getName();
+	std::string getDisplayName();
 	std::string getDescription();
 	std::string getForensicAnalysis();
 	bool getAvailable();
@@ -46,6 +47,7 @@ class Item
 
 	//set
 	void setName(std::string);
+	void setDisplayName(std::string);
 	void setDescription(std::string);
 	void setForensicAnalysis(std::string);
 	void setAvailable(bool);
@@ -55,12 +57,13 @@ class Item
 	
 	// actions
 	
-	void analyzeItem();
+	void analyzeItem(Notebook*);
 	
-	void revealedByFeature();
-	void revealedByHack(std::string);
-	void revealedBySample(std::string);
-	void revealedByItemUsed(std::string, std::string);
+	void revealedByFeature(Notebook*);
+	void revealedByHack(std::string, Notebook*);
+	void revealedBySample(std::string, Notebook*);
+	void revealedByItemUsed(std::string, std::string, Notebook*);
+	void revealedByListen(Notebook*);
 	
 };
 

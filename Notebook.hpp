@@ -26,29 +26,25 @@ private:
 	//item flags - for each item
 	// itemnameAvailable
 	// itemnameAnalyzed
-	std::unordered_map<std::string, bool> itemFlags;
-	
+	std::unordered_map<std::string, bool> itemAvailable;
+	std::unordered_map<std::string, bool> itemAnalyzed;	
 	
 	// feature flags - for each feature
 	// featurenameAlreadyInspected
 	// featurenameAlreadySampled
 	// featurenameAlreadyActioned
-	std::unordered_map<std::string, bool> featureFlags;
+	std::unordered_map<std::string, bool> featureInspected;
+	std::unordered_map<std::string, bool> featureActioned;
+	
+
 	
 	// room flags - for each room
 	// roomnameAlreadyVisited
-	std::unordered_map<std::string, bool> roomFlags;
-	
-	
-	std::unordered_map<std::string, bool> suspectFlags;
-	
-	std::unordered_map<std::string, bool> witnessFlags;
-	
-	std::unordered_map<std::string, bool> chiefFlags;
+	std::unordered_map<std::string, bool> roomVisited;
 	
 	// key is item name, value is either room name or inventory;
 	std::unordered_map<std::string, std::string> itemLocations;
-	
+
 	std::string playerLocation;
 	
 public:
@@ -58,19 +54,52 @@ public:
 	//~Notebook();
 
 	// get
-	bool getEntry(std::string);
+	bool getGameFlags(std::string);
+	
+	bool getItemAvailable(std::string);
+	bool getItemAnalyzed(std::string);
+	bool getFeatureInspected(std::string);
+	bool getFeatureActioned(std::string);
+	bool getRoomVisited(std::string);
+	std::string getItemLocations(std::string);
+	std::string getCurrentRoom();	
 
 	// add
-	void setEntry(std::string, bool);
+	void setGameFlags(std::string, bool);
+	
+	void setItemAvailable(std::string, bool);
+	void setItemAnalyzed(std::string, bool);
+	void setFeatureInspected(std::string, bool);
+	void setFeatureActioned(std::string, bool);
+	void setRoomVisited(std::string, bool);
+	void setItemLocations(std::string, std::string);	
+	void setCurrentRoom(std::string);
+	
 	
 	// change flags
 	void changeEntry(std::string, bool);
+	
+	
+	// check specific status
+	bool vinceCanInterrogate();
+	bool vinceCanClear();
+	bool carlCanInterrogate();
+	bool carlCanClear();
+	bool danCanInterrogate();
+	bool danCanAccuse();
+	bool royCanInterrogate();
+	bool louiseCanInterrogate();
+	bool herbertCanInterrogate();
 	
 	
 	void saveGame();
 	
 	void loadGame();
 	
+	
+	// test functions
+	void printGameFlags();
+	void printAll();
 	
 };
 #endif

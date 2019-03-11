@@ -33,3 +33,4 @@ dos2unix Items.txt
 dos2unix Rooms.txt
 dos2unix Features.txt
 dos2unix Suspects.txt
+dos2unix Witnesses.txt

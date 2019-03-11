@@ -12,7 +12,7 @@
 Parser::Parser()
 	: metaSet({"help", "save", "look"})
 	, verbSet({"help", "drop", "take", "inventory", "pick", "gather", "move", "go", "look", "inspect", "examine", "remove", "analyze", "test", "hack",
-						 "accuse", "interrogate", "sample", "ask", "use", "drink", "listen", "play", "show", "talk", "reflect"})
+						 "accuse", "interrogate", "sample", "ask", "use", "drink", "listen", "play", "show", "talk", "reflect", "clear"})
 	, nounSet({"north", "south", "east", "west"})
 	, locationSet({"north", "south", "east", "west"})
 	, messageIn("")
