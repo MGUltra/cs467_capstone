@@ -12,7 +12,10 @@
 
 int main()
 {
-	
+        int winFlag = calcWindowSize();
+        if (winFlag == 0)
+          return 0;	
+       
 	Gamestate* newGame;
 	
 	newGame = new Gamestate();
