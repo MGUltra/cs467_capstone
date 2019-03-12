@@ -143,7 +143,7 @@ gameItems/item24Analysis.txt
 station
 none
 false
-item25
+lint
 gameItems/item25.txt
 gameItems/item25Analysis.txt
 bedchamber
@@ -155,7 +155,7 @@ gameItems/item26Analysis.txt
 bedchamber
 vince
 true
-item27
+socks
 gameItems/item27.txt
 gameItems/item27Analysis.txt
 foyer

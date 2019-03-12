@@ -1250,6 +1250,15 @@ void Gamestate::inspectObject(std::string nounIn)
 	// because theire vectors contain only strings... will have to use map global 
 	// variable.
 	
+	if(nounIn == "nonoun")
+	{
+		Room* roomPtr = this->currentPlayer.getLocation();
+		
+		roomPtr->setAlreadyVisited(false);
+		playerNotebook.setRoomVisited(currentRoom->getName(), false);
+	}
+	
+	
 	
 	if(this->featureMap.find(nounIn) != this->featureMap.end()) // test if feature 
 	{

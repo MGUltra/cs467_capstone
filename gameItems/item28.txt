@@ -1,6 +1,2 @@
- _ _                 ____  ___  
-(_) |_ ___ _ __ ___ |___ \( _ ) 
-| | __/ _ \ '_ ` _ \  __) / _ \ 
-| | ||  __/ | | | | |/ __/ (_) |
-|_|\__\___|_| |_| |_|_____\___/ 
-                                
+| The locket contains a faded photograph of Vince and Emma. The locket has  	|
+| some collected dust, so it appears to have been on the statue for a while.  |
