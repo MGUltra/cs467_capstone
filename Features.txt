@@ -279,8 +279,8 @@ false
 true
 combination
 envelope
-roomFeatures/vinceOfficeTicketsFirst.txt
-roomFeatures/vinceOfficeTicketsAfter.txt
+roomFeatures/vinceOfficeEnvelopeFirst.txt
+roomFeatures/vinceOfficeEnvelopeAfter.txt
 office
 tickets
 false
