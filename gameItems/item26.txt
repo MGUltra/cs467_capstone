@@ -1,6 +1,3 @@
- _ _                 ____   __   
-(_) |_ ___ _ __ ___ |___ \ / /_  
-| | __/ _ \ '_ ` _ \  __) | '_ \ 
-| | ||  __/ | | | | |/ __/| (_) |
-|_|\__\___|_| |_| |_|_____|\___/ 
-                                 
+| The piece of paper has a 4 digit code written on it. The fact that each   	|
+| number is only single digit and 0-9, makes you believe it will open a bike  |
+| lock or a briefcase.                                                        |
