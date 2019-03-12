@@ -1255,7 +1255,9 @@ void Gamestate::inspectObject(std::string nounIn)
 		Room* roomPtr = this->currentPlayer.getLocation();
 		
 		roomPtr->setAlreadyVisited(false);
-		playerNotebook.setRoomVisited(currentRoom->getName(), false);
+		playerNotebook.setRoomVisited(roomPtr->getName(), false);
+		
+		return;
 	}
 	
 	
