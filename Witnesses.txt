@@ -22,9 +22,9 @@ witnessText/witness2ItemResponse1.txt
 witnessText/witness2ItemResponse2.txt
 witnessText/witness2ItemResponse3.txt
 witnessText/witness2ItemResponseGeneric.txt
-item4
+spreadsheet
+letters
 shirt
-item2
 roy
 station
 witnessText/royInspectResponse.txt

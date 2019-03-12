@@ -211,7 +211,8 @@ void Suspect::setItem3(std::string stringIn)
 *******************************************************************************/
 
 std::string Suspect::askItemResponse(std::string itemIn, Notebook* notebook)
-{
+{	
+	// VINCE
 	if(this->getName() == "vince")
 	{
 		if(itemIn == item1) // tickets
@@ -267,6 +268,7 @@ std::string Suspect::askItemResponse(std::string itemIn, Notebook* notebook)
 		else
 			return getItemResponseGeneric();
 	}
+	// CARL
 	else if(this->getName() == "carl")
 	{
 		if(itemIn == item1)
@@ -287,6 +289,7 @@ std::string Suspect::askItemResponse(std::string itemIn, Notebook* notebook)
 		else
 			return getItemResponseGeneric();		
 	}
+	// DAN
 	else
 	{
 		if(itemIn == item1)

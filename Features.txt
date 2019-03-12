@@ -8,7 +8,7 @@ false
 false
 false
 none
-medicine
+cabinet
 roomFeatures/carlBathMedCabinetFirst.txt
 roomFeatures/carlBathMedCabinetAfter.txt
 bathroom
@@ -30,12 +30,12 @@ chest
 roomFeatures/carlGarageHammerFirst.txt
 roomFeatures/carlGarageHammerAfter.txt
 garage
-item4
+letters
 false
 false
 true
 key
-blood2
+table
 roomFeatures/carlKitchenBloodFirst.txt
 roomFeatures/carlKitchenBloodAfter.txt
 kitchen
@@ -53,11 +53,11 @@ false
 false
 false
 none
-chair
+computer
 roomFeatures/carlLivingChairFirst.txt
 roomFeatures/carlLivingChairAfter.txt
 den
-item7
+spreadsheet
 false
 false
 false
@@ -188,7 +188,7 @@ false
 false
 false
 none
-computer
+testFunction
 roomFeatures/forensicCompFirst.txt
 roomFeatures/forensicCompAfter.txt
 lab

@@ -17,7 +17,7 @@ gameItems/item3Analysis.txt
 Garage
 carl
 false
-item4
+letters
 gameItems/item4.txt
 gameItems/item4Analysis.txt
 Garage
@@ -35,7 +35,7 @@ gameItems/item6Analysis.txt
 kitchen
 carl
 true
-item7
+spreadsheet
 gameItems/item7.txt
 gameItems/item7Analysis.txt
 den

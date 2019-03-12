@@ -144,7 +144,11 @@ bool Notebook::vinceCanClear()
 
 bool Notebook::carlCanInterrogate()
 {
-	if(this->gameFlags[""] == true)
+	if(this->gameFlags["carlLettersAsk"] 			== true	&&
+		 this->gameFlags["carlSpreadSheetAsk"] 	== true	&&
+		 this->gameFlags["louiseInterrogated"] 	== true	&&
+		 this->itemAnalyzed["dna"] 							== true	&&
+		 this->itemAnalyzed["shirt"] 						== true)
 	{
 		return true;
 	}
@@ -154,7 +158,7 @@ bool Notebook::carlCanInterrogate()
 
 bool Notebook::carlCanClear()
 {
-	if(this->gameFlags[""] == true)
+	if(this->gameFlags["carlInterrogated"] == true)
 	{
 		return true;
 	}
@@ -195,7 +199,9 @@ bool Notebook::royCanInterrogate()
 
 bool Notebook::louiseCanInterrogate()
 {
-	if(this->gameFlags[""] == true)
+	if(this->featureInspected["table"]				 == true	&&
+		 this->gameFlags["louiseLettersAsk"] 		 == true	&&
+		 this->gameFlags["louiseSpreadSheetAsk"] == true)
 	{
 		return true;
 	}

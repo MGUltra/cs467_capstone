@@ -190,7 +190,8 @@ void Witness::setLocation(Room* givenLocation)
 *******************************************************************************/
 std::string Witness::askItemResponse(std::string itemIn, Notebook* notebook)
 {
-	if(this->getName() == "roy")
+	// ROY
+	if(this->getName() == "roy") 
 	{
 		if(itemIn == item1) // recording
 		{
@@ -235,6 +236,7 @@ std::string Witness::askItemResponse(std::string itemIn, Notebook* notebook)
 		else
 			return getItemResponseGeneric();
 	}
+	// HERBERT
 	else if(this->getName() == "herbert")
 	{
 		if(itemIn == item1)
@@ -255,21 +257,49 @@ std::string Witness::askItemResponse(std::string itemIn, Notebook* notebook)
 		else
 			return getItemResponseGeneric();		
 	}
+	// LOUISE
 	else
 	{
 		if(itemIn == item1)
 		{
-			
-			return getItemResponse1();
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{
+				if(notebook->getGameFlags("louiseSpreadSheetAsk") == false)
+				{
+					notebook->setGameFlags("louiseSpreadSheetAsk", true);
+				}
+				
+				return getItemResponse1();
+			}
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				
+				return getItemResponseGeneric();	
+			}
+		
 		}
 		else if(itemIn == item2)
 		{
-			
-			return getItemResponse2();
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{
+				if(notebook->getGameFlags("louiseLettersAsk") == false)
+				{
+					notebook->setGameFlags("louiseLettersAsk", true);
+				}
+				
+				return getItemResponse2();
+			}
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				
+				return getItemResponseGeneric();	
+			}
+					
 		}
 		else if(itemIn == item3)
 		{
-			
 			return getItemResponse3();
 		}
 		else
