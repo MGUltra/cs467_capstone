@@ -849,7 +849,9 @@ void Gamestate::createNotebook()
 	
 	
 	// carl asked
-	
+	this->playerNotebook.setGameFlags("carlLettersAsk", false);
+	this->playerNotebook.setGameFlags("carlSpreadsheetAsk", false);
+	this->playerNotebook.setGameFlags("carlFlutesAsk", false);
 	
 	// dan asked
 	
@@ -863,7 +865,9 @@ void Gamestate::createNotebook()
 	
 	
 	// louise asked
-	
+	this->playerNotebook.setGameFlags("louiseLettersAsk", false);
+	this->playerNotebook.setGameFlags("louiseSpreadsheetAsk", false);
+	this->playerNotebook.setGameFlags("louiseFlutesAsk", false);
 	
 	// interrogated
 	this->playerNotebook.setGameFlags("vinceInterrogated", false);
@@ -872,13 +876,10 @@ void Gamestate::createNotebook()
 	this->playerNotebook.setGameFlags("royInterrogated", false);
 	this->playerNotebook.setGameFlags("louiseInterrogated", false);
 	this->playerNotebook.setGameFlags("herbertInterrogated", false);
-		
-	
 	
 	// cleared
 	this->playerNotebook.setGameFlags("vinceCleared", false);
 	this->playerNotebook.setGameFlags("carlCleared", false);
-	
 	
 	// accused
 	this->playerNotebook.setGameFlags("danAccused", false);

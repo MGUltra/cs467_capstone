@@ -1,6 +1,2 @@
- _ _                 _____ 
-(_) |_ ___ _ __ ___ |___ / 
-| | __/ _ \ '_ ` _ \  |_ \ 
-| | ||  __/ | | | | |___) |
-|_|\__\___|_| |_| |_|____/ 
-                           
+| This DNA sample was taken from the blood puddle in Carl's garage. It needs to|
+| analyzed at the lab to see who's blood is really on the floor of the garage. |

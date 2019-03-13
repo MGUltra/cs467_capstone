@@ -5,7 +5,7 @@ gameItems/item1Analysis.txt
 bathroom
 carl
 false
-item2
+vaseline
 gameItems/item2.txt
 gameItems/item2Analysis.txt
 bathroom
@@ -17,13 +17,13 @@ gameItems/item3Analysis.txt
 Garage
 carl
 false
-item4
+letters
 gameItems/item4.txt
 gameItems/item4Analysis.txt
 Garage
 carl
 false
-item5
+flutes
 gameItems/item5.txt
 gameItems/item5Analysis.txt
 kitchen
@@ -35,7 +35,7 @@ gameItems/item6Analysis.txt
 kitchen
 carl
 true
-item7
+spreadsheet
 gameItems/item7.txt
 gameItems/item7Analysis.txt
 den

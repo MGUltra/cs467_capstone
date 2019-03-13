@@ -211,7 +211,8 @@ void Suspect::setItem3(std::string stringIn)
 *******************************************************************************/
 
 std::string Suspect::askItemResponse(std::string itemIn, Notebook* notebook)
-{
+{	
+	// VINCE
 	if(this->getName() == "vince")
 	{
 		if(itemIn == item1) // tickets
@@ -267,26 +268,61 @@ std::string Suspect::askItemResponse(std::string itemIn, Notebook* notebook)
 		else
 			return getItemResponseGeneric();
 	}
+	// CARL
 	else if(this->getName() == "carl")
 	{
-		if(itemIn == item1)
+		if(itemIn == item1) // Flutes
 		{
-			
-			return getItemResponse1();
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{		
+				if(notebook->getGameFlags("carlFlutesAsk") == false)
+				{
+					notebook->setGameFlags("carlFlutesAsk", true);
+				}
+				return getItemResponse1();
+			}
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				return getItemResponseGeneric();				
+			}			
 		}
-		else if(itemIn == item2)
+		else if(itemIn == item2) // letters
 		{
-			
-			return getItemResponse2();
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{		
+				if(notebook->getGameFlags("carlLettersAsk") == false)
+				{
+					notebook->setGameFlags("carlLettersAsk", true);
+				}
+				return getItemResponse2();
+			}
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				return getItemResponseGeneric();				
+			}			
 		}
-		else if(itemIn == item3)
+		else if(itemIn == item3) // spreadsheet
 		{
-			
-			return getItemResponse3();
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{		
+				if(notebook->getGameFlags("carlSpreadsheetAsk") == false)
+				{
+					notebook->setGameFlags("carlSpreadsheetAsk", true);
+				}
+				return getItemResponse3();
+			}
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				return getItemResponseGeneric();				
+			}			
 		}
 		else
 			return getItemResponseGeneric();		
 	}
+	// DAN
 	else
 	{
 		if(itemIn == item1)
