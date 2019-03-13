@@ -59,7 +59,7 @@ roomFeatures/carlLivingChairAfter.txt
 den
 spreadsheet
 false
-false
+true
 false
 none
 dresser
@@ -194,7 +194,7 @@ roomFeatures/forensicCompAfter.txt
 lab
 item22
 false
-true
+false
 false
 none
 chief

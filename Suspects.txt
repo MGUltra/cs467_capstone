@@ -11,8 +11,8 @@ suspectText/carlItemResponse3.txt
 suspectText/carlItemResponseGeneric.txt
 false
 shirt
-item2
-key
+letters
+spreadsheet
 Vince
 suspectText/vinceInspectResponse.txt
 suspectText/vinceTalkResponse.txt
