@@ -22,9 +22,9 @@ witnessText/louiseItemResponse1.txt
 witnessText/louiseItemResponse2.txt
 witnessText/louiseItemResponse3.txt
 witnessText/louiseItemResponseGeneric.txt
-spreadsheet
+flutes
 letters
-shirt
+spreadsheet
 roy
 station
 witnessText/royInspectResponse.txt

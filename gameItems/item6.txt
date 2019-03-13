@@ -1,6 +1,3 @@
- _ _                  __   
-(_) |_ ___ _ __ ___  / /_  
-| | __/ _ \ '_ ` _ \| '_ \ 
-| | ||  __/ | | | | | (_) |
-|_|\__\___|_| |_| |_|\___/ 
-                           
+| The key found in Carl's kitchen looks like one that opens some sort of lock	 |
+| box or chest of some sort. It's too small to beed a door or car key. Looking |
+| for locked containers around the house would be a good idea.								 |

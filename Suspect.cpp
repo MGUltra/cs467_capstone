@@ -271,9 +271,21 @@ std::string Suspect::askItemResponse(std::string itemIn, Notebook* notebook)
 	// CARL
 	else if(this->getName() == "carl")
 	{
-		if(itemIn == item1) // shirt
+		if(itemIn == item1) // Flutes
 		{
-			return getItemResponse1();
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{		
+				if(notebook->getGameFlags("carlFlutesAsk") == false)
+				{
+					notebook->setGameFlags("carlFlutesAsk", true);
+				}
+				return getItemResponse1();
+			}
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				return getItemResponseGeneric();				
+			}			
 		}
 		else if(itemIn == item2) // letters
 		{
@@ -295,9 +307,9 @@ std::string Suspect::askItemResponse(std::string itemIn, Notebook* notebook)
 		{
 			if(notebook->getItemAnalyzed(itemIn) == true)
 			{		
-				if(notebook->getGameFlags("carlSpreadSheetAsk") == false)
+				if(notebook->getGameFlags("carlSpreadsheetAsk") == false)
 				{
-					notebook->setGameFlags("carlSpreadSheetAsk", true);
+					notebook->setGameFlags("carlSpreadsheetAsk", true);
 				}
 				return getItemResponse3();
 			}

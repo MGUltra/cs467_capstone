@@ -264,9 +264,9 @@ std::string Witness::askItemResponse(std::string itemIn, Notebook* notebook)
 		{
 			if(notebook->getItemAnalyzed(itemIn) == true)
 			{
-				if(notebook->getGameFlags("louiseSpreadSheetAsk") == false)
+				if(notebook->getGameFlags("louiseFlutesAsk") == false)
 				{
-					notebook->setGameFlags("louiseSpreadSheetAsk", true);
+					notebook->setGameFlags("louiseFlutesAsk", true);
 				}
 				
 				return getItemResponse1();
@@ -300,7 +300,21 @@ std::string Witness::askItemResponse(std::string itemIn, Notebook* notebook)
 		}
 		else if(itemIn == item3)
 		{
-			return getItemResponse3();
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{
+				if(notebook->getGameFlags("louiseSpreadsheetAsk") == false)
+				{
+					notebook->setGameFlags("louiseSpreadsheetAsk", true);
+				}
+				
+				return getItemResponse3();
+			}
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				
+				return getItemResponseGeneric();	
+			}
 		}
 		else
 			return getItemResponseGeneric();		
