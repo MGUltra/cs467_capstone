@@ -63,6 +63,41 @@ std::string Notebook::getCurrentRoom()
 	return playerLocation;
 }
 
+std::unordered_map<std::string, bool>* Notebook::getGameFlags()
+{
+	return &gameFlags;
+}
+
+std::unordered_map<std::string, bool>* Notebook::getItemAvailable()
+{
+	return &itemAvailable;
+}
+
+std::unordered_map<std::string, bool>* Notebook::getItemAnalyzed()
+{
+	return &itemAnalyzed;
+}
+
+std::unordered_map<std::string, bool>* Notebook::getFeatureInspected()
+{
+	return &featureInspected;
+}
+
+std::unordered_map<std::string, bool>* Notebook::getFeatureActioned()
+{
+	return &featureActioned;
+}
+
+std::unordered_map<std::string, bool>* Notebook::getRoomVisited()
+{
+	return &roomVisited;
+}
+
+std::unordered_map<std::string, std::string>* Notebook::getItemLocations()
+{
+	return &itemLocations;
+}
+
 	
 /*******************************************************************************
 *		ADD FUNCTION
