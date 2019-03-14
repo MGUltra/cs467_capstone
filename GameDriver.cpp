@@ -697,11 +697,15 @@ void Gamestate::createSuspects()
 																					item3In);
 		
 		// populate parser noun set
-		this->commandParser.setNounSet(nameIn);		
+		this->commandParser.setNounSet(nameIn);	
 	}
 
 	// Close inputFile.
 	inputFile.close();
+
+
+	//TEST
+	std::cout << this->suspectMap.size() << std::endl;
 }
 
 
