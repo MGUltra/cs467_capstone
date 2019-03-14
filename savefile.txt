@@ -1,0 +1,63 @@
+galley
+
+14
+
+herbertInterrogated false
+
+vinceLocketAsk false
+
+danInterrogated false
+
+vinceCashAsk false
+
+danAccused false
+
+carlCleared false
+
+vinceInterrogated false
+
+vinceTicketsAsk false
+
+vinceCleared false
+
+royCashAsk false
+
+royRecordingAsk false
+
+carlInterrogated false
+
+royInterrogated false
+
+louiseInterrogated false
+
+2
+
+item15 true
+
+item16 true
+
+0
+
+2
+
+picture true
+
+pizza true
+
+0
+
+3
+
+car true
+
+galley true
+
+station true
+
+2
+
+item15 inventory
+
+item16 inventory
+
+4
