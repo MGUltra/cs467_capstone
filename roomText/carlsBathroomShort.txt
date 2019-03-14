@@ -5,6 +5,7 @@
 | you spot an open bottle of aspirin laying on the sink.   /   /_  __/   / // |
 | The faucet is slowly leaking, rinsing down the blood    /     /_/     / //  |
 | that's smeared around the basin. There's also a first  /_____________/ //   |
-| aid kit that looks like it was recently used. The      |______&______|//    |
-| kitchen is East and the den is South from here.        |_____________|/     |
+| aid kit that looks like it was recently used. A brown  |______&______|//    |
+| wicker hamper sits in the corner. The kitchen is       |_____________|/     |
+| East and the den is South from here.                                        |
 |-----------------------------------------------------------------------------|
