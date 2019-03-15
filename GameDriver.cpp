@@ -499,7 +499,7 @@ void Gamestate::createItems()
 		
 		room = this->getRoom(location);
 		
-		this->itemMap[name] = new Item(name, description, forensicAnalysis, useBool);
+		this->itemMap[name] = new Item(name, description, forensicAnalysis, useBool, room);
 
 		// item pointer
 		item = this->itemMap[name];
@@ -2595,7 +2595,7 @@ void Gamestate::loadGame()
 
 
 		////////////////// DEBUG //////////////
-		std::cout << i << "Key: " << key << "   and   Bool: " << boolValue << std::endl;
+		//std::cout << i << "Key: " << key << "   and   Bool: " << boolValue << std::endl;
 
 		this->playerNotebook.setItemAvailable(key, boolValue);
 	}
@@ -2715,12 +2715,15 @@ void Gamestate::loadGame()
 		
 		if (location == "inventory")
 		{
-			this->currentPlayer.pickUpItem(currentItem, &this->playerNotebook);
+			this->currentPlayer.loadItemInventory(currentItem, &this->playerNotebook);
 		}
 		else
 		{
 			Room* currentRoom = getRoom(location);
 			currentRoom->addItemInRoom(currentItem);
+			Room* originalRoom = currentItem->getOriginalRoom();
+			originalRoom->removeItemFromRoom(currentItem);
+			
 		}
 
 		this->playerNotebook.setItemLocations(item, location);
