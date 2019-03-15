@@ -35,7 +35,7 @@ class Item
 
 	public:
 	//constructor
-	Item(std::string, std::string, std::string, bool);
+	Item(std::string, std::string, std::string, bool, std::string);
 
 	//get
 	std::string getName();
