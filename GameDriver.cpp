@@ -2235,11 +2235,12 @@ void Gamestate::reflectOnCase()
 	std::cout << "The following analyzed evidence has been found:" << std::endl;
 	bool evidenceFound = false;
 
-	std::unordered_map<std::string, Item*>::iterator it2 = itemMap.begin();
-	while (it2 != itemMap.end())
+	std::unordered_map<std::string, Item*>::iterator itemit = itemMap.begin();
+	while (itemit != itemMap.end())
 	{
+		//string currentItem = it
 		// if item belongs to current suspect and has already been analyzed
-		if (it2->second->getAnalyzed() == true)
+		if (itemit->second->getAnalyzed() == true)
 		{
 			// item name and analysis results
 			std::cout << "   - " << it2->second->getName() << " : " << it2->second->getForensicAnalysis()<< std::endl;
@@ -2247,7 +2248,7 @@ void Gamestate::reflectOnCase()
 		}
 
 		// increment iterator
-		it2++;
+		itemit++;
 	}
 
 	if (!evidenceFound)
