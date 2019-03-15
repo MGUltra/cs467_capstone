@@ -2237,7 +2237,7 @@ void Gamestate::reflectOnCase()
 		std::cout << "The following analyzed evidence has been found:" << std::endl;
 
 		// if item belongs to current suspect and has already been analyzed
-		if (it2->second->getAnalyzed())
+		if (it2->second->getAnalyzed() == true)
 		{
 			// item name and analysis results
 			std::cout << "\t- " << it2->second->getName() << " : " << it2->second->getForensicAnalysis()<< std::endl;
