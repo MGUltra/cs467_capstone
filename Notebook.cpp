@@ -202,9 +202,13 @@ bool Notebook::carlCanClear()
 		return false;
 }
 
+
 bool Notebook::danCanInterrogate()
 {
-	if(this->gameFlags[""] == true)
+	if(this->gameFlags["danTextAsk"]					== true	&&
+		 this->gameFlags["danWrenchAsk"]				== true	&&
+		 this->gameFlags["danAmmoniaAsk"]				== true	&&
+		 this->gameFlags["herbertInterrogated"]	== true)
 	{
 		return true;
 	}
@@ -214,7 +218,7 @@ bool Notebook::danCanInterrogate()
 
 bool Notebook::danCanAccuse()
 {
-	if(this->gameFlags[""] == true)
+	if(this->gameFlags["danInterrogated"] == true)
 	{
 		return true;
 	}
@@ -246,9 +250,12 @@ bool Notebook::louiseCanInterrogate()
 		return false;
 }
 
+
 bool Notebook::herbertCanInterrogate()
 {
-	if(this->gameFlags[""] == true)
+	if(this->gameFlags["herbertWrenchAsk"]	== true	&&
+		 this->gameFlags["herbertReceiptAsk"] == true	&&
+		 this->gameFlags["herbertAmmoniaAsk"]	== true)
 	{
 		return true;
 	}

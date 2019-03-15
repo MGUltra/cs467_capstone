@@ -38,6 +38,6 @@ suspectText/danItemResponse2.txt
 suspectText/danItemResponse3.txt
 suspectText/danItemResponseGeneric.txt
 true
-item15
-item16
-item17
+wrench
+text
+ammonia
