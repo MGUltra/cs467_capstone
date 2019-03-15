@@ -30,6 +30,8 @@ class Item
 	bool analyzed;
 	bool usable;
 
+	std::string originalLocation;
+
 
 	public:
 	//constructor
@@ -44,6 +46,8 @@ class Item
 	bool getAnalyzed();
 	bool getUseable();
 
+	std::string getOriginalLocation();
+
 	//set
 	void setName(std::string);
 	void setDisplayName(std::string);
@@ -52,6 +56,8 @@ class Item
 	void setAvailable(bool);
 	void setAnalyzed(bool);
 	void setUseable(bool);
+
+	void setOriginalLocation(std::string);
 	
 	// actions
 	
