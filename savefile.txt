@@ -1,4 +1,4 @@
-galley
+bedroom
 20
 herbertInterrogated false
 louiseInterrogated false
@@ -21,20 +21,21 @@ louiseFlutesAsk false
 louiseLettersAsk false
 louiseSpreadsheetAsk false
 2
-item16 true
 item15 true
+item16 true
 0
 2
-pizza true
 picture true
+pizza true
 0
-3
+4
+bedroom true
 car true
 galley true
 station true
 2
-item16 inventory
 item15 inventory
+item16 inventory
 3
 dan false
 vince false

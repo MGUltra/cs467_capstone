@@ -2578,7 +2578,7 @@ void Gamestate::loadGame()
 	currentLine1 >> numItemAvailable;
 
 	////////////////// DEBUG //////////////
-	//std::cout << numItemAvailable << std::endl;
+	std::cout << numItemAvailable << std::endl;
 
 	for (int i = 0; i < numItemAvailable; i++)
 	{
@@ -2595,7 +2595,7 @@ void Gamestate::loadGame()
 
 
 		////////////////// DEBUG //////////////
-		//std::cout << i << "Key: " << key << "   and   Bool: " << boolValue << std::endl;
+		std::cout << i << "Key: " << key << "   and   Bool: " << boolValue << std::endl;
 
 		this->playerNotebook.setItemAvailable(key, boolValue);
 	}
