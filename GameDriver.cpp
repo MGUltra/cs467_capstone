@@ -2579,11 +2579,11 @@ void Gamestate::loadGame()
 		std::string key, boolean;
 
 		getline(saveFile, fileLine);
-		std::stringstream currentLine0(fileLine);
+		std::stringstream currentLine01(fileLine);
 		// Get the current line as a string.
-		currentLine0 >> key;
+		currentLine01 >> key;
 		this->checkLineEndings(&key);
-		currentLine0 >> boolean;
+		currentLine01 >> boolean;
 		this->checkLineEndings(&boolean);
 		bool boolValue = getStringFromBool(boolean);
 
@@ -2606,11 +2606,11 @@ void Gamestate::loadGame()
 		std::string key, boolean;
 
 		getline(saveFile, fileLine);
-		std::stringstream currentLine0(fileLine);
+		std::stringstream currentLine02(fileLine);
 		// Get the current line as a string.
-		currentLine0 >> key;
+		currentLine02 >> key;
 		this->checkLineEndings(&key);
-		currentLine0 >> boolean;
+		currentLine02 >> boolean;
 		this->checkLineEndings(&boolean);
 		bool boolValue = getStringFromBool(boolean);
 
@@ -2629,11 +2629,11 @@ void Gamestate::loadGame()
 		std::string key, boolean;
 
 		getline(saveFile, fileLine);
-		std::stringstream currentLine0(fileLine);
+		std::stringstream currentLine03(fileLine);
 		// Get the current line as a string.
-		currentLine0 >> key;
+		currentLine03 >> key;
 		this->checkLineEndings(&key);
-		currentLine0 >> boolean;
+		currentLine03 >> boolean;
 		this->checkLineEndings(&boolean);
 		bool boolValue = getStringFromBool(boolean);
 
@@ -2652,11 +2652,11 @@ void Gamestate::loadGame()
 		std::string key, boolean;
 
 		getline(saveFile, fileLine);
-		std::stringstream currentLine0(fileLine);
+		std::stringstream currentLine04(fileLine);
 		// Get the current line as a string.
-		currentLine0 >> key;
+		currentLine04 >> key;
 		this->checkLineEndings(&key);
-		currentLine0 >> boolean;
+		currentLine04 >> boolean;
 		this->checkLineEndings(&boolean);
 		bool boolValue = getStringFromBool(boolean);
 
@@ -2675,11 +2675,11 @@ void Gamestate::loadGame()
 		std::string key, boolean;
 
 		getline(saveFile, fileLine);
-		std::stringstream currentLine0(fileLine);
+		std::stringstream currentLine05(fileLine);
 		// Get the current line as a string.
-		currentLine0 >> key;
+		currentLine05 >> key;
 		this->checkLineEndings(&key);
-		currentLine0 >> boolean;
+		currentLine05 >> boolean;
 		this->checkLineEndings(&boolean);
 		bool boolValue = getStringFromBool(boolean);
 
@@ -2698,11 +2698,11 @@ void Gamestate::loadGame()
 		std::string item, location;
 
 		getline(saveFile, fileLine);
-		std::stringstream currentLine0(fileLine);
+		std::stringstream currentLine06(fileLine);
 		// Get the current line as a string.
-		currentLine0 >> item;
+		currentLine06 >> item;
 		this->checkLineEndings(&item);
-		currentLine0 >> location;
+		currentLine06 >> location;
 		this->checkLineEndings(&location);
 
 		Item* currentItem = getItem(item);
@@ -2732,11 +2732,11 @@ void Gamestate::loadGame()
 		std::string suspect, boolean;
 
 		getline(saveFile, fileLine);
-		std::stringstream currentLine0(fileLine);
+		std::stringstream currentLine07(fileLine);
 		// Get the current line as a string.
-		currentLine0 >> suspect;
+		currentLine07 >> suspect;
 		this->checkLineEndings(&suspect);
-		currentLine0 >> boolean;
+		currentLine07 >> boolean;
 		this->checkLineEndings(&boolean);
 		bool boolValue = getStringFromBool(boolean);
 
