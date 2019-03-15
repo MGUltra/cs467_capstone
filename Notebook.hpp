@@ -64,6 +64,14 @@ public:
 	std::string getItemLocations(std::string);
 	std::string getCurrentRoom();	
 
+	std::unordered_map<std::string, bool>* getGameFlags();
+	std::unordered_map<std::string, bool>* getItemAvailable();
+	std::unordered_map<std::string, bool>* getItemAnalyzed();
+	std::unordered_map<std::string, bool>* getFeatureInspected();
+	std::unordered_map<std::string, bool>* getFeatureActioned();
+	std::unordered_map<std::string, bool>* getRoomVisited();
+	std::unordered_map<std::string, std::string>* getItemLocations();
+
 	// add
 	void setGameFlags(std::string, bool);
 	
@@ -90,12 +98,6 @@ public:
 	bool royCanInterrogate();
 	bool louiseCanInterrogate();
 	bool herbertCanInterrogate();
-	
-	
-	void saveGame();
-	
-	void loadGame();
-	
 	
 	// test functions
 	void printGameFlags();

@@ -46,6 +46,7 @@ public:
 	
 	// Player actions
 	void pickUpItem(Item*, Notebook*);
+	void loadItemInventory(Item*, Notebook*);
 	void dropItem(Item*, Notebook*);
 	void changeLocation(Room*, Notebook*);
 	void showInventory();

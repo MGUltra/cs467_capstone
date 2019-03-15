@@ -12,14 +12,13 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Item::Item(std::string name, std::string description, std::string forensicAnalysis, Suspect* suspect, bool usableIn)
+Item::Item(std::string name, std::string description, std::string forensicAnalysis, bool usableIn)
 {
 	setName(name);
 	setDescription(description);
 	setForensicAnalysis(forensicAnalysis);
 	setAvailable(false);
 	setAnalyzed(false);
-	setBelongsTo(suspect);
 	setUseable(usableIn);
 }
 
@@ -48,22 +47,17 @@ std::string Item::getForensicAnalysis()
 
 bool Item::getAvailable()
 {
-	return this->available;
+	return available;
 }
 
 bool Item::getAnalyzed()
 {
-	return this->analyzed;
+	return analyzed;
 }
 
 bool Item::getUseable()
 {
-	return this->usable;
-}
-
-Suspect* Item::getBelongsTo()
-{
-	return belongsTo;
+	return usable;
 }
 
 
@@ -92,24 +86,18 @@ void Item::setForensicAnalysis(std::string givenForensicAnalysis)
 
 void Item::setAvailable(bool newBool)
 {
-	this->available = newBool;
+	available = newBool;
 }
 
 void Item::setAnalyzed(bool newBool)
 {
-	this->analyzed = newBool;
+	analyzed = newBool;
 }
 
 void Item::setUseable(bool newBool)
 {
-	this->usable = newBool;
+	usable = newBool;
 }
-
-void Item::setBelongsTo(Suspect* suspect)
-{
-	belongsTo = suspect;
-}
-
 
 
 /*******************************************************************************

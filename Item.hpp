@@ -29,11 +29,11 @@ class Item
 	bool available;
 	bool analyzed;
 	bool usable;
-	Suspect* belongsTo;
+
 
 	public:
 	//constructor
-	Item(std::string, std::string, std::string, Suspect*, bool);
+	Item(std::string, std::string, std::string, bool);
 
 	//get
 	std::string getName();
@@ -43,7 +43,6 @@ class Item
 	bool getAvailable();
 	bool getAnalyzed();
 	bool getUseable();
-	Suspect* getBelongsTo();
 
 	//set
 	void setName(std::string);
@@ -53,7 +52,6 @@ class Item
 	void setAvailable(bool);
 	void setAnalyzed(bool);
 	void setUseable(bool);
-	void setBelongsTo(Suspect*);
 	
 	// actions
 	

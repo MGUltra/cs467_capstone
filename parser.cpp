@@ -10,7 +10,7 @@
 ****************************************************************/
 
 Parser::Parser()
-	: metaSet({"help", "save", "look"})
+	: metaSet({"help", "save", "look", "load"})
 	, verbSet({"help", "drop", "take", "inventory", "pick", "gather", "move", "go", "look", "inspect", "examine", "remove", "analyze", "test", "hack",
 						 "accuse", "interrogate", "sample", "ask", "use", "drink", "listen", "play", "show", "talk", "reflect", "clear"})
 	, nounSet({"north", "south", "east", "west"})
