@@ -29,7 +29,6 @@ class Item
 	bool available;
 	bool analyzed;
 	bool usable;
-	Suspect* belongsTo;
 
 	public:
 	//constructor
@@ -43,7 +42,6 @@ class Item
 	bool getAvailable();
 	bool getAnalyzed();
 	bool getUseable();
-	Suspect* getBelongsTo();
 
 	//set
 	void setName(std::string);

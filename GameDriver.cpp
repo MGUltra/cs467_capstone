@@ -2218,7 +2218,7 @@ void Gamestate::reflectOnCase()
 	while (it != suspectMap.end())
 	{	
 		// name of suspect
-		std::cout << it->second->getName();
+		std::cout << "   -" << it->second->getName();
 		if (it->second->getIsCleared())
 		{
 			std::cout << " has been cleared of this murder." << std::endl;
@@ -2242,7 +2242,7 @@ void Gamestate::reflectOnCase()
 		if (it2->second->getAnalyzed() == true)
 		{
 			// item name and analysis results
-			std::cout << "\t- " << it2->second->getName() << " : " << it2->second->getForensicAnalysis()<< std::endl;
+			std::cout << "   - " << it2->second->getName() << " : " << it2->second->getForensicAnalysis()<< std::endl;
 			evidenceFound = true;
 		}
 

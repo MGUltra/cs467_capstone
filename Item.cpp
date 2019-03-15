@@ -47,22 +47,17 @@ std::string Item::getForensicAnalysis()
 
 bool Item::getAvailable()
 {
-	return this->available;
+	return available;
 }
 
 bool Item::getAnalyzed()
 {
-	return this->analyzed;
+	return analyzed;
 }
 
 bool Item::getUseable()
 {
-	return this->usable;
-}
-
-Suspect* Item::getBelongsTo()
-{
-	return belongsTo;
+	return usable;
 }
 
 
@@ -91,22 +86,17 @@ void Item::setForensicAnalysis(std::string givenForensicAnalysis)
 
 void Item::setAvailable(bool newBool)
 {
-	this->available = newBool;
+	available = newBool;
 }
 
 void Item::setAnalyzed(bool newBool)
 {
-	this->analyzed = newBool;
+	analyzed = newBool;
 }
 
 void Item::setUseable(bool newBool)
 {
-	this->usable = newBool;
-}
-
-void Item::setBelongsTo(Suspect* suspect)
-{
-	belongsTo = suspect;
+	usable = newBool;
 }
 
 
