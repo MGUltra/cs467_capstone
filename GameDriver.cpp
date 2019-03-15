@@ -2523,7 +2523,7 @@ void Gamestate::loadGame()
 	}
 
 	///////// DEBUG /////////
-	std::cout << "*********About to load.\n";
+	//std::cout << "*********About to load.\n";
 
 	// Get the current line as a string.
 	getline(saveFile, fileLine);
@@ -2533,13 +2533,13 @@ void Gamestate::loadGame()
 	Room* currentRoom = getRoom(currentLocation);
 
 	///////// DEBUG /////////
-	std::cout << "*********Got room " << currentRoom->getName() << ".\n";
+	//std::cout << "*********Got room " << currentRoom->getName() << ".\n";
 
 	// Update player's location.
 	this->currentPlayer.changeLocation(currentRoom, &this->playerNotebook);
 
 	///////// DEBUG /////////
-	std::cout << "*********Changed Location.\n";
+	//std::cout << "*********Changed Location.\n";
 	
 	// GAME FLAGS
 	getline(saveFile, fileLine);
@@ -2549,7 +2549,7 @@ void Gamestate::loadGame()
 	currentLine >> numGameFlags;
 
 	////////////////// DEBUG //////////////
-	std::cout << numGameFlags << std::endl;
+	//std::cout << numGameFlags << std::endl;
 
 	for (int i = 0; i < numGameFlags; i++)
 	{
@@ -2565,7 +2565,7 @@ void Gamestate::loadGame()
 		bool boolValue = getStringFromBool(boolean);
 
 		////////////////// DEBUG //////////////
-		std::cout << i << "  Key: " << key << "   and   Bool: " << boolValue << std::endl;
+		//std::cout << i << "  Key: " << key << "   and   Bool: " << boolValue << std::endl;
 
 		this->playerNotebook.setGameFlags(key, boolValue);
 	}
@@ -2575,10 +2575,10 @@ void Gamestate::loadGame()
 	std::stringstream currentLine1(fileLine);
 	int numItemAvailable = 0;
 	// Stream line into an integer.
-	currentLine >> numItemAvailable;
+	currentLine1 >> numItemAvailable;
 
 	////////////////// DEBUG //////////////
-	std::cout << numItemAvailable << std::endl;
+	//std::cout << numItemAvailable << std::endl;
 
 	for (int i = 0; i < numItemAvailable; i++)
 	{
@@ -2595,7 +2595,7 @@ void Gamestate::loadGame()
 
 
 		////////////////// DEBUG //////////////
-		std::cout << i << "Key: " << key << "   and   Bool: " << boolValue << std::endl;
+		//std::cout << i << "Key: " << key << "   and   Bool: " << boolValue << std::endl;
 
 		this->playerNotebook.setItemAvailable(key, boolValue);
 	}
@@ -2605,7 +2605,7 @@ void Gamestate::loadGame()
 	std::stringstream currentLine2(fileLine);
 	int numItemAnalyzed = 0;
 	// Stream line into an integer.
-	currentLine >> numItemAnalyzed;
+	currentLine2 >> numItemAnalyzed;
 
 	for (int i = 0; i < numItemAnalyzed; i++)
 	{
@@ -2628,7 +2628,7 @@ void Gamestate::loadGame()
 	std::stringstream currentLine3(fileLine);
 	int numFeatureInspected = 0;
 	// Stream line into an integer.
-	currentLine >> numFeatureInspected;
+	currentLine3 >> numFeatureInspected;
 
 	for (int i = 0; i < numFeatureInspected; i++)
 	{
@@ -2651,7 +2651,7 @@ void Gamestate::loadGame()
 	std::stringstream currentLine4(fileLine);
 	int numFeatureActioned = 0;
 	// Stream line into an integer.
-	currentLine >> numFeatureActioned;
+	currentLine4 >> numFeatureActioned;
 
 	for (int i = 0; i < numFeatureActioned; i++)
 	{
@@ -2674,7 +2674,7 @@ void Gamestate::loadGame()
 	std::stringstream currentLine5(fileLine);
 	int numRoomVisited = 0;
 	// Stream line into an integer.
-	currentLine >> numRoomVisited;
+	currentLine5 >> numRoomVisited;
 
 	for (int i = 0; i < numRoomVisited; i++)
 	{
@@ -2697,7 +2697,7 @@ void Gamestate::loadGame()
 	std::stringstream currentLine6(fileLine);
 	int numItemLoc = 0;
 	// Stream line into an integer.
-	currentLine >> numItemLoc;
+	currentLine6 >> numItemLoc;
 
 	for (int i = 0; i < numItemLoc; i++)
 	{
@@ -2731,7 +2731,7 @@ void Gamestate::loadGame()
 	std::stringstream currentLine7(fileLine);
 	int numSuspects = 0;
 	// Stream line into an integer.
-	currentLine >> numSuspects;
+	currentLine7 >> numSuspects;
 
 	for (int i = 0; i < numSuspects; i++)
 	{
