@@ -2522,6 +2522,9 @@ void Gamestate::loadGame()
 		return;
 	}
 
+	///////// DEBUG /////////
+	std::cout << "*********About to load.\n";
+
 	// Get the current line as a string.
 	getline(saveFile, fileLine);
 
@@ -2529,8 +2532,14 @@ void Gamestate::loadGame()
 	this->checkLineEndings(&currentLocation);
 	Room* currentRoom = getRoom(currentLocation);
 
+	///////// DEBUG /////////
+	std::cout << "*********Got room " << currentRoom->getName() << ".\n";
+
 	// Update player's location.
 	this->currentPlayer.changeLocation(currentRoom, &this->playerNotebook);
+
+	///////// DEBUG /////////
+	std::cout << "*********Changed Location.\n";
 	
 	// GAME FLAGS
 	getline(saveFile, fileLine);
