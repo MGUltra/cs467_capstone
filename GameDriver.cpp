@@ -68,7 +68,7 @@ void Gamestate::playGame()
 		
 		getline(std::cin, inputString);
 		
-		if(inputString == "exit")
+		if(inputString == "exit" || inputString == "quit")
 		{
 			break;
 		}
@@ -2668,11 +2668,11 @@ void Gamestate::loadGame()
 	// ITEM LOCATIONS
 	getline(saveFile, fileLine);
 	std::stringstream currentLine6(fileLine);
-	int numRoomVisited = 0;
+	int numItemLoc = 0;
 	// Stream line into an integer.
-	currentLine >> numRoomVisited;
+	currentLine >> numItemLoc;
 
-	for (int i = 0; i < numRoomVisited; i++)
+	for (int i = 0; i < numItemLoc; i++)
 	{
 		std::string item, location;
 
