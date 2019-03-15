@@ -2235,8 +2235,8 @@ void Gamestate::reflectOnCase()
 	std::cout << "The following analyzed evidence has been found:" << std::endl;
 	bool evidenceFound = false;
 
-	std::unordered_map<std::string, Item*>::iterator itemit = itemMap.begin();
-	while (itemit != itemMap.end())
+	std::unordered_map<std::string, Item*>::iterator itemit = this->itemMap.begin();
+	while (itemit != this->itemMap.end())
 	{
 		std::string currentItemString = itemit->first;
 
