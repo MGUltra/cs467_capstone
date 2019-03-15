@@ -2577,6 +2577,9 @@ void Gamestate::loadGame()
 	// Stream line into an integer.
 	currentLine >> numItemAvailable;
 
+	////////////////// DEBUG //////////////
+	std::cout << numItemAvailable << std::endl;
+
 	for (int i = 0; i < numItemAvailable; i++)
 	{
 		std::string key, boolean;
@@ -2592,7 +2595,7 @@ void Gamestate::loadGame()
 
 
 		////////////////// DEBUG //////////////
-		std::cout << "Key: " << key << "   and   Bool: " << boolValue << std::endl;
+		std::cout << i << "Key: " << key << "   and   Bool: " << boolValue << std::endl;
 
 		this->playerNotebook.setItemAvailable(key, boolValue);
 	}
