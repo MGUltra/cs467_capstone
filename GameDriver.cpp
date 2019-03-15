@@ -2213,9 +2213,9 @@ void Gamestate::reflectOnCase()
 	// dan and 
 
 	std::cout << "Here's what we know so far." << std::endl << std::endl;
-
-	std::unordered_map<std::string, Suspect*>::iterator it = suspectMap.begin();
-	while (it != suspectMap.end())
+	std::unordered_map<std::string, Suspect*>* suspectMapPointer = getSuspectMap();
+	std::unordered_map<std::string, Suspect*>::iterator it = suspectMapPointer->begin();
+	while (it != suspectMapPointer->end())
 	{	
 		// name of suspect
 		std::cout << "   -" << it->second->getName();
@@ -2235,8 +2235,9 @@ void Gamestate::reflectOnCase()
 	std::cout << "The following analyzed evidence has been found:" << std::endl;
 	bool evidenceFound = false;
 
-	std::unordered_map<std::string, Item*>::iterator itemit = this->itemMap.begin();
-	while (itemit != this->itemMap.end())
+	std::unordered_map<std::string, Item*>* itemMapPointer = getItemMap();
+	std::unordered_map<std::string, Item*>::iterator itemit = itemMapPointer->begin();
+	while (itemit != itemMapPointer->end())
 	{
 		std::string currentItemString = itemit->first;
 
