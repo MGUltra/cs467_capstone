@@ -2243,7 +2243,7 @@ void Gamestate::reflectOnCase()
 		if (itemit->second->getAnalyzed() == true)
 		{
 			// item name and analysis results
-			std::cout << "   - " << it2->second->getName() << " : " << it2->second->getForensicAnalysis()<< std::endl;
+			std::cout << "   - " << itemit->second->getName() << " : " << itemit->second->getForensicAnalysis()<< std::endl;
 			evidenceFound = true;
 		}
 
