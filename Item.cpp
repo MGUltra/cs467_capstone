@@ -12,7 +12,7 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Item::Item(std::string name, std::string description, std::string forensicAnalysis, bool usableIn)
+Item::Item(std::string name, std::string description, std::string forensicAnalysis, bool usableIn, std::string location)
 {
 	setName(name);
 	setDescription(description);
@@ -20,6 +20,7 @@ Item::Item(std::string name, std::string description, std::string forensicAnalys
 	setAvailable(false);
 	setAnalyzed(false);
 	setUseable(usableIn);
+	setOriginalLocation(location);
 }
 
 /*******************************************************************************
@@ -60,6 +61,11 @@ bool Item::getUseable()
 	return usable;
 }
 
+std::string Item::getOriginalLocation()
+{
+	return originalLocation;
+}
+
 
 /*******************************************************************************
 *		SET FUNCTIONS
@@ -97,6 +103,11 @@ void Item::setAnalyzed(bool newBool)
 void Item::setUseable(bool newBool)
 {
 	usable = newBool;
+}
+
+void Item::setOriginalLocation(std::string location)
+{
+	originalLocation = location;
 }
 
 
