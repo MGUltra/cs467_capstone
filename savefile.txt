@@ -1,0 +1,34 @@
+galley
+20
+herbertInterrogated false
+louiseInterrogated false
+royInterrogated false
+carlInterrogated false
+danInterrogated false
+vinceLocketAsk false
+vinceCashAsk false
+danAccused false
+carlCleared false
+vinceInterrogated false
+carlFlutesAsk false
+vinceTicketsAsk false
+carlLettersAsk false
+vinceCleared false
+royCashAsk false
+carlSpreadsheetAsk false
+royRecordingAsk false
+louiseFlutesAsk false
+louiseLettersAsk false
+louiseSpreadsheetAsk false
+0
+0
+0
+0
+2
+galley true
+station true
+0
+3
+dan false
+vince false
+carl false

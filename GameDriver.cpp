@@ -2584,6 +2584,8 @@ void Gamestate::loadGame()
 		this->checkLineEndings(&boolean);
 		bool boolValue = getStringFromBool(boolean);
 
+		std::cout << "Key: " << key << "   and   Bool: " << boolValue << std::endl;
+
 		this->playerNotebook.setItemAvailable(key, boolValue);
 	}
 
