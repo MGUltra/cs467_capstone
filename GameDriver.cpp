@@ -2231,22 +2231,29 @@ void Gamestate::reflectOnCase()
 	}
 //>>>>>>THOUGHT - should the relevant evidence only be listed if the suspect is not cleared?  keep things clear and concise?
 		// get relevant evidence that has been found and analyzed
+
+	std::cout << "The following analyzed evidence has been found:" << std::endl;
+	bool evidenceFound = false;
+
 	std::unordered_map<std::string, Item*>::iterator it2 = itemMap.begin();
 	while (it2 != itemMap.end())
 	{
-		std::cout << "The following analyzed evidence has been found:" << std::endl;
-
 		// if item belongs to current suspect and has already been analyzed
 		if (it2->second->getAnalyzed() == true)
 		{
 			// item name and analysis results
 			std::cout << "\t- " << it2->second->getName() << " : " << it2->second->getForensicAnalysis()<< std::endl;
+			evidenceFound = true;
 		}
 
 		// increment iterator
 		it2++;
 	}
 
+	if (!evidenceFound)
+	{
+		std::cout << "No analyzed evidence has been found yet." << std::endl;
+	}
 
 }
 
