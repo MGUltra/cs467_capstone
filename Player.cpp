@@ -95,8 +95,6 @@ void Player::loadItemInventory(Item* currentItem, Notebook* notebook)
 {
 	playerInventory.addItemToInventory(currentItem);
 
-	currentItem->getOriginalRoom->removeItemFromRoom(currentItem);
-
 	notebook->setItemLocations(currentItem->getName(), "inventory");
 }
 
