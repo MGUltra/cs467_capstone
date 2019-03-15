@@ -2238,12 +2238,14 @@ void Gamestate::reflectOnCase()
 	std::unordered_map<std::string, Item*>::iterator itemit = itemMap.begin();
 	while (itemit != itemMap.end())
 	{
-		//string currentItem = it
+		std::string currentItemString = itemit->first;
+
+		Item* currentItem = getItem(currentItemString);
 		// if item belongs to current suspect and has already been analyzed
-		if (itemit->second->getAnalyzed() == true)
+		if (currentItem->getAnalyzed() == true)
 		{
 			// item name and analysis results
-			std::cout << "   - " << itemit->second->getName() << " : " << itemit->second->getForensicAnalysis()<< std::endl;
+			std::cout << "   - " << currentItem->getName() << " : " << currentItem->getForensicAnalysis()<< std::endl;
 			evidenceFound = true;
 		}
 
