@@ -499,7 +499,7 @@ void Gamestate::createItems()
 		
 		room = this->getRoom(location);
 	
-		this->itemMap[name] = new Item(name, description, forensicAnalysis, useBool);
+		this->itemMap[name] = new Item(name, description, forensicAnalysis, useBool, location);
 
 		// item pointer
 		item = this->itemMap[name];
@@ -2712,18 +2712,21 @@ void Gamestate::loadGame()
 		this->checkLineEndings(&location);
 
 		Item* currentItem = getItem(item);
+		Room* originalLocation = getRoom(currentItem->getOriginalLocation());
+
+		// Remove item from original locaiton so we can place item in...
+		originalLocation->removeItemFromRoom(currentItem);
 		
+		// inventory
 		if (location == "inventory")
 		{
 			this->currentPlayer.loadItemInventory(currentItem, &this->playerNotebook);
 		}
+		// or where it was dropped.
 		else
 		{
 			Room* currentRoom = getRoom(location);
 			currentRoom->addItemInRoom(currentItem);
-			Room* originalRoom = currentItem->getOriginalRoom();
-			originalRoom->removeItemFromRoom(currentItem);
-			
 		}
 
 		this->playerNotebook.setItemLocations(item, location);
