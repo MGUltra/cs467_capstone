@@ -33,7 +33,7 @@ class Item
 
 	public:
 	//constructor
-	Item(std::string, std::string, std::string, Suspect*, bool);
+	Item(std::string, std::string, std::string, bool);
 
 	//get
 	std::string getName();

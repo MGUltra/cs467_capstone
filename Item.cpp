@@ -12,14 +12,13 @@
 /*******************************************************************************
 *		CONTRUCTOR
 *******************************************************************************/
-Item::Item(std::string name, std::string description, std::string forensicAnalysis, Suspect* suspect, bool usableIn)
+Item::Item(std::string name, std::string description, std::string forensicAnalysis, bool usableIn)
 {
 	setName(name);
 	setDescription(description);
 	setForensicAnalysis(forensicAnalysis);
 	setAvailable(false);
 	setAnalyzed(false);
-	setBelongsTo(suspect);
 	setUseable(usableIn);
 }
 

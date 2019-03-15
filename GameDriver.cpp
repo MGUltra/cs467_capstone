@@ -459,7 +459,7 @@ void Gamestate::createItems()
 
 	for (int i = 0; i < numItems; i++)
 	{
-		std::string name, description, forensicAnalysis, location, suspectString, useString;
+		std::string name, description, forensicAnalysis, location, useString;
 		Room* room;
 		Item* item;
 		bool useBool;
@@ -487,11 +487,6 @@ void Gamestate::createItems()
 
 		boost::algorithm::to_lower(location);
 
-		// suspects name
-		getline(inputFile, fileLine);
-		suspectString = fileLine;
-		this->checkLineEndings(&suspectString);
-
 		// item useable
 		getline(inputFile, fileLine);
 		useString = fileLine;
@@ -502,11 +497,9 @@ void Gamestate::createItems()
 		else
 			useBool = false;
 		
-		Suspect* suspect = this->suspectMap[suspectString];
-		
 		room = this->getRoom(location);
 		
-		this->itemMap[name] = new Item(name, description, forensicAnalysis, suspect, useBool);
+		this->itemMap[name] = new Item(name, description, forensicAnalysis, useBool);
 
 		// item pointer
 		item = this->itemMap[name];
