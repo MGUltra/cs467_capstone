@@ -74,7 +74,7 @@ void Gamestate::playGame()
 		}
 		
 		clearScreen();
-		playerNotebook.printGameFlags();
+		playerNotebook.printAll();
 		
 		// Call newMessage to run parser on input
 		commandParser.newMessage(inputString);
@@ -186,6 +186,7 @@ void Gamestate::createGame()
 	
 	
 	this->currentPlayer.setLocation(this->getRoom("station"));
+	this->playerNotebook.setCurrentRoom("station");
 	
 }
 
@@ -239,6 +240,7 @@ void Gamestate::createRooms()
 		this->commandParser.setNounSet(name);
 		this->commandParser.setLocationSet(name);
 
+		this->playerNotebook.setRoomVisited(name, false);
 		
 		// Debug
 		roomTestVector.push_back(name);
@@ -419,6 +421,10 @@ void Gamestate::createFeatures()
 		
 		// populate parser noun set
 		this->commandParser.setNounSet(name);
+		
+		this->playerNotebook.setFeatureInspected(name, false);
+		this->playerNotebook.setFeatureActioned(name, false);
+		
 	}
 
 	// Close inputFile.
@@ -487,6 +493,8 @@ void Gamestate::createItems()
 
 		boost::algorithm::to_lower(location);
 
+		room = this->getRoom(location);
+		
 		// item useable
 		getline(inputFile, fileLine);
 		useString = fileLine;
@@ -496,9 +504,7 @@ void Gamestate::createItems()
 			useBool = true;
 		else
 			useBool = false;
-		
-		room = this->getRoom(location);
-	
+			
 		this->itemMap[name] = new Item(name, description, forensicAnalysis, useBool, location);
 
 		// item pointer
@@ -508,6 +514,10 @@ void Gamestate::createItems()
 		
 		// populate parser noun set
 		this->commandParser.setNounSet(name);
+		
+		this->playerNotebook.setItemLocations(name, location);
+		this->playerNotebook.setItemAvailable(name, false);
+		this->playerNotebook.setItemAnalyzed(name, false);
 	}
 
 	// Close inputFile.

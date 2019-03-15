@@ -144,7 +144,7 @@ void Notebook::setItemLocations(std::string itemNameIn, std::string roomNameIn)
 
 void Notebook::setCurrentRoom(std::string stringIn)
 {
-	playerLocation == stringIn;
+	playerLocation = stringIn;
 }
 
 	
@@ -273,5 +273,56 @@ void Notebook::printGameFlags()
 
 void Notebook::printAll()
 {
+	
+	std::cout << "Gameflags:" << std::endl;
+		
+  for ( auto it = gameFlags.begin(); it != gameFlags.end(); ++it )
+    std::cout << " " << it->first << ":" << it->second << std::endl;
+  
+	std::cout << std::endl;
+	
+	
+	std::cout << "itemLocations:" << std::endl;
+		
+  for ( auto it = itemLocations.begin(); it != itemLocations.end(); ++it )
+    std::cout << " " << it->first << ":" << it->second << std::endl;
+  
+	std::cout << std::endl;
+
+	
+	std::cout << "itemAvailable:" << std::endl;
+		
+  for ( auto it = itemAvailable.begin(); it != itemAvailable.end(); ++it )
+    std::cout << " " << it->first << ":" << it->second << std::endl;
+  
+	std::cout << std::endl;
+	
+	std::cout << "itemAnalyzed:" << std::endl;
+		
+  for ( auto it = itemAnalyzed.begin(); it != itemAnalyzed.end(); ++it )
+    std::cout << " " << it->first << ":" << it->second << std::endl;
+  
+	std::cout << std::endl;
+
+	std::cout << "featureInspected:" << std::endl;
+		
+  for ( auto it = featureInspected.begin(); it != featureInspected.end(); ++it )
+    std::cout << " " << it->first << ":" << it->second << std::endl;
+  
+	std::cout << std::endl;	
+	
+	std::cout << "featureActioned:" << std::endl;
+		
+  for ( auto it = featureActioned.begin(); it != featureActioned.end(); ++it )
+    std::cout << " " << it->first << ":" << it->second << std::endl;
+  
+	std::cout << std::endl;		
+	
+	std::cout << "playerLocation: " << this->playerLocation << std::endl;
+  
+	std::cout << std::endl;		
+	
+	
+	
 	
 }
