@@ -2218,7 +2218,8 @@ void Gamestate::reflectOnCase()
 	while (it != suspectMapPointer->end())
 	{	
 		// name of suspect
-		std::cout << "   -" << it->second->getName();
+		std::string currentSuspectName = it->second->getName();
+		std::cout << "   -" << currentSuspectName;
 		if (it->second->getIsCleared())
 		{
 			std::cout << " has been cleared of this murder." << std::endl;
@@ -2226,37 +2227,22 @@ void Gamestate::reflectOnCase()
 		else
 		{
 			std::cout << " has NOT been cleared of this murder." << std::endl;
+
+			if (currentSuspectName == "dan")
+			{
+				std::cout << "Dan Flags placeholder." << std::endl;
+			}
+			else if (currentSuspectName == "vince")
+			{
+				std::cout << "Vince Flags placeholder." << std::endl;
+			}
+			else // carl
+			{
+				std::cout << "Carl Flags placeholder." << std::endl;
+			}
+
 		}
 		it++;
-	}
-//>>>>>>THOUGHT - should the relevant evidence only be listed if the suspect is not cleared?  keep things clear and concise?
-		// get relevant evidence that has been found and analyzed
-
-	std::cout << "The following analyzed evidence has been found:" << std::endl;
-	bool evidenceFound = false;
-
-	std::unordered_map<std::string, Item*>* itemMapPointer = getItemMap();
-	std::unordered_map<std::string, Item*>::iterator itemit = itemMapPointer->begin();
-	while (itemit != itemMapPointer->end())
-	{
-		std::string currentItemString = itemit->first;
-
-		Item* currentItem = getItem(currentItemString);
-		// if item belongs to current suspect and has already been analyzed
-		if (currentItem->getAnalyzed() == true)
-		{
-			// item name and analysis results
-			std::cout << "   - " << currentItem->getName() << " : " << currentItem->getForensicAnalysis()<< std::endl;
-			evidenceFound = true;
-		}
-
-		// increment iterator
-		itemit++;
-	}
-
-	if (!evidenceFound)
-	{
-		std::cout << "No analyzed evidence has been found yet." << std::endl;
 	}
 
 }
