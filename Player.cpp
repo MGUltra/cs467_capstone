@@ -122,7 +122,7 @@ void Player::changeLocation(Room* locationIn, Notebook* notebook)
 {
 	setLocation(locationIn);
 	
-	notebook->setCurrentRoom(locationIn->getName());
+	notebook->setCurrentRoom(this->location->getName());
 }
 
 
