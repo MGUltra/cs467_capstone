@@ -1,3 +1,2 @@
-| The medicine cabinet mirror is a bit dirty. Opening it further you see a    |
-| a few more pill bottles, a toothbrush, toothpaste, a razor and some shaving |
-| cream.                                                                      |
+| The toiletries that you found before are still there, although probably	    |
+| not in the same place since you've already searched the cabinet.						|

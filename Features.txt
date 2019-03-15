@@ -1,7 +1,7 @@
 32
 hamper
-roomFeatures/carlBathFirstAidFirst.txt
-roomFeatures/carlBathFirstAidAfter.txt
+roomFeatures/carlBathHamperFirst.txt
+roomFeatures/carlBathHamperAfter.txt
 bathroom
 shirt
 false
@@ -27,8 +27,8 @@ false
 false
 none
 chest
-roomFeatures/carlGarageHammerFirst.txt
-roomFeatures/carlGarageHammerAfter.txt
+roomFeatures/carlGarageChestFirst.txt
+roomFeatures/carlGarageChestAfter.txt
 garage
 letters
 false
@@ -36,8 +36,8 @@ false
 true
 key
 table
-roomFeatures/carlKitchenBloodFirst.txt
-roomFeatures/carlKitchenBloodAfter.txt
+roomFeatures/carlKitchenTableFirst.txt
+roomFeatures/carlKitchenTableAfter.txt
 kitchen
 flutes
 false
@@ -45,8 +45,8 @@ false
 false
 none
 drawer
-roomFeatures/carlKitchenUtensilsFirst.txt
-roomFeatures/carlKitchenUtensilsAfter.txt
+roomFeatures/carlKitchenDrawerFirst.txt
+roomFeatures/carlKitchenDrawerAfter.txt
 kitchen
 key
 false
@@ -54,8 +54,8 @@ false
 false
 none
 computer
-roomFeatures/carlLivingChairFirst.txt
-roomFeatures/carlLivingChairAfter.txt
+roomFeatures/carlLivingComputerFirst.txt
+roomFeatures/carlLivingComputerAfter.txt
 den
 spreadsheet
 false
