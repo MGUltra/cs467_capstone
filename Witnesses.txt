@@ -9,9 +9,9 @@ witnessText/herbertItemResponse1.txt
 witnessText/herbertItemResponse2.txt
 witnessText/herbertItemResponse3.txt
 witnessText/herbertItemResponseGeneric.txt
-item14
-item15
-item16
+wrench
+receipt
+ammonia
 louise
 station
 witnessText/louiseInspectResponse.txt

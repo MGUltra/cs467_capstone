@@ -241,18 +241,57 @@ std::string Witness::askItemResponse(std::string itemIn, Notebook* notebook)
 	{
 		if(itemIn == item1)
 		{
-			
-			return getItemResponse1();
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{
+				if(notebook->getGameFlags("herbertWrenchAsk") == false)
+				{
+					notebook->setGameFlags("herbertWrenchAsk", true);
+				}
+				
+				return getItemResponse1();
+			}
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				
+				return getItemResponseGeneric();	
+			}
 		}
 		else if(itemIn == item2)
 		{
-			
-			return getItemResponse2();
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{
+				if(notebook->getGameFlags("herbertReceiptAsk") == false)
+				{
+					notebook->setGameFlags("herbertReceiptAsk", true);
+				}
+				
+				return getItemResponse2();
+			}
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				
+				return getItemResponseGeneric();	
+			}
 		}
 		else if(itemIn == item3)
 		{
-			
-			return getItemResponse3();
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{
+				if(notebook->getGameFlags("herbertAmmoniaAsk") == false)
+				{
+					notebook->setGameFlags("herbertAmmoniaAsk", true);
+				}
+				
+				return getItemResponse3();
+			}
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				
+				return getItemResponseGeneric();	
+			}
 		}
 		else
 			return getItemResponseGeneric();		

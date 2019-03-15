@@ -857,7 +857,9 @@ void Gamestate::createNotebook()
 	this->playerNotebook.setGameFlags("carlFlutesAsk", false);
 	
 	// dan asked
-	
+	this->playerNotebook.setGameFlags("danTextAsk", false);
+	this->playerNotebook.setGameFlags("danWrenchAsk", false);
+	this->playerNotebook.setGameFlags("danAmmoniaAsk", false);
 	
 	// roy asked
 	this->playerNotebook.setGameFlags("royRecordingAsk", false);
@@ -865,7 +867,10 @@ void Gamestate::createNotebook()
 	
 	
 	// herbert asked
-	
+	this->playerNotebook.setGameFlags("herbertWrenchAsk", false);
+	this->playerNotebook.setGameFlags("herbertAmmoniaAsk", false);
+	this->playerNotebook.setGameFlags("herbertReceiptAsk", false);
+
 	
 	// louise asked
 	this->playerNotebook.setGameFlags("louiseLettersAsk", false);

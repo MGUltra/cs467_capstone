@@ -327,18 +327,51 @@ std::string Suspect::askItemResponse(std::string itemIn, Notebook* notebook)
 	{
 		if(itemIn == item1)
 		{
-			
-			return getItemResponse1();
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{		
+				if(notebook->getGameFlags("danWrenchAsk") == false)
+				{
+					notebook->setGameFlags("danWrenchAsk", true);
+				}
+				return getItemResponse1();
+			}
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				return getItemResponseGeneric();				
+			}	
 		}
 		else if(itemIn == item2)
 		{
-			
-			return getItemResponse2();
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{		
+				if(notebook->getGameFlags("danTextAsk") == false)
+				{
+					notebook->setGameFlags("danTextAsk", true);
+				}
+				return getItemResponse2();
+			}
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				return getItemResponseGeneric();				
+			}	
 		}
 		else if(itemIn == item3)
 		{
-			
-			return getItemResponse3();
+			if(notebook->getItemAnalyzed(itemIn) == true)
+			{		
+				if(notebook->getGameFlags("danAmmoniaAsk") == false)
+				{
+					notebook->setGameFlags("danAmmoniaAsk", true);
+				}
+				return getItemResponse3();
+			}
+			else
+			{
+				std::cout << "You may need to analyze this item to get a better response" << std::endl;
+				return getItemResponseGeneric();				
+			}	
 		}
 		else
 			return getItemResponseGeneric();		
