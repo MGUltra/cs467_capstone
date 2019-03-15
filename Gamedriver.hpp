@@ -110,6 +110,7 @@ public:
 	void printRoom(Room*);
 	void checkLineEndings(std::string*);
 	std::string getBoolString(bool);
+	bool getStringFromBool(std::string);
 
 	std::unordered_map<std::string, Item*>*  getItemMap();
 	std::unordered_map<std::string, Room*>* getRoomMap();

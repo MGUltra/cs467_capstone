@@ -2484,8 +2484,8 @@ void Gamestate::saveGame()
 
 	int numSuspectsCleared = suspectMapPointer->size();
 	std::string stringNumSuspectsCleared = std::to_string(numSuspectsCleared);
-	std::cout << "Number of Suspects is: " << numSuspectsCleared << std::endl;
-	//saveFile << stringNumSuspectsCleared << std::endl;
+	//std::cout << "Number of Suspects is: " << numSuspectsCleared << std::endl;
+	saveFile << stringNumSuspectsCleared << std::endl;
 
 	std::unordered_map<std::string, Suspect*>::iterator suspectIterator = suspectMapPointer->begin();
 	while (suspectIterator != suspectMapPointer->end())
@@ -2493,8 +2493,8 @@ void Gamestate::saveGame()
 		std::string key = suspectIterator->first;
 		std::string boolean = getBoolString(suspectIterator->second->getIsCleared());
 
-		std::cout << "Suspect: " << key << "   Cleared: " << boolean << std::endl;
-		//saveFile << key << " " << boolean << "\n" << std::endl;
+		//std::cout << "Suspect: " << key << "   Cleared: " << boolean << std::endl;
+		saveFile << key << " " << boolean << "\n" << std::endl;
 		suspectIterator++;
 	}
 }
@@ -2504,24 +2504,225 @@ void Gamestate::saveGame()
 ------------------------------------------------------------------------------*/
 void Gamestate::loadGame()
 {
-	// Player location
+	std::ifstream saveFile;
+
+	std::string fileLine;
+
+	saveFile.open("savefile.txt");
+
+	// Open the given file.
+	if (!saveFile.is_open())
+	{
+		std::cout << "The save file could not be opened.\n";
+		return;
+	}
+
+	// Get the current line as a string.
+	getline(saveFile, fileLine);
+
+	std::string currentLocation = fileLine;
+	this->checkLineEndings(&currentLocation);
+	Room* currentRoom = getRoom(currentLocation);
+
+	// Update player's location.
+	this->currentPlayer.changeLocation(currentRoom, &this->playerNotebook);
 	
-	// Item locations
-		// place in rooms and player inventory
+	// GAME FLAGS
+	getline(saveFile, fileLine);
+	std::stringstream currentLine(fileLine);
+	int numGameFlags = 0;
+	// Stream line into an integer.
+	currentLine >> numGameFlags;
+
+	for (int i = 0; i < numGameFlags; i++)
+	{
+		std::string key, boolean;
+
+		getline(saveFile, fileLine);
+		std::stringstream currentLine0(fileLine);
+		// Get the current line as a string.
+		currentLine0 >> key;
+		this->checkLineEndings(&key);
+		currentLine0 >> boolean;
+		this->checkLineEndings(&boolean);
+		bool boolValue = getStringFromBool(boolean);
+
+		this->playerNotebook.setGameFlags(key, boolValue);
+	}
+
+	// ITEM AVAILABLE
+	getline(saveFile, fileLine);
+	std::stringstream currentLine1(fileLine);
+	int numItemAvailable = 0;
+	// Stream line into an integer.
+	currentLine >> numItemAvailable;
+
+	for (int i = 0; i < numItemAvailable; i++)
+	{
+		std::string key, boolean;
+
+		getline(saveFile, fileLine);
+		std::stringstream currentLine0(fileLine);
+		// Get the current line as a string.
+		currentLine0 >> key;
+		this->checkLineEndings(&key);
+		currentLine0 >> boolean;
+		this->checkLineEndings(&boolean);
+		bool boolValue = getStringFromBool(boolean);
+
+		this->playerNotebook.setItemAvailable(key, boolValue);
+	}
+
+	// ITEM ANALYZED
+	getline(saveFile, fileLine);
+	std::stringstream currentLine2(fileLine);
+	int numItemAnalyzed = 0;
+	// Stream line into an integer.
+	currentLine >> numItemAnalyzed;
+
+	for (int i = 0; i < numItemAnalyzed; i++)
+	{
+		std::string key, boolean;
+
+		getline(saveFile, fileLine);
+		std::stringstream currentLine0(fileLine);
+		// Get the current line as a string.
+		currentLine0 >> key;
+		this->checkLineEndings(&key);
+		currentLine0 >> boolean;
+		this->checkLineEndings(&boolean);
+		bool boolValue = getStringFromBool(boolean);
+
+		this->playerNotebook.setItemAnalyzed(key, boolValue);
+	}
 	
-	// Item Status
-		// set available
-		// set analyzed
-	
-	// Feature Status
-		// set alreadyInspected
-		// set alreadyActioned
+	// FEATURE INSPECTED
+	getline(saveFile, fileLine);
+	std::stringstream currentLine3(fileLine);
+	int numFeatureInspected = 0;
+	// Stream line into an integer.
+	currentLine >> numFeatureInspected;
+
+	for (int i = 0; i < numFeatureInspected; i++)
+	{
+		std::string key, boolean;
+
+		getline(saveFile, fileLine);
+		std::stringstream currentLine0(fileLine);
+		// Get the current line as a string.
+		currentLine0 >> key;
+		this->checkLineEndings(&key);
+		currentLine0 >> boolean;
+		this->checkLineEndings(&boolean);
+		bool boolValue = getStringFromBool(boolean);
+
+		this->playerNotebook.setFeatureInspected(key, boolValue);
+	}
+
+	// FEATURE ACTIONED
+	getline(saveFile, fileLine);
+	std::stringstream currentLine4(fileLine);
+	int numFeatureActioned = 0;
+	// Stream line into an integer.
+	currentLine >> numFeatureActioned;
+
+	for (int i = 0; i < numFeatureActioned; i++)
+	{
+		std::string key, boolean;
+
+		getline(saveFile, fileLine);
+		std::stringstream currentLine0(fileLine);
+		// Get the current line as a string.
+		currentLine0 >> key;
+		this->checkLineEndings(&key);
+		currentLine0 >> boolean;
+		this->checkLineEndings(&boolean);
+		bool boolValue = getStringFromBool(boolean);
+
+		this->playerNotebook.setFeatureActioned(key, boolValue);
+	}
+
+	// ROOM VISITED
+	getline(saveFile, fileLine);
+	std::stringstream currentLine5(fileLine);
+	int numRoomVisited = 0;
+	// Stream line into an integer.
+	currentLine >> numRoomVisited;
+
+	for (int i = 0; i < numRoomVisited; i++)
+	{
+		std::string key, boolean;
+
+		getline(saveFile, fileLine);
+		std::stringstream currentLine0(fileLine);
+		// Get the current line as a string.
+		currentLine0 >> key;
+		this->checkLineEndings(&key);
+		currentLine0 >> boolean;
+		this->checkLineEndings(&boolean);
+		bool boolValue = getStringFromBool(boolean);
+
+		this->playerNotebook.setRoomVisited(key, boolValue);
+	}
+
+	// ITEM LOCATIONS
+	getline(saveFile, fileLine);
+	std::stringstream currentLine6(fileLine);
+	int numRoomVisited = 0;
+	// Stream line into an integer.
+	currentLine >> numRoomVisited;
+
+	for (int i = 0; i < numRoomVisited; i++)
+	{
+		std::string item, location;
+
+		getline(saveFile, fileLine);
+		std::stringstream currentLine0(fileLine);
+		// Get the current line as a string.
+		currentLine0 >> item;
+		this->checkLineEndings(&item);
+		currentLine0 >> location;
+		this->checkLineEndings(&location);
+
+		Item* currentItem = getItem(item);
 		
-	// Room Status
-		// set already visited
-		
-	// suspect status
-		// set is cleared	
+		if (location == "inventory")
+		{
+			this->currentPlayer.pickUpItem(currentItem, &this->playerNotebook);
+		}
+		else
+		{
+			Room* currentRoom = getRoom(location);
+			currentRoom->addItemInRoom(currentItem);
+		}
+
+		this->playerNotebook.setItemLocations(item, location);
+	}
+
+	// CLEARED SUSPECTS
+	getline(saveFile, fileLine);
+	std::stringstream currentLine7(fileLine);
+	int numSuspects = 0;
+	// Stream line into an integer.
+	currentLine >> numSuspects;
+
+	for (int i = 0; i < numSuspects; i++)
+	{
+		std::string suspect, boolean;
+
+		getline(saveFile, fileLine);
+		std::stringstream currentLine0(fileLine);
+		// Get the current line as a string.
+		currentLine0 >> suspect;
+		this->checkLineEndings(&suspect);
+		currentLine0 >> boolean;
+		this->checkLineEndings(&boolean);
+		bool boolValue = getStringFromBool(boolean);
+
+		Suspect* currentSuspect = getSuspect(suspect);
+
+		currentSuspect->setIsCleared(boolValue);
+	}
 }
 
 
@@ -2658,6 +2859,18 @@ std::string Gamestate::getBoolString(bool givenBool)
 	else
 	{
 		return "false";
+	}
+}
+
+bool Gamestate::getStringFromBool(std::string boolean)
+{
+	if (boolean == "true")
+	{
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 
