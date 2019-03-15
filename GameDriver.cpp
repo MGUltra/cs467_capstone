@@ -2352,9 +2352,158 @@ void Gamestate::clearSuspect(std::string personIn)
 ------------------------------------------------------------------------------*/
 void Gamestate::saveGame()
 {
-	//write flags from notebook to file
-	//write tiem locations to file
-		
+	std::ofstream saveFile;
+
+	saveFile.open("savefile.txt");
+
+	// Open the given file.
+	if (!saveFile.is_open())
+	{
+		std::cout << "The save file could not be opened.\n";
+		return;
+	}
+
+	// playerLocation
+	std::string playerLoc = this->currentPlayer.getLocation()->getName();
+
+	saveFile << playerLoc << std::endl;
+
+	// gameFlags
+	std::unordered_map<std::string, bool>* saveGameFlags = this->playerNotebook.getGameFlags();
+
+	int numGameFlags = saveGameFlags->size();
+	std::string stringNumGameFlags = std::to_string(numGameFlags);
+	saveFile << stringNumGameFlags << std::endl;
+
+	std::unordered_map<std::string, bool>::iterator gameFlagsIterator = saveGameFlags->begin();
+	while (gameFlagsIterator != saveGameFlags->end())
+	{
+		std::string key = gameFlagsIterator->first;
+		std::string boolean = getBoolString(gameFlagsIterator->second);
+
+		saveFile << key << " " << boolean << std::endl;
+		gameFlagsIterator++;
+	}
+	// itemAvailable
+	std::unordered_map<std::string, bool>* saveItemAvailable = this->playerNotebook.getItemAvailable();
+
+	int numItemAvailable = saveItemAvailable->size();
+	std::string stringNumItemAvailable = std::to_string(numItemAvailable);
+	saveFile << stringNumItemAvailable << std::endl;
+
+	std::unordered_map<std::string, bool>::iterator itemAvailableIterator = saveItemAvailable->begin();
+	while (itemAvailableIterator != saveItemAvailable->end())
+	{
+		std::string key = itemAvailableIterator->first;
+		std::string boolean = getBoolString(itemAvailableIterator->second);
+
+		saveFile << key << " " << boolean << std::endl;
+		itemAvailableIterator++;
+	}
+
+	// itemAnalyzed
+	std::unordered_map<std::string, bool>* saveItemAnalyzed = this->playerNotebook.getItemAnalyzed();
+
+	int numItemAnalyzed = saveItemAnalyzed->size();
+	std::string stringNumItemAnalyzed = std::to_string(numItemAnalyzed);
+	saveFile << stringNumItemAnalyzed << std::endl;
+
+	std::unordered_map<std::string, bool>::iterator itemAnalyzedIterator = saveItemAnalyzed->begin();
+	while (itemAnalyzedIterator != saveItemAnalyzed->end())
+	{
+		std::string key = itemAnalyzedIterator->first;
+		std::string boolean = getBoolString(itemAnalyzedIterator->second);
+
+		saveFile << key << " " << boolean << std::endl;
+		itemAnalyzedIterator++;
+	}
+
+	// featureInspected
+	std::unordered_map<std::string, bool>* saveFeatureInspected = this->playerNotebook.getFeatureInspected();
+
+	int numFeatureInspected = saveFeatureInspected->size();
+	std::string stringNumFeatureInspected = std::to_string(numFeatureInspected);
+	saveFile << stringNumFeatureInspected << std::endl;
+
+	std::unordered_map<std::string, bool>::iterator FeatureInspectedIterator = saveFeatureInspected->begin();
+	while (FeatureInspectedIterator != saveFeatureInspected->end())
+	{
+		std::string key = FeatureInspectedIterator->first;
+		std::string boolean = getBoolString(FeatureInspectedIterator->second);
+
+		saveFile << key << " " << boolean << std::endl;
+		FeatureInspectedIterator++;
+	}
+
+	// featureActioned
+	std::unordered_map<std::string, bool>* saveFeatureActioned = this->playerNotebook.getFeatureActioned();
+
+	int numFeatureActioned = saveFeatureActioned->size();
+	std::string stringNumFeatureActioned = std::to_string(numFeatureActioned);
+	saveFile << stringNumFeatureActioned << std::endl;
+
+	std::unordered_map<std::string, bool>::iterator FeatureActionedIterator = saveFeatureActioned->begin();
+	while (FeatureActionedIterator != saveFeatureActioned->end())
+	{
+		std::string key = FeatureActionedIterator->first;
+		std::string boolean = getBoolString(FeatureActionedIterator->second);
+
+		saveFile << key << " " << boolean << std::endl;
+		FeatureActionedIterator++;
+	}
+
+	// roomVisited
+	std::unordered_map<std::string, bool>* saveRoomVisited = this->playerNotebook.getRoomVisited();
+
+	int numRoomVisited = saveRoomVisited->size();
+	std::string stringNumRoomVisited = std::to_string(numRoomVisited);
+	saveFile << stringNumRoomVisited << std::endl;
+
+	std::unordered_map<std::string, bool>::iterator roomVisitedIterator = saveRoomVisited->begin();
+	while (roomVisitedIterator != saveRoomVisited->end())
+	{
+		std::string key = roomVisitedIterator->first;
+		std::string boolean = getBoolString(roomVisitedIterator->second);
+
+		saveFile << key << " " << boolean << std::endl;
+		roomVisitedIterator++;
+	}
+
+	// itemLocations
+	std::unordered_map<std::string, std::string>* itemLocPointer = this->playerNotebook.getItemLocations();
+
+	int numItemLocations = itemLocPointer->size();
+	std::string stringNumItemLocations = std::to_string(numItemLocations);
+	saveFile << stringNumItemLocations << std::endl;
+
+	std::unordered_map<std::string, std::string>::iterator itemLocIterator = itemLocPointer->begin();
+	while (itemLocIterator != itemLocPointer->end())
+	{
+		std::string item = itemLocIterator->first;
+		std::string location = itemLocIterator->second;
+
+		saveFile << item << " " << location << std::endl;
+		itemLocIterator++;
+	}
+
+	// suspects cleared
+	std::unordered_map<std::string, Suspect*>* suspectMapPointer = getSuspectMap();
+
+	int numSuspectsCleared = suspectMapPointer->size();
+	std::string stringNumSuspectsCleared = std::to_string(numSuspectsCleared);
+	std::cout << "Number of Suspects is: " << numSuspectsCleared << std::endl;
+	//saveFile << stringNumSuspectsCleared << std::endl;
+
+	std::unordered_map<std::string, Suspect*>::iterator suspectIterator = suspectMapPointer->begin();
+	while (suspectIterator != suspectMapPointer->end())
+	{
+		std::string key = suspectIterator->first;
+		std::string boolean = getBoolString(suspectIterator->second->getIsCleared());
+
+		std::cout << "Suspect: " << key << "   Cleared: " << boolean << std::endl;
+		//saveFile << key << " " << boolean << "\n" << std::endl;
+		suspectIterator++;
+	}
 }
 
 /*------------------------------------------------------------------------------
@@ -2505,4 +2654,41 @@ void Gamestate::keyValuePrint()
     std::cout << keys.first << std::endl;
 
 	}
+}
+
+std::string Gamestate::getBoolString(bool givenBool)
+{
+	if (givenBool)
+	{
+		return "true";
+	}
+	else
+	{
+		return "false";
+	}
+}
+
+std::unordered_map<std::string, Item*>*  Gamestate::getItemMap()
+{
+	return &itemMap;
+}
+
+std::unordered_map<std::string, Room*>* Gamestate::getRoomMap()
+{
+	return &roomMap;
+}
+
+std::unordered_map<std::string, Feature*>* Gamestate::getFeatureMap()
+{
+	return &featureMap;
+}
+
+std::unordered_map<std::string, Suspect*>* Gamestate::getSuspectMap()
+{
+	return &suspectMap;
+}
+
+std::unordered_map<std::string, Witness*>* Gamestate::getWitnessMap()
+{
+	return &witnessMap;
 }
