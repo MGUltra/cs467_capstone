@@ -2548,6 +2548,9 @@ void Gamestate::loadGame()
 	// Stream line into an integer.
 	currentLine >> numGameFlags;
 
+	////////////////// DEBUG //////////////
+	std::cout << numGameFlags << std::endl;
+
 	for (int i = 0; i < numGameFlags; i++)
 	{
 		std::string key, boolean;
@@ -2562,7 +2565,7 @@ void Gamestate::loadGame()
 		bool boolValue = getStringFromBool(boolean);
 
 		////////////////// DEBUG //////////////
-		std::cout << "Key: " << key << "   and   Bool: " << boolValue << std::endl;
+		std::cout << i << "  Key: " << key << "   and   Bool: " << boolValue << std::endl;
 
 		this->playerNotebook.setGameFlags(key, boolValue);
 	}
