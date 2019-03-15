@@ -2490,9 +2490,11 @@ void Gamestate::saveGame()
 		std::string boolean = getBoolString(suspectIterator->second->getIsCleared());
 
 		//std::cout << "Suspect: " << key << "   Cleared: " << boolean << std::endl;
-		saveFile << key << " " << boolean << "\n" << std::endl;
+		saveFile << key << " " << boolean << std::endl;
 		suspectIterator++;
 	}
+
+	std::cout << "Game Saved.\n" << std::endl;
 }
 
 /*------------------------------------------------------------------------------
@@ -2510,6 +2512,13 @@ void Gamestate::loadGame()
 	if (!saveFile.is_open())
 	{
 		std::cout << "The save file could not be opened.\n";
+		return;
+	}
+
+	if (isEmpty(saveFile))
+	{
+		// file is empty
+		std::cout << "No save file exists.\n";
 		return;
 	}
 
@@ -2719,6 +2728,8 @@ void Gamestate::loadGame()
 
 		currentSuspect->setIsCleared(boolValue);
 	}
+
+	std::cout << "Game Loaded.\n" << std::endl;
 }
 
 
@@ -2893,4 +2904,9 @@ std::unordered_map<std::string, Suspect*>* Gamestate::getSuspectMap()
 std::unordered_map<std::string, Witness*>* Gamestate::getWitnessMap()
 {
 	return &witnessMap;
+}
+
+bool Gamestate::isEmpty(std::ifstream& givenFile)
+{
+	return givenFile.peek() == std::ifstream::traits_type::eof();
 }
