@@ -499,7 +499,7 @@ void Gamestate::createItems()
 		
 		room = this->getRoom(location);
 	
-		this->itemMap[name] = new Item(name, description, forensicAnalysis, useBool, room);
+		this->itemMap[name] = new Item(name, description, forensicAnalysis, useBool);
 
 		// item pointer
 		item = this->itemMap[name];

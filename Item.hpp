@@ -18,7 +18,6 @@
 
 #include "Suspect.hpp"
 #include "Notebook.hpp"
-#include "Room.hpp"
 
 class Item
 {
@@ -31,11 +30,10 @@ class Item
 	bool analyzed;
 	bool usable;
 
-	Room* originalLocation;
 
 	public:
 	//constructor
-	Item(std::string, std::string, std::string, bool, Room*);
+	Item(std::string, std::string, std::string, bool);
 
 	//get
 	std::string getName();
@@ -45,7 +43,6 @@ class Item
 	bool getAvailable();
 	bool getAnalyzed();
 	bool getUseable();
-	Room* getOriginalRoom();
 
 	//set
 	void setName(std::string);
@@ -55,7 +52,6 @@ class Item
 	void setAvailable(bool);
 	void setAnalyzed(bool);
 	void setUseable(bool);
-	void setOriginalRoom(Room*);
 	
 	// actions
 	
