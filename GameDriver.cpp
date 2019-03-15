@@ -910,6 +910,7 @@ Suspect* Gamestate::getSuspect(std::string suspectName)
 {
 	if (suspectName == "nonoun")
 		return NULL;
+	
 
 	return this->suspectMap[suspectName];
 }
