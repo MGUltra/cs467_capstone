@@ -88,6 +88,18 @@ void Player::pickUpItem(Item* currentItem, Notebook* notebook)
 	}		
 }
 
+/*******************************************************************************
+*		LOAD ITEMS INTO INVENTORY
+*******************************************************************************/
+void Player::loadItemInventory(Item* currentItem, Notebook* notebook)
+{
+	playerInventory.addItemToInventory(currentItem);
+
+	currentItem->getOriginalRoom->removeItemFromRoom(currentItem);
+
+	notebook->setItemLocations(currentItem->getName(), "inventory");
+}
+
 
 void Player::dropItem(Item* currentItem, Notebook* notebook)
 {

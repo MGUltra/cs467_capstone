@@ -109,6 +109,16 @@ public:
 	void printRooms();
 	void printRoom(Room*);
 	void checkLineEndings(std::string*);
+	std::string getBoolString(bool);
+	bool getStringFromBool(std::string);
+
+	bool isEmpty(std::ifstream&);
+
+	std::unordered_map<std::string, Item*>*  getItemMap();
+	std::unordered_map<std::string, Room*>* getRoomMap();
+	std::unordered_map<std::string, Feature*>* getFeatureMap();
+	std::unordered_map<std::string, Suspect*>* getSuspectMap();
+	std::unordered_map<std::string, Witness*>* getWitnessMap();
 
 
 
