@@ -1282,7 +1282,15 @@ void Gamestate::inspectObject(std::string nounIn)
 		{
 			
 			// test if canSample || canHack || actionAble are true
-			if(featurePtr->getCanSample() == true || featurePtr->getCanHack() == true || featurePtr->getActionAble() == true || nounIn == "answering")
+			if(featurePtr->getCanSample()		== true					||
+				 featurePtr->getCanHack()			== true					||
+				 featurePtr->getActionAble()	== true					||
+				 nounIn 											== "answering"	||
+				 nounIn 											== "coffee"			||
+				 nounIn 											== "beaker"			||
+				 nounIn 											== "sandwhich"	||
+				 nounIn 											== "light"			||
+				 nounIn 											== "records")
 			{
 				// if any of the above - test if already actioned
 				if(featurePtr->getAlreadyActioned() == false)
@@ -2047,7 +2055,7 @@ void Gamestate::useItemOnFeature(std::string itemIn, std::string featureIn)
 void Gamestate::drinkFeature(std::string featureIn)
 {
 	// test if featureIn is drinkable
-	if(featureIn == "coffee" || featureIn == "canteen" || featureIn == "flask")
+	if(featureIn == "coffee" || featureIn == "beaker")
 	{
 		Feature* currentFeature = featureMap[featureIn];
 		Room* currentRoom = this->currentPlayer.getLocation();
@@ -2061,12 +2069,7 @@ void Gamestate::drinkFeature(std::string featureIn)
 				// set game flag coffeeBreath
 				
 			}
-			else if(featureIn == "canteen")
-			{
-				// test flag drinkCoffee
-				
-			}
-			else if(featureIn == "flask")
+			else if(featureIn == "beaker")
 			{
 				// test flag drinkCoffee
 				
@@ -2078,6 +2081,10 @@ void Gamestate::drinkFeature(std::string featureIn)
 			std::cout << "You don't see any " << featureIn << " in this room" << std::endl;
 		}
 
+	}
+	else if (featureIn == "flask")
+	{
+		
 	}
 	else
 	{

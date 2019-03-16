@@ -80,7 +80,7 @@ false
 false
 false
 none
-suspects
+records
 roomFeatures/cellSuspectsFirst.txt
 roomFeatures/cellSuspectsAfter.txt
 cells
@@ -102,7 +102,7 @@ radio
 roomFeatures/copCarRadioFirst.txt
 roomFeatures/copCarRadioAfter.txt
 car
-item12
+wiring
 false
 true
 false
@@ -183,12 +183,12 @@ beaker
 roomFeatures/forensicBeakerFirst.txt
 roomFeatures/forensicBeakerAfter.txt
 lab
-item21
+manual
 false
 false
 false
 none
-testFunction
+sandwhich
 roomFeatures/forensicCompFirst.txt
 roomFeatures/forensicCompAfter.txt
 lab
@@ -201,7 +201,7 @@ chief
 roomFeatures/policeChiefFirst.txt
 roomFeatures/policeChiefAfter.txt
 station
-item23
+badge
 false
 false
 false
@@ -210,7 +210,7 @@ desk
 roomFeatures/policeDeskFirst.txt
 roomFeatures/policeDeskAfter.txt
 station
-item24
+flask
 false
 false
 false

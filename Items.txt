@@ -99,7 +99,7 @@ gameItems/item20.txt
 gameItems/item20Analysis.txt
 porch
 false
-item21
+manual
 gameItems/item21.txt
 gameItems/item21Analysis.txt
 lab
@@ -109,12 +109,12 @@ gameItems/item22.txt
 gameItems/item22Analysis.txt
 lab
 false
-item23
+badge
 gameItems/item23.txt
 gameItems/item23Analysis.txt
 station
 false
-item24
+flask
 gameItems/item24.txt
 gameItems/item24Analysis.txt
 station
