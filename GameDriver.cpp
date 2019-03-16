@@ -1724,7 +1724,13 @@ void Gamestate::accuseSuspect(std::string personIn)
 		if (witnessMap.find(personIn) != witnessMap.end())
 		{
 			Witness* currentWitness = getWitness(personIn);
-			std::cout << currentWitness->getAccuseResponse() << std::endl;
+			
+			std::ifstream inFile;
+
+			inFile.open(currentWitness->getAccuseResponse(), std::ios::out);
+			readFileDefault(inFile);
+			inFile.close();
+			
 		}
 		// if chief
 		else if (personIn == "chief")
@@ -1750,37 +1756,44 @@ void Gamestate::accuseSuspect(std::string personIn)
 			Suspect* currentSuspect = getSuspect(personIn);
 			if (currentSuspect->getIsCleared())
 			{
-				std::cout << currentSuspect->getAccuseResponseFalse() << std::endl;
+				
+				std::ifstream inFile;
+
+				inFile.open(currentSuspect->getAccuseResponseFalse(), std::ios::out);
+				readFileDefault(inFile);
+				inFile.close();
+				
+				
 			}
 			// Suspect is not cleared.
 			else
 			{
-				// test if other two suspects exonerated
-				// Iterator pointing to begining of map
-				std::unordered_map<std::string, Suspect*>::iterator it = suspectMap.begin();
-				// check how many suspects have been cleared
-				int clearedSuspects = 0;
-				while (it != suspectMap.end())
+				if(personIn == "carl" || personIn == "vince")
 				{
-					if (it->second->getIsCleared())
-					{
-						clearedSuspects++;
-					}
-					it++;
-				}
+					std::ifstream inFile;
 
-				// accused is not clear, but the other two are
-				// WINNING CONDITION
-				if (clearedSuspects == 2)
-				{
-					std::cout << "You got him!" << std::endl;
+					inFile.open(currentSuspect->getAccuseResponseTrue(), std::ios::out);
+					readFileDefault(inFile);
+					inFile.close();
 				}
-				//accused is not clear, and one or both of the others isn't either.
 				else
 				{
-					std::cout << currentSuspect->getAccuseResponseFalse() << std::endl;
-					std::cout << "You can't say it's " << personIn
-						<< " for sure. You need to clear the other suspects first." << std::endl;
+					if(playerNotebook.danCanAccuse() == false)
+					{
+						std::ifstream inFile;
+
+						inFile.open(currentSuspect->getAccuseResponseFalse(), std::ios::out);
+						readFileDefault(inFile);
+						inFile.close();						
+					}
+					else
+					{
+						std::ifstream inFile;
+
+						inFile.open(currentSuspect->getAccuseResponseTrue(), std::ios::out);
+						readFileDefault(inFile);
+						inFile.close();								
+					}
 				}
 			}
 		}
@@ -2158,8 +2171,12 @@ void Gamestate::talkToPerson(std::string personIn)
 		// if witness
 		if (witnessMap.find(personIn) != witnessMap.end())
 		{
-			Witness* currentWitness = getWitness(personIn);
-			std::cout << currentWitness->getTalkResponse() << std::endl;
+			Witness* currentWitness = getWitness(personIn);		
+			std::ifstream inFile;
+
+			inFile.open(currentWitness->getTalkResponse(), std::ios::out);
+			readFileDefault(inFile);
+			inFile.close();		
 		}
 		// if chief
 		else if (personIn == "chief")
@@ -2183,7 +2200,13 @@ void Gamestate::talkToPerson(std::string personIn)
 		if (suspectMap.find(personIn) != suspectMap.end())
 		{
 			Suspect* currentSuspect = getSuspect(personIn);
-			std::cout << currentSuspect->getTalkResponse() << std::endl;
+			
+			std::ifstream inFile;
+
+			inFile.open(currentSuspect->getTalkResponse(), std::ios::out);
+			readFileDefault(inFile);
+			inFile.close();					
+
 		}
 		else if (witnessMap.find(personIn) != witnessMap.end() || personIn == "chief")
 		{
