@@ -2786,6 +2786,8 @@ void Gamestate::loadGame()
 		this->playerNotebook.setItemLocations(item, location);
 	}
 
+	std::cout << "*********After Item Location Loop.\n" << std::endl;
+
 	// CLEARED SUSPECTS
 	getline(saveFile, fileLine);
 	std::stringstream currentLine7(fileLine);
