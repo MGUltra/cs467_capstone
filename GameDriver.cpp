@@ -2822,15 +2822,15 @@ void Gamestate::helpPlayer()
 	std::cout << "\tInventory - Displays the list of items you currently have in your inventory.\n" << std::endl;
 	
 	std::cout << "\t\tOther Actions." << std::endl;
-	std::cout << "\tDrop <Object> - Drops the item in your current room." << std::endl;
+	std::cout << "\tDrop <Item> - Drops the item in your current room." << std::endl;
 	std::cout << "\tInterrogate <Person> - Ask the hard hitting questions." << std::endl;
-	std::cout << "\tSample <Object> - Some items, such as blood, can be sampled." << std::endl;
+	std::cout << "\tSample <Feature> - Some features, such as blood, can be sampled." << std::endl;
 	std::cout << "\tAsk <Person> about <Item> - Get some context on what you've found." << std::endl;
 	std::cout << "\tTalk <Person> - Just chit chat, maybe you'll learn some personal details." << std::endl;
 	std::cout << "\tUse <Item> on <Feature> - Some items can be used on certain features." << std::endl;
 	std::cout << "\tDrink <Feature> - Sometimes you just get thirsty!" << std::endl;
 	std::cout << "\tListen / Play <Object> - Some items are able to be listened to." << std::endl;
-	std::cout << "\tHack <Object> - Some objects, such as a computer, can be searched for evidence." << std::endl;
+	std::cout << "\tHack <Feature> - Some Features, such as a computer, can be searched for evidence." << std::endl;
 	std::cout << "\tAnalyze <Item> - Submit an item for forensic analysis. Must be in Forensics Lab." << std::endl;
 	std::cout << "\tReflect - Get a brief overview of what you already know." << std::endl;
 	std::cout << "\tClear <Person> - If you've gathered enough evidence you can safely say a suspect is innocent." << std::endl;
