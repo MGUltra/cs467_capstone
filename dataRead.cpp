@@ -69,7 +69,7 @@ int calcWindowSize()
       printf("| Terminal Too Narrow - Please Resize For Optimal Viewing Experience |");
       return 0;
     }
-    if(lines < 42)
+    if(lines < 50)
     {
       printf("| Terminal Too Short  - Please Resize For Optimal Viewing Experience |");
       return 0;
