@@ -1,3 +1,3 @@
-| The piece of paper has a 4 digit code written on it. The fact that each   	|
+| The piece of paper has a 4 digit code written on it. The fact that each     |
 | number is only single digit and 0-9, makes you believe it will open a bike  |
 | lock or a briefcase.                                                        |

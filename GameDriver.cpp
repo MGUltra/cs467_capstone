@@ -1049,7 +1049,7 @@ void Gamestate::exeCommand(std::string verb)
 		functionToCall = 2;
 	else if(verb == "take" || verb == "pick")
 		functionToCall = 3;
-	else if(verb == "look" || verb == "inspect" || verb == "examine")
+	else if(verb == "look" || verb == "inspect" || verb == "examine" || verb == "search" || verb == "open")
 		functionToCall = 4;
 	else if(verb == "inventory")
 		functionToCall = 5;
