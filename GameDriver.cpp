@@ -2733,6 +2733,8 @@ void Gamestate::loadGame()
 	// ITEM LOCATIONS
 
 	//REMOVE ALL ITEMS FROM ROOMS
+	std::cout << "*********Before removing items from rooms.\n" << std::endl;
+
 	std::unordered_map<std::string, Room*>* roomMapPointer = getRoomMap();
 	std::unordered_map<std::string, Room*>::iterator roomIterator = roomMapPointer->begin();
 	while (roomIterator != roomMapPointer->end())
@@ -2740,15 +2742,17 @@ void Gamestate::loadGame()
 		roomIterator->second->removeAllItems();
 		roomIterator++;
 	}
+
+	std::cout << "*********Before removing items from inventory.\n" << std::endl;
 	// REMOVE ALL ITEMS FROM INVENTORY
 	this->currentPlayer.deleteInventory();
-
+	std::cout << "*********Before getting number of items.\n" << std::endl;
 	getline(saveFile, fileLine);
 	std::stringstream currentLine6(fileLine);
 	int numItemLoc = 0;
 	// Stream line into an integer.
 	currentLine6 >> numItemLoc;
-
+	std::cout << "*********Before item location loop. Num Items: " << numItemLoc << ".\n" << std::endl;
 	for (int i = 0; i < numItemLoc; i++)
 	{
 		std::string item, location;
