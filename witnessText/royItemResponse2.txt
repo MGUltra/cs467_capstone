@@ -1,1 +1,2 @@
-herbertitemResponse2
+| "Yeah, those are the tickets to the fight at the Horseshow. I don't know    |
+| what that has to do with me... lots of people had tickets"                  |

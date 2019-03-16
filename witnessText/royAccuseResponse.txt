@@ -1,1 +1,2 @@
-| "Well it wasn't me detective - I'm just a witness!                          |
+| "Im trying to be helpful here detective. Dont try and pin this on me because|
+| you can't find your man."                                                   |

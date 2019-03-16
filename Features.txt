@@ -116,11 +116,11 @@ false
 true
 false
 none
-pill
+pills
 roomFeatures/danBedroomPillFirst.txt
 roomFeatures/danBedroomPillAfter.txt
 bedroom
-item14
+perscription
 false
 false
 false
@@ -129,7 +129,7 @@ picture
 roomFeatures/danKitchenPicFirst.txt
 roomFeatures/danKitchenPicAfter.txt
 galley
-item15
+dust
 false
 false
 false
@@ -138,7 +138,7 @@ pizza
 roomFeatures/danKitchenPizzaFirst.txt
 roomFeatures/danKitchenPizzaAfter.txt
 galley
-item16
+cutter
 false
 false
 false
@@ -147,7 +147,7 @@ coat
 roomFeatures/danLivingCoatFirst.txt
 roomFeatures/danLivingCoatAfter.txt
 living
-item17
+stamp
 false
 false
 false
