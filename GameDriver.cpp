@@ -2766,10 +2766,8 @@ void Gamestate::loadGame()
 		this->checkLineEndings(&location);
 
 		Item* currentItem = getItem(item);
-		Room* originalLocation = getRoom(currentItem->getOriginalLocation());
 
-		// Remove item from original locaiton so we can place item in...
-		originalLocation->removeItemFromRoom(currentItem);
+		//std::cout << "**INLOOP**     Item = " << currentItem->getName() << "  and Roo"".\n" << std::endl;
 		
 		// inventory
 		if (location == "inventory")
