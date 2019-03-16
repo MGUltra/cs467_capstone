@@ -218,7 +218,9 @@ bool Notebook::danCanInterrogate()
 
 bool Notebook::danCanAccuse()
 {
-	if(this->gameFlags["danInterrogated"] == true)
+	if(this->gameFlags["danInterrogated"] 	== true	&&
+		 this->gameFlags["vinceCleared"] 			== true	&&
+		 this->gameFlags["carlCleared"] 			== true)
 	{
 		return true;
 	}
