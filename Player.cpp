@@ -130,3 +130,8 @@ void Player::showInventory()
 {
 	this->playerInventory.printCurrentInventory();
 }
+
+void Player::deleteInventory()
+{
+	this->playerInventory.removeAllItems();
+}

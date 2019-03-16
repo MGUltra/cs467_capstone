@@ -50,6 +50,8 @@ public:
 	void dropItem(Item*, Notebook*);
 	void changeLocation(Room*, Notebook*);
 	void showInventory();
+
+	void deleteInventory();
 	
 };
 

@@ -2731,6 +2731,18 @@ void Gamestate::loadGame()
 	}
 
 	// ITEM LOCATIONS
+
+	//REMOVE ALL ITEMS FROM ROOMS
+	std::unordered_map<std::string, Room*>* roomMapPointer = getRoomMap();
+	std::unordered_map<std::string, Room*>::iterator roomIterator = roomMapPointer->begin();
+	while (roomIterator != roomMapPointer->end())
+	{
+		roomIterator->second->removeAllItems();
+		roomIterator++;
+	}
+	// REMOVE ALL ITEMS FROM INVENTORY
+	this->currentPlayer.deleteInventory();
+
 	getline(saveFile, fileLine);
 	std::stringstream currentLine6(fileLine);
 	int numItemLoc = 0;
@@ -2797,10 +2809,6 @@ void Gamestate::loadGame()
 
 	std::cout << "Game Loaded.\n" << std::endl;
 }
-
-
-
-
 
 
 

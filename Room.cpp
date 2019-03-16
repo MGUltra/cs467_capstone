@@ -135,6 +135,11 @@ void Room::removeItemFromRoom(Item* removeThisItem)
 	
 }
 
+void Room::removeAllItems()
+{
+	itemsInRoom.clear();
+}
+
 /*******************************************************************************
 *		FIND VECTOR INDEX
 *******************************************************************************/

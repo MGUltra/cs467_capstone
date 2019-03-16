@@ -35,6 +35,7 @@ struct Inventory
 	void addItemToInventory(Item*);
 
 	void removeItemFromInventory(Item*);
+	void removeAllItems();
 
 	int findVectorIndex(Item*);
 	
