@@ -2116,7 +2116,12 @@ void Gamestate::listenToRecording(std::string itemIn)
 			{
 				
 				std::cout << "You listen to the recording." << std::endl;
-				std::cout << currentItem->getDescription() << std::endl;
+				
+				std::ifstream inFile;
+				inFile.open(currentItem->getDescription(), std::ios::out);
+				readFileDefault(inFile);
+				inFile.close();
+
 				std::cout << "You add the recording to your inventory." << std::endl;
 				
 				
@@ -2140,7 +2145,10 @@ void Gamestate::listenToRecording(std::string itemIn)
 		if(this->currentPlayer.itemInInventory(currentItem) == true)
 		{		
 			// Play recording.
-			std::cout << currentItem->getDescription() << std::endl;
+			std::ifstream inFile;
+			inFile.open(currentItem->getDescription(), std::ios::out);
+			readFileDefault(inFile);
+			inFile.close();
 		}
 		else
 		{
