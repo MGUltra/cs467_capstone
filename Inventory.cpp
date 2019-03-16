@@ -46,6 +46,11 @@ void Inventory::removeItemFromInventory(Item* removeThisItem)
 
 }
 
+void Inventory::removeAllItems()
+{
+	itemsInInventory.clear();
+}
+
 /*******************************************************************************
 *		FIND VECTOR INDEX
 *******************************************************************************/

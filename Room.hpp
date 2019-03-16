@@ -74,6 +74,7 @@ struct Room
 	void addFeatureInRoom(Feature*);
 	
 	void removeItemFromRoom(Item*);
+	void removeAllItems();
 	int findVectorIndex(Item*);
 	
 

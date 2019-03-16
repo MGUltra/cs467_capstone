@@ -1,1 +1,3 @@
-royitemResponse2
+| "Yeah, that's the receipt from our shop. You can see the line item for the  |
+| ammonia there as well as the date and time. Looks like this was purchased   |
+| not long after the time of Emma's murder."                                  |
