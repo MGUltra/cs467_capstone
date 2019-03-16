@@ -2560,9 +2560,6 @@ void Gamestate::loadGame()
 		return;
 	}
 
-	///////// DEBUG /////////
-	//std::cout << "*********About to load.\n";
-
 	// Get the current line as a string.
 	getline(saveFile, fileLine);
 
@@ -2570,14 +2567,8 @@ void Gamestate::loadGame()
 	this->checkLineEndings(&currentLocation);
 	Room* currentRoom = getRoom(currentLocation);
 
-	///////// DEBUG /////////
-	//std::cout << "*********Got room " << currentRoom->getName() << ".\n";
-
 	// Update player's location.
 	this->currentPlayer.changeLocation(currentRoom, &this->playerNotebook);
-
-	///////// DEBUG /////////
-	//std::cout << "*********Changed Location.\n";
 	
 	// GAME FLAGS
 	getline(saveFile, fileLine);
@@ -2585,9 +2576,6 @@ void Gamestate::loadGame()
 	int numGameFlags = 0;
 	// Stream line into an integer.
 	currentLine >> numGameFlags;
-
-	////////////////// DEBUG //////////////
-	//std::cout << numGameFlags << std::endl;
 
 	for (int i = 0; i < numGameFlags; i++)
 	{
@@ -2602,9 +2590,6 @@ void Gamestate::loadGame()
 		this->checkLineEndings(&boolean);
 		bool boolValue = getStringFromBool(boolean);
 
-		////////////////// DEBUG //////////////
-		//std::cout << i << "  Key: " << key << "   and   Bool: " << boolValue << std::endl;
-
 		this->playerNotebook.setGameFlags(key, boolValue);
 	}
 
@@ -2614,9 +2599,6 @@ void Gamestate::loadGame()
 	int numItemAvailable = 0;
 	// Stream line into an integer.
 	currentLine1 >> numItemAvailable;
-
-	////////////////// DEBUG //////////////
-	std::cout << numItemAvailable << std::endl;
 
 	for (int i = 0; i < numItemAvailable; i++)
 	{
@@ -2630,10 +2612,6 @@ void Gamestate::loadGame()
 		currentLine01 >> boolean;
 		this->checkLineEndings(&boolean);
 		bool boolValue = getStringFromBool(boolean);
-
-
-		////////////////// DEBUG //////////////
-		//std::cout << i << "Key: " << key << "   and   Bool: " << boolValue << std::endl;
 
 		this->playerNotebook.setItemAvailable(key, boolValue);
 	}
@@ -2733,7 +2711,6 @@ void Gamestate::loadGame()
 	// ITEM LOCATIONS
 
 	//REMOVE ALL ITEMS FROM ROOMS
-	std::cout << "*********Before removing items from rooms.\n" << std::endl;
 
 	std::unordered_map<std::string, Room*>* roomMapPointer = getRoomMap();
 	std::unordered_map<std::string, Room*>::iterator roomIterator = roomMapPointer->begin();
@@ -2743,16 +2720,14 @@ void Gamestate::loadGame()
 		roomIterator++;
 	}
 
-	std::cout << "*********Before removing items from inventory.\n" << std::endl;
 	// REMOVE ALL ITEMS FROM INVENTORY
 	this->currentPlayer.deleteInventory();
-	std::cout << "*********Before getting number of items.\n" << std::endl;
+
 	getline(saveFile, fileLine);
 	std::stringstream currentLine6(fileLine);
 	int numItemLoc = 0;
 	// Stream line into an integer.
 	currentLine6 >> numItemLoc;
-	std::cout << "*********Before item location loop. Num Items: " << numItemLoc << ".\n" << std::endl;
 	for (int i = 0; i < numItemLoc; i++)
 	{
 		std::string item, location;
@@ -2783,8 +2758,6 @@ void Gamestate::loadGame()
 
 		this->playerNotebook.setItemLocations(item, location);
 	}
-
-	std::cout << "*********After Item Location Loop.\n" << std::endl;
 
 	// CLEARED SUSPECTS
 	getline(saveFile, fileLine);
