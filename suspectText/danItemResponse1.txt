@@ -1,1 +1,3 @@
-danitemResponse1
+| "There's nothing weird about owning a wrench - I mean I have plenty of      |
+| tools. It's just that I only needed the wrench at the time to, uh, tighten  |
+| up some bolts. It got a bit dirty so I cleaned it off after."               |

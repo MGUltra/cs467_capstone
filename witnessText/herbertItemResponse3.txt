@@ -1,1 +1,3 @@
-royitemResponse3
+| "ACME brand ammonia you say? Yeah, that's the best there is in my opinion.  |
+| Will clean things right up if that's what you need it for. And I believe    |
+| we're the only shop in town that carries that brand as well!"               |

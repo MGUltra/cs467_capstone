@@ -1,1 +1,3 @@
-royitemResponse1
+| "An 18mm wrench? Yeah, we carry those in the shop - Stanley is probably     |
+| the most popular brand. A wrench that size would have some weight to it     |
+| and could do some real damage to someone if they were hit with it."         |
