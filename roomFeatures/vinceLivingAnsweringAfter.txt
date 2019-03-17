@@ -1,2 +1,2 @@
-| Vince's answering machine only shows zero messages now that you have removed|
-| the recording. There is an empty compartment which holds the tape.				 	|
+| Vince's answering machine shows zero messages now that you have removed the |
+| recording. There is an empty compartment which holds the tape.              |

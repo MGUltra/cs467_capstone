@@ -1,2 +1,2 @@
-| The stack of newspapers is not as neatly stacked as it was before you 		  |
-| searched it. There is nothing else here of value.											 		  |
+| The stack of newspapers is not as neatly stacked as it was before you       |
+| searched it. There is nothing else here of value.                           |
