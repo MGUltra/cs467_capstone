@@ -79,6 +79,8 @@ void Player::pickUpItem(Item* currentItem, Notebook* notebook)
 		location->removeItemFromRoom(currentItem);
 	
 		notebook->setItemLocations(currentItem->getName(), "inventory");
+
+		std::cout << currentItem->getName() << " has been added to you inventory." << std::endl;
 	
 	}
 	else
@@ -108,6 +110,8 @@ void Player::dropItem(Item* currentItem, Notebook* notebook)
 		location->addItemInRoom(currentItem);
 		
 		notebook->setItemLocations(currentItem->getName(), this->location->getName());
+
+		std::cout << currentItem->getName() << " has been dropped in your current location." << std::endl;
 	
 	}
 	else

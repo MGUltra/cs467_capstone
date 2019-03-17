@@ -1342,6 +1342,10 @@ void Gamestate::inspectObject(std::string nounIn)
 				inFile.close();
 			}
 		}
+		else
+		{
+			std::cout << "| That's not in this room." << std::endl;
+		}
 	}
 	else if(this->itemMap.find(nounIn) != this->itemMap.end()) // test if item
 	{
