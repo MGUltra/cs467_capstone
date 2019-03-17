@@ -64,7 +64,7 @@ void Gamestate::playGame()
 		currentRoomPrompt(this->currentPlayer.getLocation());
 		
 		std::cout << "What would you like to do?" << std::endl;
-		std::cout << "(Type 'help' if you need a list of actions you can take!)" << std::endl;
+		std::cout << "(Type 'help' if you need a list of actions you can take, or 'quit' to exit the game.)" << std::endl;
 		
 		getline(std::cin, inputString);
 		
@@ -74,7 +74,7 @@ void Gamestate::playGame()
 		}
 		
 		clearScreen();
-		playerNotebook.printAll();
+		//playerNotebook.printAll();
 		
 		// Call newMessage to run parser on input
 		commandParser.newMessage(inputString);
@@ -2318,7 +2318,7 @@ void Gamestate::reflectOnCase()
 		// name of suspect
 		std::string currentSuspectName = it->second->getName();
 		std::cout << "   -" << currentSuspectName;
-		if (it->second->getIsCleared())
+		if (it->second->getIsCleared() == true)
 		{
 			std::cout << " has been cleared of this murder." << std::endl;
 		}
@@ -2330,40 +2330,40 @@ void Gamestate::reflectOnCase()
 			{
 				if (this->playerNotebook.danCanInterrogate() == false)
 				{
-					std::cout << "/tHe needs to be asked about evidence you've found." << std::endl;
+					std::cout << "\tHe needs to be asked about evidence you've found." << std::endl;
 				}
 				else
 				{
-					std::cout << "/tHe's already been asked about evidence." << std::endl;
+					std::cout << "\tHe's already been asked about evidence." << std::endl;
 				}
 
 				if (this->playerNotebook.herbertCanInterrogate() == false)
 				{
-					std::cout << "/tHis witness, Herbert, needs to be asked about evidence you've found." << std::endl;
+					std::cout << "\tHis witness, Herbert, needs to be asked about evidence you've found." << std::endl;
 				}
 				else
 				{
-					std::cout << "/tHis witness, Herbert, has already been asked about evidence." << std::endl;
+					std::cout << "\tHis witness, Herbert, has already been asked about evidence." << std::endl;
 				}
 			}
 			else if (currentSuspectName == "vince")
 			{	
 				if (this->playerNotebook.vinceCanInterrogate() == false)
 				{
-					std::cout << "/tHe needs to be asked about evidence you've found." << std::endl;
+					std::cout << "\tHe needs to be asked about evidence you've found." << std::endl;
 				}
 				else
 				{
-					std::cout << "/tHe's already been asked about evidence." << std::endl;
+					std::cout << "\tHe's already been asked about evidence." << std::endl;
 				}
 
 				if (this->playerNotebook.royCanInterrogate() == false)
 				{
-					std::cout << "/tHis witness, Roy, needs to be asked about evidence you've found." << std::endl;
+					std::cout << "\tHis witness, Roy, needs to be asked about evidence you've found." << std::endl;
 				}
 				else
 				{
-					std::cout << "/tHis witness, Roy, has already been asked about evidence." << std::endl;
+					std::cout << "\tHis witness, Roy, has already been asked about evidence." << std::endl;
 				}
 				
 			}
@@ -2371,20 +2371,20 @@ void Gamestate::reflectOnCase()
 			{
 				if (this->playerNotebook.carlCanInterrogate() == false)
 				{
-					std::cout << "/tHe needs to be asked about evidence you've found." << std::endl;
+					std::cout << "\tHe needs to be asked about evidence you've found." << std::endl;
 				}
 				else
 				{
-					std::cout << "/tHe's already been asked about evidence." << std::endl;
+					std::cout << "\tHe's already been asked about evidence." << std::endl;
 				}
 
 				if (this->playerNotebook.louiseCanInterrogate() == false)
 				{
-					std::cout << "/tHis witness, Louise, needs to be asked about evidence you've found." << std::endl;
+					std::cout << "\tHis witness, Louise, needs to be asked about evidence you've found." << std::endl;
 				}
 				else
 				{
-					std::cout << "/tHis witness, Louise, has already been asked about evidence." << std::endl;
+					std::cout << "\tHis witness, Louise, has already been asked about evidence." << std::endl;
 				}
 			}
 
@@ -2419,12 +2419,16 @@ void Gamestate::clearSuspect(std::string personIn)
 		//suspect
 		if (suspectMap.find(personIn) != suspectMap.end())
 		{
-			
+			Suspect* currentSuspect = getSuspect(personIn);
+			bool cleared = true;
+
 			if(personIn == "vince")
 			{
 				if(playerNotebook.vinceCanClear() == true)
 				{
 					playerNotebook.setGameFlags("vinceCleared", true);
+					currentSuspect->setIsCleared(cleared);
+					std::cout << "Vince has been cleared." << std::endl;
 				}
 				else
 				{
@@ -2436,6 +2440,8 @@ void Gamestate::clearSuspect(std::string personIn)
 				if(playerNotebook.carlCanClear() == true)
 				{
 					playerNotebook.setGameFlags("carlCleared", true);
+					currentSuspect->setIsCleared(cleared);
+					std::cout << "Carl has been cleared." << std::endl;
 				}
 				else
 				{
@@ -2446,6 +2452,7 @@ void Gamestate::clearSuspect(std::string personIn)
 			{
 				std::cout << "You're going to need some more evidence to clear them." << std::endl;
 			}
+
 			// test if enough evidence to clear them
 			// if so, set flag for suspect to cleared in notebook
 				// remove suspect from cells
