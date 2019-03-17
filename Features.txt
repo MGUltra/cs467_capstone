@@ -188,7 +188,7 @@ false
 false
 false
 none
-sandwhich
+sandwich
 roomFeatures/forensicCompFirst.txt
 roomFeatures/forensicCompAfter.txt
 lab
