@@ -3,8 +3,9 @@
 |--------------------------------------------._____|_|__|_|__|_|__|_|_____.---|
 | The lab is freezing cold. You shiver. The  |__________________________|%|   |
 | lights are dim. A steel table runs along     | | |%|  | |  | |  |~| | |     |
-| the wall. It holds equipment labelled 'DNA   | | |%|  | |  |~|  |#| | |     |
-| Testing'. There's also a computer on the     | | :%:  :~:  : :  :#: | |     |
-| table, its screen strobing in the dim      ._|_|_."    "    "    "._|_|_.   |
-| light. I wonder what's on the computer?    |___|%|                |___|%|   |
+| the wall. It holds equipment, including a    | | |%|  | |  |~|  |#| | |     |
+| beaker containing blue liquid. The lab tech  | | :%:  :~:  : :  :#: | |     |
+| is busy at work and there is a sandwich    ._|_|_."    "    "    "._|_|_.   |
+| on the table near him. The station is to   |___|%|                |___|%|   |
+| the East.                                                                   |
 |-----------------------------------------------------------------------------|

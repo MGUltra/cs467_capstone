@@ -14,10 +14,8 @@
 | ahead is the police chief seated at his desk, slowly       \    .--.    /   |
 | sipping his coffee. Along one wall sit three individuals    |  ( 19 )  |    |
 | on a dated wooden bench. Each person wears a name badge     \   '--'   /    |
-| that's just legible: Herbert, Louise, and Roy. In the        '--.  .--'     |
-| shadows to the West you notice a room containing what            \/         |
-| looks to be some lab equipment possibly used for testing evidence. To the   |
-| East is the station's dank holding cell room. You can make out the          |
-| silhouettes of three individuals - the three suspected murderers - standing |
-| by the bars. Head North out the main entrance to hop into the cop car.      |
+| that's just legible: Herbert, Louise, and Roy. To the West   '--.  .--'     |
+| you notice the station's forensic lab, and to the East are the   \/         |
+| station's dank holding cells. Head North out of the main entrance           | 
+| get into the car to head to the suspects houses.                            |
 |-----------------------------------------------------------------------------|

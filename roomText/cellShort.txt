@@ -2,9 +2,9 @@
 | Holding Cell                                           ||   ||   ||   ||   ||
 |--------------------------------------------------------||   ||   ||   ||   ||
 | The holding cell is dark and stale. A small light      ||   ||_ _||   ||   ||
-| hangs above the cell. The silhouettes have grown into  ||   ||o o||   ||   ||
-| the shapes of three grown men - the murder suspects.   ||   || - ||   ||   ||
-| Carl, Vince, and Dan all stand, hangs wrapped around   ||   || = ||   ||   ||
-| the cell bars. Who should you talk to first? The main  ||   ||   ||   ||   ||
-| room of the police station lies a few steps South.     ||   ||   ||   ||   ||
+| hangs above the cell. In the cells, the murder suspects||   ||o o||   ||   ||
+| Carl, Vince, and Dan, all stand. The watch sergeant    ||   || - ||   ||   ||
+| sits at his desk, and the suspect records are sitting  ||   || = ||   ||   ||
+| on it. The main room of the police station lies to the ||   ||   ||   ||   ||
+| South.                                                 ||   ||   ||   ||   ||
 |-----------------------------------------------------------------------------|

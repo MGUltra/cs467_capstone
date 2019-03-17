@@ -3,8 +3,8 @@
 |-------------------------------------------------------------/ '-'  '-' \----|
 | Through the flickering fluorescent lights you spot the     |   POLICE   |   |
 | police chief seated at his desk. Herbert, Louise, and Roy  \    .--.    /   |
-| are seated on a bench. To the West you see a room holding   |  ( 19 )  |    |
-| lab equipment. To the East  - the cell holding the three    \   '--'   /    |
-| suspected murderers. Head North out the main entrance to     `--.  .--'     |
-| hop into the cop car.                                            \/         |
+| are seated on a bench. To the West is the lab and to the    |  ( 19 )  |    |
+| East are the Holding cells. You can see the chief griping   \   '--'   /    |
+| at a rookie, and your old mahogany desk. Go North to get     `--.  .--'     |
+| into your car to head to the suspects houses.                    \/         |
 |-----------------------------------------------------------------------------|

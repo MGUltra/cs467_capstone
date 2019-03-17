@@ -9,11 +9,10 @@
 |-----------------------------------------------------------------------------|
 | An Italian leather sofa is the centerpiece of this room.    |DAILY NEWS|    |
 | A deep shade of red, it sits nestled in between two ivory   |&&& ======|    |
-| end tables. A newspaper lays over one of the armrests.      |=== ======|    |
-| Fine art adorns all the walls in this room. One painting    |=== == %%$|    |
-| of a fisherman is particularly striking. A card table       |[_] ======|    |
-| sits to the side of the room. On it sits a deck of card     |=== ===!##|    |
-| and a few stacks of chips - ready for anyone who is willing |__________|    |
-| to risk a bit of money. The Western door heads to the                       |
-| foyer. Head North to enter the bedchamber.                                  |
+| end tables. A stack of newspapers sit at one end of the     |=== ======|    |
+| sofa. Fine art adorns the walls in this room. One of the    |=== == %%$|    |
+| ivory tables holds an answering machine, whose red light    |[_] ======|    |
+| is blinking, indicating a message ready to be played.       |=== ===!##|    |
+| The Western door leads to the foyer. Head North to          |__________|    |
+| enter the bedchamber.                                                       |
 |-----------------------------------------------------------------------------|
