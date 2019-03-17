@@ -54,7 +54,7 @@ gameItems/item11.txt
 gameItems/item11Analysis.txt
 car
 false
-item12
+wiring
 gameItems/item12.txt
 gameItems/item12Analysis.txt
 car

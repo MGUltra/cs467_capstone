@@ -1,7 +1,7 @@
 |-----------------------------------------------------------------------------|
 | Cop Car                                                    ___Ç___          |
 |---------------------------------------------------- _____//__Ø____\\_____  -|
-| This old, dusty cop car belongs to Precint 42.     /-------POLICE--------\  |
+| This old, dusty cop car belongs to Precinct 42.     /-------POLICE--------\ |
 | Leather bench seats are in the front and back.     `--(@)===========(@)--`  |
 | There's a radio surrounded by buttons and knobs. A cup of coffee is in the  |
 | the cup holder. To the North is Carl's garage, the West Dan's Galley, and to|
