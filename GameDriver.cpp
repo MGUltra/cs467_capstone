@@ -64,7 +64,7 @@ void Gamestate::playGame()
 		currentRoomPrompt(this->currentPlayer.getLocation());
 		
 		std::cout << "What would you like to do?" << std::endl;
-		std::cout << "(Type 'help' if you need a list of actions you can take!)" << std::endl;
+		std::cout << "(Type 'help' if you need a list of actions you can take, or 'quit' to exit the game.)" << std::endl;
 		
 		getline(std::cin, inputString);
 		
@@ -2330,31 +2330,31 @@ void Gamestate::reflectOnCase()
 			{
 				if (this->playerNotebook.danCanInterrogate() == false)
 				{
-					std::cout << "/tHe needs to be asked about evidence you've found." << std::endl;
+					std::cout << "\tHe needs to be asked about evidence you've found." << std::endl;
 				}
 				else
 				{
-					std::cout << "/tHe's already been asked about evidence." << std::endl;
+					std::cout << "\tHe's already been asked about evidence." << std::endl;
 				}
 
 				if (this->playerNotebook.herbertCanInterrogate() == false)
 				{
-					std::cout << "/tHis witness, Herbert, needs to be asked about evidence you've found." << std::endl;
+					std::cout << "\tHis witness, Herbert, needs to be asked about evidence you've found." << std::endl;
 				}
 				else
 				{
-					std::cout << "/tHis witness, Herbert, has already been asked about evidence." << std::endl;
+					std::cout << "\tHis witness, Herbert, has already been asked about evidence." << std::endl;
 				}
 			}
 			else if (currentSuspectName == "vince")
 			{	
 				if (this->playerNotebook.vinceCanInterrogate() == false)
 				{
-					std::cout << "/tHe needs to be asked about evidence you've found." << std::endl;
+					std::cout << "\tHe needs to be asked about evidence you've found." << std::endl;
 				}
 				else
 				{
-					std::cout << "/tHe's already been asked about evidence." << std::endl;
+					std::cout << "\tHe's already been asked about evidence." << std::endl;
 				}
 
 				if (this->playerNotebook.royCanInterrogate() == false)
