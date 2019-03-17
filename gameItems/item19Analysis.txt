@@ -1,6 +1,2 @@
- _ _                 _  ___    _          _                       _    
-(_) |_ ___ _ __ ___ / |/ _ \  | |    __ _| |____      _____  _ __| | __
-| | __/ _ \ '_ ` _ \| | (_) | | |   / _` | '_ \ \ /\ / / _ \| '__| |/ /
-| | ||  __/ | | | | | |\__, | | |__| (_| | |_) \ V  V / (_) | |  |   < 
-|_|\__\___|_| |_| |_|_|  /_/  |_____\__,_|_.__/ \_/\_/ \___/|_|  |_|\_\
-                                                                       
+| The lab discoverd the ammonia sample is from a cleanser called ACME brand   |
+| ammonia, which is a very powerful cleaning product with many industrial uses|
