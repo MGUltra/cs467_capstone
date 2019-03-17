@@ -225,9 +225,21 @@ void Room::printAttachedRooms()
 {
 	std::cout << "You can see the following rooms from this one" << std::endl;
 	std::cout << "----------------" << std::endl;
+	
+	std::string roomName;
+	
 	for(auto i : attachedRooms)
 	{
-		std::cout << "| " << i->getName() << std::endl;
+			roomName = i->getName();
+			
+			if(roomName == "living")
+			{
+				std::cout << "| " << "living room" << std::endl;
+			}
+			else
+			{
+				std::cout << "| " << roomName << std::endl;
+			}
 	}
 	std::cout << "----------------" << std::endl;
 }
@@ -236,6 +248,7 @@ void Room::printItemsInRoom()
 {
 	std::cout << "You can see the following items" << std::endl;
 	std::cout << "----------------" << std::endl;
+	
 	
 	for(auto i : itemsInRoom)
 	{
@@ -252,9 +265,21 @@ void Room::printFeaturesInRoom()
 	std::cout << "You can see the following features" << std::endl;
 	std::cout << "----------------" << std::endl;
 	
+	std::string featureName;
+	
 	for(auto i : featuresInRoom)
 	{
-		std::cout << "| " << i->getName() << std::endl;
+			featureName = i->getName();
+			
+			if(featureName == "answering")
+			{
+				std::cout << "| " << "answering machine" << std::endl;
+			}
+			else
+			{
+				std::cout << "| " << featureName << std::endl;
+			}
+			
 	}
 	std::cout << "----------------" << std::endl;
 }
