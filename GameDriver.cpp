@@ -2359,11 +2359,11 @@ void Gamestate::reflectOnCase()
 
 				if (this->playerNotebook.royCanInterrogate() == false)
 				{
-					std::cout << "/tHis witness, Roy, needs to be asked about evidence you've found." << std::endl;
+					std::cout << "\tHis witness, Roy, needs to be asked about evidence you've found." << std::endl;
 				}
 				else
 				{
-					std::cout << "/tHis witness, Roy, has already been asked about evidence." << std::endl;
+					std::cout << "\tHis witness, Roy, has already been asked about evidence." << std::endl;
 				}
 				
 			}
@@ -2371,20 +2371,20 @@ void Gamestate::reflectOnCase()
 			{
 				if (this->playerNotebook.carlCanInterrogate() == false)
 				{
-					std::cout << "/tHe needs to be asked about evidence you've found." << std::endl;
+					std::cout << "\tHe needs to be asked about evidence you've found." << std::endl;
 				}
 				else
 				{
-					std::cout << "/tHe's already been asked about evidence." << std::endl;
+					std::cout << "\tHe's already been asked about evidence." << std::endl;
 				}
 
 				if (this->playerNotebook.louiseCanInterrogate() == false)
 				{
-					std::cout << "/tHis witness, Louise, needs to be asked about evidence you've found." << std::endl;
+					std::cout << "\tHis witness, Louise, needs to be asked about evidence you've found." << std::endl;
 				}
 				else
 				{
-					std::cout << "/tHis witness, Louise, has already been asked about evidence." << std::endl;
+					std::cout << "\tHis witness, Louise, has already been asked about evidence." << std::endl;
 				}
 			}
 
@@ -2427,7 +2427,7 @@ void Gamestate::clearSuspect(std::string personIn)
 				if(playerNotebook.vinceCanClear() == true)
 				{
 					playerNotebook.setGameFlags("vinceCleared", true);
-					currentSuspect->setIsGuilty(cleared);
+					currentSuspect->setIsCleared(cleared);
 					std::cout << "Vince has been cleared." << std::endl;
 				}
 				else
@@ -2440,7 +2440,7 @@ void Gamestate::clearSuspect(std::string personIn)
 				if(playerNotebook.carlCanClear() == true)
 				{
 					playerNotebook.setGameFlags("carlCleared", true);
-					currentSuspect->setIsGuilty(cleared);
+					currentSuspect->setIsCleared(cleared);
 					std::cout << "Carl has been cleared." << std::endl;
 				}
 				else
