@@ -1,3 +1,2 @@
-| This is a nice radio - it can pick up both AM and FM frequencies. Rigth now |
-| it's set to the local channel - The tuning would allow for quick and easy   |
-| adjustment, if it werent broken.                                            |
+| It is no longer a nice radio now that you've ripped the wiring out of it    |
+| trying to hack it. You should probably not mention this to anyone.          |

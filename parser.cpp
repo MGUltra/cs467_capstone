@@ -284,10 +284,6 @@ void Parser::parserFunction()
 	//boost::algorithm::split(this->parsedStrings, this->messageIn, [](char c){return c == ' ';});
 	boost::algorithm::split(this->parsedStrings, this->messageIn, boost::is_any_of("\t,. "), boost::token_compress_on);
 	
-	
-	
-		
-
 	// test for meta words
 	if (this->metaSet.find(parsedStrings[0]) != this->metaSet.end())
 	{
@@ -297,7 +293,6 @@ void Parser::parserFunction()
 		
 		return;
 	}
-	
 	// test for location only words
 	if (this->locationSet.find(parsedStrings[0]) != this->locationSet.end())
 	{
@@ -307,7 +302,6 @@ void Parser::parserFunction()
 			
 		return;
 	}
-	
 	// Iterate though all individual words stored in vector parsedStrings
 	for (auto individualString : parsedStrings)
 	{
@@ -315,47 +309,27 @@ void Parser::parserFunction()
 		// test for verb
 		if (this->verbSet.find(individualString) != this->verbSet.end())
 		{
-			// if match create new verb
-			
-			//TEST
-			//std::cout << "Calling new" << std::endl;
-			
+			// if match create new verb			
 			tempWord = new Verb(individualString);
 				
 			// call addVerb
 			addVerb(tempWord);
 					
-					
 			continue;
 		}
-				
-				
-				
 		// test for noun
 		if (this->nounSet.find(individualString) != this->nounSet.end())
 		{
 			// if game noun - create new noun
-			
-			//TEST
-			//std::cout << "Calling new" << std::endl;
 			if(numActions > 0)
 			{
 				tempWord = new Noun(individualString, true);
-					
-					
+
 				// call addNounToVerb
 				addNounToVerb(tempWord);
 			}			
-					
 		}
-		
-		
-		
-		
 	} // end of Iterate through parsedStrings loop
-
-
-	
 }
 
 
