@@ -61,8 +61,6 @@ public:
 	void setName(std::string);
 	void setDescriptionFirst(std::string);
 	void setDescriptionAfter(std::string);
-	void setAlreadyInspected(std::string);
-	void setAlreadyActioned(std::string);
 	void setLocation(std::string);
 	void setAlreadyInspected(bool);
 	void setItemAffected(Item*);

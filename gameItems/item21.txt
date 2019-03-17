@@ -1,6 +1,4 @@
- _ _                 ____  _ 
-(_) |_ ___ _ __ ___ |___ \/ |
-| | __/ _ \ '_ ` _ \  __) | |
-| | ||  __/ | | | | |/ __/| |
-|_|\__\___|_| |_| |_|_____|_|
-                             
+| The lab safety manual is technically required reading for all police who    |
+| work with the crime lab in any capacity. Ironically, the cover features a   |
+| cartoon character drinking out of lab glassware with an big X striking him  |
+| out, as if to say, Do not do this.                                          |
