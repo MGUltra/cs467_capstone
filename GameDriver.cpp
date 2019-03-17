@@ -148,6 +148,8 @@ void Gamestate::playGame()
 		exitStatus = true;
 		
 	}while(exitStatus != true);
+	
+	//cleanup();
 }
 
 
@@ -2957,15 +2959,45 @@ void Gamestate::clearScreen()
 		cleanup
 ------------------------------------------------------------------------------*/
 
+	//std::unordered_map<std::string, Item*> itemMap;
+	//std::unordered_map<std::string, Room*> roomMap;
+	//std::unordered_map<std::string, Feature*> featureMap;
+	//std::unordered_map<std::string, Suspect*> suspectMap;
+	//std::unordered_map<std::string, Witness*> witnessMap;
+
 void Gamestate::cleanup()
 {
 	// Deletes all instantiated class Word derived objects
 	this->commandParser.clearMessage();
 	
 	//delete currentParser;
+	
 	//delete currentPlayer;
 	
-	// TODO:: FINISH CLEANUP FUNCTION
+	for ( auto it = itemMap.begin(); it != itemMap.end(); ++it )
+	{
+		delete it->second;
+	}
+	
+	for ( auto it = roomMap.begin(); it != roomMap.end(); ++it )
+	{
+		delete it->second;
+	}
+	
+	for ( auto it = featureMap.begin(); it != featureMap.end(); ++it )
+	{
+		delete it->second;
+	}
+	
+	for ( auto it = suspectMap.begin(); it != suspectMap.end(); ++it )
+	{
+		delete it->second;
+	}
+	
+	for ( auto it = witnessMap.begin(); it != witnessMap.end(); ++it )
+	{
+		delete it->second;
+	}
 	
 }
 
