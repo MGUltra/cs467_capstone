@@ -3,8 +3,9 @@
 |-------------------------------------------------------------/ '-'  '-' \----|
 | Through the flickering fluorescent lights you spot the     |   POLICE   |   |
 | police chief seated at his desk. Herbert, Louise, and Roy  \    .--.    /   |
-| are seated on a bench. To the West is the lab and to the    |  ( 19 )  |    |
-| East are the Holding cells. You can see the chief griping   \   '--'   /    |
-| at a rookie, and your old mahogany desk. Go North to get     `--.  .--'     |
-| into your car to head to the suspects houses.                    \/         |
+| are seated on a bench. Roy is a witness concerning Vince,   |  ( 19 )  |    |
+| Louise is here for Carl, and Herbert might have information \   '--'   /    |
+| on Dan. You can see the chief griping at a rookie next to    `--.  .--'     |
+| your desk. The lab is West, the cells East, and if you want to   \/         |
+| leave the station, head North to your car.                                  |
 |-----------------------------------------------------------------------------|
