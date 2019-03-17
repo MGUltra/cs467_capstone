@@ -1,6 +1,4 @@
- _ _                 ____  _  _     _          _                       _    
-(_) |_ ___ _ __ ___ |___ \| || |   | |    __ _| |____      _____  _ __| | __
-| | __/ _ \ '_ ` _ \  __) | || |_  | |   / _` | '_ \ \ /\ / / _ \| '__| |/ /
-| | ||  __/ | | | | |/ __/|__   _| | |__| (_| | |_) \ V  V / (_) | |  |   < 
-|_|\__\___|_| |_| |_|_____|  |_|   |_____\__,_|_.__/ \_/\_/ \___/|_|  |_|\_\
-                                                                            
+| The steel flask, which formerly belonged to your father, has the logo of the|
+| International Brotherhood of Boiler Makers and Iron Ship Builders, of which |
+| he was a member. The lab confirms that the contents are an eighteen year old|
+| Speyside scotch, probably Glenlivet.                                        |

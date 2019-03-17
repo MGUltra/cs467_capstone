@@ -1290,7 +1290,8 @@ void Gamestate::inspectObject(std::string nounIn)
 				 nounIn 											== "beaker"			||
 				 nounIn 											== "sandwhich"	||
 				 nounIn 											== "light"			||
-				 nounIn 											== "records")
+				 nounIn 											== "records"		||
+				 nounIn												== "chief")
 			{
 				// if any of the above - test if already actioned
 				if(featurePtr->getAlreadyActioned() == false)
@@ -2052,38 +2053,79 @@ void Gamestate::useItemOnFeature(std::string itemIn, std::string featureIn)
 /*------------------------------------------------------------------------------
 		DRINK FEATURE
 ------------------------------------------------------------------------------*/
-void Gamestate::drinkFeature(std::string featureIn)
+void Gamestate::drinkFeature(std::string nounIn)
 {
 	// test if featureIn is drinkable
-	if(featureIn == "coffee" || featureIn == "beaker")
+	if(nounIn == "coffee" || nounIn == "beaker")
 	{
-		Feature* currentFeature = featureMap[featureIn];
+		Feature* currentFeature = featureMap[nounIn];
 		Room* currentRoom = this->currentPlayer.getLocation();
 		
 		
 		if(currentRoom->isFeatureInRoom(currentFeature) == true)
 		{
 			
-			if(featureIn == "coffee")
+			if(nounIn == "coffee")
 			{
-				// set game flag coffeeBreath
+				if(currentFeature->getAlreadyActioned() == false)
+				{
+					currentFeature->setAlreadyActioned(true);
+					currentFeature->setAlreadyInspected(true);
+					
+					std::cout << "You choke down the stale coffee. Why would you do that" << std::endl;
+				}
+				else
+				{
+					std::cout << "You already drank the coffee." << std::endl;
+				}
 				
 			}
-			else if(featureIn == "beaker")
+			else if(nounIn == "beaker")
 			{
-				// test flag drinkCoffee
-				
+				if(currentFeature->getAlreadyActioned() == false)
+				{
+					
+					Item* itemPtr = currentFeature->getitemAffected();
+					
+					currentFeature->setAlreadyActioned(true);
+					currentFeature->setAlreadyInspected(true);
+					
+					std::cout << "| 'Did you just drink from that?' The lab tech looks furious. 'Did you not  	|" << std::endl;
+					std::cout << "| have to read the lab manual to even work in here? Take this, read it, and 	|" << std::endl;
+					std::cout << "| never do that again.'                                                     	|" << std::endl;
+					std::cout << "| The lab tech gives you a lab manual, which is now in your inventory.       	|" << std::endl;
+					
+					itemPtr->setAvailable(true);
+					
+					this->currentPlayer.pickUpItem(itemPtr, &playerNotebook);
+					
+				}
+				else
+				{
+					std::cout << "| You already drank from the beaker. Best not to try that again.            	|" << std::endl;
+				}				
 			}
 
 		}
 		else
 		{
-			std::cout << "You don't see any " << featureIn << " in this room" << std::endl;
+			std::cout << "You don't see any " << nounIn << " in this room" << std::endl;
 		}
 
 	}
-	else if (featureIn == "flask")
+	else if (nounIn == "flask")
 	{
+		Item* itemPtr = this->itemMap[nounIn];
+		
+		if(this->currentPlayer.itemInInventory(itemPtr) == true)
+		{
+			std::cout << "| You take a sip from the flask.                                             	|" << std::endl;
+
+		}
+		else
+		{
+			std::cout << "You don't have the flask on you." << std::endl;
+		}
 		
 	}
 	else
