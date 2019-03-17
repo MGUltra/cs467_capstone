@@ -2328,15 +2328,64 @@ void Gamestate::reflectOnCase()
 
 			if (currentSuspectName == "dan")
 			{
-				std::cout << "Dan Flags placeholder." << std::endl;
+				if (this->playerNotebook.danCanInterrogate() == false)
+				{
+					std::cout << "/tHe needs to be asked about evidence you've found." << std::endl;
+				}
+				else
+				{
+					std::cout << "/tHe's already been asked about evidence." << std::endl;
+				}
+
+				if (this->playerNotebook.herbertCanInterrogate() == false)
+				{
+					std::cout << "/tHis witness, Herbert, needs to be asked about evidence you've found." << std::endl;
+				}
+				else
+				{
+					std::cout << "/tHis witness, Herbert, has already been asked about evidence." << std::endl;
+				}
 			}
 			else if (currentSuspectName == "vince")
-			{
-				std::cout << "Vince Flags placeholder." << std::endl;
+			{	
+				if (this->playerNotebook.vinceCanInterrogate() == false)
+				{
+					std::cout << "/tHe needs to be asked about evidence you've found." << std::endl;
+				}
+				else
+				{
+					std::cout << "/tHe's already been asked about evidence." << std::endl;
+				}
+
+				if (this->playerNotebook.royCanInterrogate() == false)
+				{
+					std::cout << "/tHis witness, Roy, needs to be asked about evidence you've found." << std::endl;
+				}
+				else
+				{
+					std::cout << "/tHis witness, Roy, has already been asked about evidence." << std::endl;
+				}
+				
 			}
 			else // carl
 			{
-				std::cout << "Carl Flags placeholder." << std::endl;
+				if (this->playerNotebook.carlCanInterrogate() == false)
+				{
+					std::cout << "/tHe needs to be asked about evidence you've found." << std::endl;
+				}
+				else
+				{
+					std::cout << "/tHe's already been asked about evidence." << std::endl;
+				}
+
+				if (this->playerNotebook.louiseCanInterrogate() == false)
+				{
+					std::cout << "/tHis witness, Louise, needs to be asked about evidence you've found." << std::endl;
+				}
+				else
+				{
+					std::cout << "/tHis witness, Louise, has already been asked about evidence." << std::endl;
+				}
 			}
 
 		}
