@@ -12,10 +12,16 @@
 
 int main()
 {
+        std::ifstream inFile;
+
         int winFlag = calcWindowSize();
         if (winFlag == 0)
           return 0;	
-       
+        
+        inFile.open("gameText/titleScreen.txt");
+        readFileDefault(inFile);
+        inFile.close();
+
 	Gamestate* newGame;
 	
 	newGame = new Gamestate();
