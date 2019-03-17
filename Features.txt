@@ -219,7 +219,7 @@ robe
 roomFeatures/vinceBedroomRobeFirst.txt
 roomFeatures/vinceBedroomRobeAfter.txt
 bedchamber
-item25
+lint
 false
 false
 false
