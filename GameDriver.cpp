@@ -1235,7 +1235,7 @@ void Gamestate::dropItem(std::string nounIn)
 		this->currentPlayer.dropItem(getItem(nounIn), &playerNotebook);
 	}
 	else
-		std::cout << "| You cannot drop " << nounIn << std::endl;
+		std::cout << "| You cannot drop " << nounIn << "." << std::endl;
 }
 
 /*------------------------------------------------------------------------------
@@ -1247,7 +1247,7 @@ void Gamestate::takeItem(std::string nounIn)
 	if(this->itemMap.find(nounIn) != this->itemMap.end())
 		this->currentPlayer.pickUpItem(getItem(nounIn), &playerNotebook);
 	else
-		std::cout << "| You cannot pick up " << nounIn << std::endl;
+		std::cout << "| You cannot pick up " << nounIn << "." << std::endl;
 }
 
 
@@ -1341,6 +1341,10 @@ void Gamestate::inspectObject(std::string nounIn)
 				readFileDefault(inFile);
 				inFile.close();
 			}
+		}
+		else
+		{
+			std::cout << "That's not in this room." << std::endl;
 		}
 	}
 	else if(this->itemMap.find(nounIn) != this->itemMap.end()) // test if item
