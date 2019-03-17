@@ -12,10 +12,13 @@
 | to adjust. Old mahogany desks are scattered about, each     / '-'  '-' \    |
 | littered with file folders and loose papers. Straight      |   POLICE   |   |
 | ahead is the police chief seated at his desk, slowly       \    .--.    /   |
-| sipping his coffee. Along one wall sit three individuals    |  ( 19 )  |    |
+| sipping his coffee. Along one wall sit three witnesses      |  ( 19 )  |    |
 | on a dated wooden bench. Each person wears a name badge     \   '--'   /    |
-| that's just legible: Herbert, Louise, and Roy. To the West   '--.  .--'     |
-| you notice the station's forensic lab, and to the East are the   \/         |
-| station's dank holding cells. Head North out of the main entrance           | 
-| get into the car to head to the suspects houses.                            |
+| that's just legible: Herbert, Louise, and Roy. Roy is a      '--.  .--'     |
+| somewhat connected guy who may have dealings with Vince.         \/         |
+| Louise is married to a powerful mogul and works in real estate, and Carl is | 
+| one of her clients. Herbert works at a hardware store, and Dan is one of his|
+| customers. To the West you notice the station's forensic lab, and to the    |
+| East are the station's dank holding cells. Head North out of the main       |
+| entrance get into the car to head to the suspects houses.                   |
 |-----------------------------------------------------------------------------|
