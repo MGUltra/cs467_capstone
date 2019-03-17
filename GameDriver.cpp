@@ -144,7 +144,8 @@ void Gamestate::playGame()
 	
 	
 	// test if game won
-	
+	if(this->playerNotebook.getGameFlags("danAccused") == true)
+		exitStatus = true;
 		
 	}while(exitStatus != true);
 }
@@ -1801,7 +1802,9 @@ void Gamestate::accuseSuspect(std::string personIn)
 
 						inFile.open(currentSuspect->getAccuseResponseTrue(), std::ios::out);
 						readFileDefault(inFile);
-						inFile.close();								
+						inFile.close();
+
+						this->playerNotebook.setGameFlags("danAccused", true);
 					}
 				}
 			}
