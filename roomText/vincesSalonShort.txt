@@ -2,8 +2,8 @@
 | Vince's Salon                                                 |DAILY NEWS|  |
 |---------------------------------------------------------------|&&& ======|--|
 | A deep red, Italian leather sofa is the highlight of the room.|=== == %%$|  |
-| A newspaper lays across the armrest. A painting of a fisher-  |[_] ======|  |
-| man hangs on one wall. A card table holding cards and chips   |=== ===!##|  |
-| sits off to the side. The Western door heads to the foyer.    |=== ======|  |
-| Head North to enter the bedchamer.                            |__________|  |
+| A stack of newspapers sit at one end of the sofa. One of the  |[_] ======|  |
+| end tables holds an answering machine, with a blinking light. |=== ===!##|  |
+| To the West is the foyer and the north is the bedchamber.     |=== ======|  |
+|                                                               |__________|  |
 |-----------------------------------------------------------------------------|

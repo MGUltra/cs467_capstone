@@ -12,8 +12,9 @@
 | are a bit dimmer here than in the main room.|__________________________|%|  |
 | A long steel table sits against the wall.     | | |%|  | |  | |  |~| | |    |
 | It's covered in an assortment of equipment.   | | |%|  | |  |~|  |#| | |    |
-| A set of beakers is labelled 'DNA Test'.      | | :%:  :~:  : :  :#: | |    |
-| There is also a computer on table, its      ._|_|_."    "    "    "._|_|_.  |
-| green monitor strobing slowly. This is      |___|%|                |___|%|  |
-| the location for any important information the station has on the subjects. |
+| There is a particularly noticeable beaker     | | :%:  :~:  : :  :#: | |    |
+| with blue liquid in front of you. The lab   ._|_|_."    "    "    "._|_|_.  |
+| tech is working away at his station. You    |___|%|                |___|%|  |
+| also notice a sandwich sitting a butchers paper on the table.               |
+| The main room of the station is to the east.
 |-----------------------------------------------------------------------------|

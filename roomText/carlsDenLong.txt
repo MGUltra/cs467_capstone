@@ -8,13 +8,13 @@
 |-----------------------------------------------------------------------------|
 |-----------------------------------------------------------------------------|
 | Carl's apartment is modest in size, but well appointed. As you peer around  |
-| the room you realize that this is a studio apartment. There are a few bits  |
-| of furniture scattered about - a bed, dresser, and a couch. Nothing really  |
+| the room you realize that this is a den of sorts. There are a few bits      |
+| of furniture scattered about, a tv, dresser, and a couch. Nothing really    |
 | stands out - except for one particular chair. It has a high      .-===-.    |
 | back and is upholstetered with some sort of silky material.      | . . |    |
 | It has a distinct green sheen to it. But aside from the color    | .'. |    |
-| the chair is also crafted from a stunning type of wood. It is   ()_____()   |
-| rich in color and the craftmaship that went into this piece     ||_____||   |
-| is evident. Didn't Carl say that he was woodworking earlier?     W     W    |
+| the chair is also crafted from a stunning type of wood. Sitting ()_____()   |
+| in the chair, is a computer, specifically a laptop that looks   ||_____||   |
+| a it out of place with the more luddite aesthetic of carls place.W     W    |
 | Directly North you spot the bathroom. To the East is the garage entrance.   |
 |-----------------------------------------------------------------------------|

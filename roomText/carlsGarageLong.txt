@@ -11,13 +11,12 @@
 | Instead, the space is home to a myriad of woodworking tools. These are      |
 | stored in shelves that fill most of the walls from ceiling to floor. From   |
 | the looks of it, Carl is a very organized man. In the middle of the room is |
-| a saw horse with fresh lumber laid atop it. The   , floor is littered with  |
-| sawdust. A few specks of blood gleam from atop   /(  ___________  one pile. |
-| A box of nails lies upturned on the floor. Some |  >:===========` of them   |
-| are scattered about on the floor. You take a     )(  step closer and see a  |
-| a large clawtooth hammer covered in blood on the ""  ground as well. It's   |
-| certainly the type of tool that could cause serious blunt force trauma. How |
-| on earth did it get so bloody? To the South is an exit that will take you   |
-| back to the cop car. The kitchen is straight ahead, to the North. The West  |
-| exit leads to the den.                                                      |
+| a saw horse with fresh lumber laid atop it. The floor is littered with      |
+| sawdust. Next to the sawhorse, what looks like a bassinet is being built.   |
+| You take a step closer look and see a significant amount of blood on a pile |
+| of sawdust, with a large clawtooth hammer covered in blood next to it. It's |
+| certainly the type of tool that could cause serious blunt force trauma. In  |
+| The corner of the room there is a locked storage chest, which appears to be |
+| regularly used. To the South is an exit that will take you back to the car. |
+| The kitchen is to the North and the West exit leads to the den.             |
 |-----------------------------------------------------------------------------|

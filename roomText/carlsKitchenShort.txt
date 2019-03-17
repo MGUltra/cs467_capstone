@@ -3,8 +3,8 @@
 |------------------------------------------------------------------------/ )--|
 | A window overlooking the backyard provides light for the         |||| / /   |
 | kitchen. Everything is in its place, except for some untensils   ||||/ /    |
-| laying atop the marble counter. Flecks of blood are highlighted  \__(_/     |
-| by the white floor tiles underneath. Look closely - do you        ||//      |
-| notice a pattern? The garage entrance is behind you, to the       ||/       |
-| South. A bathroom door is open to the West.                       ||        |
+| laying atop the marble counter. The pie cooling cabinet catches  \__(_/     |
+| your eye, especially the large drawer. The table has two place    ||//      |
+| settings and champagne flutes. The garage is to the south and     ||/       |
+| the bathroom is to the West.                                      ||        |
 |-----------------------------------------------------------------------------|
