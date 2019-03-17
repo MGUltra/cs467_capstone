@@ -1235,7 +1235,7 @@ void Gamestate::dropItem(std::string nounIn)
 		this->currentPlayer.dropItem(getItem(nounIn), &playerNotebook);
 	}
 	else
-		std::cout << "| you cannot drop " << nounIn << std::endl;
+		std::cout << "| You cannot drop " << nounIn << std::endl;
 }
 
 /*------------------------------------------------------------------------------
@@ -1247,7 +1247,7 @@ void Gamestate::takeItem(std::string nounIn)
 	if(this->itemMap.find(nounIn) != this->itemMap.end())
 		this->currentPlayer.pickUpItem(getItem(nounIn), &playerNotebook);
 	else
-		std::cout << "| you cannot pick up " << nounIn << std::endl;
+		std::cout << "| You cannot pick up " << nounIn << std::endl;
 }
 
 
@@ -1385,12 +1385,12 @@ void Gamestate::inspectObject(std::string nounIn)
 		}
 		else
 		{
-			std::cout << "| You can not learn anything from that" << std::endl;
+			std::cout << "| You can not learn anything from that." << std::endl;
 		}
 	}
 	else
 	{
-		std::cout << "| You can not learn anything from that" << std::endl;
+		std::cout << "| You can not learn anything from that." << std::endl;
 	}		
 }
 
@@ -1443,7 +1443,7 @@ void Gamestate::hackComputer(std::string nounIn)
 				else	// if already hacked	
 				{
 					// prompt
-					std::cout << "| You have already Hacked " << nounIn << "." << std::endl;
+					std::cout << "| You have already hacked " << nounIn << "." << std::endl;
 				}			
 			}	
 			else // if it is not hackable
@@ -1460,7 +1460,7 @@ void Gamestate::hackComputer(std::string nounIn)
 	}
 	else
 	{
-		std::cout << "| " << nounIn << " can not be Hacked" << std::endl;
+		std::cout << "| " << nounIn << " can not be hacked." << std::endl;
 	}
 }
 
@@ -1501,7 +1501,7 @@ void Gamestate::interrogate(std::string name)
 					{
 						std::cout << "'I've got nothing to say, Detective.'" << std::endl;
 						
-						std::cout << "You may need to ask Roy about more evidence before he can be successfully interrogated" << std::endl;
+						std::cout << "You may need to ask Roy about more evidence before he can be successfully interrogated." << std::endl;
 					}
 				}
 				// louise
@@ -1529,7 +1529,7 @@ void Gamestate::interrogate(std::string name)
 					{
 						std::cout << "'I've dont have any information, Detective.'" << std::endl;
 						
-						std::cout << "You may need to ask louise about more evidence before he can be successfully interrogated" << std::endl;
+						std::cout << "You may need to ask louise about more evidence before he can be successfully interrogated." << std::endl;
 					}
 				}	
 				// herbert
@@ -1556,7 +1556,7 @@ void Gamestate::interrogate(std::string name)
 					{
 						std::cout << "'I don't think I can help, Detective.'" << std::endl;
 						
-						std::cout << "You may need to ask herbert about more evidence before he can be successfully interrogated" << std::endl;
+						std::cout << "You may need to ask herbert about more evidence before he can be successfully interrogated." << std::endl;
 					}
 				}
 			// test any interrogation conditions
@@ -1590,7 +1590,7 @@ void Gamestate::interrogate(std::string name)
 				{
 					std::cout << "'I don't have any more information, Detective.'" << std::endl;
 					
-					std::cout << "You may need to ask vince about more evidence before he can be successfully interrogated" << std::endl;
+					std::cout << "You may need to ask vince about more evidence before he can be successfully interrogated." << std::endl;
 				}
 			}
 			else if(name == "carl")
@@ -1612,7 +1612,7 @@ void Gamestate::interrogate(std::string name)
 				{
 					std::cout << "'I don't have any more information, Detective.'" << std::endl;
 					
-					std::cout << "You may need to ask carl about more evidence before he can be successfully interrogated" << std::endl;
+					std::cout << "You may need to ask carl about more evidence before he can be successfully interrogated." << std::endl;
 				}
 			}
 			else if(name == "dan")
@@ -1634,7 +1634,7 @@ void Gamestate::interrogate(std::string name)
 				{
 					std::cout << "'I don't have any more information, Detective.'" << std::endl;
 					
-					std::cout << "You may need to ask dan about more evidence before he can be successfully interrogated" << std::endl;
+					std::cout << "You may need to ask dan about more evidence before he can be successfully interrogated." << std::endl;
 				}
 			}
 
@@ -1695,8 +1695,8 @@ void Gamestate::analyzeItem(std::string nounIn)
 				}
 				else // if already analyzed, prompt
 				{
-					std::cout << "| " << nounIn << " has already been analyzed in the lab" << std::endl;
-					std::cout << "| " << "examine " << nounIn << " to review labwork" << std::endl;
+					std::cout << "| " << nounIn << " has already been analyzed in the lab." << std::endl;
+					std::cout << "| " << "examine " << nounIn << " to review labwork." << std::endl;
 				}
 				
 			}
@@ -1711,13 +1711,13 @@ void Gamestate::analyzeItem(std::string nounIn)
 		}
 		else // if not item
 		{
-			std::cout << "| " << nounIn << " cannot be analyzed" << std::endl;
+			std::cout << "| " << nounIn << " cannot be analyzed." << std::endl;
 		}
 
 	}
 	else
 	{
-		std::cout << "| You must be in the lab to analyze objects" << std::endl;
+		std::cout << "| You must be in the lab to analyze objects." << std::endl;
 	}
 }
 
@@ -1972,7 +1972,7 @@ void Gamestate::askAboutItem(std::string personIn, std::string itemIn)
 			// if neither of the above then operation is not possible
 			else
 			{
-				std::cout << "that person isn't here to ask" <<  std::endl;
+				std::cout << "That person isn't here to ask." <<  std::endl;
 			}
 
 		}
@@ -2042,12 +2042,12 @@ void Gamestate::useItemOnFeature(std::string itemIn, std::string featureIn)
 		}
 		else // if the feature can NOT have an item used on it
 		{
-			std::cout << featureIn << " doesn't look like anythin useful will happen by using an item on it" << std::endl;
+			std::cout << featureIn << " doesn't look like anythin useful will happen by using an item on it." << std::endl;
 		}
 	}
 	else // if all 4 conditions are not true, then operation can not be complete
 	{
-		std::cout << "You can not do that under the current conditions" << std::endl;
+		std::cout << "You can not do that under the current conditions." << std::endl;
 	}
 		
 }
@@ -2075,7 +2075,7 @@ void Gamestate::drinkFeature(std::string nounIn)
 					currentFeature->setAlreadyActioned(true);
 					currentFeature->setAlreadyInspected(true);
 					
-					std::cout << "You choke down the stale coffee. Why would you do that" << std::endl;
+					std::cout << "You choke down the stale coffee. Why would you do that?" << std::endl;
 				}
 				else
 				{
@@ -2112,7 +2112,7 @@ void Gamestate::drinkFeature(std::string nounIn)
 		}
 		else
 		{
-			std::cout << "You don't see any " << nounIn << " in this room" << std::endl;
+			std::cout << "You don't see any " << nounIn << " in this room." << std::endl;
 		}
 
 	}
@@ -2133,7 +2133,7 @@ void Gamestate::drinkFeature(std::string nounIn)
 	}
 	else
 	{
-		std::cout << "Trying to drink that is a bad idea" << std::endl;
+		std::cout << "Trying to drink that is a bad idea." << std::endl;
 	}
 		
 
@@ -2197,7 +2197,7 @@ void Gamestate::listenToRecording(std::string itemIn)
 		}
 		else
 		{
-			std::cout << "the recording is not in your inventory." << std::endl;
+			std::cout << "The recording is not in your inventory." << std::endl;
 		}
 	}
 	else
@@ -2379,7 +2379,7 @@ void Gamestate::clearSuspect(std::string personIn)
 				}
 				else
 				{
-					std::cout << "You're going to need some more evidence to clear them" << std::endl;
+					std::cout << "You're going to need some more evidence to clear them." << std::endl;
 				}
 			}
 			else if(personIn == "carl")
@@ -2390,12 +2390,12 @@ void Gamestate::clearSuspect(std::string personIn)
 				}
 				else
 				{
-					std::cout << "You're going to need some more evidence to clear them" << std::endl;
+					std::cout << "You're going to need some more evidence to clear them." << std::endl;
 				}
 			}
 			else if(personIn == "dan")
 			{
-				std::cout << "You're going to need some more evidence to clear them" << std::endl;
+				std::cout << "You're going to need some more evidence to clear them." << std::endl;
 			}
 			// test if enough evidence to clear them
 			// if so, set flag for suspect to cleared in notebook
@@ -2411,7 +2411,7 @@ void Gamestate::clearSuspect(std::string personIn)
 	}
 	else
 	{
-		std::cout << "You need to be in the same room as the person you are trying to clear of the crime" << std::endl;
+		std::cout << "You need to be in the same room as the person you are trying to clear of the crime." << std::endl;
 	}
 	
 	
