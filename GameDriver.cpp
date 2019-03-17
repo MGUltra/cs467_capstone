@@ -2419,12 +2419,15 @@ void Gamestate::clearSuspect(std::string personIn)
 		//suspect
 		if (suspectMap.find(personIn) != suspectMap.end())
 		{
-			
+			Suspect* currentSuspect = getSuspect(personIn);
+			bool cleared = true;
+
 			if(personIn == "vince")
 			{
 				if(playerNotebook.vinceCanClear() == true)
 				{
 					playerNotebook.setGameFlags("vinceCleared", true);
+					currentSuspect->setIsGuilty(cleared);
 				}
 				else
 				{
@@ -2436,6 +2439,7 @@ void Gamestate::clearSuspect(std::string personIn)
 				if(playerNotebook.carlCanClear() == true)
 				{
 					playerNotebook.setGameFlags("carlCleared", true);
+					currentSuspect->setIsGuilty(cleared);
 				}
 				else
 				{
@@ -2446,6 +2450,7 @@ void Gamestate::clearSuspect(std::string personIn)
 			{
 				std::cout << "You're going to need some more evidence to clear them." << std::endl;
 			}
+
 			// test if enough evidence to clear them
 			// if so, set flag for suspect to cleared in notebook
 				// remove suspect from cells
