@@ -71,7 +71,7 @@ false
 false
 false
 none
-light
+sergeant
 roomFeatures/cellLightFirst.txt
 roomFeatures/cellLightAfter.txt
 cells
