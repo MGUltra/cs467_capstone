@@ -2318,7 +2318,7 @@ void Gamestate::reflectOnCase()
 		// name of suspect
 		std::string currentSuspectName = it->second->getName();
 		std::cout << "   -" << currentSuspectName;
-		if (it->second->getIsCleared())
+		if (it->second->getIsCleared() == true)
 		{
 			std::cout << " has been cleared of this murder." << std::endl;
 		}
@@ -2428,6 +2428,7 @@ void Gamestate::clearSuspect(std::string personIn)
 				{
 					playerNotebook.setGameFlags("vinceCleared", true);
 					currentSuspect->setIsGuilty(cleared);
+					std::cout << "Vince has been cleared." << std::endl;
 				}
 				else
 				{
@@ -2440,6 +2441,7 @@ void Gamestate::clearSuspect(std::string personIn)
 				{
 					playerNotebook.setGameFlags("carlCleared", true);
 					currentSuspect->setIsGuilty(cleared);
+					std::cout << "Carl has been cleared." << std::endl;
 				}
 				else
 				{
