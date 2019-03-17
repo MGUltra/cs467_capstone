@@ -120,7 +120,7 @@ pills
 roomFeatures/danBedroomPillFirst.txt
 roomFeatures/danBedroomPillAfter.txt
 bedroom
-perscription
+prescription
 false
 false
 false
@@ -237,7 +237,7 @@ boots
 roomFeatures/vinceFoyerBootsFirst.txt
 roomFeatures/vinceFoyerBootsAfter.txt
 foyer
-item27
+socks
 false
 false
 false

@@ -1,6 +1,2 @@
- _ _                 _  ___  
-(_) |_ ___ _ __ ___ / |/ _ \ 
-| | __/ _ \ '_ ` _ \| | (_) |
-| | ||  __/ | | | | | |\__, |
-|_|\__\___|_| |_| |_|_|  /_/ 
-                             
+| The ammonia sample has a strong smell, but there is not much you can tell   |
+| without getting it analyzed at the lab.                                     |

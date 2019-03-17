@@ -64,7 +64,7 @@ gameItems/item13.txt
 gameItems/item13Analysis.txt
 bedroom
 false
-perscription
+prescription
 gameItems/item14.txt
 gameItems/item14Analysis.txt
 bedroom
