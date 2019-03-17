@@ -74,7 +74,7 @@ void Gamestate::playGame()
 		}
 		
 		clearScreen();
-		playerNotebook.printAll();
+		//playerNotebook.printAll();
 		
 		// Call newMessage to run parser on input
 		commandParser.newMessage(inputString);
